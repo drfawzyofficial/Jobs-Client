@@ -1,20 +1,9 @@
-/*
-@File: Vumy Template Styles
-
-* This file contains the styling for the actual template, this is the file you need to edit to change the look of the template.
-
-This files table contents are outlined below>>>>>
-
-*******************************************
-*/
 /*================================================
 Default CSS
 =================================================*/
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
 :root {
-  --fontFamily: 'Be Vietnam Pro', sans-serif;
-  --nunitoFontFamily: 'Nunito Sans', sans-serif;
+  --fontFamily: 'Cairo', sans-serif;
   --redLightColor: #FF004D;
   --blueDarkColor: #473BF0;
   --lightGreenColor: #00B3CC;
@@ -146,8 +135,8 @@ p:last-child {
   background-color: #dce1d6;
 }
 
-.nunito-font {
-  font-family: var(--nunitoFontFamily);
+.cairo-font {
+  font-family: var(--fontFamily);
 }
 
 .br-bottom-100 {
@@ -604,6 +593,26 @@ IT Startup Banner Area CSS
   right: -100px;
   z-index: -1;
   top: 0;
+}
+
+
+/*================================================
+Home Page Area CSS
+=================================================*/
+.homePage {
+  min-height: 100vh;
+  background-image: url("../images/jobs/homeBackground.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.homePage .overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*================================================

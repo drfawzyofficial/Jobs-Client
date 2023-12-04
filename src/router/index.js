@@ -1,10 +1,10 @@
 import { createWebHistory, createRouter } from "vue-router";
-import BigDataPage from "../Pages/BigDataPage";
+import Khatat from "../Pages/Khatat";
 import ErrorPage from "../Pages/ErrorPage";
 
 
 const routes = [
-  { path: "/", name: "BigDataPage", component: BigDataPage },
+  { path: "/", name: "Khatat", component: Khatat },
   { path: "/:pathMatch(.*)*", name: "ErrorPage", component: ErrorPage },
 
 ];
