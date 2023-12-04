@@ -2,7 +2,6 @@
 Default CSS
 =================================================*/
 @import url('https://fonts.googleapis.com/css2?family=Cairo&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 :root {
   --fontFamily: 'Cairo', sans-serif;
   --blackColor: #17252a;
@@ -105,6 +104,32 @@ p {
 
 p:last-child {
   margin-bottom: 0;
+}
+
+.ptb-100 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.pt-100 {
+  padding-top: 100px;
+}
+
+.pb-100 {
+  padding-bottom: 100px;
+}
+
+.ptb-75 {
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
+.pt-75 {
+  padding-top: 75px;
+}
+
+.pb-75 {
+  padding-bottom: 75px;
 }
 
 
@@ -251,10 +276,11 @@ p:last-child {
   background-color: var(--greenColor2);
   border-color: var(--greenColor2);
   color: var(--whiteColor);
+  cursor: pointersocial-links;
 }
 
 .btn-style-one.green-color2:hover {
-  background-color: var(--orangeColor);
+  background-color: var(--greenColor1);
   border-color: var(--orangeColor);
   color: var(--whiteColor);
 }
@@ -7490,7 +7516,7 @@ Sidebar Modal CSS
   border-radius: 50%;
   text-align: center;
   position: relative;
-  color: var(--greenColor);
+  color: var(--greenColor1);
   background-color: var(--whiteColor);
   -webkit-box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.14);
           box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.14);
