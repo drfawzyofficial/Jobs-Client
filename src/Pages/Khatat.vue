@@ -37,9 +37,41 @@
                 </div>
             </div>
         </div>
-        <div class="homePage" id="الرئيسية">
-            <div class="overlay"></div>
-         </div>
+        <div class="medical-banner-area">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="medical-banner-content">
+                        <h1>The world's leading medical services provider</h1>
+                        <p>Velit hendrerit sit auctor tempor sem. Congue mi tempor condimentum felis arcu, non cursus. Nulla pharetra porttitor sed platea arcu.</p>
+                        <router-link to="/contact" class="btn-style-one red-light-color">
+                            Get Started Now 
+                            <i class="ph-caret-right"></i>
+                        </router-link>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="medical-banner-image">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="image">
+                                    <img src="../assets/images/banner/banner10.jpg" data-aos="flip-left" data-aos-easing="ease" data-aos-delay="300" alt="banner-image">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="image">
+                                    <img src="../assets/images/banner/banner11.jpg" data-aos="fade-up" data-aos-easing="ease" data-aos-delay="300" alt="banner-image">
+                                </div>
+                                <div class="image">
+                                    <img src="../assets/images/banner/banner12.jpg" data-aos="fade-down" data-aos-easing="ease" data-aos-delay="300" alt="banner-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="features-area pb-75" id="المميزات">
         <div class="container">
             <div class="row justify-content-center">
@@ -484,7 +516,7 @@
 <script>
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { Carousel, Slide, Pagination } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 export default {

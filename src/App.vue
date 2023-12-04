@@ -1,27 +1,17 @@
 <template>
     <div id="app">
-    <router-view/>
-     <BackToTop />
+        <router-view />
+        <BackToTop />
     </div>
 </template>
 
 <script>
-import BackToTop from './components/Layouts/BackToTop'
+import BackToTop from './components/BackToTop'
 
 export default {
     name: 'App',
     components: {
         BackToTop,
     },
-    data() {
-        return {
-            isLoading: true
-        }
-    },
-    mounted() {
-        setTimeout(() => {
-            this.isLoading = false
-        }, 2000)
-    }
 }
 </script>
