@@ -28,7 +28,7 @@
                                 <i class="ph ph-user"></i>
                                 التسجيل
                             </a>
-                            <a data-bs-toggle="modal" data-bs-target="#Signup" class="btn-style-one bg-black text-white ms-1">
+                            <a data-bs-toggle="modal" data-bs-target="#Signup" class="btn-style-one black-color text-white ms-1">
                                 <i class="ph ph-user"></i>
                                 الدخول
                             </a>
