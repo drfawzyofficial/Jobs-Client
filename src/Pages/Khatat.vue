@@ -28,7 +28,7 @@
                                 <i class="ph ph-user"></i>
                                 التسجيل
                             </a>
-                            <a data-bs-toggle="modal" data-bs-target="#Signup" class="btn-style-one black-color text-white ms-1">
+                            <a data-bs-toggle="modal" data-bs-target="#Login" class="btn-style-one black-color text-white ms-1">
                                 <i class="ph ph-user"></i>
                                 الدخول
                             </a>
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <div class="medical-banner-area">
+        <div class="medical-banner-area" id="الرئيسية">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12">
@@ -157,193 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="overview-item-style-two">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12 overview-content">
-                        <h2 class="nunito-font">Neurosurgery department</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                        <ul class="overview-list">
-                            <li data-aos="fade-up" data-aos-duration="1200">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Surgical Oncology</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Neuro-Oncology</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Brain Stimulators</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Interventional Treatment</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-6 col-md-12 overview-image" data-aos="fade-up" data-aos-duration="1200">
-                        <img src="../assets/images/overview/overview10.png" alt="overview-image">
-                    </div>
-                </div>
-            </div>
         </div>
-        </div>
-        <div class="working-process-area ptb-100 bg-greencolor2" id="العملية">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-12">
-                    <div class="working-process-img" data-aos="fade-up" data-aos-duration="1200">
-                        <img src="../assets/images/working-process4.png" alt="working-process">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="working-process-text">
-                        <span class="sub-title">About Us</span>
-                        <h2>Short story about Vumy clinic since 1999</h2>
-                        <ul class="working-process-list">
-                            <li data-aos="fade-up" data-aos-duration="1200">
-                                <div class="number">
-                                    1
-                                </div>
-                                <h3 class="nunito-font">Scientific skills</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-                                <div class="number">
-                                    2
-                                </div>
-                                <h3 class="nunito-font">Communication skills</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-                                <div class="number">
-                                    3
-                                </div>
-                                <h3 class="nunito-font">Opportunity available</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="shape10"><img src="../assets/images/shape/shape10.png" alt="shape"></div>
-        <div class="shape11"><img src="../assets/images/shape/shape11.png" alt="shape"></div>
-        </div>
-        <div class="why-choose-us-area py-5" id="لماذا نحن؟">
-            <div class="container">
-                <div class="section-title">
-                    <h2 class="nunito-font">Why Choose Vumy?</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur mauris amet, placerat fames orci
-                        elementum adipiscing.</p>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="single-why-choose-us-box">
-                            <div class="icon">
-                                <i class="flaticon-expand"></i>
-                            </div>
-                            <h3 class="nunito-font">
-                                <router-link to="/services-details">Easy to Deploy</router-link>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <router-link to="/services-details" class="link-btn">
-                                Learn More
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200"
-                        data-aos-delay="100">
-                        <div class="single-why-choose-us-box active">
-                            <div class="icon">
-                                <i class="flaticon-return-on-investment"></i>
-                            </div>
-                            <h3 class="nunito-font">
-                                <router-link to="/services-details">Cost Effective</router-link>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <router-link to="/services-details" class="link-btn">
-                                Learn More
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200"
-                        data-aos-delay="200">
-                        <div class="single-why-choose-us-box">
-                            <div class="icon">
-                                <i class="flaticon-simple"></i>
-                            </div>
-                            <h3 class="nunito-font">
-                                <router-link to="/services-details">Simple & Flexible</router-link>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <router-link to="/services-details" class="link-btn">
-                                Learn More
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="single-why-choose-us-box">
-                            <div class="icon">
-                                <i class="flaticon-bell"></i>
-                            </div>
-                            <h3 class="nunito-font">
-                                <router-link to="/services-details">Real-Time Alerts</router-link>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <router-link to="/services-details" class="link-btn">
-                                Learn More
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200"
-                        data-aos-delay="100">
-                        <div class="single-why-choose-us-box">
-                            <div class="icon">
-                                <i class="flaticon-maximize"></i>
-                            </div>
-                            <h3 class="nunito-font">
-                                <router-link to="/services-details">Massively Scalable</router-link>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <router-link to="/services-details" class="link-btn">
-                                Learn More
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200"
-                        data-aos-delay="200">
-                        <div class="single-why-choose-us-box">
-                            <div class="icon">
-                                <i class="flaticon-security"></i>
-                            </div>
-                            <h3 class="nunito-font">
-                                <router-link to="/services-details">Robust Security</router-link>
-                            </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <router-link to="/services-details" class="link-btn">
-                                Learn More
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="working-process-area ptb-100 bg-greencolor2" id="العملية">
             <div class="container">
@@ -497,7 +311,7 @@
                 </div>
             </div>
         </div>
-        <div class="template-footer-five pt-100">
+        <div class="template-footer-five pt-100" id="التواصل">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6">
@@ -609,21 +423,37 @@
                 </div>
             </div>
         </div>
-
         <!-- Signup Modal -->
         <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="SignupTitle">Modal title</h5>
+                        <h5 class="modal-title" id="SignupTitle">التسجيل</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <div class="signup-form">
+                            <div class="mb-3">
+                            <input class="form-control form-control-lg" type="text" placeholder="الاسم بالكامل" v-model="signupPayload.fullname">
+                          </div>
+                          <div class="mb-3">
+                            <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني" v-model="signupPayload.email">
+                          </div>
+                          <div class="mb-3">
+                            <input class="form-control form-control-lg" type="password" placeholder="كلمة السر" v-model="signupPayload.password">
+                          </div>
+                          <div class="mb-3">
+                            <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر" v-model="signupPayload.password_confirmation">
+                          </div>
+                          <div>
+                            <button type="button" class="btn-style-one green-color2 text-white" @click="onSignup">
+                                <span v-if="!loading_status"><i class="ph ph-user"></i></span>
+                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
+                                التسجيل
+                            </button>
+                            
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -638,10 +468,21 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إغلاق</button>
+                        <div class="signup-form">
+                          <div class="mb-3">
+                            <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني" v-model="loginPayload.email">
+                          </div>
+                          <div class="mb-3">
+                            <input class="form-control form-control-lg" type="password" placeholder="كلمة السر" v-model="loginPayload.password">
+                          </div>
+                          <div>
+                            <button type="button" class="btn-style-one green-color2 text-white" @click="onLogin">
+                                <span v-if="!loading_status"><i class="ph ph-user"></i></span>
+                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
+                                الدخول
+                            </button>
+                          </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -653,24 +494,34 @@
 <script>
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
-import { onMounted, ref } from 'vue'
-import { Carousel, Slide, Pagination } from 'vue3-carousel';
-import 'vue3-carousel/dist/carousel.css';
+import { computed, onMounted, ref } from 'vue'
 export default {
     name: 'Khatat',
-    components: {
-        Carousel,
-        Slide,
-        Pagination,
-    },
     setup() {
-
         // Calling, Declarations, Data
         const store = useStore()
-        const navLinks = ref(["الرئيسية", "الخدمات", "لماذا نحن؟", "العملية", "التقييمات", "الأسئلة الشائعة", "التواصل"]);
+        const loading_status = computed(() => store.state.Collection.loading_status);
+        const navLinks = ref(["الرئيسية", "المميزات", "الخدمات", "العملية",  "الأسئلة الشائعة", "التواصل"]);
         const isSticky = ref(false);
         const show = ref(false);
+        const signupPayload = ref({
+            fullname: "",
+            email: "",
+            password: "",
+            password_confirmation: ""
+        })
+        const loginPayload = ref({
+            email: "",
+            password: "",
+        })
+        const onSignup = () => {
+            store.dispatch("Auth/Signup", signupPayload.value)
+        }
+        const onLogin = () => {
+            store.dispatch("Auth/Login", loginPayload.value)
+        }
         const button_show_state = ref(false);
+
         onMounted(() => {
             const that = this;
             window.addEventListener("scroll", () => {
@@ -682,51 +533,6 @@ export default {
                 }
             });
         });
-        // const settings = ref({
-        //     itemsToShow: 1,
-        //     snapAlign: 'center',
-        // });
-        // const carouselItems = ref([
-        //     {
-        //         id: 1,
-        //         title: '“I never really lost it to begin with.”',
-        //         desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna facilisi viverra felis eleifend ornare urna. Eu mauris, velit volutpat massa volutpat. Risus pellentesque felis nisl ut laoreet euismod vel, integer. Massa sodales lorem nisi, sed massa volutpat.',
-        //         name: 'Lora Joly',
-        //         position: 'Founder at Envato',
-        //     },
-        //     {
-        //         id: 2,
-        //         title: '“Every moment is a fresh beginning.”',
-        //         desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna facilisi viverra felis eleifend ornare urna. Eu mauris, velit volutpat massa volutpat. Risus pellentesque felis nisl ut laoreet euismod vel, integer. Massa sodales lorem nisi, sed massa volutpat.',
-        //         name: 'David Warner',
-        //         position: 'Founder at ThemeForest',
-        //     },
-        //     {
-        //         id: 3,
-        //         title: '“Whatever you do, do it well. From now!”',
-        //         desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Urna facilisi viverra felis eleifend ornare urna. Eu mauris, velit volutpat massa volutpat. Risus pellentesque felis nisl ut laoreet euismod vel, integer. Massa sodales lorem nisi, sed massa volutpat.',
-        //         name: 'James Anderson',
-        //         position: 'Founder at EnvyTheme',
-        //     },
-        // ])
-        // const breakpoints = {
-        //     0: {
-        //         itemsToShow: 1,
-        //         snapAlign: 'center',
-        // 	},
-        //     576: {
-        //         itemsToShow: 1,
-        //         snapAlign: 'center',
-        //     },
-        //     768: {
-        //         itemsToShow: 2,
-        //         snapAlign: 'center',
-        //     },
-        //     1200: {
-        //         itemsToShow: 2,
-        //         snapAlign: 'center',
-        //     },
-        // }
 
         // Methods
         const goToSection = (sectionName) => {
@@ -736,11 +542,16 @@ export default {
 
         // Return
         return {
+            loading_status,
             navLinks,
             goToSection,
             isSticky,
             show,
             button_show_state,
+            signupPayload,
+            loginPayload,
+            onLogin,
+            onSignup
         }
     }
 }

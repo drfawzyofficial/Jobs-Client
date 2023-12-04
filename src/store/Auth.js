@@ -13,10 +13,31 @@ export const Auth = {
     user: null
   },
   actions: {
+    async Signup({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", "/student/signup", payload);
+        if (data.statusCode === 201) {
+          window.Swal.fire({ title: 'إنشاء حساب الطالب', icon: "success", text: data.message, confirmButtonText: 'تفهمت' })
+        } else {
+          var errors = ``;
+          for (const property in data.result.errors) {
+            data.result.errors[property].forEach((ele) => {
+              errors += `<li>${ele}</li>`
+            })
+          }
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
     async Login({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("POST", "/admin/login", payload);
+        const data = await Fetch("POST", "/student/login", payload);
         if (data.statusCode === 200) {
           localStorage.setItem("token", data.result.token);
           router.push("/dashboard")

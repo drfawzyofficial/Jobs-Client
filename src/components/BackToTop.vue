@@ -23,9 +23,9 @@ export default {
             window.addEventListener('scroll', () => {
                 let scrollPos = window.scrollY
                 if (scrollPos >= 100) {
-                    that.isTop = true
+                    isTop.value = true
                 } else {
-                    that.isTop = false
+                    isTop.value = false
                 }
             })
         })

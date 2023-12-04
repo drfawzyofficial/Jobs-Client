@@ -95,6 +95,10 @@ img {
   height: auto;
 }
 
+button {
+  border: none;
+}
+
 p {
   color: var(--blackColor);
   font-size: var(--fontSize);
@@ -6202,6 +6206,7 @@ Courses Details Area CSS
   background-color: #0077b5;
   color: var(--whiteColor);
 }
+
 
 /*================================================
 Gallery Area CSS

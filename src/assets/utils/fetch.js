@@ -6,7 +6,7 @@
 */
 
 // Load VUE_APP_ENDPOINT variable that's related to WebPack V5
-const API_ENDPOINT = process.env.VUE_APP_ENDPOINT 
+const API_ENDPOINT = "http://localhost:3000/api/v1"
 
 // AuthHeader Auth
  const AuthHeader = () => {
