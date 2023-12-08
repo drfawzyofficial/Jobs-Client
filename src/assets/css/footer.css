@@ -884,7 +884,7 @@
 }
 
 .template-footer-five .single-footer-widget .footer-contact-info li {
-  padding-left: 48px;
+  padding-right: 48px;
   position: relative;
   margin-bottom: 20px;
   font-size: 18px;
@@ -899,7 +899,7 @@
   color: var(--greenColor1);
   position: absolute;
   font-size: 35px;
-  left: 0;
+  right: 0;
   top: 0;
 }
 
@@ -2758,7 +2758,7 @@
   }
   .template-footer-five .single-footer-widget .footer-contact-info li {
     margin-bottom: 15px;
-    padding-left: 40px;
+    padding-right: 40px;
     font-size: 15px;
   }
   .template-footer-five .single-footer-widget .footer-contact-info li span {

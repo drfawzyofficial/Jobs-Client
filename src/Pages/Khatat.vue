@@ -28,7 +28,8 @@
                                 <i class="ph ph-user"></i>
                                 التسجيل
                             </a>
-                            <a data-bs-toggle="modal" data-bs-target="#Login" class="btn-style-one black-color text-white ms-1">
+                            <a data-bs-toggle="modal" data-bs-target="#Login"
+                                class="btn-style-one black-color text-white ms-1">
                                 <i class="ph ph-user"></i>
                                 الدخول
                             </a>
@@ -37,7 +38,7 @@
                 </div>
             </div>
         </div>
-        <div class="medical-banner-area" id="الرئيسية">
+        <div class="py-5 bg-greencolor3" id="الرئيسية">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-12">
@@ -45,7 +46,7 @@
                             <h1>The world's leading medical services provider</h1>
                             <p>Velit hendrerit sit auctor tempor sem. Congue mi tempor condimentum felis arcu, non cursus.
                                 Nulla pharetra porttitor sed platea arcu.</p>
-                            <router-link to="/contact" class="btn-style-one red-light-color">
+                            <router-link to="/contact" class="btn-style-one green-color2">
                                 Get Started Now
                                 <i class="ph-caret-right"></i>
                             </router-link>
@@ -118,46 +119,51 @@
                 </div>
             </div>
         </div>
-        <div class="overview-area ptb-100 bg-f9f9f9" id="الخدمات">
-        <div class="container">
-            <div class="section-title">
-                <span class="sub-title green-color">Services We Offer</span>
-                <h2>We provide high-impact medical services</h2>
-            </div>
-            <div class="overview-item-style-two">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12 overview-image" data-aos="fade-up" data-aos-duration="1200">
-                        <img src="../assets/images/overview/overview9.png" alt="overview-image">
-                    </div>
-                    <div class="col-lg-6 col-md-12 overview-content">
-                        <h2 class="nunito-font">Cardiology department</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                        <ul class="overview-list">
-                            <li data-aos="fade-up" data-aos-duration="1200">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Cardiac Rehabilitation</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Stress Testing</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Stenting</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                            <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
-                                <i class="flaticon-draw-check-mark"></i>
-                                <h3 class="nunito-font"><a href="#">Cardiac Catheterization</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.</p>
-                            </li>
-                        </ul>
+        <div class="overview-area py-5 bg-greencolor3" id="الخدمات">
+            <div class="container">
+                <div class="section-title">
+                    <span class="sub-title green-color">Services We Offer</span>
+                    <h2>We provide high-impact medical services</h2>
+                </div>
+                <div class="overview-item-style-two">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-12 overview-image" data-aos="fade-up" data-aos-duration="1200">
+                            <img src="../assets/images/overview/overview9.png" alt="overview-image">
+                        </div>
+                        <div class="col-lg-6 col-md-12 overview-content">
+                            <h2 class="nunito-font">Cardiology department</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
+                            </p>
+                            <ul class="overview-list">
+                                <li data-aos="fade-up" data-aos-duration="1200">
+                                    <i class="flaticon-draw-check-mark"></i>
+                                    <h3 class="nunito-font"><a href="#">Cardiac Rehabilitation</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
+                                        sagittis, donec.</p>
+                                </li>
+                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
+                                    <i class="flaticon-draw-check-mark"></i>
+                                    <h3 class="nunito-font"><a href="#">Stress Testing</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
+                                        sagittis, donec.</p>
+                                </li>
+                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
+                                    <i class="flaticon-draw-check-mark"></i>
+                                    <h3 class="nunito-font"><a href="#">Stenting</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
+                                        sagittis, donec.</p>
+                                </li>
+                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
+                                    <i class="flaticon-draw-check-mark"></i>
+                                    <h3 class="nunito-font"><a href="#">Cardiac Catheterization</a></h3>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
+                                        sagittis, donec.</p>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
         <div class="working-process-area ptb-100 bg-greencolor2" id="العملية">
             <div class="container">
@@ -311,7 +317,7 @@
                 </div>
             </div>
         </div>
-        <div class="template-footer-five pt-100" id="التواصل">
+        <div class="template-footer-five pt-100 bg-greencolor3" id="التواصل">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-4 col-md-6">
@@ -368,7 +374,8 @@
                             <div class="box">
                                 <p>Latest resources, sent to your inbox weekly</p>
                                 <form class="newsletter-form" @submit.prevent>
-                                    <input type="text" class="input-newsletter" placeholder="Enter your email address" name="EMAIL">
+                                    <input type="text" class="input-newsletter" placeholder="Enter your email address"
+                                        name="EMAIL">
                                     <button type="submit" class="btn-style-one green-color2">
                                         Subscribe Now
                                         <i class="ph-caret-right"></i>
@@ -384,7 +391,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-4 col-md-5">
                             <p>
-                                @{{new Date().getFullYear()}} Vumy. All Rights Reserved by 
+                                @{{ new Date().getFullYear() }} Vumy. All Rights Reserved by
                                 <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
                             </p>
                         </div>
@@ -423,6 +430,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Signup Modal -->
         <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
             <div class="modal-dialog">
@@ -434,33 +442,37 @@
                     <div class="modal-body">
                         <div class="signup-form">
                             <div class="mb-3">
-                            <input class="form-control form-control-lg" type="text" placeholder="الاسم بالكامل" v-model="signupPayload.fullname">
-                          </div>
-                          <div class="mb-3">
-                            <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني" v-model="signupPayload.email">
-                          </div>
-                          <div class="mb-3">
-                            <input class="form-control form-control-lg" type="password" placeholder="كلمة السر" v-model="signupPayload.password">
-                          </div>
-                          <div class="mb-3">
-                            <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر" v-model="signupPayload.password_confirmation">
-                          </div>
-                          <div>
-                            <button type="button" class="btn-style-one green-color2 text-white" @click="onSignup">
-                                <span v-if="!loading_status"><i class="ph ph-user"></i></span>
-                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                التسجيل
-                            </button>
-                            
-                          </div>
+                                <input class="form-control form-control-lg" type="text" placeholder="الاسم بالكامل"
+                                    v-model="signupPayload.fullname">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني"
+                                    v-model="signupPayload.email">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control form-control-lg" type="password" placeholder="كلمة السر"
+                                    v-model="signupPayload.password">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر"
+                                    v-model="signupPayload.password_confirmation">
+                            </div>
+                            <div>
+                                <button type="button" class="btn-style-one green-color2 text-white" @click="onSignup">
+                                    <span v-if="!loading_status"><i class="ph ph-user"></i></span>
+                                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
+                                    التسجيل
+                                </button>
+
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Signup Modal -->
-          <!-- Login Modal -->
-          <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
+        <!-- Login Modal -->
+        <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -469,19 +481,21 @@
                     </div>
                     <div class="modal-body">
                         <div class="signup-form">
-                          <div class="mb-3">
-                            <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني" v-model="loginPayload.email">
-                          </div>
-                          <div class="mb-3">
-                            <input class="form-control form-control-lg" type="password" placeholder="كلمة السر" v-model="loginPayload.password">
-                          </div>
-                          <div>
-                            <button type="button" class="btn-style-one green-color2 text-white" @click="onLogin">
-                                <span v-if="!loading_status"><i class="ph ph-user"></i></span>
-                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                الدخول
-                            </button>
-                          </div>
+                            <div class="mb-3">
+                                <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني"
+                                    v-model="loginPayload.email">
+                            </div>
+                            <div class="mb-3">
+                                <input class="form-control form-control-lg" type="password" placeholder="كلمة السر"
+                                    v-model="loginPayload.password">
+                            </div>
+                            <div>
+                                <button type="button" class="btn-style-one green-color2 text-white" @click="onLogin">
+                                    <span v-if="!loading_status"><i class="ph ph-user"></i></span>
+                                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
+                                    الدخول
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -501,7 +515,7 @@ export default {
         // Calling, Declarations, Data
         const store = useStore()
         const loading_status = computed(() => store.state.Collection.loading_status);
-        const navLinks = ref(["الرئيسية", "المميزات", "الخدمات", "العملية",  "الأسئلة الشائعة", "التواصل"]);
+        const navLinks = ref(["الرئيسية", "المميزات", "الخدمات", "العملية", "الأسئلة الشائعة", "التواصل"]);
         const isSticky = ref(false);
         const show = ref(false);
         const signupPayload = ref({

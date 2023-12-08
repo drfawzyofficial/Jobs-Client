@@ -39,7 +39,7 @@
 
 .navbar-area.white-navbar .vumy-nav .navbar .navbar-nav .nav-item .nav-link:hover,
 .navbar-area.white-navbar .vumy-nav .navbar .navbar-nav .nav-item .nav-link.active {
-  color: var(--redLightColor);
+  cursor: pointer;
 }
 
 .navbar-area.white-navbar .vumy-nav .navbar .navbar-nav .nav-item:hover .nav-link,
@@ -275,11 +275,12 @@
   padding-right: 0;
   padding-top: 30px;
   padding-bottom: 30px;
+  cursor: pointer;
 }
 
 .vumy-nav .navbar .navbar-nav .nav-item .nav-link:hover,
 .vumy-nav .navbar .navbar-nav .nav-item .nav-link.active {
-  color: var(--redLightColor);
+ text-decoration: underline;
 }
 
 .vumy-nav .navbar .navbar-nav .nav-item .dropdown-toggle {
