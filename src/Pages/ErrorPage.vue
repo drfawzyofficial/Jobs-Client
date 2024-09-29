@@ -1,15 +1,11 @@
 <template>
-    <div class="not-found-area ptb-100">
-        <div class="d-table">
-            <div class="d-table-cell">
-                <div class="container">
-                    <div class="not-found-content">
-                        <img src="../assets/images/error.png" alt="error-image">
-                        <h3>Oops! That page can't be found</h3>
-                        <p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
-                        <router-link to="/" class="btn-style-one green-color2">Back to Home <i class="ph-caret-right"></i></router-link>
-                    </div>
-                </div>
+    <div class="container-fluid">
+        <div class="container py-5">
+            <div class="not-found-content text-center py-5">
+                <img class="img-fluid" src="../assets/images/error.png" alt="error-image">
+                <h3>عذرًا! لا يمكن العثور على هذه الصفحة.</h3>
+                <p>الصفحة التي تبحث عنها قد تكون تمت إزالتها أو تم تغيير اسمها أو غير متاحة مؤقتًا.</p>
+                <router-link to="/" class="btn btn-lg btn-primary">الرئيسية</router-link>
             </div>
         </div>
     </div>

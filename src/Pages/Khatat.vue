@@ -1,517 +1,108 @@
 <template>
-    <div>
-        <div :class="['navbar-area p-relative', { 'is-sticky': isSticky }]">
-            <div class="vumy-nav">
-                <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <router-link class="navbar-brand" to="/">
-                            <img src="../assets/images/logo.png" alt="logo">
-                        </router-link>
-
-                        <div class="navbar-toggler" @click="show = !show" :aria-pressed="show ? 'true' : 'false'"
-                            v-bind:class="{ show: button_show_state }" v-on:click="button_show_state = !button_show_state">
-                            <span class="icon-bar top-bar"></span>
-                            <span class="icon-bar middle-bar"></span>
-                            <span class="icon-bar bottom-bar"></span>
-                        </div>
-
-                        <div class="collapse navbar-collapse" :class="{ show: show }">
-                            <ul class="navbar-nav">
-                                <li class="nav-item" v-for="(link, index) in navLinks" :key="index">
-                                    <a class="nav-link" @click="goToSection(link)">{{ link }}</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="others-option">
-                            <a data-bs-toggle="modal" data-bs-target="#Signup" class="btn-style-one green-color2">
-                                <i class="ph ph-user"></i>
-                                التسجيل
-                            </a>
-                            <a data-bs-toggle="modal" data-bs-target="#Login"
-                                class="btn-style-one black-color text-white ms-1">
-                                <i class="ph ph-user"></i>
-                                الدخول
-                            </a>
-                        </div>
-                    </nav>
+    <div class="home-page">
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+                <router-link to="/">
+                    <img src="../assets/images/logo.png" height="125" width="125"/>
+                </router-link>
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li v-for="(item, index) in navLinks" :key="index">
+                        <a class="store-animation-anchor fw-medium ms-2" href="#">{{ item }}</a>
+                    </li>
+                </ul>
+                <div class="col-md-3 text-end">
+                    <router-link class="btn btn-lg btn-primary" to="/join">انضم إلينا</router-link>
                 </div>
-            </div>
+            </header>
         </div>
-        <div class="py-5 bg-greencolor3" id="الرئيسية">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="medical-banner-content">
-                            <h1>The world's leading medical services provider</h1>
-                            <p>Velit hendrerit sit auctor tempor sem. Congue mi tempor condimentum felis arcu, non cursus.
-                                Nulla pharetra porttitor sed platea arcu.</p>
-                            <router-link to="/contact" class="btn-style-one green-color2">
-                                Get Started Now
-                                <i class="ph-caret-right"></i>
-                            </router-link>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="medical-banner-image">
-                            <div class="row align-items-center">
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="image">
-                                        <img src="../assets/images/banner/banner10.jpg" data-aos="flip-left"
-                                            data-aos-easing="ease" data-aos-delay="300" alt="banner-image">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6">
-                                    <div class="image">
-                                        <img src="../assets/images/banner/banner11.jpg" data-aos="fade-up"
-                                            data-aos-easing="ease" data-aos-delay="300" alt="banner-image">
-                                    </div>
-                                    <div class="image">
-                                        <img src="../assets/images/banner/banner12.jpg" data-aos="fade-down"
-                                            data-aos-easing="ease" data-aos-delay="300" alt="banner-image">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="home-banner position-relative overflow-hidden p-3 p-md-5 text-center">
+            <div class="col-md-5 p-lg-5 mx-auto my-5">
+                <h2 class="fw-bold text-white">خطط...موقع فرص للطلاب</h2>
+                <p class="lead text-white">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من
+                    تحقيق اهدافك عن طريق تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك </p>
+                <router-link to="/login" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
             </div>
+            <div class="product-device shadow-sm d-none d-md-block"></div>
+            <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
         </div>
-        <div class="features-area py-5" id="المميزات">
-            <div class="container">
-                <div class="section-title">
-                    <span class="sub-title green-color">Our Features</span>
-                    <h2>Your comfort depends <br>on Vumy</h2>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200">
-                        <div class="features-item">
-                            <div class="icon">
-                                <i class="ph-first-aid-kit"></i>
-                            </div>
-                            <h3 class="nunito-font">Medical Treatment</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                        </div>
+        <div class="khatat-statistics container-fluid py-5">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                       <div class="text-center">
+                        <h2 class="fw-bold">خطط في أرقام</h2>
+                            <p>من خلال شراكاتنا، نتمكن من تقديم حلول مبتكرة وخدمات ذات جودة عالية لعملائنا. نحن نعمل جنبًا إلى جنب مع شركائنا لتعزيز الابتكار وتحقيق أهدافنا المشتركة في مجالات التعليم، الصحة، والتكنولوجيا.</p>
+                       </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200"
-                        data-aos-delay="100">
-                        <div class="features-item">
-                            <div class="icon">
-                                <i class="ph-info"></i>
-                            </div>
-                            <h3 class="nunito-font">Emergency Help</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-6" data-aos="fade-up" data-aos-duration="1200"
-                        data-aos-delay="200">
-                        <div class="features-item">
-                            <div class="icon">
-                                <i class="ph-user-circle-plus"></i>
-                            </div>
-                            <h3 class="nunito-font">Qualified Doctors</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="overview-area py-5 bg-greencolor3" id="الخدمات">
-            <div class="container">
-                <div class="section-title">
-                    <span class="sub-title green-color">Services We Offer</span>
-                    <h2>We provide high-impact medical services</h2>
-                </div>
-                <div class="overview-item-style-two">
-                    <div class="row align-items-center">
-                        <div class="col-lg-6 col-md-12 overview-image" data-aos="fade-up" data-aos-duration="1200">
-                            <img src="../assets/images/overview/overview9.png" alt="overview-image">
-                        </div>
-                        <div class="col-lg-6 col-md-12 overview-content">
-                            <h2 class="nunito-font">Cardiology department</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat sagittis, donec.
-                            </p>
-                            <ul class="overview-list">
-                                <li data-aos="fade-up" data-aos-duration="1200">
-                                    <i class="flaticon-draw-check-mark"></i>
-                                    <h3 class="nunito-font"><a href="#">Cardiac Rehabilitation</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-                                    <i class="flaticon-draw-check-mark"></i>
-                                    <h3 class="nunito-font"><a href="#">Stress Testing</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-                                    <i class="flaticon-draw-check-mark"></i>
-                                    <h3 class="nunito-font"><a href="#">Stenting</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300">
-                                    <i class="flaticon-draw-check-mark"></i>
-                                    <h3 class="nunito-font"><a href="#">Cardiac Catheterization</a></h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="working-process-area ptb-100 bg-greencolor2" id="العملية">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="working-process-img" data-aos="fade-up" data-aos-duration="1200">
-                            <img src="../assets/images/working-process2.png" alt="working-process">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="working-process-text">
-                            <span class="sub-title">Our Working Process</span>
-                            <h2 class="nunito-font">Dedicated to help anything people’s needs</h2>
-                            <ul class="working-process-list">
-                                <li data-aos="fade-up" data-aos-duration="1200">
-                                    <div class="number">
-                                        1
-                                    </div>
-                                    <h3>Integrate</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">
-                                    <div class="number">
-                                        2
-                                    </div>
-                                    <h3>Manage</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1200" data-aos-delay="200">
-                                    <div class="number">
-                                        3
-                                    </div>
-                                    <h3>Analyze</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                        sagittis, donec.</p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="shape10"><img src="../assets/images/shape/shape10.png" alt="shape"></div>
-            <div class="shape11"><img src="../assets/images/shape/shape11.png" alt="shape"></div>
-        </div>
-        <div class="faq-area bg-gray py-5" id="الأسئلة الشائعة">
-            <div class="container">
-                <div class="section-title">
-                    <h2 class="nunito-font">Dedicated to help anything people’s needs</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur mauris amet, placerat fames orci
-                        elementum adipiscing.</p>
                 </div>
                 <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="faq-accordion">
-                            <div class="accordion" id="faqAccordion">
-                                <div class="accordion-item" data-aos="fade-up" data-aos-duration="1200">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        What is the company culture?
-                                    </button>
-                                    <div id="collapseOne" class="accordion-collapse collapse show"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                                sagittis, donec.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item" data-aos="fade-up" data-aos-duration="1200"
-                                    data-aos-delay="100">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Which market is the startup targeting?
-                                    </button>
-                                    <div id="collapseTwo" class="accordion-collapse collapse"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                                sagittis, donec.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item" data-aos="fade-up" data-aos-duration="1200"
-                                    data-aos-delay="200">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        What is the runway of the business?
-                                    </button>
-                                    <div id="collapseThree" class="accordion-collapse collapse"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                                sagittis, donec.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item" data-aos="fade-up" data-aos-duration="1200"
-                                    data-aos-delay="300">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Who are the investors in the company?
-                                    </button>
-                                    <div id="collapseFour" class="accordion-collapse collapse"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                                sagittis, donec.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item" data-aos="fade-up" data-aos-duration="1200"
-                                    data-aos-delay="400">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                        How can I safely browse the internet?
-                                    </button>
-                                    <div id="collapseFive" class="accordion-collapse collapse"
-                                        data-bs-parent="#faqAccordion">
-                                        <div class="accordion-body">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est non feugiat
-                                                sagittis, donec.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="col-md-4 mt-4" v-for="(stat, index) in statisticsObj" :key="index">
+                        <div class="counter-box">
+                            <i class="fa fa-thumbs-o-up"></i>
+                            <span class="counter">{{ stat.count }}</span>
+                            <p>{{ stat.title }}</p>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="ask-question-form">
-                            <h3 class="nunito-font">Have a question?</h3>
-                            <form @submit.prevent>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Full Name">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Enter your email address">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" placeholder="Company">
-                                </div>
-                                <div class="form-group">
-                                    <textarea cols="30" rows="5" placeholder="Your Message"></textarea>
-                                </div>
-                                <button type="submit" class="btn-style-one orange-color">Submit Now <i
-                                        class="ph-caret-right"></i></button>
-                            </form>
+                </div>	
+            </div>
+        </div>
+        <div class="partners container-fluid py-5 bg-light">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-6 mx-auto">
+                       <div class="text-center">
+                            <h2 class="fw-bold">شركائنا</h2>
+                            <p>من خلال شراكاتنا، نتمكن من تقديم حلول مبتكرة وخدمات ذات جودة عالية لعملائنا. نحن نعمل جنبًا إلى جنب مع شركائنا لتعزيز الابتكار وتحقيق أهدافنا المشتركة في مجالات التعليم، الصحة، والتكنولوجيا.</p>
+                       </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2 col-md-4 col-sm-6 mt-4" v-for="(partImg, index) in parnters" :key="index">
+                        <div class="partner-img">
+                            <img class="store-animation-shadow" src="../assets/images/banner.jpg"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="template-footer-five pt-100 bg-greencolor3" id="التواصل">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-footer-widget">
-                            <h3 class="nunito-font">Contact Info</h3>
-                            <ul class="footer-contact-info">
-                                <li>
-                                    <i class="ph-phone-call"></i>
-                                    <span>Mon to Fri : 10:00AM - 06:00PM</span>
-                                    <a href="tel:1235421457852">+123 54214 578 52</a>
-                                </li>
-                                <li>
-                                    <i class="ph-envelope-simple-open"></i>
-                                    <span>Do You Have a Question?</span>
-                                    <a href="mailto:hello@vumy.com">hello@vumy.com</a>
-                                </li>
-                                <li>
-                                    <i class="ph-map-pin"></i>
-                                    <span>2750 Quadra Street Victoria, Canada</span>
-                                    <a href="#" target="_blank">Find Us on Map</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="single-footer-widget">
-                            <h3>About Us</h3>
-                            <ul class="quick-links">
-                                <li><router-link to="/insurance">Home</router-link></li>
-                                <li><router-link to="/about-us">About Us</router-link></li>
-                                <li><router-link to="/blog-grid">Latest News</router-link></li>
-                                <li><router-link to="/contact">Contact Us</router-link></li>
-                                <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
-                                <li><router-link to="/terms-conditions">Terms & Condition</router-link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-footer-widget pl-3">
-                            <h3 class="nunito-font">Resources</h3>
-                            <ul class="quick-links">
-                                <li><router-link to="/portfolio-details">Business Startup</router-link></li>
-                                <li><router-link to="/portfolio-details">Finance Consulting</router-link></li>
-                                <li><router-link to="/portfolio-details">Wealth Management</router-link></li>
-                                <li><router-link to="/portfolio-details">Business Planning</router-link></li>
-                                <li><router-link to="/portfolio-details">Data Management</router-link></li>
-                                <li><router-link to="/portfolio-details">Marketing Planning</router-link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-footer-widget">
-                            <h3 class="nunito-font">Newsletter</h3>
-                            <div class="box">
-                                <p>Latest resources, sent to your inbox weekly</p>
-                                <form class="newsletter-form" @submit.prevent>
-                                    <input type="text" class="input-newsletter" placeholder="Enter your email address"
-                                        name="EMAIL">
-                                    <button type="submit" class="btn-style-one green-color2">
-                                        Subscribe Now
-                                        <i class="ph-caret-right"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright-area">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 col-md-5">
-                            <p>
-                                @{{ new Date().getFullYear() }} Vumy. All Rights Reserved by
-                                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-3">
-                            <div class="logo">
-                                <router-link to="/">
-                                    <img src="../assets/images/logo.png" alt="logo">
-                                </router-link>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <ul class="social-links">
-                                <li>
-                                    <a href="https://www.https://www.linkedin.com/.com/" target="_blank">
-                                        <i class="flaticon-facebook-app-symbol"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.twitter.com/" target="_blank">
-                                        <i class="flaticon-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class="flaticon-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <i class="flaticon-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
+                        <a class="px-2 fw-medium store-animation-anchor" href="#">{{ item }}</a>
+                    </li>
+                </ul>
+                <p class="text-center text-muted">جميع الحقوق محفوظة &copy; لدى خطط {{ new Date().getFullYear() }}</p>
+            </footer>
         </div>
-
-        <!-- Signup Modal -->
-        <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="SignupTitle">التسجيل</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="signup-form">
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="text" placeholder="الاسم بالكامل"
-                                    v-model="signupPayload.fullname">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني"
-                                    v-model="signupPayload.email">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="password" placeholder="كلمة السر"
-                                    v-model="signupPayload.password">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر"
-                                    v-model="signupPayload.password_confirmation">
-                            </div>
-                            <div>
-                                <button type="button" class="btn-style-one green-color2 text-white" @click="onSignup">
-                                    <span v-if="!loading_status"><i class="ph ph-user"></i></span>
-                                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                    التسجيل
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Signup Modal -->
-        <!-- Login Modal -->
-        <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="LoginTitle">تسجيل الدخول</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="signup-form">
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني"
-                                    v-model="loginPayload.email">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="password" placeholder="كلمة السر"
-                                    v-model="loginPayload.password">
-                            </div>
-                            <div>
-                                <button type="button" class="btn-style-one green-color2 text-white" @click="onLogin">
-                                    <span v-if="!loading_status"><i class="ph ph-user"></i></span>
-                                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                    الدخول
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Signup Modal -->
     </div>
 </template>
 
 <script>
 // Import Methods, Packages, Files
+import Footer from "../components/Footer.vue"
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
+import $ from 'jquery'; 
 export default {
     name: 'Khatat',
+    components: {
+        Footer
+    },
     setup() {
+        onMounted(() => {
+            $('.counter').each(function () {
+            $(this).prop('Counter',0).animate({
+                Counter: $(this).text()
+            }, {
+                duration: 4000,
+                easing: 'swing',
+                step: function (now) {
+                    $(this).text(Math.ceil(now));
+                }
+            });
+        });
+        })
         // Calling, Declarations, Data
         const store = useStore()
         const loading_status = computed(() => store.state.Collection.loading_status);
@@ -523,7 +114,13 @@ export default {
             email: "",
             password: "",
             password_confirmation: ""
-        })
+        });
+        const statisticsObj = ref([
+            { title: "عدد المستفيدين", count: 250 },
+            { title: "عدد الفرص", count: 245 },
+            { title: "عدد المسئولين", count: 3 }
+        ]);
+        const parnters = ref(["../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg"]);
         const loginPayload = ref({
             email: "",
             password: "",
@@ -565,8 +162,60 @@ export default {
             signupPayload,
             loginPayload,
             onLogin,
-            onSignup
+            onSignup,
+            statisticsObj,
+            parnters
         }
     }
 }
 </script>
+
+<style scoped>
+.home-banner {
+    background-color: #2B7A7B;
+}
+.counter-box {
+	display: block;
+	background: #F7F7F7;
+	padding: 40px 20px 37px;
+	text-align: center
+}
+
+.counter-box p {
+	margin: 5px 0 0;
+	padding: 0;
+	color: #909090;
+	font-size: 18px;
+	font-weight: 500
+}
+
+.counter-box i {
+	font-size: 60px;
+	margin: 0 0 15px;
+	color: #d2d2d2
+}
+
+.counter { 
+	display: block;
+	font-size: 32px;
+	font-weight: 700;
+	color: #666;
+	line-height: 28px
+}
+
+.counter-box {
+    transition: all 0.3s ease-in-out;
+}
+
+.counter-box:hover {
+    background: #EEEEEE;
+    color: #fff
+}
+
+.partners .partner-img img {
+    height: 200px;
+    width: 100%;
+    border-radius: 6px;
+}
+
+</style>

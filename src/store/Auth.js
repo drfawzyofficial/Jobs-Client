@@ -41,6 +41,7 @@ export const Auth = {
         if (data.statusCode === 200) {
           localStorage.setItem("token", data.result.token);
           router.push("/user/settings")
+          document.querySelector(".modal-backdrop").remove()
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
         }

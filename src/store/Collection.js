@@ -21,6 +21,7 @@ export const Collection = {
         async GetHelper({ dispatch, commit }) {
             try {
                 const data = await Fetch("GET", `/helper/get`);
+                console.log(data);
                 if (data.statusCode === 200) {
                     commit("helperObj", data.result);
                 } else if (data.statusCode === 401 || data.statusCode === 500) {

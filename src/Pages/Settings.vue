@@ -250,7 +250,7 @@
                                             <button type="button" class="btn btn-degree m-2"
                                                 v-for="(obj, index) in IELTSDegress" :key="index"
                                                 @click="selectIELTSDegree(obj.degree)"
-                                                :class="{ 'btn-primary': obj.degree == profilePayload.EnglishStandard.IELTSDegree }">{{
+                                                :class="{ 'btn-store': obj.degree == profilePayload.EnglishStandard.IELTSDegree }">{{
                                                     obj.degree }}</button>
                                         </div>
                                         <div class="tab-pane fade p-3" id="TOFEL" role="tabpanel">
@@ -277,7 +277,7 @@
                                             <button type="button" class="btn btn-degree m-2"
                                                 v-for="(obj, index) in CEFRDegrees" :key="index"
                                                 @click="selectCEFRDegree(obj.degree)"
-                                                :class="{ 'btn-primary': obj.degree == profilePayload.EnglishStandard.CEFRDegree }">{{
+                                                :class="{ 'btn-store': obj.degree == profilePayload.EnglishStandard.CEFRDegree }">{{
                                                     obj.degree }}</button>
                                         </div>
                                     </div>
@@ -425,119 +425,7 @@
             </div>
         </div>
 
-        <div class="template-footer-five pt-100 bg-white">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-footer-widget">
-                            <h3 class="nunito-font">Contact Info</h3>
-                            <ul class="footer-contact-info">
-                                <li>
-                                    <i class="ph-phone-call"></i>
-                                    <span>Mon to Fri : 10:00AM - 06:00PM</span>
-                                    <a href="tel:1235421457852">+123 54214 578 52</a>
-                                </li>
-                                <li>
-                                    <i class="ph-envelope-simple-open"></i>
-                                    <span>Do You Have a Question?</span>
-                                    <a href="mailto:hello@vumy.com">hello@vumy.com</a>
-                                </li>
-                                <li>
-                                    <i class="ph-map-pin"></i>
-                                    <span>2750 Quadra Street Victoria, Canada</span>
-                                    <a href="#" target="_blank">Find Us on Map</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6">
-                        <div class="single-footer-widget">
-                            <h3>About Us</h3>
-                            <ul class="quick-links">
-                                <li><router-link to="/insurance">Home</router-link></li>
-                                <li><router-link to="/about-us">About Us</router-link></li>
-                                <li><router-link to="/blog-grid">Latest News</router-link></li>
-                                <li><router-link to="/contact">Contact Us</router-link></li>
-                                <li><router-link to="/privacy-policy">Privacy Policy</router-link></li>
-                                <li><router-link to="/terms-conditions">Terms & Condition</router-link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-footer-widget pl-3">
-                            <h3 class="nunito-font">Resources</h3>
-                            <ul class="quick-links">
-                                <li><router-link to="/portfolio-details">Business Startup</router-link></li>
-                                <li><router-link to="/portfolio-details">Finance Consulting</router-link></li>
-                                <li><router-link to="/portfolio-details">Wealth Management</router-link></li>
-                                <li><router-link to="/portfolio-details">Business Planning</router-link></li>
-                                <li><router-link to="/portfolio-details">Data Management</router-link></li>
-                                <li><router-link to="/portfolio-details">Marketing Planning</router-link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-footer-widget">
-                            <h3 class="nunito-font">Newsletter</h3>
-                            <div class="box">
-                                <p>Latest resources, sent to your inbox weekly</p>
-                                <form class="newsletter-form" @submit.prevent>
-                                    <input type="text" class="input-newsletter" placeholder="Enter your email address"
-                                        name="EMAIL">
-                                    <button type="submit" class="btn-style-one green-color2">
-                                        Subscribe Now
-                                        <i class="ph-caret-right"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright-area">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 col-md-5">
-                            <p>
-                                @{{ new Date().getFullYear() }} Vumy. All Rights Reserved by
-                                <a href="https://envytheme.com/" target="_blank">EnvyTheme</a>
-                            </p>
-                        </div>
-                        <div class="col-lg-4 col-md-3">
-                            <div class="logo">
-                                <router-link to="/">
-                                    <img src="../assets/images/logo.png" alt="logo">
-                                </router-link>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-                            <ul class="social-links">
-                                <li>
-                                    <a href="https://www.https://www.linkedin.com/.com/" target="_blank">
-                                        <i class="flaticon-facebook-app-symbol"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.twitter.com/" target="_blank">
-                                        <i class="flaticon-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.linkedin.com/" target="_blank">
-                                        <i class="flaticon-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/" target="_blank">
-                                        <i class="flaticon-instagram"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Footer></Footer>
 
         <!-- Signup Modal -->
         <!-- <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
@@ -616,12 +504,14 @@
 <script>
 // Import Methods, Packages, Files
 import Vue3TagsInput from 'vue3-tags-input';
+import Footer from "../components/Footer.vue"
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 export default {
     name: 'Khatat',
     components: {
-        Vue3TagsInput
+        Vue3TagsInput,
+        Footer
     },
     setup() {
         // Calling, Declarations, Data
@@ -634,7 +524,9 @@ export default {
         const selectItems = ref([{ text: 'مسابقات' }, { text: 'مهارات' }, { text: 'ذكاء' }]);
         store.dispatch("Collection/GetHelper")
         const helperObj = computed(() => store.state.Collection.helperObj);
-        console.log(helperObj.value);
+        const AdminLogout = () => {
+            store.dispatch("Auth/Logout", { data: null })
+        }
 
         const profilePayload = ref({
             fullname: "",
