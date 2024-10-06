@@ -1,26 +1,11 @@
 <template>
     <div class="home-page">
-        <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
-                <router-link to="/">
-                    <img src="../assets/images/logo.png" height="125" width="125"/>
-                </router-link>
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                    <li v-for="(item, index) in navLinks" :key="index">
-                        <a class="store-animation-anchor fw-medium ms-2" href="#">{{ item }}</a>
-                    </li>
-                </ul>
-                <div class="col-md-3 text-end">
-                    <router-link class="btn btn-lg btn-primary" to="/join">انضم إلينا</router-link>
-                </div>
-            </header>
-        </div>
         <div class="home-banner position-relative overflow-hidden p-3 p-md-5 text-center">
             <div class="col-md-5 p-lg-5 mx-auto my-5">
                 <h2 class="fw-bold text-white">خطط...موقع فرص للطلاب</h2>
                 <p class="lead text-white">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من
                     تحقيق اهدافك عن طريق تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك </p>
-                <router-link to="/login" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
+                <router-link to="/join" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
             </div>
             <div class="product-device shadow-sm d-none d-md-block"></div>
             <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
@@ -65,29 +50,17 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <footer class="py-3 my-4">
-                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                    <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
-                        <a class="px-2 fw-medium store-animation-anchor" href="#">{{ item }}</a>
-                    </li>
-                </ul>
-                <p class="text-center text-muted">جميع الحقوق محفوظة &copy; لدى خطط {{ new Date().getFullYear() }}</p>
-            </footer>
-        </div>
     </div>
 </template>
 
 <script>
 // Import Methods, Packages, Files
-import Footer from "../components/Footer.vue"
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 import $ from 'jquery'; 
 export default {
     name: 'Khatat',
     components: {
-        Footer
     },
     setup() {
         onMounted(() => {

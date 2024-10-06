@@ -689,7 +689,6 @@ export default {
         }
 
         const editProfileSection = () => {
-            console.log(user.value.DUOLINGODegree)
             profilePayload.value.fullname = user.value.fullname;
             profilePayload.value.email = user.value.email;
             profilePayload.value.gender = user.value.gender ? user.value.gender : profilePayload.value.gender;

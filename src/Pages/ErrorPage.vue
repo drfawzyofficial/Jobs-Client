@@ -5,7 +5,7 @@
                 <img class="img-fluid" src="../assets/images/error.png" alt="error-image">
                 <h3>عذرًا! لا يمكن العثور على هذه الصفحة.</h3>
                 <p>الصفحة التي تبحث عنها قد تكون تمت إزالتها أو تم تغيير اسمها أو غير متاحة مؤقتًا.</p>
-                <router-link to="/" class="btn btn-lg btn-primary">الرئيسية</router-link>
+                <router-link to="/" class="btn btn-lg btn-primary mt-3">الرئيسية</router-link>
             </div>
         </div>
     </div>

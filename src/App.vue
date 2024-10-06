@@ -1,17 +1,25 @@
 <template>
     <div id="app">
+      <Announcement></Announcement>
+        <Header></Header>
         <Transition name="slide-fade">
             <router-view />
         </Transition>
+        <Footer></Footer>
     </div>
    
 </template>
 
 <script>
-
+import Announcement from "@/components/Announcement.vue"
+import Header from "@/components/Header.vue"
+import Footer from "@/components/Footer.vue"
 export default {
     name: 'App',
     components: {
+      Announcement,
+      Header,
+      Footer,
     },
 }
 </script>
