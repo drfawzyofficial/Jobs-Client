@@ -69,7 +69,7 @@ export default {
 .announcement-bar {
   padding-top: 32px;
   padding-bottom: 32px;
-  background-color: #2B7A7B;
+  background-color: #3AAFA9;
 }
 
 .announcement-bar .carousel-control-next-icon {

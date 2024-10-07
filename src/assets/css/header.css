@@ -1,0 +1,168 @@
+/* CSS for header */
+.header {
+  left: 0;
+  right: 0;
+  z-index: 777;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.header .header__1,
+.header .header__2,
+.header .header__3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+
+.header .items {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+
+.header .header__1 .logo {
+  width: 20%;
+  text-align: center;
+}
+
+.header .header__1 .items, .header .header__1 .mobile-sidebar, .header .header__1 .icons {
+  width: 40%;
+}
+
+.header .header__1 .items, .header .header__1 .mobile-sidebar {
+  justify-content: left;
+}
+
+html[lang="ar"] .header .header__1 .items, html[lang="ar"]  .header .header__1 .mobile-sidebar {
+  justify-content: right;
+}
+
+.header .header__1 .icons {
+  justify-content: right;
+}
+
+html[lang="ar"] .header .header__1 .icons {
+  justify-content: left;
+}
+
+.header .items .menu-link .arrow-up {
+  display: none;
+}
+
+.header .sidebar-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 3;
+  padding: 2rem;
+  display: none;
+}
+
+.header .sidebar-menu .image img,
+.header .sidebar-menu .image svg {
+  width: 100%;
+  height: 375px;
+  border-radius: 4px;
+}
+
+
+.header .sidebar-menu .categories {
+  display: flex;
+}
+
+.header .sidebar-menu .categories .category {
+  flex: 1 1 0;
+  width: 0;
+}
+
+.header .icons .icon {
+  margin-left: 1.3rem;
+}
+
+.header .icons .icon:first-child {
+  margin-left: 0;
+}
+
+html[lang="ar"] .header .icons .icon {
+  margin-left: 0;
+  margin-right: 1.3rem;
+}
+
+.header .mobile-sidebar {
+  display: none;
+}
+
+.header .logo .andalib-logo {
+  font-size: 26px;
+}
+
+.header .icons {
+  display: flex;
+}
+
+.header .icons .language {
+  display: flex;
+}
+
+.header .language .lang-form-select {
+  background-color: transparent;
+  border: none;
+  padding: 0.375rem 0;
+  background-image: none;
+}
+
+.header .icons .language .lang-form-select option {
+  background-color: #FFF;
+  color: #000;
+}
+
+/* CSS for header */
+
+/* Responsiveness for header */
+@media (max-width: 991.98px) {
+  .header .sidebar-menu .image {
+    height: 300px;
+  }
+
+  .header .icons .search {
+    margin-left: 0;
+  }
+
+  html[lang=ar] .header .icons .search {
+    margin-right: 0;
+  }
+
+  .header .mobile-sidebar {
+    display: block;
+  }
+
+  .header .items {
+    display: none;
+  }
+
+  .header .sidebar-menu {
+    display: none !important;
+  }
+
+  .header .header__3 .header__3__icons {
+    display: none;
+  }
+
+  .header .header__3__menu_items .line {
+    display: none
+  }
+
+  .header__3 .items {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px) {}
+
+@media (max-width: 575.98px) {}
+
+/* Responsiveness for header */

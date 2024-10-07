@@ -30,7 +30,7 @@ import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 import $ from 'jquery'; 
 export default {
-    name: 'Khatat',
+    name: 'Signup',
     components: {
     },
     setup() {

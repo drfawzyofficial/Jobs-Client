@@ -1,99 +1,98 @@
 <template>
     <Breadcrumb :title="pageTitle" />
+    <ImageWithText :src="require('@/assets/images/banner.jpg')" :content="content" />
 </template>
 
 <script>
 // Import Methods, Packages, Files
-import Header from "../components/Footer.vue"
-import { useStore } from 'vuex'
-import { computed, onMounted, ref } from 'vue'
-import $ from 'jquery'; 
+import Breadcrumb from "@/components/Breadcrumb.vue";
+import ImageWithText from "@/components/Image-with-Text.vue";
+import { computed } from 'vue'
+import { useRoute } from 'vue-router';
+
 export default {
-    name: 'Khatat',
+    name: 'Privacy',
     components: {
-        Header
+        Breadcrumb,
+        ImageWithText
     },
     setup() {
-        onMounted(() => {
-            $('.counter').each(function () {
-            $(this).prop('Counter',0).animate({
-                Counter: $(this).text()
-            }, {
-                duration: 4000,
-                easing: 'swing',
-                step: function (now) {
-                    $(this).text(Math.ceil(now));
-                }
-            });
-        });
-        })
         // Calling, Declarations, Data
-        const store = useStore()
-        const loading_status = computed(() => store.state.Collection.loading_status);
-        const navLinks = ref(["الرئيسية", "المميزات", "الخدمات", "العملية", "الأسئلة الشائعة", "التواصل"]);
-        const isSticky = ref(false);
-        const show = ref(false);
-        const signupPayload = ref({
-            fullname: "",
-            email: "",
-            password: "",
-            password_confirmation: ""
-        });
-        const statisticsObj = ref([
-            { title: "عدد المستفيدين", count: 250 },
-            { title: "عدد الفرص", count: 245 },
-            { title: "عدد المسئولين", count: 3 }
-        ]);
-        const parnters = ref(["../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg"]);
-        const loginPayload = ref({
-            email: "",
-            password: "",
-        })
-        const onSignup = () => {
-            store.dispatch("Auth/Signup", signupPayload.value)
-        }
-        const onLogin = () => {
-            store.dispatch("Auth/Login", loginPayload.value)
-        }
-        const button_show_state = ref(false);
-
-        onMounted(() => {
-            const that = this;
-            window.addEventListener("scroll", () => {
-                let scrollPos = window.scrollY;
-                if (scrollPos >= 100) {
-                    isSticky.value = true;
-                } else {
-                    isSticky.value = false;
-                }
-            });
-        });
-
-        // Methods
-        const goToSection = (sectionName) => {
-            const el = document.getElementById(sectionName);
-            el.scrollIntoView({ behavior: "smooth" });
-        }
+        const route = useRoute();
+        const pageTitle = computed(() => route.meta.title);
+        const content = `
+            <h3 class="fw-bold">${pageTitle.value}</h3>
+    <p>تُولي إدارة موقع [اسم الموقع] أهمية كبيرة لخصوصية المستخدمين، ونحن ملتزمون بحماية بياناتك الشخصية. يُرجى قراءة هذه السياسة لمعرفة كيفية جمع واستخدام وحماية معلوماتك الشخصية عند استخدامك للموقع.</p>
+    <div class="mt-2">
+          <h4 class="fw-bold">1. جمع المعلومات</h4>
+          <p>نقوم بجمع المعلومات التالية عند استخدامك لموقعنا:</p>
+          <ul>
+            <li>المعلومات الشخصية: مثل الاسم، البريد الإلكتروني، رقم الهاتف، عند التسجيل أو إنشاء حساب.</li>
+            <li>المعلومات التقنية: مثل عنوان IP، ونوع المتصفح، ونظام التشغيل، من أجل تحسين تجربة الاستخدام وتحليل أداء الموقع.</li>
+            <li>معلومات الفرص: البيانات التي تقدمها عند التقديم على الفرص المتاحة على الموقع.</li>
+         </ul>
+    </div>
+   
+   <div class="mt-2">
+        <h4 class="fw-bold">2. استخدام المعلومات</h4>
+        <p>نستخدم المعلومات التي نجمعها للأغراض التالية:</p>
+        <ul>
+            <li>تقديم وتخصيص الخدمات والفرص المتاحة للمستخدمين.</li>
+            <li>التواصل مع المستخدمين للرد على استفساراتهم أو إرسال تحديثات حول الموقع.</li>
+            <li>تحسين وتطوير خدمات الموقع وفقاً لملاحظات وآراء المستخدمين.</li>
+            <li>ضمان الأمان وحماية بيانات المستخدمين من الوصول غير المصرح به.</li>
+        </ul>
+    </div>
+    
+    <div class="mt-2">
+          <h4 class="fw-bold">3. حماية البيانات</h4>
+          <p>نستخدم الإجراءات الأمنية المناسبة لحماية بياناتك الشخصية من الوصول غير المصرح به أو الكشف أو التعديل أو التدمير. ومع ذلك، نُذكر المستخدمين بأن الإنترنت ليس بيئة آمنة بشكل كامل، ونحن لا نضمن أمان المعلومات بشكل مطلق.</p>
+    </div>
+    
+    <div class="mt-2">
+        <h4 class="fw-bold">4. مشاركة المعلومات مع أطراف ثالثة</h4>
+        <p>نحن لا نبيع أو نؤجر أو نشارك معلوماتك الشخصية مع أطراف ثالثة إلا في الحالات التالية:</p>
+        <ul>
+            <li>عند الحصول على موافقتك الصريحة.</li>
+            <li>للامتثال للقوانين واللوائح القانونية أو عندما يُطلب منا ذلك من قبل السلطات الحكومية.</li>
+            <li>لحماية حقوقنا أو ممتلكاتنا أو أمان المستخدمين أو الموقع.</li>
+        </ul>
+    </div>
+    
+    <div class="mt-2">
+       <h4 class="fw-bold">5. ملفات تعريف الارتباط (Cookies)</h4>
+       <p>نستخدم ملفات تعريف الارتباط (Cookies) لتحسين تجربة المستخدم على الموقع. يُمكنك ضبط إعدادات المتصفح لرفض ملفات تعريف الارتباط، ولكن قد يؤثر ذلك على بعض ميزات الموقع.</p>
+    </div>
+    
+    <div class="mt-2">
+       <h4 class="fw-bold">6. حقوق المستخدمين</h4>
+        <p>لديك الحق في:</p>
+        <ul>
+            <li>الوصول إلى معلوماتك الشخصية التي نحتفظ بها.</li>
+            <li>تصحيح أي معلومات غير دقيقة أو تحديث بياناتك.</li>
+            <li>طلب حذف معلوماتك الشخصية إذا لم تكن هناك حاجة للاحتفاظ بها.</li>
+        </ul>
+    </div>
+    
+    <div class="mt-2">
+       <h4 class="fw-bold">7. التعديلات على سياسة الخصوصية</h4>
+        <p>قد نقوم بتحديث سياسة الخصوصية من وقت لآخر لتعكس التغييرات في ممارساتنا أو لأسباب قانونية. سيتم إشعار المستخدمين بأي تغييرات هامة عبر البريد الإلكتروني أو من خلال الموقع.</p>
+    </div>
+   <div class="mt-2">
+    <h4 class="fw-bold">8. الاتصال بنا</h4>
+    <p>إذا كانت لديك أي استفسارات أو مخاوف بشأن سياسة الخصوصية هذه، يُرجى التواصل معنا عبر contact@khatat.com أو من خلال صفحة اتصل بنا على الموقع.</p>
+    
+    </div>
+    
+        `
 
         // Return
         return {
-            loading_status,
-            navLinks,
-            goToSection,
-            isSticky,
-            show,
-            button_show_state,
-            signupPayload,
-            loginPayload,
-            onLogin,
-            onSignup,
-            statisticsObj,
-            parnters
+            pageTitle,
+            content
         }
     }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
