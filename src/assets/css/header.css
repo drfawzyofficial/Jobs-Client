@@ -5,6 +5,7 @@
   z-index: 777;
   padding-top: 16px;
   padding-bottom: 16px;
+  background-color: #000;
 }
 
 .header .header__1,
@@ -21,6 +22,10 @@
   display: flex;
   justify-content: center;
   list-style: none;
+}
+
+.header .items a {
+  color: #FFF;
 }
 
 .header .header__1 .logo {
@@ -80,20 +85,18 @@ html[lang="ar"] .header .header__1 .icons {
 }
 
 .header .icons .icon {
-  margin-left: 1.3rem;
+  margin-right: 1.3rem;
+  color: #FFF;
 }
 
 .header .icons .icon:first-child {
   margin-left: 0;
 }
 
-html[lang="ar"] .header .icons .icon {
-  margin-left: 0;
-  margin-right: 1.3rem;
-}
 
 .header .mobile-sidebar {
   display: none;
+  color: #FFF;
 }
 
 .header .logo .andalib-logo {
@@ -104,21 +107,8 @@ html[lang="ar"] .header .icons .icon {
   display: flex;
 }
 
-.header .icons .language {
-  display: flex;
-}
 
-.header .language .lang-form-select {
-  background-color: transparent;
-  border: none;
-  padding: 0.375rem 0;
-  background-image: none;
-}
 
-.header .icons .language .lang-form-select option {
-  background-color: #FFF;
-  color: #000;
-}
 
 /* CSS for header */
 
@@ -148,17 +138,6 @@ html[lang="ar"] .header .icons .icon {
     display: none !important;
   }
 
-  .header .header__3 .header__3__icons {
-    display: none;
-  }
-
-  .header .header__3__menu_items .line {
-    display: none
-  }
-
-  .header__3 .items {
-    display: none;
-  }
 }
 
 @media (max-width: 767.98px) {}

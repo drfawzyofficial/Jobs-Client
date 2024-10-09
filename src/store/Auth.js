@@ -51,6 +51,21 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
+    async createContact({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", "/student/contact/create", payload);
+        if (data.statusCode === 200) {
+          window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
     async GetProfile({ dispatch, commit }, payload) {
       try {
         const data = await Fetch("GET", "/student/getprofile");

@@ -2,9 +2,6 @@
   <div class="container-fluid image-with-text">
     <div class="container">
       <div class="image-with-text-container">
-        <div class="image">
-            <img class="store-animation-flash" :src="src" />
-        </div>
         <div class="content" v-html="content"></div>
       </div>
     </div>
@@ -40,6 +37,11 @@ export default {
 
 <style scoped>
 
+.image-with-text {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .image-with-text-container .image img,
 .image-with-text-container .image svg {
   width: 350px;
@@ -49,9 +51,6 @@ export default {
   display: flex;
 }
 
-.image-with-text .image-with-text-container .content {
-  padding-right: 1.5rem;
-}
 
 
 @media (max-width: 767.98px) {

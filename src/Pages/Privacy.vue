@@ -1,5 +1,4 @@
 <template>
-    <Breadcrumb :title="pageTitle" />
     <ImageWithText :src="require('@/assets/images/banner.jpg')" :content="content" />
 </template>
 

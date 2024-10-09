@@ -35,12 +35,14 @@
                         </div>
                         <ul class="items">
                             <li class="item ms-4" v-for="(item, index) in navLinks" :key="index">
-                                <router-link class="menu-link fw-bold" :to="item.link">{{  item.title }}</router-link>
+                                <router-link class="menu-link fw-medium" :to="item.link">{{  item.title }}</router-link>
                             </li>
 
                         </ul>
                         <div class="logo">
-                            <img src="@/assets/images/logo.png" height="100" width="100"/>
+                            <router-link to="/">
+                                <img src="@/assets/images/logo_white.png" height="100" width="100"/>
+                            </router-link>
                         </div>
                         <div class="icons">
                             <router-link class="icon account" to="/account/signup">
@@ -118,7 +120,7 @@ export default {
         })
         // Calling, Declarations, Data
         const token = localStorage.getItem("token");
-        const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/about-us" }, { title: "التواصل", link: "/contact" }]);
+        const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/pages/about-us" }, { title: "التواصل", link: "/pages/contact" }]);
         // Return
         return {
             token,

@@ -6,7 +6,7 @@ import AOS from "aos";
 import $ from 'jquery'; 
 window.$ = $;
 import 'bootstrap';
-import "aos/dist/aos.css";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./assets/css/bootstrap.rtl.min.css";
 import "./assets/css/style.css";
 

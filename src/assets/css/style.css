@@ -33,16 +33,17 @@
 }
 
 .btn-primary {
+  padding: 5px 12px;
   color: #fff;
   background-color: #3AAFA9 !important;
   border-color: #3AAFA9 !important;
   transition: all 0.3s ease-in-out;
+  font-size: 20px;
 }
 
 .btn-primary:hover {
   background-color: #2B7A7B !important;
 }
-
 
 
 /* General Style */
@@ -209,6 +210,15 @@ span.required {
   z-index: 888;
   display: none;
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.form-label {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.breadcrumb {
+  margin-bottom: 0;
 }
 
 /* Store Aniamtions */

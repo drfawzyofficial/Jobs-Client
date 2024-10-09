@@ -1,0 +1,53 @@
+.footer {
+    padding: 2rem;
+    background-color: #2B7A7B;
+}
+
+.footer .container .row {
+    border-bottom: 1px solid #6490A599;
+}
+
+.footer .andalib-logo span {
+    color: #1F2D1F;
+    font-size: 35px;
+}
+
+.footer .info p {
+    font-weight: 500;
+}
+
+.footer .footer-links .link,
+.footer .contact .contact-part {
+    margin-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.footer .footer-links .link a {
+    color: #FFF;
+    font-size: 18px;
+}
+
+.footer .contact .contact-part span {
+    font-size: 18px;
+    color: #FFF;
+}
+
+.copyright-social .social-icons a {
+    color: #FFF;
+}
+
+.footer .social-icons .icon-link {
+    margin-right: 1rem;
+}
+
+@media (max-width: 575.98px) {
+    .copyright-social {
+        flex-flow: column !important;
+        align-items: center !important;
+    }
+    .copyright-social .country-form-select {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+}
+

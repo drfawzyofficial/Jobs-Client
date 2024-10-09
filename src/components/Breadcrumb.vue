@@ -1,5 +1,5 @@
 <template>
-  <div class="breadcrumb container-fluid py-3">
+  <div class="breadcrumb container-fluid">
     <div class="container">
       <h4 class="main-page-title fw-bold px-4 py-3">{{ title }}</h4>
     </div>
@@ -31,6 +31,9 @@ export default {
 </script>
 
 <style scoped>
+.breadcrumb {
+  padding: 30px 0;
+}
 .breadcrumb .main-page-title {
   background-color: #3AAFA9;
   color: #FFF;

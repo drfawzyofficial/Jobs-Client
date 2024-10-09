@@ -1,17 +1,19 @@
 <template>
-     <Breadcrumb :title="pageTitle" />
+     <FAQComponent></FAQComponent>
 </template>
 
 <script>
 // Import Methods, Packages, Files
 import Breadcrumb from "@/components/Breadcrumb.vue";
+import FAQComponent from "@/components/FAQComponent.vue";
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router';
 
 export default {
     name: 'FAQ',
     components: {
-        Breadcrumb
+        Breadcrumb,
+        FAQComponent
     },
     setup() {
 

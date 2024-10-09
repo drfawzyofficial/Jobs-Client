@@ -13,11 +13,11 @@ import ErrorPage from "../Pages/ErrorPage";
 
 const routes = [
   { path: "/", name: "Khatat", component: Khatat },
-  { path: "/about-us", name: "About", component: About,  meta: { title: 'من نحن' } },
-  { path: "/contact", name: "Contact", component: Contact,  meta: { title: 'تواصل معنا' } },
-  { path: "/faq", name: "FAQ", component: FAQ,  meta: { title: 'الأسئلة الشائعة' } },
-  { path: "/terms", name: "Terms", component: Terms, meta: { title: 'الشروط والأحكام' } },
-  { path: "/privacy", name: "Privacy", component: Privacy,  meta: { title: 'سياسة الخصوصية' } },
+  { path: "/pages/about-us", name: "About", component: About,  meta: { title: 'من نحن' } },
+  { path: "/pages/contact", name: "Contact", component: Contact,  meta: { title: 'تواصل معنا' } },
+  { path: "/pages/faq", name: "FAQ", component: FAQ,  meta: { title: 'الأسئلة الشائعة' } },
+  { path: "/pages/terms", name: "Terms", component: Terms, meta: { title: 'الشروط والأحكام' } },
+  { path: "/pages/privacy", name: "Privacy", component: Privacy,  meta: { title: 'سياسة الخصوصية' } },
   { path: "/account/signup", name: "Signup", component: Signup, meta: { title: 'انضم إلينا' } },
   { path: "/user/settings", name: "Settings", component: Settings },
   { path: "/user/jobs", name: "Jobs", component: Jobs },

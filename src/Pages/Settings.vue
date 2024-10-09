@@ -504,14 +504,12 @@
 <script>
 // Import Methods, Packages, Files
 import Vue3TagsInput from 'vue3-tags-input';
-import Footer from "../components/Footer.vue"
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 export default {
     name: 'Khatat',
     components: {
-        Vue3TagsInput,
-        Footer
+        Vue3TagsInput
     },
     setup() {
         // Calling, Declarations, Data
