@@ -80,8 +80,8 @@
   
   <style scoped>
   .features {
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding-top: 52px;
+    padding-bottom: 52px;
   }
   
   .features .features-box {

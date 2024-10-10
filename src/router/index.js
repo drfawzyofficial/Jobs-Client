@@ -6,6 +6,8 @@ import FAQ from "../Pages/FAQ.vue";
 import Terms from "../Pages/Terms";
 import Privacy from "../Pages/Privacy";
 import Signup from "../Pages/Signup";
+import Login from "../Pages/Login";
+import ResetPassword from "../Pages/ResetPassword";
 import Settings from "../Pages/Settings";
 import Jobs from "../Pages/Jobs";
 import ErrorPage from "../Pages/ErrorPage";
@@ -19,6 +21,8 @@ const routes = [
   { path: "/pages/terms", name: "Terms", component: Terms, meta: { title: 'الشروط والأحكام' } },
   { path: "/pages/privacy", name: "Privacy", component: Privacy,  meta: { title: 'سياسة الخصوصية' } },
   { path: "/account/signup", name: "Signup", component: Signup, meta: { title: 'انضم إلينا' } },
+  { path: "/account/login", name: "Login", component: Login, meta: { title: 'تسجيل الدخول' } },
+  { path: "/account/reset-password", name: "ResetPassword", component: ResetPassword, meta: { title: 'استعادة كلمة السر' } },
   { path: "/user/settings", name: "Settings", component: Settings },
   { path: "/user/jobs", name: "Jobs", component: Jobs },
   { path: "/:pathMatch(.*)*", name: "ErrorPage", component: ErrorPage },

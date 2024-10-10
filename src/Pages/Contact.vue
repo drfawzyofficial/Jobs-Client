@@ -23,7 +23,7 @@
                             <textarea id="ContactForm-body" class="form-control form-control-lg" rows="3" v-model="contactPayload.message"></textarea>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary"  @click="createContact()">
+                            <button type="submit" class="btn btn-primary" @click="createContact()">
                                 <span class="btn-text">إرسال</span>
                                 <i class="bi bi-send"></i>
                             </button>

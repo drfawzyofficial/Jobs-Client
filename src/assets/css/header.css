@@ -87,10 +87,11 @@ html[lang="ar"] .header .header__1 .icons {
 .header .icons .icon {
   margin-right: 1.3rem;
   color: #FFF;
+  font-size: 25px;
 }
 
 .header .icons .icon:first-child {
-  margin-left: 0;
+  margin-right: 0;
 }
 
 

@@ -3,11 +3,24 @@
         <div class="container">
             <div class="about-def mt-5">
                 <div class="image-block">
-                    <img src="@/assets/images/banner.jpg" class="store-animation-shadow" alt="banner" />
+                    <Carousel :autoplay="5000" :wrap-around="true" :dir="rtl">
+                        <Slide v-for="(image, index) in slider_images" :key="index" class="image-item">
+                            <div class="carousel__item">
+                                <img :src="image.src" :alt="image.alt" :title="image.title"
+                                    class="store-animation-shadow" />
+                            </div>
+                        </Slide>
+                        <template #addons>
+                            <Pagination />
+                        </template>
+                    </Carousel>
                 </div>
+
                 <div class="about-content">
                     <h3>منصة خطط</h3>
-                    <p class="mt-3">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من تحقيق اهدافك عن طريق تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك</p>
+                    <p class="mt-3">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من تحقيق
+                        اهدافك عن طريق
+                        تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك</p>
                 </div>
             </div>
         </div>
@@ -16,10 +29,17 @@
 
 <script>
 // Import Methods, Packages, Files
-import {  ref } from 'vue'
-
+import { ref } from 'vue'
+// If you are using PurgeCSS, make sure to whitelist the carousel CSS classes
+import 'vue3-carousel/dist/carousel.css'
+import { Carousel, Pagination, Slide } from 'vue3-carousel'
 export default {
     name: 'AboutCarousel',
+    components: {
+        Carousel,
+        Slide,
+        Pagination,
+    },
     setup() {
 
         // Calling, Declarations, Data
@@ -28,10 +48,28 @@ export default {
             { image: '@/assets/images/banner.jpg', alt: 'Image 2' },
             { image: '@/assets/images/banner.jpg', alt: 'Image 3' },
         ]);
+        const slider_images = ref([
+            {
+                src: require("@/assets/images/student1.jpg"),
+                alt: 'Placeholder Image 1',
+                title: 'Image 1',
+            },
+            {
+                src: require("@/assets/images/student2.jpg"),
+                alt: 'Placeholder Image 2',
+                title: 'Image 2',
+            },
+            {
+                src: require("@/assets/images/student3.jpg"),
+                alt: 'Placeholder Image 3',
+                title: 'Image 3',
+            }
+        ]);
 
         // Return
         return {
-            items
+            items,
+            slider_images
         }
     }
 
@@ -44,6 +82,7 @@ export default {
     padding: 52px 0;
     background-color: #F7F7F7;
 }
+
 
 .about-def {
     display: flex;
@@ -65,7 +104,7 @@ export default {
     font-size: 20px;
 }
 
-.about-carousel .image-block  img {
+.about-carousel .carousel__item img {
     height: 450px;
     width: 100%;
     border-radius: 8px;
@@ -101,7 +140,7 @@ export default {
     }
 
     .about-carousel .about-content {
-        margin-top: 2.5rem;
+        margin-top: 1rem;
         text-align: center;
         padding: 0 30px;
     }

@@ -1,5 +1,9 @@
 <template>
-    <ImageWithText :src="require('@/assets/images/banner.jpg')":content="content" />
+     <div class="terms container-fluid">
+        <div class="container">
+            <div class="content" v-html="content"></div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -81,4 +85,9 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.terms {
+  padding-top: 52px;
+  padding-bottom: 52px;
+}
+</style>

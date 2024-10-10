@@ -33,13 +33,22 @@
 }
 
 .btn-primary {
-  padding: 5px 12px;
+  padding: 8px 12px;
   color: #fff;
   background-color: #3AAFA9 !important;
   border-color: #3AAFA9 !important;
   transition: all 0.3s ease-in-out;
   font-size: 20px;
 }
+
+.carousel__pagination-button {
+  background-color: #3AAFA9 !important;
+}
+
+.carousel__pagination-button--active { 
+  background-color: #2B7A7B !important;
+}
+
 
 .btn-primary:hover {
   background-color: #2B7A7B !important;
@@ -220,6 +229,39 @@ span.required {
 .breadcrumb {
   margin-bottom: 0;
 }
+
+/* vue-form-wizard */
+.vue-form-wizard .wizard-icon-circle .wizard-icon-container,
+.vue-form-wizard .wizard-navigation .wizard-progress-with-circle .wizard-progress-bar {
+  background-color: #2B7A7B !important;
+}
+
+.vue-form-wizard .stepTitle,
+.vue-form-wizard .wizard-icon-circle .wizard-icon {
+  color: #2B7A7B !important;
+  font-weight: bold;
+}
+
+.vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon,
+.vue-form-wizard .wizard-nav-pills>li.active>a:hover .wizard-icon,
+.vue-form-wizard .wizard-nav-pills>li.active>a:focus .wizard-icon {
+  color: #FFF !important;
+}
+
+.vue-form-wizard.sm .wizard-icon-circle {
+  border-color: #3AAFA9 !important;
+}
+
+.vue-form-wizard .wizard-tab-content {
+  padding: 30px 20px 30px;
+}
+
+.vue-form-wizard .wizard-btn, .vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn {
+  padding: 12px;
+}
+
+/* vue-form-wizard */
+
 
 /* Store Aniamtions */
 .store-animation-shadow {

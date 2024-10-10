@@ -3,12 +3,7 @@
         <div class="sidebar sidebar-mobilemenu animate__animated  animate__slideInRight animate__faster">
             <div class="account-lang-box  pb-3">
                 <div class="remove-sidebar pointer-cursor">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-x">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
+                    <i class="bi bi-x-lg"></i>
                 </div>
             </div>
             <ul class="sidebar-mobilemenu-items">
@@ -45,13 +40,11 @@
                             </router-link>
                         </div>
                         <div class="icons">
-                            <router-link class="icon account" to="/account/signup">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-user">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
+                            <router-link class="icon" to="/account/signup">
+                                <i class="bi bi-person-add"></i>
+                            </router-link>
+                            <router-link class="icon" to="/account/login">
+                                <i class="bi bi-box-arrow-in-right"></i>
                             </router-link>
                         </div>
                     </div>
@@ -120,7 +113,7 @@ export default {
         })
         // Calling, Declarations, Data
         const token = localStorage.getItem("token");
-        const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/pages/about-us" }, { title: "التواصل", link: "/pages/contact" }]);
+        const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/pages/about-us" }, { title: "التواصل", link: "/pages/contact" }, { title: "الأسئلة الشائعة", link: "/pages/faq" }]);
         // Return
         return {
             token,
