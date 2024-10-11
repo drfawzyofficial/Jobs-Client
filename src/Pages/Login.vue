@@ -25,7 +25,8 @@
               <div class="submit text-center">
                 <button type="submit" class="btn btn-primary"  @click="onLogin()">
                   <span class="text">تسجيل الدخول</span>
-                  <i class="bi bi-send"></i>
+                  <span v-if="!loading_status" class="ms-1"><i class="bi bi-send"></i></span>
+                  <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                 </button>
               </div>
               <div class="create_new_account text-center mt-3">
@@ -40,14 +41,15 @@
 
 <script>
 // Import Methods, Packages, Files
-import { onMounted, ref, toRefs } from 'vue'
+import { onMounted, ref, toRefs, computed } from 'vue'
 import { useStore } from 'vuex';
 export default {
   name: 'Login',
   setup() {
 
     // Calling, Declarations, Data
-    const store = useStore()
+    const store = useStore();
+    const loading_status = computed(() => store.state.Collection.loading_status);
     const items = ref([{ content: "أهلًأ بكم في موقع خطط", link: "/" }, { content: "يمكنك الإنضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
     const loginPayload = ref({
             identifier: "",
@@ -60,6 +62,7 @@ export default {
     return {
       items,
       loginPayload,
+      loading_status,
       onLogin
     }
   }

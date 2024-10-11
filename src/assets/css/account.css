@@ -9,6 +9,10 @@
     max-width: 575px;
     margin: 0 auto;
   }
+
+  .form-box.customer_signup {
+    max-width: 767px;
+  }
   
   .account-details {
     padding: 25px;

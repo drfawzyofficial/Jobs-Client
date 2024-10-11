@@ -5,7 +5,7 @@
                 <h2 class="fw-bold text-white">خطط...موقع فرص للطلاب</h2>
                 <p class="lead text-white">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من
                     تحقيق اهدافك عن طريق تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك </p>
-                <router-link to="/join" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
+                <router-link to="/account/signup" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
             </div>
             <div class="product-device shadow-sm d-none d-md-block"></div>
             <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

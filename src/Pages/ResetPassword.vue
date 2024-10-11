@@ -11,7 +11,7 @@
             <div class="my-3" v-if="successMsg">
               <span class="success fw-medium">{{ successMsg }}</span>
             </div>
-            <form-wizard color="#2B7A7B" shape="circle" @on-complete="onComplete">
+            <form-wizard color="#2B7A7B" shape="circle" @on-complete="onComplete" nextButtonText="التالي" backButtonText="السابق" finishButtonText="إرسال">
               <tab-content title="البريد أو رقم الهاتف" :before-change="validateIDentifier">
                 <div>
                   <input placeholder="البريد الإلكتروني أو الهاتف" type="text" class="form-control form-control-lg"
