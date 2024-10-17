@@ -7,212 +7,230 @@
                         <h4 class="text-center fw-bold mb-3">التسجيل</h4>
                         <p class="info text-center mb-3">في البداية ودنا نعرف أكثر عنك لكي نقوم بخدمتك بأفضل طريقة ممكنة
                         </p>
-                        <div class="personal-info mb-3">
-                            <label class="form-label text-danger">المعلومات الشخصية*</label>
-                            <div class="mb-3">
-                                <input type="text" class="form-control form-control-lg" placeholder="الاسم كامل"
-                                    required v-model="signupPayload.fullname">
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control form-control-lg" placeholder="البريد الإلكتروني"
-                                    required v-model="signupPayload.email">
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control form-control-lg" placeholder="رقم الهاتف"
-                                    required v-model="signupPayload.phone">
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control form-control-lg" placeholder="كلمة المرور"
-                                    required v-model="signupPayload.password">
-                            </div>
-                            <div class="mb-3">
-                                <input type="password" class="form-control form-control-lg"
-                                    placeholder="تأكيد كلمة المرور" required
-                                    v-model="signupPayload.password_confirmation">
-                            </div>
-                            <select class="form-select form-select-lg" v-model="signupPayload.nationality">
-                                <option v-for="(nationality, index) in nationalities" :key="index" :value="nationality">
-                                    {{ nationality }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="academic-information mb-3">
-                            <div class="mb-3">
-                                <label class="form-label text-danger">تحديد مستوى الإنجليزية*</label>
-                                <ul class="nav nav-tabs mt-2" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#IELTS"
-                                            id="IELTS-tab" type="button" role="tab" aria-controls="home"
-                                            aria-selected="true">IELTS</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOFEL"
-                                            id="TOFEL-tab" type="button" role="tab" aria-controls="TOFEL"
-                                            aria-selected="false">TOFEL</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOEIC"
-                                            type="button" role="tab" aria-controls="TOEIC"
-                                            aria-selected="false">TOEIC</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#DUOLINGO"
-                                            type="button" role="tab" aria-controls="DUOLINGO"
-                                            aria-selected="false">DUOLINGO</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step"
-                                            type="button" role="tab" aria-controls="Step"
-                                            aria-selected="false">Step</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#CEFR"
-                                            type="button" role="tab" aria-controls="CEFR"
-                                            aria-selected="false">CEFR</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
-                                        aria-labelledby="home-tab">
-                                        <button type="button" class="btn btn-degree m-2"
-                                            v-for="(obj, index) in IELTSDegress" :key="index"
-                                            @click="selectIELTSDegree(obj.degree)"
-                                            :class="{ 'btn-selected': obj.degree == signupPayload.EnglishStandard.IELTSDegree }">{{
-                                                obj.degree }}</button>
+                        <form-wizard color="#2B7A7B" shape="circle" @on-complete="onSignup" nextButtonText="التالي"
+                            backButtonText="السابق" finishButtonText="إرسال">
+                            <tab-content title="المعلومات الشخصية">
+                                <div class="personal-info">
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-lg" placeholder="الاسم كامل"
+                                            required v-model="signupPayload.fullname">
                                     </div>
-                                    <div class="tab-pane fade p-3" id="TOFEL" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="120"
-                                            v-model="signupPayload.EnglishStandard.TOFELDegree">
-                                        <h6 class="ms-2">{{ signupPayload.EnglishStandard.TOFELDegree }}</h6>
+                                    <div class="mb-3">
+                                        <input type="email" class="form-control form-control-lg"
+                                            placeholder="البريد الإلكتروني" required v-model="signupPayload.email">
                                     </div>
-                                    <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="990"
-                                            v-model="signupPayload.EnglishStandard.TOEICDegree">
-                                        <h6 class="ms-2">{{ signupPayload.EnglishStandard.TOEICDegree }}</h6>
+                                    <div class="mb-3">
+                                        <input type="text" class="form-control form-control-lg" placeholder="رقم الهاتف"
+                                            required v-model="signupPayload.phone">
                                     </div>
-                                    <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="160"
-                                            v-model="signupPayload.EnglishStandard.DUOLINGODegree">
-                                        <h6 class="ms-2">{{ signupPayload.EnglishStandard.DUOLINGODegree }}</h6>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control form-control-lg"
+                                            placeholder="كلمة المرور" required v-model="signupPayload.password">
                                     </div>
-                                    <div class="tab-pane fade p-3" id="Step" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="100"
-                                            v-model="signupPayload.EnglishStandard.stepDegree">
-                                        <h6 class="ms-2">{{ signupPayload.EnglishStandard.stepDegree }}</h6>
+                                    <div class="mb-3">
+                                        <input type="password" class="form-control form-control-lg"
+                                            placeholder="تأكيد كلمة المرور" required
+                                            v-model="signupPayload.password_confirmation">
                                     </div>
-                                    <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
-                                        <button type="button" class="btn btn-degree m-2"
-                                            v-for="(obj, index) in CEFRDegrees" :key="index"
-                                            @click="selectCEFRDegree(obj.degree)"
-                                            :class="{ 'btn-selected': obj.degree == signupPayload.EnglishStandard.CEFRDegree }">{{
-                                                obj.degree }}</button>
+                                    <!-- Checkbox to ask if the user took the English test -->
+                                    <div class="mb-3 d-flex align-items-center">
+                                        <label class="form-check-label">
+                                            هل أنتَ مقيم في السعودية؟
+                                        </label>
+                                        <div class="form-check ms-3">
+                                            <input type="radio" name="nationality" class="form-check-input" id="saudiresidingYes"
+                                                 @change="toggleSaudiResiding(true)" :checked="signupPayload.saudiresiding === true"/>
+                                            <label class="form-check-label" for="saudiresidingYes">
+                                            نعم
+                                            </label>
+                                        </div>
+                                        <div class="form-check ms-3">
+                                            <input type="radio" name="nationality" class="form-check-input" id="saudiresidingNo"
+                                                @change="toggleSaudiResiding(false)" :checked="signupPayload.saudiresiding === false"  />
+                                            <label class="form-check-label" for="saudiresidingNo">
+                                            لأ
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <select v-if="signupPayload.saudiresiding === true"
+                                        class="form-select form-select-lg mb-3" v-model="signupPayload.saudiCity">
+                                        <option v-for="(nationality, index) in saudiCities" :key="index"
+                                            :value="nationality">
+                                            {{ nationality }}
+                                        </option>
+                                    </select>
+                                    <select v-if="signupPayload.saudiresiding === false"
+                                        class="form-select form-select-lg mb-3" v-model="signupPayload.nationality">
+                                        <option v-for="(nationality, index) in nationalities" :key="index"
+                                            :value="nationality">
+                                            {{ nationality }}
+                                        </option>
+                                    </select>
+                                    <div class="interests">
+                                        <div class="choose-interest">
+                                            <button type="button" class="btn btn-interest m-2"
+                                                v-for="(interest, index) in jobCategories" :key="index"
+                                                @click="selectInterest(interest)"
+                                                :class="{ 'btn-selected': selectedInterests.includes(interest) }">{{
+                                                    interest }}
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label text-danger">تحديد مستوى القدرات العقلية*</label>
-                                <ul class="nav nav-tabs mt-2" id="otherMyTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat"
-                                            id="Sat-tab" type="button" role="tab" aria-controls="Sat"
-                                            aria-selected="true">Sat</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat"
-                                            id="Qudrat-tab" type="button" role="tab" aria-controls="Qudrat"
-                                            aria-selected="false">Qudrat</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#GAT" id="GAT-tab"
-                                            type="button" role="tab" aria-controls="GAT"
-                                            aria-selected="false">GAT</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act" id="act-tab"
-                                            type="button" role="tab" aria-controls="act"
-                                            aria-selected="false">act</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent"
-                                            id="Talent-tab" type="button" role="tab" aria-controls="Talent"
-                                            aria-selected="false">Talent</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myOtherTabContent">
-                                    <div class="tab-pane fade show active p-3" id="Sat" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="1600"
-                                            v-model="signupPayload.BrainStandard.Sat">
-                                        <h6 class="ms-2">{{ signupPayload.BrainStandard.Sat }}</h6>
-                                    </div>
-                                    <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="100"
-                                            v-model="signupPayload.BrainStandard.Qudrat">
-                                        <h6 class="ms-2">{{ signupPayload.BrainStandard.Qudrat }}</h6>
-                                    </div>
-                                    <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="100"
-                                            v-model="signupPayload.BrainStandard.GAT">
-                                        <h6 class="ms-2">{{ signupPayload.BrainStandard.GAT }}</h6>
-                                    </div>
-                                    <div class="tab-pane fade p-3" id="act" role="tabpanel">
-                                        <input type="range" class="form-range" min="1" max="36"
-                                            v-model="signupPayload.BrainStandard.act">
-                                        <h6 class="ms-2">{{ signupPayload.BrainStandard.act }}</h6>
-                                    </div>
-                                    <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="2000"
-                                            v-model="signupPayload.BrainStandard.Talent">
-                                        <h6 class="ms-2">{{ signupPayload.BrainStandard.Talent }}</h6>
+                            </tab-content>
+                            <tab-content title="القدرات الإنجليزية">
+                                <div class="english-test mb-3">
+                                    <div class="mb-3">
+                                        <!-- Checkbox to ask if the user took the English test -->
+                                        <div class="form-check mb-3">
+                                            <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
+                                                v-model="signupPayload.tookEnglishTest" />
+                                            <label class="form-check-label" for="englishTestCheckbox">
+                                                هل أخذت اختبار اللغة الإنجليزية؟
+                                            </label>
+                                        </div>
+
+                                        <ul v-if="signupPayload.tookEnglishTest" class="nav nav-tabs mt-2" id="myTab"
+                                            role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" data-bs-toggle="tab"
+                                                    data-bs-target="#IELTS" id="IELTS-tab" type="button" role="tab"
+                                                    aria-controls="home" aria-selected="true">IELTS</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOFEL"
+                                                    id="TOFEL-tab" type="button" role="tab" aria-controls="TOFEL"
+                                                    aria-selected="false">TOFEL</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOEIC"
+                                                    type="button" role="tab" aria-controls="TOEIC"
+                                                    aria-selected="false">TOEIC</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#DUOLINGO"
+                                                    type="button" role="tab" aria-controls="DUOLINGO"
+                                                    aria-selected="false">DUOLINGO</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step"
+                                                    type="button" role="tab" aria-controls="Step"
+                                                    aria-selected="false">Step</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#CEFR"
+                                                    type="button" role="tab" aria-controls="CEFR"
+                                                    aria-selected="false">CEFR</button>
+                                            </li>
+                                        </ul>
+                                        <div v-if="signupPayload.tookEnglishTest" class="tab-content" id="myTabContent">
+                                            <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
+                                                aria-labelledby="home-tab">
+                                                <button type="button" class="btn btn-degree m-2"
+                                                    v-for="(obj, index) in IELTSDegress" :key="index"
+                                                    @click="selectIELTSDegree(obj.degree)"
+                                                    :class="{ 'btn-selected': obj.degree == signupPayload.EnglishStandard.IELTSDegree }">{{
+                                                        obj.degree }}</button>
+                                            </div>
+                                            <div class="tab-pane fade p-3" id="TOFEL" role="tabpanel">
+                                                <input type="range" class="form-range" min="0" max="120"
+                                                    v-model="signupPayload.EnglishStandard.TOFELDegree">
+                                                <h6 class="ms-2">{{ signupPayload.EnglishStandard.TOFELDegree }}</h6>
+                                            </div>
+                                            <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
+                                                <input type="range" class="form-range" min="0" max="990"
+                                                    v-model="signupPayload.EnglishStandard.TOEICDegree">
+                                                <h6 class="ms-2">{{ signupPayload.EnglishStandard.TOEICDegree }}</h6>
+                                            </div>
+                                            <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
+                                                <input type="range" class="form-range" min="0" max="160"
+                                                    v-model="signupPayload.EnglishStandard.DUOLINGODegree">
+                                                <h6 class="ms-2">{{ signupPayload.EnglishStandard.DUOLINGODegree }}</h6>
+                                            </div>
+                                            <div class="tab-pane fade p-3" id="Step" role="tabpanel">
+                                                <input type="range" class="form-range" min="0" max="100"
+                                                    v-model="signupPayload.EnglishStandard.stepDegree">
+                                                <h6 class="ms-2">{{ signupPayload.EnglishStandard.stepDegree }}</h6>
+                                            </div>
+                                            <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
+                                                <button type="button" class="btn btn-degree m-2"
+                                                    v-for="(obj, index) in CEFRDegrees" :key="index"
+                                                    @click="selectCEFRDegree(obj.degree)"
+                                                    :class="{ 'btn-selected': obj.degree == signupPayload.EnglishStandard.CEFRDegree }">{{
+                                                        obj.degree }}</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <label class="form-label text-danger">المعدل التراكمي المطلوب*</label>
-                                <ul class="nav nav-tabs mt-2" id="otherMyTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#SaudiCur"
-                                            id="SaudiCur-tab" type="button" role="tab" aria-controls="SaudiCur"
-                                            aria-selected="true">المنهج
-                                            السعودي</button>
-                                    </li>
-                                    <li class="nav-item" role="presentation">
-                                        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#BritishCur"
-                                            id="BritishCur-tab" type="button" role="tab" aria-controls="BritishCur"
-                                            aria-selected="false">المنهج
-                                            البريطاني</button>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myOtherTabContent">
-                                    <div class="tab-pane fade show active p-3" id="SaudiCur" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="100"
-                                            v-model="signupPayload.CurStandard.SaudiCur">
-                                        <h6 class="ms-2">{{ signupPayload.CurStandard.SaudiCur }}</h6>
+                            </tab-content>
+                            <tab-content title="القدرات العقلية">
+                                <div class="brain-test">
+                                    <!-- Checkbox to ask if the user took the Brain test -->
+                                    <div class="form-check mb-3">
+                                        <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
+                                            v-model="signupPayload.tookBrainTest" />
+                                        <label class="form-check-label" for="englishTestCheckbox">
+                                            هل أخذت اختبار القدرات العقلية؟
+                                        </label>
                                     </div>
-                                    <div class="tab-pane fade p-3" id="BritishCur" role="tabpanel">
-                                        <input type="range" class="form-range" min="0" max="100"
-                                            v-model="signupPayload.CurStandard.BritishCur">
-                                        <h6 class="ms-2">{{ signupPayload.CurStandard.BritishCur }}</h6>
+                                    <ul v-if="signupPayload.tookBrainTest" class="nav nav-tabs mt-2" id="otherMyTab"
+                                        role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat"
+                                                id="Sat-tab" type="button" role="tab" aria-controls="Sat"
+                                                aria-selected="true">Sat</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat"
+                                                id="Qudrat-tab" type="button" role="tab" aria-controls="Qudrat"
+                                                aria-selected="false">Qudrat</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#GAT"
+                                                id="GAT-tab" type="button" role="tab" aria-controls="GAT"
+                                                aria-selected="false">GAT</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act"
+                                                id="act-tab" type="button" role="tab" aria-controls="act"
+                                                aria-selected="false">act</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent"
+                                                id="Talent-tab" type="button" role="tab" aria-controls="Talent"
+                                                aria-selected="false">Talent</button>
+                                        </li>
+                                    </ul>
+                                    <div v-if="signupPayload.tookBrainTest" class="tab-content" id="myOtherTabContent">
+                                        <div class="tab-pane fade show active p-3" id="Sat" role="tabpanel">
+                                            <input type="range" class="form-range" min="0" max="1600"
+                                                v-model="signupPayload.BrainStandard.Sat">
+                                            <h6 class="ms-2">{{ signupPayload.BrainStandard.Sat }}</h6>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
+                                            <input type="range" class="form-range" min="0" max="100"
+                                                v-model="signupPayload.BrainStandard.Qudrat">
+                                            <h6 class="ms-2">{{ signupPayload.BrainStandard.Qudrat }}</h6>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
+                                            <input type="range" class="form-range" min="0" max="100"
+                                                v-model="signupPayload.BrainStandard.GAT">
+                                            <h6 class="ms-2">{{ signupPayload.BrainStandard.GAT }}</h6>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="act" role="tabpanel">
+                                            <input type="range" class="form-range" min="1" max="36"
+                                                v-model="signupPayload.BrainStandard.act">
+                                            <h6 class="ms-2">{{ signupPayload.BrainStandard.act }}</h6>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
+                                            <input type="range" class="form-range" min="0" max="2000"
+                                                v-model="signupPayload.BrainStandard.Talent">
+                                            <h6 class="ms-2">{{ signupPayload.BrainStandard.Talent }}</h6>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="interests mb-3">
-                            <label class="form-label text-danger">التصنيفات الأساسية*</label>
-                            <div class="choose-interest">
-                                <button type="button" class="btn btn-interest m-2" v-for="(interest, index) in jobCategories"
-                                    :key="index" @click="selectInterest(interest)"
-                                    :class="{ 'btn-selected': selectedInterests.includes(interest) }">{{
-                                        interest }}
-                                </button>
-                            </div>
-                        </div>
-                        <div class="submit text-center">
-                            <button type="submit" class="btn btn-primary" @click="onSignup()">
-                                <span class="text">تسجيل الحساب</span>
-                                <span v-if="!loading_status" class="ms-1"><i class="bi bi-send"></i></span>
-                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                            </button>
-                        </div>
+                            </tab-content>
+                        </form-wizard>
                         <div class="create_new_account text-center mt-3">
                             <router-link class="store-animation-anchor fw-medium" to="/account/login">لديك
                                 حساب؟</router-link>
@@ -228,9 +246,14 @@
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
 import { computed, ref } from 'vue'
+//local registration
+import { FormWizard, TabContent } from 'vue3-form-wizard'
+import 'vue3-form-wizard/dist/style.css'
 export default {
     name: 'Signup',
     components: {
+        FormWizard,
+        TabContent
     },
     setup() {
 
@@ -243,7 +266,11 @@ export default {
             phone: "",
             password: "",
             password_confirmation: "",
+            saudiresiding: true,
+            tookEnglishTest: false,
+            tookBrainTest: false,
             nationality: "اختر الجنسية",
+            saudiCity: "الرياض",
             EnglishStandard: {
                 IELTSDegree: '',
                 TOFELDegree: '',
@@ -259,14 +286,11 @@ export default {
                 act: '',
                 Talent: '',
             },
-            CurStandard: {
-                SaudiCur: '',
-                BritishCur: ''
-            },
             interests: []
         });
+
         store.dispatch("Collection/GetHelper")
-         // Get the helperObj as a computed property from the store
+        // Get the helperObj as a computed property from the store
         const helperObj = computed(() => store.state.Collection.helperObj);
 
         // Get jobCategories from helperObj as a computed property
@@ -274,7 +298,7 @@ export default {
 
         // Filter out "التصنيف" from the jobCategories
         const jobCategories = computed(() => {
-        return selectedJobCategories.value.filter(item => item !== 'التصنيف');
+            return selectedJobCategories.value.filter(item => item !== 'التصنيف');
         });
 
         const nationalities = ref([
@@ -293,13 +317,15 @@ export default {
             'ماوريتاني', 'مكسيكي', 'مولدوفي', 'موناكوي', 'منغولي', 'مغربي', 'موزمبيقي', 'ناميبي',
             'نيبالي', 'هولندي', 'نيوزيلندي', 'نيجيري', 'نيكاراغوي', 'نيجيري', 'نرويجي', 'عماني',
             'باكستاني', 'بنمي', 'بابواني', 'باراغوي', 'بيروفي', 'فلبيني', 'بولندي', 'برتغالي',
-            'قطري', 'روماني', 'روسي', 'رواندي', 'سانت لوسي', 'سلفادوري', 'ساموائي', 'سعودي',
+            'قطري', 'روماني', 'روسي', 'رواندي', 'سانت لوسي', 'سلفادوري', 'ساموائي',
             'سنغالي', 'صربي', 'سيشلي', 'سنغافوري', 'سلوفاكي', 'سلوفيني', 'سومالي', 'جنوب أفريقي',
             'إسباني', 'سريلانكي', 'سوداني', 'سورينامي', 'سوازيلندي', 'سويدي', 'سويسري', 'سوري',
             'تايواني', 'طاجيكستاني', 'تنزاني', 'تايلاندي', 'توغولي', 'تونسي', 'تركي', 'تركماني',
             'توفالي', 'أوغندي', 'أوكراني', 'أوروغواي', 'أوزبكستاني', 'فانواتي', 'فنزويلي', 'فيتنامي',
             'يمني', 'زامبي', 'زيمبابوي'
         ]);
+        const saudiCities = ref(["الرياض", "جدة", "مكة", "المدينة المنورة", "الدمام", "الخبر", "الطائف", "بريدة", "الجبيل", "حفر الباطن", "الظهران", "ينبع", "أبها", "خميس مشيط", "القصيم", "القطيف", "نجران", "تبوك", "جازان", "عرعر", "سكاكا", "الخرج", "الباحة", "بيشة", "القنفذة", "الدوادمي", "رجال ألمع", "محايل عسير", "شرورة", "رابغ", "المجمعة", "بدر", "الرس", "عنيزة", "حائل", "وادي الدواسر", "صبيا", "العيص", "ضباء", "تيماء", "بدر الجنوب", "طريف", "الأفلاج", "الحوطة", "مرات", "رنية", "ليلى", "السليل", "تنومة", "بلجرشي", "المندق", "قلوة", "العلا", "ساجر", "البكيرية", "الزلفي", "دومة الجندل", "عفيف", "الحريق", "الدوادمي", "القريات", "الطريف", "تربة", "رأس تنورة", "الساحل الشرقي", "سدير", "ثادق"]);
+
         const IELTSDegress = ref([
             {
                 degree: "0"
@@ -381,11 +407,16 @@ export default {
         const interests = ref(["مسابقات", "برامج", "مهارات"])
         const selectedInterests = ref([]);
 
-       // Methods
+        // Methods
         const onSignup = () => {
             signupPayload.value.interests = selectedInterests.value;
-            console.log(signupPayload.value);
-            // store.dispatch('Auth/Signup', signupPayload.value);
+            if (signupPayload.value.saudiresiding == true)
+                signupPayload.value.nationality = "سعودي";
+            if (signupPayload.value.tookEnglishTest == false)
+               signupPayload.value.EnglishStandard = { IELTSDegree: '', TOFELDegree: '',TOEICDegree: '', DUOLINGODegree: '', stepDegree: '', CEFRDegree: ''};
+            if (signupPayload.value.tookBrainTest == false)
+                signupPayload.value.BrainStandard = { Sat: '', Qudrat: '',  GAT: '', act: '', Talent: '' };
+            store.dispatch('Auth/Signup', signupPayload.value);
         };
 
         const selectIELTSDegree = (degree) => {
@@ -396,12 +427,20 @@ export default {
             signupPayload.value.EnglishStandard.CEFRDegree = degree;
         };
 
+        const toggleSaudiResiding = (value) => {
+            if (value === true) {
+                signupPayload.value.saudiresiding = true;
+            } else {
+                signupPayload.value.saudiresiding = false;
+            }
+        };
+
         const selectInterest = (interest) => {
-        if (selectedInterests.value.includes(interest)) {
-            selectedInterests.value = selectedInterests.value.filter((item) => item !== interest);
-        } else {
-            selectedInterests.value.push(interest);
-        }
+            if (selectedInterests.value.includes(interest)) {
+                selectedInterests.value = selectedInterests.value.filter((item) => item !== interest);
+            } else {
+                selectedInterests.value.push(interest);
+            }
         };
 
         // Return
@@ -409,6 +448,7 @@ export default {
             loading_status,
             signupPayload,
             nationalities,
+            saudiCities,
             IELTSDegress,
             CEFRDegrees,
             selectIELTSDegree,
@@ -417,6 +457,7 @@ export default {
             selectedInterests,
             selectInterest,
             jobCategories,
+            toggleSaudiResiding,
             onSignup,
         }
     }
@@ -438,7 +479,7 @@ export default {
     transition: all 0.3s ease-in-out;
 }
 
-.btn-interest{
+.btn-interest {
     background-color: #DEF2F1;
     border: 1px solid #3aafa9;
     transition: all 0.3s ease-in-out;

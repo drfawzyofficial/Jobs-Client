@@ -39,6 +39,9 @@
               <div class="loader" v-if="loadingWizard"></div>
 
             </form-wizard>
+            <div class="return_to_login text-center mt-3">
+                <router-link class="store-animation-anchor fw-medium" to="/account/login">العودة لتسجيل الدخول</router-link>
+              </div>
           </div>
         </div>
       </div>
@@ -51,8 +54,6 @@
 import { onMounted, ref, toRefs } from 'vue'
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import Vue3FormWizard from 'vue3-form-wizard'
-import 'vue3-form-wizard/dist/style.css'
 //local registration
 import { FormWizard, TabContent } from 'vue3-form-wizard'
 import 'vue3-form-wizard/dist/style.css'

@@ -140,12 +140,12 @@ html[lang="ar"] [type=url] {
 }
 
 .form-check-input:checked {
-  background-color: #E57C23;
-  border-color: #E57C23;
+  background-color: #2B7A7B;
+  border-color: #2B7A7B;
 }
 
 .form-check-input:focus {
-  box-shadow: 0 0 0 0.2rem #ffcc9f;
+  box-shadow: 0 0 0 0.2rem #95e3e0;
 }
 
 .form-control:focus,
