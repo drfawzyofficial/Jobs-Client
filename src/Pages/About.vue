@@ -1,6 +1,8 @@
 <template>
-     <AboutCarousel></AboutCarousel>
-     <Features></Features>
+    <Layout>
+        <AboutCarousel></AboutCarousel>
+        <Features></Features>
+    </Layout>
 </template>
 
 <script>

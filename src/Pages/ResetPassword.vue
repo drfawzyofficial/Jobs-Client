@@ -1,4 +1,5 @@
 <template>
+ <Layout>
   <div class="resetpassword container-fluid">
     <div class="container">
       <div class="row">
@@ -47,6 +48,7 @@
       </div>
     </div>
   </div>
+ </Layout>
 </template>
 
 <script>

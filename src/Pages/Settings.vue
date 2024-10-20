@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <Layout>
+        <div>
         <div :class="['navbar-area p-relative', { 'is-sticky': isSticky }]">
             <div class="vumy-nav">
                 <div class="container-fluid">
@@ -499,6 +500,7 @@
         </div> -->
         <!-- Signup Modal -->
     </div>
+    </Layout>
 </template>
 
 <script>

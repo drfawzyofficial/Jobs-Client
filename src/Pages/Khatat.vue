@@ -1,65 +1,70 @@
 <template>
-    <div class="home-page">
-        <div class="home-banner position-relative overflow-hidden p-3 p-md-5 text-center">
-            <div class="col-md-5 p-lg-5 mx-auto my-5">
-                <h2 class="fw-bold text-white">خطط...موقع فرص للطلاب</h2>
-                <p class="lead text-white">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من
-                    تحقيق اهدافك عن طريق تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك </p>
-                <router-link to="/account/signup" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
-            </div>
-            <div class="product-device shadow-sm d-none d-md-block"></div>
-            <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-        </div>
-        <div class="khatat-statistics container-fluid py-5">
-            <div class="container py-5">
-                <div class="row">
-                    <div class="col-md-6 mx-auto">
-                       <div class="text-center">
-                        <h2 class="fw-bold">خطط في أرقام</h2>
-                            <p>من خلال شراكاتنا، نتمكن من تقديم حلول مبتكرة وخدمات ذات جودة عالية لعملائنا. نحن نعمل جنبًا إلى جنب مع شركائنا لتعزيز الابتكار وتحقيق أهدافنا المشتركة في مجالات التعليم، الصحة، والتكنولوجيا.</p>
-                       </div>
-                    </div>
+    <Layout>
+        <div class="home-page">
+            <div class="home-banner position-relative overflow-hidden p-3 p-md-5 text-center">
+                <div class="col-md-5 p-lg-5 mx-auto my-5">
+                    <h2 class="fw-bold text-white">خطط...موقع فرص للطلاب</h2>
+                    <p class="lead text-white">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من
+                        تحقيق اهدافك عن طريق تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك </p>
+                    <router-link to="/account/signup" class="btn btn-lg btn-primary mt-3">ابدأ الخدمة</router-link>
                 </div>
-                <div class="row">
-                    <div class="col-md-4 mt-4" v-for="(stat, index) in statisticsObj" :key="index">
-                        <div class="counter-box">
-                            <i class="fa fa-thumbs-o-up"></i>
-                            <span class="counter">{{ stat.count }}</span>
-                            <p>{{ stat.title }}</p>
+                <div class="product-device shadow-sm d-none d-md-block"></div>
+                <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+            </div>
+            <div class="khatat-statistics container-fluid py-5">
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-md-6 mx-auto">
+                            <div class="text-center">
+                            <h2 class="fw-bold">خطط في أرقام</h2>
+                                <p>من خلال شراكاتنا، نتمكن من تقديم حلول مبتكرة وخدمات ذات جودة عالية لعملائنا. نحن نعمل جنبًا إلى جنب مع شركائنا لتعزيز الابتكار وتحقيق أهدافنا المشتركة في مجالات التعليم، الصحة، والتكنولوجيا.</p>
+                            </div>
                         </div>
                     </div>
-                </div>	
-            </div>
-        </div>
-        <div class="partners container-fluid py-5 bg-light">
-            <div class="container py-5">
-                <div class="row">
-                    <div class="col-md-6 mx-auto">
-                       <div class="text-center">
-                            <h2 class="fw-bold">شركائنا</h2>
-                            <p>من خلال شراكاتنا، نتمكن من تقديم حلول مبتكرة وخدمات ذات جودة عالية لعملائنا. نحن نعمل جنبًا إلى جنب مع شركائنا لتعزيز الابتكار وتحقيق أهدافنا المشتركة في مجالات التعليم، الصحة، والتكنولوجيا.</p>
-                       </div>
-                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mt-4" v-for="(stat, index) in statisticsObj" :key="index">
+                            <div class="counter-box">
+                                <i class="fa fa-thumbs-o-up"></i>
+                                <span class="counter">{{ stat.count }}</span>
+                                <p>{{ stat.title }}</p>
+                            </div>
+                        </div>
+                    </div>	
                 </div>
-                <div class="row">
-                    <div class="col-lg-2 col-md-4 col-sm-6 mt-4" v-for="(partImg, index) in parnters" :key="index">
-                        <div class="partner-img">
-                            <img class="store-animation-shadow" src="../assets/images/banner.jpg"/>
+            </div>
+            <div class="partners container-fluid py-5 bg-light">
+                <div class="container py-5">
+                    <div class="row">
+                        <div class="col-md-6 mx-auto">
+                            <div class="text-center">
+                                <h2 class="fw-bold">شركائنا</h2>
+                                <p>من خلال شراكاتنا، نتمكن من تقديم حلول مبتكرة وخدمات ذات جودة عالية لعملائنا. نحن نعمل جنبًا إلى جنب مع شركائنا لتعزيز الابتكار وتحقيق أهدافنا المشتركة في مجالات التعليم، الصحة، والتكنولوجيا.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-4 col-sm-6 mt-4" v-for="(partImg, index) in parnters" :key="index">
+                            <div class="partner-img">
+                                <img class="store-animation-shadow" src="../assets/images/banner.jpg"/>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </Layout>
+
 </template>
 
 <script>
 // Import Methods, Packages, Files
+import Layout from "@/components/Layout.vue"
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 export default {
     name: 'Khatat',
     components: {
+        Layout
     },
     setup() {
         onMounted(() => {

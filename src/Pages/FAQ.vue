@@ -1,5 +1,7 @@
 <template>
-     <FAQComponent></FAQComponent>
+     <Layout>
+        <FAQComponent></FAQComponent>
+     </Layout>
 </template>
 
 <script>

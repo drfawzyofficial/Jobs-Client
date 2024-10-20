@@ -40,8 +40,7 @@ export const Auth = {
         const data = await Fetch("POST", "/student/login", payload);
         if (data.statusCode === 200) {
           localStorage.setItem("token", data.result.token);
-          router.push("/user/settings")
-          document.querySelector(".modal-backdrop").remove()
+          router.push("/student/dashboard")
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
         }
@@ -208,7 +207,7 @@ export const Auth = {
         localStorage.removeItem("token");
         commit("unSetUser");
         dispatch("Collection/loading", false, { root: true });
-        router.push("/")
+        router.push("/account/login")
       } catch (err) {
         window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
         dispatch("Collection/loading", false, { root: true });

@@ -1,5 +1,6 @@
 <template>
-    <div class="container-fluid">
+    <Layout>
+        <div class="container-fluid">
         <div class="container py-5">
             <div class="not-found-content text-center py-5">
                 <img class="img-fluid" src="../assets/images/error.png" alt="error-image">
@@ -9,6 +10,7 @@
             </div>
         </div>
     </div>
+    </Layout>
 </template>
 
 <script>

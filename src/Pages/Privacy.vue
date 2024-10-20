@@ -1,9 +1,11 @@
 <template>
-     <div class="privacy container-fluid">
+     <Layout>
+        <div class="privacy container-fluid">
         <div class="container">
             <div class="content" v-html="content"></div>
         </div>
     </div>
+     </Layout>
 </template>
 
 <script>
