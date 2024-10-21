@@ -4,7 +4,6 @@
             <router-view />
         </Transition>
     </div>
-   
 </template>
 
 <script>

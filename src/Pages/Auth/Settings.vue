@@ -1,65 +1,8 @@
 <template>
-    <Layout>
-        <div>
-        <div :class="['navbar-area p-relative', { 'is-sticky': isSticky }]">
-            <div class="vumy-nav">
-                <div class="container-fluid">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <router-link class="navbar-brand" to="/">
-                            <img src="../assets/images/logo.png" alt="logo">
-                        </router-link>
-
-                        <div class="navbar-toggler" @click="show = !show" :aria-pressed="show ? 'true' : 'false'"
-                            v-bind:class="{ show: button_show_state }" v-on:click="button_show_state = !button_show_state">
-                            <span class="icon-bar top-bar"></span>
-                            <span class="icon-bar middle-bar"></span>
-                            <span class="icon-bar bottom-bar"></span>
-                        </div>
-
-                        <div class="collapse navbar-collapse" :class="{ show: show }">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <router-link class="nav-link" to="/user/settings">
-                                        إعدادات الحساب
-                                    </router-link>
-                                </li>
-                                <li class="nav-item">
-                                    <router-link class="nav-link" to="/user/jobs">
-                                        الوظائف
-                                    </router-link>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="others-option">
-                            <button type="button" class="btn-style-one green-color2" @click="Logout()">
-                                تسجيل الخروج
-                                <span v-if="!loading_status"><i class="ph ph-sign-out"></i></span>
-                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                            </button>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-
+    <DashboardLayout>
         <div class="settings container-fluid py-5 bg-greencolor3">
             <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-                            aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <router-link to="/user/settings">
-                                        لوحة التحكم
-                                    </router-link>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">إعدادات الحساب</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-md-4">
                         <div class="nav flex-column nav-pills bg-white p-3 rounded-12" id="v-pills-tab" role="tablist"
@@ -425,82 +368,7 @@
                 </div>
             </div>
         </div>
-
-        <Footer></Footer>
-
-        <!-- Signup Modal -->
-        <!-- <div class="modal fade" id="Signup" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="SignupTitle">التسجيل</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="signup-form">
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="text" placeholder="الاسم بالكامل"
-                                    v-model="signupPayload.fullname">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني"
-                                    v-model="signupPayload.email">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="password" placeholder="كلمة السر"
-                                    v-model="signupPayload.password">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر"
-                                    v-model="signupPayload.password_confirmation">
-                            </div>
-                            <div>
-                                <button type="button" class="btn-style-one green-color2 text-white" @click="onSignup">
-                                    <span v-if="!loading_status"><i class="ph ph-user"></i></span>
-                                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                    التسجيل
-                                </button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Signup Modal -->
-        <!-- Login Modal -->
-        <!-- <div class="modal fade" id="Login" tabindex="-1" aria-labelledby="Signup" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="LoginTitle">تسجيل الدخول</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="signup-form">
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="text" placeholder="البريد الإلكتروني"
-                                    v-model="loginPayload.email">
-                            </div>
-                            <div class="mb-3">
-                                <input class="form-control form-control-lg" type="password" placeholder="كلمة السر"
-                                    v-model="loginPayload.password">
-                            </div>
-                            <div>
-                                <button type="button" class="btn-style-one green-color2 text-white" @click="onLogin">
-                                    <span v-if="!loading_status"><i class="ph ph-user"></i></span>
-                                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                    الدخول
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Signup Modal -->
-    </div>
-    </Layout>
+    </DashboardLayout>
 </template>
 
 <script>

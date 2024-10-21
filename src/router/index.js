@@ -8,8 +8,8 @@ import Privacy from "../Pages/Privacy";
 import Signup from "../Pages/Signup";
 import Login from "../Pages/Login";
 import Dashboard from "../Pages/Auth/Dashboard.vue";
+import Settings from "../Pages/Auth/Settings.vue";
 import ResetPassword from "../Pages/ResetPassword";
-import Settings from "../Pages/Settings";
 import Jobs from "../Pages/Jobs";
 import ErrorPage from "../Pages/ErrorPage";
 
@@ -24,6 +24,7 @@ const routes = [
   { path: "/account/signup", name: "Signup", component: Signup, meta: { title: 'انضم إلينا', requiresAuth: false } },
   { path: "/account/login", name: "Login", component: Login, meta: { title: 'تسجيل الدخول', requiresAuth: false } },
   { path: "/student/dashboard", name: "Dashboard", component: Dashboard, meta: { title: 'لوحة التحكم', requiresAuth: true } },
+  { path: "/student/settings", name: "Settings", component: Settings, meta: { title: 'الإعدادات', requiresAuth: true } },
   { path: "/account/reset-password", name: "ResetPassword", component: ResetPassword, meta: { title: 'استعادة كلمة السر', requiresAuth: false } },
   { path: "/:pathMatch(.*)*", name: "ErrorPage", component: ErrorPage },
 
