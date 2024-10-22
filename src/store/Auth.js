@@ -10,7 +10,11 @@ window.Swal = swal;
 export const Auth = {
   namespaced: true,
   state: {
-    user: null
+    user: null,
+    statistics: null,
+    chances: [],
+    chancesCount: 0,
+    wishlists: []
   },
   actions: {
     async Signup({ dispatch, commit }, payload) {
@@ -200,6 +204,69 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
+    async GetStatistics({ dispatch, commit }, payload) {
+      try {
+        const data = await Fetch("GET", "/admin/statistics/get");
+        console.log(data);
+        if (data.statusCode === 200) {
+          commit("setStatistics", data.result);
+        } else if (data.statusCode === 401) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت' })
+        }
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+      }
+    },
+    async ChancesGet({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("GET", `/job/getchances/?page_no=${payload.page_no}`);
+        if (data.statusCode === 200) {
+          commit("chancesGet", data.result);
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          var errors = ``;
+          for (const property in data.result.errors) {
+            data.result.errors[property].forEach((ele) => {
+              errors += `<li>${ele}</li>`
+            })
+          }
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
+    async WishlistsGet({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", `/student/wishlists/get`, payload);
+        if (data.statusCode === 200) {
+          commit("wishlistsGet", data.result);
+        } else if(data.statusCode == 400) {
+          commit("wishlistsGet", { wishlists: [ ]});
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          var errors = ``;
+          for (const property in data.result.errors) {
+            data.result.errors[property].forEach((ele) => {
+              errors += `<li>${ele}</li>`
+            })
+          }
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
     async Logout({ dispatch, commit }) {
       try {
         dispatch("Collection/loading", true, { root: true });
@@ -216,6 +283,16 @@ export const Auth = {
     },
   },
   mutations: {
+    chancesGet(state, data) {
+      state.chances = data.jobs;
+      state.chancesCount = data.jobsCount;
+    },
+    wishlistsGet(state, data) {
+      state.wishlists = data.wishlists;
+    },
+    setStatistics(state, statistics) {
+      state.statistics = statistics;
+    },
     setUser(state, user) {
       state.user = user;
     },

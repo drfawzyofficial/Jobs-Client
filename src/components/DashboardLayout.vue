@@ -21,7 +21,7 @@
         <div id="content">
 
           <!-- Topbar -->
-          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
           
 
             <!-- Topbar Navbar -->
@@ -52,12 +52,6 @@
 
               <!-- Nav Item - Alerts -->
               <li class="nav-item dropdown no-arrow mx-1">
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-                  <i class="bi bi-bell"></i>  
-                  <!-- Counter - Alerts -->
-                  <span class="badge badge-danger badge-counter">3+</span>
-                </a>
                 <!-- Dropdown - Alerts -->
                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                   aria-labelledby="alertsDropdown">
@@ -167,8 +161,8 @@
               <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-                  <span class="ml-2 d-none d-lg-inline text-gray-600 small">Abdulrahman Fawzy</span>
-                  <img class="img-profile rounded-circle" src="@/assets/images/banner.jpg">
+                  <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.fullname}}</span>
+                  <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -257,7 +251,7 @@
 // Import Methods, Packages, Files
 import '../assets/js/sb-admin-2.js';
 import { useStore } from 'vuex';
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed  } from 'vue'
 export default {
   name: 'Dashboard',
   components: {
@@ -322,14 +316,17 @@ export default {
 
     // Calling, Declarations, Data
     const store = useStore()
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const user = computed(() => store.state.Auth.user);
+    console.log(user);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' },  { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }]);
     const onLogout = () => {
       store.dispatch("Auth/Logout", { data: null })
     }
     // Return
     return {
       navLinks,
-      onLogout
+      onLogout,
+      user
     }
   }
 

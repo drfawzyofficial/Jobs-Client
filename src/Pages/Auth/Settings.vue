@@ -1,45 +1,16 @@
 <template>
     <DashboardLayout>
-        <div class="settings container-fluid py-5 bg-greencolor3">
+        <div class="settings container-fluid py-4">
             <div class="container">
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="nav flex-column nav-pills bg-white p-3 rounded-12" id="v-pills-tab" role="tablist"
-                            aria-orientation="vertical">
-                            <button class="nav-link active" id="v-pills-activation-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-activation" type="button" role="tab"
-                                aria-controls="v-pills-activation" aria-selected="true">
-                                <span class="fs-4 align-middle"><i class="ph ph-user-gear"></i></span>
-                                <span class="ms-1">تفعيل الحساب</span>
-                            </button>
-                            <button class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile"
-                                aria-selected="true" @click="editProfileSection()">
-                                <span class="fs-4 align-middle"><i class="ph ph-user-circle"></i></span>
-                                <span class="ms-1">بيانات الحساب</span>
-                            </button>
-                            <button class="nav-link" id="v-pills-security-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-security" type="button" role="tab" aria-controls="v-pills-security"
-                                aria-selected="false">
-                                <span class="fs-4 align-middle"><i class="ph ph-shield-check"></i></span>
-                                <span class="ms-1">آمان الحساب</span>
-                            </button>
-                            <button class="nav-link" id="v-pills-delete-tab" data-bs-toggle="pill"
-                                data-bs-target="#v-pills-delete" type="button" role="tab" aria-controls="v-pills-delete"
-                                aria-selected="false">
-                                <span class="fs-4 align-middle"><i class="ph ph-trash"></i></span>
-                                <span class="ms-1">حذف الحساب</span>
-                            </button>
-
-                        </div>
-                    </div>
-                    <div class="col-md-8 mt-3 mt-md-0">
-                        <div class="tab-content bg-white p-3 rounded-12" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-activation" role="tabpanel"
-                                aria-labelledby="v-pills-activation-tab" tabindex="0">
-                                <h5>تفعيل الحساب</h5>
-                                <p>برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
+                <div class="breadcrumb-auth">
+                    <h3 class="fw-bold">إعدادات الحساب</h3>
+                    <p>صفحة إعدادات الحساب تتيح لك تفعيل الحساب وتأمينه من خلال تغيير كلمة المرور القديمة إلى كلمة مرور جديدة، بالإضافة إلى إمكانية تعديل أو حذف البيانات الشخصية بكل سهولة. تضمن هذه الصفحة التحكم الكامل بمعلوماتك الشخصية وتعزيز أمان حسابك.</p>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="p-3 bg-white shadow">
+                                <h5 class="fw-bold">تفعيل الحساب</h5>
+                                <p class="mb-3">برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
                                     الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الكود مرة
                                     أخرى</p>
                                 <div class="mb-3">
@@ -47,26 +18,60 @@
                                         aria-label="account-activation" v-model="codePayload.code">
                                 </div>
                                 <div>
-                                    <button type="button" class="btn-style-one green-color2" @click="submitCode()"
+                                    <button type="button" class="btn btn-primary" @click="submitCode()"
                                         :disabled="user && user.is_verified">
-                                        <span v-if="!loading_status" class="fs-5 align-middle"><i
-                                                class="ph ph-user-gear"></i></span>
-                                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                        <span class="ms-2">تفعيل</span>
+                                        <span>تفعيل <i class="bi bi-arrow-clockwise"></i></span>
                                     </button>
-                                    <button type="button" class="btn-style-one green-color2 ms-2" @click="resendCode()"
+                                    <button type="button" class="btn btn-primary ms-2" @click="resendCode()"
                                         :disabled="user && user.is_verified">
-                                        <span v-if="!loading_status" class="fs-5 align-middle"><i
-                                                class="ph ph-paper-plane-tilt"></i></span>
-                                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                        <span class="ms-2">الإرسال</span>
+                                        <span>الإرسال <i class="bi bi-send"></i></span>
                                     </button>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                aria-labelledby="v-pills-profile-tab" tabindex="0">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+                        <div class="p-3 bg-white shadow">
+                                <h5 class="fw-bold">تأمين الحساب</h5>
+                                <p class="mb-3">قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد المستخدمين
+                                </p>
+                                <div class="mb-3">
+                                    <input class="form-control form-control-lg" type="password"
+                                        placeholder="كلمة السر القديمة" aria-label="account-current_password"
+                                        v-model="passwordPayload.current_password">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control form-control-lg" type="password"
+                                        placeholder="كلمة السر الجديدة" aria-label="account-new_password"
+                                        v-model="passwordPayload.new_password">
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-control form-control-lg" type="password"
+                                        placeholder="تأكيد كلمة السر الجديدة" aria-label="account-new_password_confirmation"
+                                        v-model="passwordPayload.new_password_confirmation">
+                                </div>
+                                <div>
+                                    <button type="button" class="btn btn-primary" @click="changePassword()">
+                                        <span>تغيير <i class="bi bi-arrow-clockwise"></i></span>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-12 mt-4 mt-lg-0">
+                        <div class="p-3 bg-white shadow">
+                            <h5 class="fw-bold">حذف الحساب</h5>
+                                <p class="mb-3">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر وتمهل قبل
+                                    حذف الحساب</p>
+                                <div>
+                                    <button type="button" class="btn btn-danger" @click="deleteAccount()">
+                                        <span>حذف <i class="bi bi-trash"></i></span>
+                                    </button>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <div class="p-3 bg-white shadow">
                                 <h5 class="mb-3">تغيير بياناتك الشخصية</h5>
-                                <div class="profile-pic-wrapper mb-3">
+                                <!-- <div class="profile-pic-wrapper mb-3">
                                     <div class="pic-holder">
                                         <img id="profilePic" class="pic" :src="user.avatar" v-if="user && user.avatar">
                                         <input class="uploadProfileInput" type="file" name="profile_pic"
@@ -83,7 +88,7 @@
                                             </div>
                                         </label>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="fullname" class="form-label">الاسم بالكامل</label>
@@ -119,7 +124,7 @@
                                     </div>
                                     <div class="col-md-6 mt-3 mt-md-0">
                                         <label for="dOB" class="form-label">تاريخ الميلاد</label>
-                                        <input class="form-control form-control-lg" type="date"
+                                        <input class="form-control form-control-lg text-start" type="date"
                                         v-model="profilePayload.dOB">
                                     </div>
                                 </div>
@@ -136,23 +141,6 @@
                                         <option v-for="(val, index) in helperObj.applicantEdus" :key="index" :value="val">{{ val }}</option>
                                     </select>
                                     </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="tags" class="form-label">الكلمات المفتاحية</label>
-                                    <vue3-tags-input :tags="profilePayload.tags" :select="true" :select-items="selectItems"
-                                        @on-select="handleSelectedTag" 
-                                        @on-tags-changed="handleChangeTag"
-                                        placeholder="أدخل كلمات البحث المفتاحية">
-                                        <template #item="{ tag, index }">
-                                            {{ tag }}
-                                        </template>
-                                        <template #no-data>
-                                            No Data
-                                        </template>
-                                        <template #select-item="tag">
-                                            {{ tag.text }}
-                                        </template>
-                                    </vue3-tags-input>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">تحديد مستوى الإنجليزية</label>
@@ -312,57 +300,13 @@
                                 </div>
 
                                 <div>
-                                    <button type="button" class="btn-style-one green-color2" @click="editProfile()">
+                                    <button type="button" class="btn btn-primary" @click="editProfile()">
                                         <span v-if="!loading_status" class="fs-5 align-middle"><i
                                                 class="ph ph-recycle"></i></span>
                                         <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                                         <span class="ms-2">تحديث</span>
                                     </button>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-security" role="tabpanel"
-                                aria-labelledby="v-pills-security-tab" tabindex="0">
-                                <h5>تأمين الحساب</h5>
-                                <p>قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد المستخدمين
-                                </p>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="password"
-                                        placeholder="كلمة السر القديمة" aria-label="account-current_password"
-                                        v-model="passwordPayload.current_password">
-                                </div>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="password"
-                                        placeholder="كلمة السر الجديدة" aria-label="account-new_password"
-                                        v-model="passwordPayload.new_password">
-                                </div>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="password"
-                                        placeholder="تأكيد كلمة السر الجديدة" aria-label="account-new_password_confirmation"
-                                        v-model="passwordPayload.new_password_confirmation">
-                                </div>
-                                <div>
-                                    <button type="button" class="btn-style-one green-color2" @click="changePassword()">
-                                        <span v-if="!loading_status" class="fs-5 align-middle"><i
-                                                class="ph ph-recycle"></i></span>
-                                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                        <span class="ms-2">تغيير</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-delete" role="tabpanel"
-                                aria-labelledby="v-pills-delete-tab" tabindex="0">
-                                <h5>حذف الحساب</h5>
-                                <p>حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر وتمهل قبل
-                                    حذف الحساب</p>
-                                <div>
-                                    <button type="button" class="btn btn-danger" @click="deleteAccount()">
-                                        <span v-if="!loading_status" class="fs-5 align-middle"><i
-                                                class="ph ph-trash"></i></span>
-                                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                        <span class="ms-2">حذف</span>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -373,18 +317,16 @@
 
 <script>
 // Import Methods, Packages, Files
-import Vue3TagsInput from 'vue3-tags-input';
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 export default {
-    name: 'Khatat',
+    name: 'Settings',
     components: {
-        Vue3TagsInput
     },
     setup() {
         // Calling, Declarations, Data
         const store = useStore()
-        const loading_status = computed(() => store.state.Collection.loading_status);
+        // const loading_status = computed(() => store.state.Collection.loading_status);
         const user = computed(() => store.state.Auth.user);
         const isSticky = ref(false);
         const show = ref(false);
@@ -598,7 +540,6 @@ export default {
         // Return
         return {
             helperObj,
-            loading_status,
             user,
             goToSection,
             isSticky,
