@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <div class="home-page">
-            <div class="home-banner position-relative overflow-hidden p-3 p-md-5 text-center">
+            <!-- <div class="home-banner position-relative overflow-hidden p-3 p-md-5 text-center">
                 <div class="col-md-5 p-lg-5 mx-auto my-5">
                     <h2 class="fw-bold text-white">خطط...موقع فرص للطلاب</h2>
                     <p class="lead text-white">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من
@@ -10,7 +10,7 @@
                 </div>
                 <div class="product-device shadow-sm d-none d-md-block"></div>
                 <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
-            </div>
+            </div> -->
             <div class="khatat-statistics container-fluid py-5">
                 <div class="container py-5">
                     <div class="row">
@@ -53,7 +53,6 @@
             </div>
         </div>
     </Layout>
-
 </template>
 
 <script>

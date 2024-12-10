@@ -10,6 +10,7 @@
 import Breadcrumb from "@/components/Breadcrumb.vue";
 import Features from "@/components/Features.vue";
 import AboutCarousel from "@/components/about-carousel.vue";
+import HomeSlider from "@/components/home-slider.vue"
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router';
 export default {
@@ -17,7 +18,8 @@ export default {
     components: {
         Breadcrumb,
         Features,
-        AboutCarousel
+        AboutCarousel,
+        HomeSlider
     },
     setup() {
 

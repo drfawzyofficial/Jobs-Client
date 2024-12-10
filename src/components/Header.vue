@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid header position-relative" id="header">
+    <div class="container-fluid header" :class="{ 'position-absolute': isHomePage }" id="header">
         <div class="sidebar sidebar-mobilemenu animate__animated  animate__slideInRight animate__faster">
             <div class="account-lang-box  pb-3">
                 <div class="remove-sidebar pointer-cursor">
@@ -55,7 +55,9 @@
 </template>
 <script>
 // Import Methods, Packages, Files
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute } from 'vue-router';
+
 export default {
     name: 'Header',
     setup() {
@@ -68,7 +70,6 @@ export default {
     let sidebar_search = $(".sidebar-search");
     let sidebar_mobilemenu = $(".sidebar-mobilemenu");
     let btn_accordion = $(".btn-accordion");
-
     // to open the sidebar
     search_btn.on("click", function (e) {
         e.stopPropagation();
@@ -112,12 +113,17 @@ export default {
 
         })
         // Calling, Declarations, Data
+        const route = useRoute();
+
         const token = localStorage.getItem("token");
         const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/pages/about-us" }, { title: "التواصل", link: "/pages/contact" }, { title: "الأسئلة الشائعة", link: "/pages/faq" }]);
+        const isHomePage = computed(() => route.path === '/'); // or route.name === 'home'
+
         // Return
         return {
             token,
-            navLinks
+            navLinks,
+            isHomePage
         }
     }
 
