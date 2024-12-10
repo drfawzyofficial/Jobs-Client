@@ -167,7 +167,6 @@ export const Auth = {
     },
     async changeAvatar({ dispatch, commit }, payload) {
       try {
-        console.log(payload);
         const data = await Fetch("POST", "/student/update-avatar", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تغيير الصورة الشخصية', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
@@ -207,7 +206,6 @@ export const Auth = {
     async GetStatistics({ dispatch, commit }, payload) {
       try {
         const data = await Fetch("GET", "/admin/statistics/get");
-        console.log(data);
         if (data.statusCode === 200) {
           commit("setStatistics", data.result);
         } else if (data.statusCode === 401) {

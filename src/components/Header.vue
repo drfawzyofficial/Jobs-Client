@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid header" :class="{ 'position-absolute': isHomePage }" id="header">
+    <div class="container-fluid header" :class="{ 'position-absolute': isHomePage, 'bgTransparent': isHomePage }" id="header">
         <div class="sidebar sidebar-mobilemenu animate__animated  animate__slideInRight animate__faster">
             <div class="account-lang-box  pb-3">
                 <div class="remove-sidebar pointer-cursor">
