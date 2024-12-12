@@ -6,7 +6,7 @@
           <img :src="item.image.src" :alt="item.image.alt" :title="item.image.title" class="store-animation-shadow" />
           <div class="carousel-caption">
             <h5>{{ item.heading }}</h5>
-            <a class="btn btn-primary d-inline-block mt-2" href="/account/login">ابدأ الخدمة</a>
+            <router-link class="btn btn-primary d-inline-block mt-2" to="/account/login">ابدأ الخدمة</router-link>
           </div>
           <div class="overlay"></div>
         </div>
