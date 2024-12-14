@@ -95,7 +95,7 @@
                                             </option>
                                         </select>
                                         <div class="interests mb-3">
-                                            <label class="form-label">ما نوع الفرص التي تبحث عنها</label>
+                                            <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)</label>
                                             <div class="choose-interest">
                                                 <button type="button" class="btn btn-interest m-2"
                                                     v-for="(interest, index) in helperObj.chanceCategories" :key="index"
@@ -106,7 +106,7 @@
                                             </div>
                                         </div>
                                         <div class="interests">
-                                            <label class="form-label">حدد مجالات اهتمامك بالترتيب</label>
+                                            <label class="form-label">حدد مجالات اهتمامك بالترتيب(اختر 3 على الأقل)</label>
                                             <div class="choose-interest">
                                                 <button type="button" class="btn btn-interest m-2"
                                                     v-for="(interest, index) in helperObj.chanceSubcategories" :key="index"
@@ -201,7 +201,7 @@
                                             </div>
                                             <div v-if="signupPayload.tookEnglishTest">
                                             <button type="button" class="btn btn-primary" @click="resetEnglishStandard()">
-                                                <span class="word">تصحيح</span>
+                                                <span class="word">إعادة القيم</span>
                                                 <!-- <span class="material-symbols-outlined align-middle ms-1">
                                                     check
                                                 </span> -->
@@ -295,6 +295,14 @@
                                                 <h6 class="ms-2">{{ signupPayload.BrainStandard.SAAT }}</h6>
                                             </div>
                                         </div>
+                                        <div v-if="signupPayload.tookBrainTest">
+                                            <button type="button" class="btn btn-primary" @click="resetBrainStandard()">
+                                                <span class="word">إعادة القيم</span>
+                                                <!-- <span class="material-symbols-outlined align-middle ms-1">
+                                                    check
+                                                </span> -->
+                                            </button>
+                                            </div>
                                     </div>
                                 </tab-content>
                             </form-wizard>
@@ -491,8 +499,7 @@ export default {
 
         // Methods
         const onSignup = () => {
-            console.log(signupPayload.value);
-            // store.dispatch('Auth/Signup', signupPayload.value);
+            store.dispatch('Auth/Signup', signupPayload.value);
         };
 
         const selectIELTSDegree = (degree) => {
@@ -535,6 +542,17 @@ export default {
                 CEFRDegree: '',
             }
         }
+        const resetBrainStandard = () => {
+            signupPayload.value.BrainStandard = {
+                Sat: '',
+                Qudrat: '',
+                GAT: '',
+                act: '',
+                Talent: '',
+                AchievementTest: '',
+                SAAT: ''
+            }
+        }
 
         // Return
         return {
@@ -551,6 +569,7 @@ export default {
             selectSubInterest,
             helperObj,
             resetEnglishStandard,
+            resetBrainStandard,
             jobCategories,
             toggleSaudiResiding,
             onSignup,

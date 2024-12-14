@@ -56,7 +56,7 @@
                   </div>
                   <div class="row no-gutters align-items-center">
                     <div class="col-auto">
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{  statistics.jobs_count }}</div>
+                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{  statistics.chances_count }}</div>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@
               <h6 class="m-0 font-weight-bold text-primary">رسالة ترحيبية</h6>
             </div>
             <div class="card-body">
-              أهلًا بك <strong>{{ user.fullname}}</strong>. نتمنى لك تجربة مستخدم رائعة مع منصة خطط. جميع المعلومات الشخصية الخاصة بك محفوظة بسريعة تامة لدينا.
+              أهلًا بك <strong>{{ user.first_name + " " + user.last_name}}</strong>. نتمنى لك تجربة مستخدم رائعة مع منصة خطط. جميع المعلومات الشخصية الخاصة بك محفوظة بسريعة تامة لدينا.
             </div>
           </div>
         </div>

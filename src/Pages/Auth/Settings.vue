@@ -68,10 +68,10 @@
                                 </div>
                         </div>
                     </div>
-                    <div class="col-12 mt-4">
+                    <!-- <div class="col-12 mt-4">
                         <div class="p-3 bg-white shadow">
                                 <h5 class="mb-3">تغيير بياناتك الشخصية</h5>
-                                <!-- <div class="profile-pic-wrapper mb-3">
+                                <div class="profile-pic-wrapper mb-3">
                                     <div class="pic-holder">
                                         <img id="profilePic" class="pic" :src="user.avatar" v-if="user && user.avatar">
                                         <input class="uploadProfileInput" type="file" name="profile_pic"
@@ -88,44 +88,36 @@
                                             </div>
                                         </label>
                                     </div>
-                                </div> -->
+                                </div>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
-                                        <label for="fullname" class="form-label">الاسم بالكامل</label>
+                                        <label for="first_name" class="form-label">الاسم الأول</label>
                                         <input class="form-control form-control-lg" type="text"
-                                            v-model="profilePayload.fullname">
+                                            v-model="profilePayload.first_name">
                                     </div>
-                                    <div class="col-md-6 mt-3 mt-md-0">
+                                    <div class="col-md-6">
+                                        <label for="last_name" class="form-label">الاسم الأخير</label>
+                                        <input class="form-control form-control-lg" type="text"
+                                            v-model="profilePayload.last_name">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
                                         <label for="email" class="form-label">البريد الإلكتروني</label>
                                         <input class="form-control form-control-lg" type="text" 
                                         v-model="profilePayload.email">
                                     </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="gender" class="form-label">اختيار الجنس</label>
-                                        <select class="form-select form-select-lg mb-3" v-model="profilePayload.gender">
-                                            <option value="الجنس">الجنس</option>
-                                            <option value="ذكر">ذكر</option>
-                                            <option value="أنثى">أنثى</option>
-                                        </select>
-                                    </div>
                                     <div class="col-md-6 mt-3 mt-md-0">
-                                        <label for="applicantAge" class="form-label">العمر</label>
-                                        <input class="form-control form-control-lg" type="text"
-                                        placeholder="اكتب العمر الخاص بك من 18 إلى 60" v-model="profilePayload.applicantAge">
+                                        <label for="phone" class="form-label">رقم الهاتف</label>
+                                        <input class="form-control form-control-lg" type="text" 
+                                        v-model="profilePayload.phone">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="bio" class="form-label">نبذة تعريفية</label>
-                                        <textarea class="form-control" rows="3" 
-                                        v-model="profilePayload.bio"></textarea>
-                                    </div>
                                     <div class="col-md-6 mt-3 mt-md-0">
                                         <label for="dOB" class="form-label">تاريخ الميلاد</label>
                                         <input class="form-control form-control-lg text-start" type="date"
-                                        v-model="profilePayload.dOB">
+                                        v-model="profilePayload.DOB">
                                     </div>
                                 </div>
                                 <div class="row mb-3">
@@ -271,34 +263,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="mb-3">
-                                    <label class="form-label">المعدل التراكمي المطلوب</label>
-                                    <ul class="nav nav-tabs" id="otherMyTab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#SaudiCur"
-                                                id="SaudiCur-tab" type="button" role="tab" aria-controls="SaudiCur"
-                                                aria-selected="true">المنهج السعودي</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#BritishCur"
-                                                id="BritishCur-tab" type="button" role="tab" aria-controls="BritishCur"
-                                                aria-selected="false">المنهج البريطاني</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myOtherTabContent">
-                                        <div class="tab-pane fade show active p-3" id="SaudiCur" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="100"
-                                                v-model="profilePayload.CurStandard.SaudiCur">
-                                            <h6 class="ms-2">{{ profilePayload.CurStandard.SaudiCur }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="BritishCur" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="100"
-                                                v-model="profilePayload.CurStandard.BritishCur">
-                                            <h6 class="ms-2">{{ profilePayload.CurStandard.BritishCur }}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div>
                                     <button type="button" class="btn btn-primary" @click="editProfile()">
                                         <span v-if="!loading_status" class="fs-5 align-middle"><i
@@ -308,7 +272,7 @@
                                     </button>
                                 </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -339,15 +303,19 @@ export default {
         }
 
         const profilePayload = ref({
-            fullname: "",
+            first_name: "",
+            last_name: "",
             email: "",
-            gender: "الجنس",
+            phone: "",
+            applicantGender: "",
             applicantAge: "",
-            dOB: "",
-            bio: "",
-            tags: [],
-            applicantNat: "الجنسية",
-            applicantEdu: "المرحلة",
+            applicantEdu: "",
+            DOB: "",
+            saudiresiding: true,
+            saudiCity: "الرياض",
+            tookEnglishTest: false,
+            tookBrainTest: false,
+            nationality: "سعودي",
             EnglishStandard: {
                 IELTSDegree: '',
                 TOFELDegree: '',
@@ -362,12 +330,13 @@ export default {
                 GAT: '',
                 act: '',
                 Talent: '',
+                AchievementTest: '',
+                SAAT: ''
             },
-            CurStandard: {
-                SaudiCur: '',
-                BritishCur: ''
-            }
-        })
+            interests: [],
+            Subinterests: [],
+        });
+        profilePayload.value = user.value;
         const IELTSDegress = ref([
             {
                 degree: "0"
@@ -493,42 +462,9 @@ export default {
         });
 
         // Methods
-        const goToSection = (sectionName) => {
-            const el = document.getElementById(sectionName);
-            el.scrollIntoView({ behavior: "smooth" });
-        }
-
-        const editProfileSection = () => {
-            profilePayload.value.fullname = user.value.fullname;
-            profilePayload.value.email = user.value.email;
-            profilePayload.value.gender = user.value.gender ? user.value.gender : profilePayload.value.gender;
-            profilePayload.value.applicantAge = user.value.applicantAge ? user.value.applicantAge : profilePayload.value.applicantAge;
-            profilePayload.value.dOB = user.value.dOB ? user.value.dOB : profilePayload.value.dOB;
-            profilePayload.value.bio = user.value.bio ? user.value.bio : profilePayload.value.bio;
-            profilePayload.value.tags = user.value.tags ? user.value.tags : profilePayload.value.tags;
-            profilePayload.value.applicantNat = user.value.applicantNat ? user.value.applicantNat : profilePayload.value.applicantNat;
-            profilePayload.value.applicantEdu = user.value.applicantEdu ? user.value.applicantEdu : profilePayload.value.applicantEdu;
-            profilePayload.value.EnglishStandard.CEFRDegree = user.value.EnglishStandard.CEFRDegree ? user.value.EnglishStandard.CEFRDegree : profilePayload.value.EnglishStandard.CEFRDegree;
-            profilePayload.value.EnglishStandard.DUOLINGODegree = user.value.EnglishStandard.DUOLINGODegree ? user.value.EnglishStandard.DUOLINGODegree : profilePayload.value.EnglishStandard.DUOLINGODegree;
-            profilePayload.value.EnglishStandard.IELTSDegree = user.value.EnglishStandard.IELTSDegree ? user.value.EnglishStandard.IELTSDegree : profilePayload.value.EnglishStandard.IELTSDegree;
-            profilePayload.value.EnglishStandard.TOEICDegree = user.value.EnglishStandard.TOEICDegree ? user.value.EnglishStandard.TOEICDegree : profilePayload.value.EnglishStandard.TOEICDegree;
-            profilePayload.value.EnglishStandard.TOFELDegree = user.value.EnglishStandard.TOFELDegree ? user.value.EnglishStandard.TOFELDegree : profilePayload.value.EnglishStandard.TOFELDegree;
-            profilePayload.value.EnglishStandard.stepDegree = user.value.EnglishStandard.stepDegree ? user.value.EnglishStandard.stepDegree : profilePayload.value.EnglishStandard.stepDegree;
-            profilePayload.value.BrainStandard.GAT = user.value.BrainStandard.GAT ? user.value.BrainStandard.GAT : profilePayload.value.BrainStandard.GAT;
-            profilePayload.value.BrainStandard.Qudrat = user.value.BrainStandard.Qudrat ? user.value.BrainStandard.Qudrat : profilePayload.value.BrainStandard.Qudrat;
-            profilePayload.value.BrainStandard.Sat = user.value.BrainStandard.Sat ? user.value.BrainStandard.Sat : profilePayload.value.BrainStandard.Sat;
-            profilePayload.value.BrainStandard.Talent = user.value.BrainStandard.Talent ? user.value.BrainStandard.Talent : profilePayload.value.BrainStandard.Talent;
-            profilePayload.value.BrainStandard.act = user.value.BrainStandard.act ? user.value.BrainStandard.act : profilePayload.value.BrainStandard.act;
-            profilePayload.value.CurStandard.BritishCur = user.value.CurStandard.BritishCur ? user.value.CurStandard.BritishCur : profilePayload.value.CurStandard.BritishCur;
-            profilePayload.value.CurStandard.SaudiCur = user.value.CurStandard.SaudiCur ? user.value.CurStandard.SaudiCur : profilePayload.value.CurStandard.SaudiCur;
-        }
-
-        const handleSelectedTag = (tag) => {
-            profilePayload.value.tags.push(tag.text);
-        }
-        const handleChangeTag = (tags) => {
-            profilePayload.value.tags = tags;
-    }
+     
+      
+       
 
     const selectIELTSDegree = (degree) => {
              profilePayload.value.EnglishStandard.IELTSDegree = degree;
@@ -541,7 +477,6 @@ export default {
         return {
             helperObj,
             user,
-            goToSection,
             isSticky,
             show,
             button_show_state,
@@ -555,10 +490,7 @@ export default {
             profilePayload,
             editProfile,
             onFileChange,
-            editProfileSection,
             selectItems,
-            handleSelectedTag,
-            handleChangeTag,
             IELTSDegress,
             CEFRDegrees,
             selectIELTSDegree,
