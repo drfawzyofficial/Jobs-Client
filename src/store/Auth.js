@@ -13,6 +13,7 @@ export const Auth = {
     user: null,
     statistics: null,
     chances: [],
+    chance: { },
     chancesCount: 0,
     wishlists: []
   },
@@ -220,9 +221,33 @@ export const Auth = {
     async ChancesGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("GET", `/job/getchances/?page_no=${payload.page_no}`);
+        const data = await Fetch("GET", `/student/chances/get/?page_no=${payload.page_no}`);
         if (data.statusCode === 200) {
           commit("chancesGet", data.result);
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          var errors = ``;
+          for (const property in data.result.errors) {
+            data.result.errors[property].forEach((ele) => {
+              errors += `<li>${ele}</li>`
+            })
+          }
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
+    async chanceGet({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("GET", `/student/chance/get?chance_id=${ payload.chance_id }`);
+        console.log(data);
+        if (data.statusCode === 200) {
+          commit("chanceGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -243,7 +268,8 @@ export const Auth = {
     async WishlistsGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("POST", `/student/wishlists/get`, payload);
+        const data = await Fetch("POST", `/student/wishlists/get/?page_no=${payload.page_no}`, payload);
+        console.log(data);
         if (data.statusCode === 200) {
           commit("wishlistsGet", data.result);
         } else if(data.statusCode == 400) {
@@ -282,11 +308,15 @@ export const Auth = {
   },
   mutations: {
     chancesGet(state, data) {
-      state.chances = data.jobs;
-      state.chancesCount = data.jobsCount;
+      state.chances = data.chances;
+      state.chancesCount = data.chancesCount;
+    },
+    chanceGet(state, data) {
+      state.chance = data.chance;
     },
     wishlistsGet(state, data) {
       state.wishlists = data.wishlists;
+      console.log(state.wishlists);
     },
     setStatistics(state, statistics) {
       state.statistics = statistics;

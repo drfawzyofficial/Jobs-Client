@@ -1,42 +1,9 @@
 <template>
     <DashboardLayout>
-        <div class="wishlists container-fluid py-4">
-            <div class="breadcrumb-auth">
-                <h3 class="fw-bold">جميع المفضلات</h3>
-                <p>مرحبًا بك في صفحة المفضلات! هنا يمكنك إدارة الوظائف أو العناصر التي قمت بإضافتها إلى مفضلاتك. يمكنك
-                    إضافة أو إزالة أي عنصر بكل سهولة، وسيتم حفظ اختياراتك تلقائيًا لتكون متاحة لك في أي وقت تزور فيه
-                    لوحة التحكم. تأكد من استعراض قائمتك بانتظام لضمان عدم تفويت أي فرصة أو عنصر مهم بالنسبة لك!</p>
-            </div>
-            <div class="row">
-                <div class="col-lg-3 col-md-4 col-6 mt-4" v-if="wishlists.length > 0" v-for="(wishlist, index) in wishlists" :key="index">
-                    <router-link class="wishlist bg-white position-relative d-inline-block W-100">
-                        <div class="position-absolute additional-info d-flex flex-column">
-                            <span class="info-badge fw-bold" :class="'date-' + getValidateDateClass(wishlist)">{{
-                                validateDate(wishlist)
-                            }}</span>
-                            <span class="info-badge fw-bold mt-2" :class="'chance-' + getValidateChanceClass(wishlist)">{{
-                                validateChance(wishlist) }}</span>
-                        </div>
-                        <div class="position-absolute wishlist-feature">
-                            <button @click="toggleWishlist(wishlist._id)">
-                                <span style="color: red;"><i class="bi bi-suit-heart-fill fs-4"></i></span>
-                            </button>
-                        </div>
-                        <div class="wishlist-img">
-                            <img :src="wishlist.chanceImage" />
-                        </div>
-                        <div class="wishlist-content p-3">
-                            <h6 class="fw-bold">{{ wishlist.chanceName }}</h6>
-                            <h6 class="fw-bold"> الوصف التسويقي: {{ wishlist.marketingDesc }}</h6>
-                            <h6 class="fw-bold">مقدم الفرصة: {{ wishlist.provider }}</h6>
-                        </div>
-                    </router-link>
-                </div>
-                <div v-else class="col-12 mt-4">
-                    <div class="alert alert-info">
-                        <h5>لا يوجد مفضلات الآن</h5>
-                        <p>قم بزيارة الفرص وتصفحها <router-link class="btn btn-sm btn-primary" to="/student/chances">زيارة الفرص</router-link></p>
-                    </div>
+        <div class="chance container-fluid py-4">
+            <div class="container">
+                <div class="chance-container">
+                    <h3>{{ chance.chanceName }}</h3>
                 </div>
             </div>
         </div>
@@ -46,20 +13,26 @@
 <script>
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router';
 
 export default {
-    name: 'Wishlists',
+    name: 'Chances',
     components: {
     },
     setup() {
 
         // Calling, Declarations, Data
-        const store = useStore();
+        const store = useStore()
         const loading_status = computed(() => store.state.Collection.loading_status);
         const user = computed(() => store.state.Auth.user);
-        const wishlists = computed(() => store.state.Auth.wishlists);
-
+        const wishlists = ref([]);
+        const route = useRoute();
+        store.dispatch("Auth/GetProfile")
+        console.log(route.params.id);
+        store.dispatch("Auth/chanceGet", { chance_id: route.params.id });
+        const chance = computed(() => store.state.Auth.chance);
+        console.log(chance);
         // get wishlist from local storage
         const getWishlist = () => {
             const storedWishlist = localStorage.getItem('wishlist') || [];
@@ -69,19 +42,26 @@ export default {
             else return [];
         }
 
-    
-        // Toggle wishlist state for a job id
-        const toggleWishlist = (job_id) => {
+        let wishlistStorage = getWishlist();
+        wishlists.value = wishlistStorage;
+
+        // Toggle wishlist state for a chance id
+        const toggleWishlist = (chance_id) => {
             let wishlistStorage = getWishlist();
-            const index = wishlistStorage.findIndex((_id) => _id === job_id);
-            wishlistStorage.splice(index, 1);
+            const index = wishlistStorage.findIndex((_id) => _id === chance_id);
+            if (index === -1) {
+                wishlistStorage.push(chance_id);
+            } else {
+                wishlistStorage.splice(index, 1);
+            }
             localStorage.setItem("wishlist", JSON.stringify(wishlistStorage));
-            store.dispatch("Auth/WishlistsGet", { wishlists: wishlistStorage, page_no: 1 });
+            wishlists.value = wishlistStorage;
         };
 
-        let wishlistStorage = getWishlist();
-        store.dispatch("Auth/WishlistsGet", { wishlists: wishlistStorage, page_no: 1 });
-        store.dispatch("Auth/GetProfile")
+        // Method to check if a chance is in the wishlist
+        const isInWishlist = (chance_id) => {
+            return wishlists.value.includes(chance_id);
+        };
 
         const checkEnglishStandard = (chance) => {
             // Validate English standards (if applicable)
@@ -132,6 +112,7 @@ export default {
                 return true;
             }
         }
+
 
         const validateChance = (chance) => {
             const userAge = new Date().getFullYear() - new Date(user.value.DOB).getFullYear();
@@ -197,9 +178,11 @@ export default {
         // Return
         return {
             loading_status,
-            toggleWishlist,
-            wishlists,
             user,
+            isInWishlist,
+            toggleWishlist,
+            chance,
+            wishlists,
             validateDate,
             getValidateDateClass,
             validateChance,
@@ -210,46 +193,24 @@ export default {
 </script>
 
 <style scoped>
-.wishlists .wishlist {
+.chances .chance {
     border-radius: 16px;
     overflow: hidden;
     transition: all 0.3s ease-in-out;
     border: 1px solid #3c9f9a;
 }
 
-.wishlists .wishlist:hover {
+.chances .chance:hover {
     box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 
 }
 
 
-.wishlists .wishlist .additional-info {
+.chances .chance .additional-info {
     left: 15px;
     top: 15px;
 }
 
-.wishlists .wishlist .additional-info .add-info-badge {
-    padding: 4px;
-    border-radius: 8px;
-    background-color: #3c9f9a;
-    color: #FFF;
-    font-size: 12px;
-    text-align: center
-}
-
-.wishlists .wishlist .wishlist-feature {
-    right: 15px;
-    top: 15px;
-}
-
-.wishlists .wishlist .wishlist-feature button {
-    background-color: transparent;
-}
-
-.wishlists .wishlist .wishlist-img img {
-    width: 100%;
-    height: 250px;
-}
 .info-badge {
     padding: 6px;
     border-radius: 8px;
@@ -257,6 +218,21 @@ export default {
     font-size: 12px;
     text-align: center
 }
+
+.chances .chance .wishlist-feature {
+    right: 15px;
+    top: 15px;
+}
+
+.chances .chance .wishlist-feature button {
+    background-color: transparent;
+}
+
+.chances .chance .chance-img img {
+    width: 100%;
+    height: 175px;
+}
+
 .date-open,
 .chance-open {
     background-color: green;
