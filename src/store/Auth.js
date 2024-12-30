@@ -23,7 +23,7 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/signup", payload);
         if (data.statusCode === 201) {
-          window.Swal.fire({ title: 'إنشاء حساب الطالب', icon: "success", text: data.message, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'إنشاء حساب الطالب', icon: "success", text: data.message, confirmButtonText: 'أتفهم' })
         } else {
           var errors = ``;
           for (const property in data.result.errors) {
@@ -31,11 +31,11 @@ export const Auth = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -47,11 +47,11 @@ export const Auth = {
           localStorage.setItem("token", data.result.token);
           router.push("/student/dashboard")
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -60,13 +60,13 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/contact/create", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -78,10 +78,10 @@ export const Auth = {
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' })
         }
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
       }
     },
     async submitCode({ dispatch, commit }, payload) {
@@ -89,16 +89,16 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/code/submit", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'تفعيل الحساب', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'تفعيل الحساب', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
           dispatch("Auth/GetProfile", {}, { root: true });
         } else if(data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -107,15 +107,15 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/code/resend", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'إرسال الرمز', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'إرسال الرمز', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         } else if(data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -124,7 +124,7 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("Delete", "/student/delete", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'حذف الحساب', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'حذف الحساب', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
          setTimeout(() => {
           localStorage.removeItem("token");
           commit("unSetUser");
@@ -133,11 +133,11 @@ export const Auth = {
         } else if(data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -146,9 +146,9 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/password/change", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'تغيير كلمة السر', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'تغيير كلمة السر', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         } else if(data.statusCode === 202) {
-          window.Swal.fire({ title: 'خطأ!', text: data.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'خطأ!', text: data.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         } else if(data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -158,11 +158,11 @@ export const Auth = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -170,14 +170,14 @@ export const Auth = {
       try {
         const data = await Fetch("POST", "/student/update-avatar", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'تغيير الصورة الشخصية', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' })
+          window.Swal.fire({ title: 'تغيير الصورة الشخصية', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }  else if(data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' })
         }
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
       }
     },
     async editProfile({ dispatch, commit }, payload) {
@@ -186,7 +186,7 @@ export const Auth = {
         const data = await Fetch("POST", "/student/editProfile", payload);
         if (data.statusCode === 200) {
           dispatch("Auth/GetProfile", {}, { root: true });
-          window.Swal.fire({ title: 'تعديل البيانات الشخصية', icon: "success", text: data.message, confirmButtonText: 'تفهمت الأمر' });
+          window.Swal.fire({ title: 'تعديل البيانات الشخصية', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' });
         } else if(data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -196,11 +196,11 @@ export const Auth = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -212,32 +212,26 @@ export const Auth = {
         } else if (data.statusCode === 401) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' })
         }
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
       }
     },
     async ChancesGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("GET", `/student/chances/get/?page_no=${payload.page_no}`);
+        const data = await Fetch("GET", `/student/chances/get/?chance_case=${ payload.chance_case }&edu_case=${ payload.edu_case }&interest_case=${ payload.interest_case}`);
         if (data.statusCode === 200) {
           commit("chancesGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          var errors = ``;
-          for (const property in data.result.errors) {
-            data.result.errors[property].forEach((ele) => {
-              errors += `<li>${ele}</li>`
-            })
-          }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -245,7 +239,6 @@ export const Auth = {
       try {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("GET", `/student/chance/get?chance_id=${ payload.chance_id }`);
-        console.log(data);
         if (data.statusCode === 200) {
           commit("chanceGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
@@ -257,11 +250,11 @@ export const Auth = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -269,7 +262,7 @@ export const Auth = {
       try {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", `/student/wishlists/get/?page_no=${payload.page_no}`, payload);
-        console.log(data);
+
         if (data.statusCode === 200) {
           commit("wishlistsGet", data.result);
         } else if(data.statusCode == 400) {
@@ -283,11 +276,11 @@ export const Auth = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -300,7 +293,7 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
         router.push("/account/login")
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'تفهمت الأمر' })
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
      
@@ -316,7 +309,6 @@ export const Auth = {
     },
     wishlistsGet(state, data) {
       state.wishlists = data.wishlists;
-      console.log(state.wishlists);
     },
     setStatistics(state, statistics) {
       state.statistics = statistics;

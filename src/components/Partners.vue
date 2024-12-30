@@ -36,34 +36,29 @@ export default {
     
         const slider_images = ref([
             {
-                src: require("@/assets/images/student1.jpg"),
+                src: require("@/assets/images/partner_1.png"),
                 alt: 'Placeholder Image 1',
                 title: 'Image 1',
             },
             {
-                src: require("@/assets/images/student2.jpg"),
+              src: require("@/assets/images/partner_2.png"),
                 alt: 'Placeholder Image 2',
                 title: 'Image 2',
             },
             {
-                src: require("@/assets/images/student3.jpg"),
+              src: require("@/assets/images/partner_3.png"),
                 alt: 'Placeholder Image 3',
                 title: 'Image 3',
             },
-            {
-                src: require("@/assets/images/student1.jpg"),
+            { 
+              src: require("@/assets/images/partner_4.png"),
                 alt: 'Placeholder Image 1',
                 title: 'Image 1',
             },
             {
-                src: require("@/assets/images/student2.jpg"),
+              src: require("@/assets/images/partner_5.png"),
                 alt: 'Placeholder Image 2',
                 title: 'Image 2',
-            },
-            {
-                src: require("@/assets/images/student3.jpg"),
-                alt: 'Placeholder Image 3',
-                title: 'Image 3',
             }
         ]);
         const carouselBreakpoints = ref({

@@ -41,32 +41,32 @@
             '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-0.svg?v=103073552329858857761721641982',
           iconClass: 'feature_icon_consistency-60',
           description: 'سهولة الوصول إلى الفرص المميزة',
-          alt: 'التوصيل السريع',
-          title: 'التوصيل السريع',
+          alt: 'سهولة الوصول إلى الفرص المميزة',
+          title: 'سهولة الوصول إلى الفرص المميزة',
         },
         {
           iconSrc:
             '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-1.svg?v=83754922483425242941721641982',
           iconClass: 'feature_icon_consistency-60',
-          description: 'تخصيص الفرص بناءً على اهتماماتك',
-          alt: 'متابعة مباشرة',
-          title: 'متابعة مباشرة',
+          description: 'عرض الفرص حسب اهتماماتك',
+          alt: 'عرض الفرص حسب اهتماماتك',
+          title: 'عرض الفرص حسب اهتماماتك',
         },
         {
           iconSrc:
             '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-2.svg?v=180777565639930553701721641982',
           iconClass: 'feature_icon_consistency-60',
           description: 'تحديثات مستمرة للفرص الجديدة',
-          alt: 'جودة عالية',
-          title: 'جودة عالية',
+          alt: 'تحديثات مستمرة للفرص الجديدة',
+          title: 'تحديثات مستمرة للفرص الجديدة',
         },
         {
           iconSrc:
             '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-3.svg?v=135821250968789223931721641982',
           iconClass: 'feature_icon_consistency-60',
-          description: 'ربط مباشر مع أصحاب الفرص',
-          alt: 'طرق دفع آمنة',
-          title: 'طرق دفع آمنة',
+          description: 'إمكانية الوصول المباشر الى رابط التقديم للفرصة',
+          alt: 'إمكانية الوصول المباشر الى رابط التقديم للفرصة',
+          title: 'إمكانية الوصول المباشر الى رابط التقديم للفرصة'
         },
       ]);
   

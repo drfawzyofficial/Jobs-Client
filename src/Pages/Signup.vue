@@ -44,8 +44,9 @@
                                         </div>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg" v-model="signupPayload.applicantGender">
-                                                <option v-for="(val, index) in applicantGenders" :key="index"
-                                                    :value="val">{{ val }}</option>
+                                                <option value="none">الجنس</option>
+                                                <option value="ذكر">ذكر</option>
+                                                <option value="أنثى">أنثى</option>
                                             </select>
                                         </div>
                                         <div class="mb-3">
@@ -54,19 +55,19 @@
                                                 v-model="signupPayload.DOB">
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">المرحلة التعلييمة</label>
                                             <select class="form-select form-select-lg" v-model="signupPayload.applicantEdu">
+                                                <option value="none">المرحلة التعليمية</option>
                                                 <option v-for="(val, index) in helperObj.applicantEdus" :key="index"
                                                     :value="val">{{ val }}</option>
                                             </select>
                                         </div>
-                                        <div class="mb-3">
+                                        <!-- <div class="mb-3">
                                             <label class="form-label">الجنسية</label>
                                             <select class="form-select form-select-lg" v-model="signupPayload.nationality">
                                                 <option v-for="(val, index) in nationalities" :key="index"
                                                     :value="val">{{ val }}</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <!-- Checkbox to ask if the user took the English test -->
                                         <div class="mb-3 d-flex align-items-center">
                                             <label class="form-check-label">
@@ -126,7 +127,8 @@
                                                 <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                                                     v-model="signupPayload.tookEnglishTest" />
                                                 <label class="form-check-label" for="englishTestCheckbox">
-                                                    هل أخذت اختبار اللغة الإنجليزية؟
+                                                    هل سبق لك واخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
+                                                    (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOFEL)
                                                 </label>
                                             </div>
                                             <ul v-if="signupPayload.tookEnglishTest" class="nav nav-tabs mt-2" id="myTab"
@@ -154,7 +156,7 @@
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step"
                                                         type="button" role="tab" aria-controls="Step"
-                                                        aria-selected="false">Step</button>
+                                                        aria-selected="false">STEP</button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#CEFR"
@@ -217,7 +219,7 @@
                                             <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                                                 v-model="signupPayload.tookBrainTest" />
                                             <label class="form-check-label" for="englishTestCheckbox">
-                                                هل أخذت اختبار القدرات العقلية؟
+                                                هل سبق لك واخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي, مقياس موهبة) (SAAT, GAT, ACT, SAT)؟
                                             </label>
                                         </div>
                                         <ul v-if="signupPayload.tookBrainTest" class="nav nav-tabs mt-2" id="otherMyTab"
@@ -225,12 +227,12 @@
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat"
                                                     id="Sat-tab" type="button" role="tab" aria-controls="Sat"
-                                                    aria-selected="true">Sat</button>
+                                                    aria-selected="true">SAT</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat"
                                                     id="Qudrat-tab" type="button" role="tab" aria-controls="Qudrat"
-                                                    aria-selected="false">Qudrat</button>
+                                                    aria-selected="false">قدرات</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#GAT"
@@ -240,17 +242,17 @@
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act"
                                                     id="act-tab" type="button" role="tab" aria-controls="act"
-                                                    aria-selected="false">act</button>
+                                                    aria-selected="false">ACT</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent"
                                                     id="Talent-tab" type="button" role="tab" aria-controls="Talent"
-                                                    aria-selected="false">Talent</button>
+                                                    aria-selected="false">مقياس موهبة</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#AchievementTest"
                                                     id="AchievementTest-tab" type="button" role="tab" aria-controls="AchievementTest"
-                                                    aria-selected="false">Achievemen Test</button>
+                                                    aria-selected="false">التحصيل المعرفي</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#SAAT"
@@ -343,14 +345,13 @@ export default {
             phone: "",
             password: "",
             password_confirmation: "",
-            applicantGender: 'النوع',
-            applicantEdu: "",
+            applicantGender: 'none',
+            applicantEdu: "none",
             DOB: "",
             saudiresiding: true,
             saudiCity: "الرياض",
             tookEnglishTest: false,
             tookBrainTest: false,
-            nationality: "سعودي",
             EnglishStandard: {
                 IELTSDegree: '',
                 TOFELDegree: '',
@@ -384,29 +385,29 @@ export default {
         const jobCategories = computed(() => {
             return selectedJobCategories.value.filter(item => item !== 'التصنيف');
         });
-        const nationalities = ref([
-           "سعودي", 'أفغاني', 'ألباني', 'جزائري', 'أمريكي', 'أندوري', 'أنغولي', 'أنتيغوي', 'أرجنتيني',
-            'أرميني', 'أسترالي', 'نمساوي', 'أذربيجاني', 'باهاماسي', 'بحريني', 'بنغلاديشي',
-            'باربادوسي', 'بيلاروسي', 'بلجيكي', 'بليزي', 'بنين', 'بوتاني', 'بوليفي', 'بوسني',
-            'برازيلي', 'بريطاني', 'بلغاري', 'بوركيني', 'بورمي', 'بوروندي', 'كمبودي', 'كاميروني',
-            'كندي', 'كاب فيردي', 'تشادي', 'تشيلي', 'صيني', 'كولومبي', 'كوموري', 'كوستاريكي',
-            'كرواتي', 'كوبي', 'قبرصي', 'تشيكي', 'كونغولي', 'دنماركي', 'جيبوتي', 'دومينيكي',
-            'إكوادوري', 'مصري', 'إماراتي', 'غيني استوائي', 'إريتري', 'إستوني', 'إثيوبي', 'فنلندي',
-            'فرنسي', 'غابوني', 'غامبي', 'جورجي', 'ألماني', 'غاني', 'يوناني', 'غرينادي', 'غواتيمالي',
-            'غيني', 'غوياني', 'هايتي', 'هندوراسي', 'هنغاري', 'آيسلندي', 'هندي', 'إندونيسي', 'إيراني',
-            'عراقي', 'إيرلندي', 'فلسطيني', 'إيطالي', 'جامايكي', 'ياباني', 'أردني', 'كازاخستاني',
-            'كيني', 'كيريباتي', 'كوري', 'كويتي', 'قرغيزستاني', 'لاوسي', 'لاتفي', 'لبناني', 'ليبي',
-            'ليتواني', 'لوكسمبورغي', 'مدغشقري', 'مالاوي', 'ماليزي', 'مالديفي', 'مالي', 'مالطي',
-            'ماوريتاني', 'مكسيكي', 'مولدوفي', 'موناكوي', 'منغولي', 'مغربي', 'موزمبيقي', 'ناميبي',
-            'نيبالي', 'هولندي', 'نيوزيلندي', 'نيجيري', 'نيكاراغوي', 'نيجيري', 'نرويجي', 'عماني',
-            'باكستاني', 'بنمي', 'بابواني', 'باراغوي', 'بيروفي', 'فلبيني', 'بولندي', 'برتغالي',
-            'قطري', 'روماني', 'روسي', 'رواندي', 'سانت لوسي', 'سلفادوري', 'ساموائي',
-            'سنغالي', 'صربي', 'سيشلي', 'سنغافوري', 'سلوفاكي', 'سلوفيني', 'سومالي', 'جنوب أفريقي',
-            'إسباني', 'سريلانكي', 'سوداني', 'سورينامي', 'سوازيلندي', 'سويدي', 'سويسري', 'سوري',
-            'تايواني', 'طاجيكستاني', 'تنزاني', 'تايلاندي', 'توغولي', 'تونسي', 'تركي', 'تركماني',
-            'توفالي', 'أوغندي', 'أوكراني', 'أوروغواي', 'أوزبكستاني', 'فانواتي', 'فنزويلي', 'فيتنامي',
-            'يمني', 'زامبي', 'زيمبابوي'
-        ]);
+        // const nationalities = ref([
+        //    "سعودي", 'أفغاني', 'ألباني', 'جزائري', 'أمريكي', 'أندوري', 'أنغولي', 'أنتيغوي', 'أرجنتيني',
+        //     'أرميني', 'أسترالي', 'نمساوي', 'أذربيجاني', 'باهاماسي', 'بحريني', 'بنغلاديشي',
+        //     'باربادوسي', 'بيلاروسي', 'بلجيكي', 'بليزي', 'بنين', 'بوتاني', 'بوليفي', 'بوسني',
+        //     'برازيلي', 'بريطاني', 'بلغاري', 'بوركيني', 'بورمي', 'بوروندي', 'كمبودي', 'كاميروني',
+        //     'كندي', 'كاب فيردي', 'تشادي', 'تشيلي', 'صيني', 'كولومبي', 'كوموري', 'كوستاريكي',
+        //     'كرواتي', 'كوبي', 'قبرصي', 'تشيكي', 'كونغولي', 'دنماركي', 'جيبوتي', 'دومينيكي',
+        //     'إكوادوري', 'مصري', 'إماراتي', 'غيني استوائي', 'إريتري', 'إستوني', 'إثيوبي', 'فنلندي',
+        //     'فرنسي', 'غابوني', 'غامبي', 'جورجي', 'ألماني', 'غاني', 'يوناني', 'غرينادي', 'غواتيمالي',
+        //     'غيني', 'غوياني', 'هايتي', 'هندوراسي', 'هنغاري', 'آيسلندي', 'هندي', 'إندونيسي', 'إيراني',
+        //     'عراقي', 'إيرلندي', 'فلسطيني', 'إيطالي', 'جامايكي', 'ياباني', 'أردني', 'كازاخستاني',
+        //     'كيني', 'كيريباتي', 'كوري', 'كويتي', 'قرغيزستاني', 'لاوسي', 'لاتفي', 'لبناني', 'ليبي',
+        //     'ليتواني', 'لوكسمبورغي', 'مدغشقري', 'مالاوي', 'ماليزي', 'مالديفي', 'مالي', 'مالطي',
+        //     'ماوريتاني', 'مكسيكي', 'مولدوفي', 'موناكوي', 'منغولي', 'مغربي', 'موزمبيقي', 'ناميبي',
+        //     'نيبالي', 'هولندي', 'نيوزيلندي', 'نيجيري', 'نيكاراغوي', 'نيجيري', 'نرويجي', 'عماني',
+        //     'باكستاني', 'بنمي', 'بابواني', 'باراغوي', 'بيروفي', 'فلبيني', 'بولندي', 'برتغالي',
+        //     'قطري', 'روماني', 'روسي', 'رواندي', 'سانت لوسي', 'سلفادوري', 'ساموائي',
+        //     'سنغالي', 'صربي', 'سيشلي', 'سنغافوري', 'سلوفاكي', 'سلوفيني', 'سومالي', 'جنوب أفريقي',
+        //     'إسباني', 'سريلانكي', 'سوداني', 'سورينامي', 'سوازيلندي', 'سويدي', 'سويسري', 'سوري',
+        //     'تايواني', 'طاجيكستاني', 'تنزاني', 'تايلاندي', 'توغولي', 'تونسي', 'تركي', 'تركماني',
+        //     'توفالي', 'أوغندي', 'أوكراني', 'أوروغواي', 'أوزبكستاني', 'فانواتي', 'فنزويلي', 'فيتنامي',
+        //     'يمني', 'زامبي', 'زيمبابوي'
+        // ]);
        
         const saudiCities = ref(["الرياض", "جدة", "مكة", "المدينة المنورة", "الدمام", "الخبر", "الطائف", "بريدة", "الجبيل", "حفر الباطن", "الظهران", "ينبع", "أبها", "خميس مشيط", "القصيم", "القطيف", "نجران", "تبوك", "جازان", "عرعر", "سكاكا", "الخرج", "الباحة", "بيشة", "القنفذة", "الدوادمي", "رجال ألمع", "محايل عسير", "شرورة", "رابغ", "المجمعة", "بدر", "الرس", "عنيزة", "حائل", "وادي الدواسر", "صبيا", "العيص", "ضباء", "تيماء", "بدر الجنوب", "طريف", "الأفلاج", "الحوطة", "مرات", "رنية", "ليلى", "السليل", "تنومة", "بلجرشي", "المندق", "قلوة", "العلا", "ساجر", "البكيرية", "الزلفي", "دومة الجندل", "عفيف", "الحريق", "الدوادمي", "القريات", "الطريف", "تربة", "رأس تنورة", "الساحل الشرقي", "سدير", "ثادق"]);
 
@@ -491,11 +492,6 @@ export default {
         const interests = ref(["مسابقات", "برامج", "مهارات"])
         const selectedInterests = ref([]);
         const selectedSubInterests = ref([]);
-        const applicantGenders = ref([
-            "النوع",
-            "ذكر",
-            "أنثى"
-        ]);
 
         // Methods
         const onSignup = () => {
@@ -558,9 +554,7 @@ export default {
         return {
             loading_status,
             signupPayload,
-            nationalities,
             saudiCities,
-            applicantGenders,
             IELTSDegress,
             CEFRDegrees,
             selectIELTSDegree,

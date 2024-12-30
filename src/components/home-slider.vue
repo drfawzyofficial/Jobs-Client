@@ -5,7 +5,7 @@
         <div class="carousel-item" v-for="(item, index) in sliders" :key="index" :class="{ active: index === 0 }">
           <img :src="item.image.src" :alt="item.image.alt" :title="item.image.title" class="store-animation-shadow" />
           <div class="carousel-caption">
-            <h5>{{ item.heading }}</h5>
+            <h2>{{ item.heading }}</h2>
             <router-link class="btn btn-primary d-inline-block mt-2" to="/account/login">ابدأ الخدمة</router-link>
           </div>
           <div class="overlay"></div>
@@ -37,7 +37,7 @@ export default {
       {
         heading: "توعية الطلاب بالفرص المتاحة ومتطلباتها",
         image: {
-          src: require("@/assets/images/student1.jpg"),
+          src: require("@/assets/images/home_1.png"),
           alt: 'Placeholder Image 1',
           title: 'Image 1',
         },
@@ -45,7 +45,7 @@ export default {
       {
         heading: "شرح المتطلبات اللازمة للاستفادة من الفرص",
         image: {
-          src: require("@/assets/images/student2.jpg"),
+          src: require("@/assets/images/home_2.png"),
           alt: 'Placeholder Image 2',
           title: 'Image 2',
         },
@@ -53,7 +53,7 @@ export default {
       {
         heading: "تقديم معلومات شاملة عن الفرص المتوفرة",
         image: {
-          src: require("@/assets/images/student3.jpg"),
+          src: require("@/assets/images/home_3.png"),
           alt: 'Placeholder Image 3',
           title: 'Image 3',
         },
@@ -74,6 +74,7 @@ export default {
   height: 650px;
   width: 100%;
 }
+
 .home-slider  .carousel-control-next, .home-slider .carousel-control-prev, .home-slider .carousel-caption {
   z-index: 2;
 }

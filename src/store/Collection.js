@@ -26,10 +26,10 @@ export const Collection = {
                 } else if (data.statusCode === 401 || data.statusCode === 500) {
                     dispatch("Auth/Logout", {}, { root: true });
                 } else {
-                    window.Swal.fire({ title: 'استرجاع بيانات المساعدة', text: data.message, icon: 'error', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'استرجاع بيانات المساعدة', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
                 }
             } catch (err) {
-                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
             }
         },
         async deleteJobCategory({ dispatch, commit }, payload) {
@@ -37,14 +37,14 @@ export const Collection = {
                 const data = await Fetch("DELETE", `/helper/deleteJobCategory`, payload);
                 if (data.statusCode === 200) {
                     commit("deleteJobCategory", data.result);
-                    window.Swal.fire({ title: 'حذف تصنيف الفرصة', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف تصنيف الفرصة', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
                 } else if (data.statusCode === 401 || data.statusCode === 500) {
                     dispatch("Auth/Logout", {}, { root: true });
                 } else {
-                    window.Swal.fire({ title: 'حذف تصنيف الفرصة', text: data.message, icon: 'error', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف تصنيف الفرصة', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
                 }
             } catch (err) {
-                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
             }
         },
         async deleteApplicantNat({ dispatch, commit }, payload) {
@@ -52,14 +52,14 @@ export const Collection = {
                 const data = await Fetch("DELETE", `/helper/deleteApplicantNat`, payload);
                 if (data.statusCode === 200) {
                     commit("deleteApplicantNat", data.result);
-                    window.Swal.fire({ title: 'حذف جنسية المتقدم', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف جنسية المتقدم', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
                 } else if (data.statusCode === 401 || data.statusCode === 500) {
                     dispatch("Auth/Logout", {}, { root: true });
                 } else {
-                    window.Swal.fire({ title: 'حذف جنسية المتقدم', text: data.message, icon: 'error', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف جنسية المتقدم', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
                 }
             } catch (err) {
-                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
             }
         },
         async deleteApplicantEdu({ dispatch, commit }, payload) {
@@ -67,14 +67,14 @@ export const Collection = {
                 const data = await Fetch("DELETE", `/helper/deleteApplicantEdu`, payload);
                 if (data.statusCode === 200) {
                     commit("deleteApplicantEdu", data.result);
-                    window.Swal.fire({ title: 'حذف المرحلة التعليمية', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف المرحلة التعليمية', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
                 } else if (data.statusCode === 401 || data.statusCode === 500) {
                     dispatch("Auth/Logout", {}, { root: true });
                 } else {
-                    window.Swal.fire({ title: 'حذف المرحلة التعليمية', text: data.message, icon: 'error', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف المرحلة التعليمية', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
                 }
             } catch (err) {
-                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
             }
         },
         async deleteApplicantAge({ dispatch, commit }, payload) {
@@ -82,14 +82,14 @@ export const Collection = {
                 const data = await Fetch("DELETE", `/helper/deleteApplicantAge`, payload);
                 if (data.statusCode === 200) {
                     commit("deleteApplicantAge", data.result);
-                    window.Swal.fire({ title: 'حذف عمر المتقدم', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف عمر المتقدم', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
                 } else if (data.statusCode === 401 || data.statusCode === 500) {
                     dispatch("Auth/Logout", {}, { root: true });
                 } else {
-                    window.Swal.fire({ title: 'حذف عمر المتقدم', text: data.message, icon: 'error', confirmButtonText: 'تفهمت' })
+                    window.Swal.fire({ title: 'حذف عمر المتقدم', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
                 }
             } catch (err) {
-                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+                window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
             }
         },
 

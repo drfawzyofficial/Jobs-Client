@@ -144,9 +144,9 @@ export default {
             if (!chance.applicantEdus.includes(user.value.applicantEdu)) {
                 return "لا يستوفي الشروط";
             }
-            if (chance.applicantNat !== user.value.nationality) {
-                return "لا يستوفي الشروط";
-            }
+            // if (chance.applicantNat !== user.value.nationality) {
+            //     return "لا يستوفي الشروط";
+            // }
 
             let english_standard_boolean = checkEnglishStandard(chance);
             let brain_standard_boolean = checkBrainStandard(chance);

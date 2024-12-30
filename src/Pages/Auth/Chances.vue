@@ -6,6 +6,44 @@
                 <p>هنا تفاصيل جميع الفرص. يتم عرض كل فرصة بالتفاصيل الخاصة بها ويمكنك زيارة الفرصة أو إضافتها في المفضلة
                     للرجوع إليها في وقت لاحق. كما أنه يوجد خدمة فلترة الفرص. استمتع بإيجاد الفرص وتصفحها</p>
             </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="fw-bold">بحث كامل</h4>
+                            <p class="mt-2">يهدف البحث الكامل إلى تصفية كافة الفرص بشكل شامل. يمكنك إدخال بعض أو جميع المدخلات أدناه، ثم الضغط على زر البحث لتصفية الفرص المتاحة.</p>
+                            <div class="row my-3">
+                                <div class="col-lg-3 col-md-6">
+                                    <select class="form-select form-select-lg" v-model="filter.chance_case">
+                                        <option value="none">حالة الفرصة</option>
+                                        <option value="open">مفتوح</option>
+                                        <option value="not_started">لم يبدأ</option>
+                                        <option value="closed">مغلق</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <select class="form-select form-select-lg" v-model="filter.edu_case">
+                                        <option value="none">المرحلة التعليمية</option>
+                                        <option  v-for="(edu, index) in helperObj.applicantEdus" :key="index" :value="edu ">{{  edu }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <select class="form-select form-select-lg" v-model="filter.interest_case">
+                                        <option value="none">التصنيف الأساسي</option>
+                                        <option value="more_relevant">الأكثر ملائمة</option>
+                                        <option  v-for="(category, index) in helperObj.chanceCategories" :key="index" :value="category ">{{  category }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 col-md-6">
+                                    <button type="button" class="btn btn-primary" @click="search()">
+                                        <span>بحث</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-6 mt-4" v-for="(chance, index) in chances" :key="index">
                     <router-link class="chance bg-white position-relative d-inline-block w-100" :to="'/student/chance/' + chance._id">
@@ -28,12 +66,24 @@
                         </div>
                         <div class="chance-content p-3">
                             <h6 class="fw-bold">{{ chance.chanceName }}</h6>
-                            <h6 class="fw-bold"> الوصف التسويقي: {{ chance.marketingDesc }}</h6>
-                            <h6 class="fw-bold">مقدم الفرصة: {{ chance.provider }}</h6>
+                            <h6 class="fw-bold">{{ chance.marketingDesc }}</h6>
+                            <h6 class="fw-bold">{{ chance.provider }}</h6>
                         </div>
                     </router-link>
                 </div>
             </div>
+            <!-- <div class="row mt-3">
+                <div class="col-12">
+                    <vue-paginate
+                    :page-count="chancesCount"
+                    :click-handler="handlePageClick"
+                    :prev-text="'Previous'"
+                    :next-text="'Next'"
+                    :container-class="'pagination'"
+                    :page-class="'page-item'"
+                    />
+                </div>
+            </div> -->
         </div>
     </DashboardLayout>
 </template>
@@ -42,7 +92,6 @@
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
-
 export default {
     name: 'Chances',
     components: {
@@ -52,26 +101,21 @@ export default {
         // Calling, Declarations, Data
         const store = useStore()
         const loading_status = computed(() => store.state.Collection.loading_status);
+        store.dispatch("Auth/GetProfile")
         const user = computed(() => store.state.Auth.user);
         const wishlists = ref([]);
         const filter = ref({
-            chanceName: "",
-            chancePrice: "",
-            programStatus: "حالة البرنامج",
-            chanceStartDate: "",
-            chanceEndDate: "",
-            chanceCategory: "التصنيف",
-            chanceStartDate: "",
-            chanceEndDate: "",
-            applicantNat: "الجنسية",
-            applicantAge: "العمر",
-            applicantEdu: "المرحلة"
+            chance_case: "open",
+            edu_case: "none",
+            interest_case: "more_relevant"
         })
-        store.dispatch("Auth/GetProfile")
-        store.dispatch("Auth/ChancesGet", { page_no: 1 });
+     
+       
+        store.dispatch("Auth/ChancesGet", { chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case });
+        const chancesCount = computed(() => store.state.Admin_Store.chancesCount);
         const chances = computed(() => store.state.Auth.chances);
-
-
+        const helperObj = computed(() => store.state.Collection.helperObj);
+        store.dispatch("Collection/GetHelper")
         // get wishlist from local storage
         const getWishlist = () => {
             const storedWishlist = localStorage.getItem('wishlist') || [];
@@ -155,15 +199,15 @@ export default {
 
         const validateChance = (chance) => {
             const userAge = new Date().getFullYear() - new Date(user.value.DOB).getFullYear();
-            // if (chance.applicantGender !== user.value.applicantGender) {
-            //     return "لا يستوفي الشروط"
-            // }
-            // if (parseInt(chance.applicantAge) !== userAge) {
-            //     return "لا يستوفي الشروط"
-            // }
-            // if (!chance.applicantEdus.includes(user.value.applicantEdu)) {
-            //     return "لا يستوفي الشروط";
-            // }
+            if (chance.applicantGender !== user.value.applicantGender) {
+                return "لا يستوفي الشروط"
+            }
+            if (parseInt(chance.applicantAge) !== userAge) {
+                return "لا يستوفي الشروط"
+            }
+            if (!chance.applicantEdus.includes(user.value.applicantEdu)) {
+                return "لا يستوفي الشروط";
+            }
             // if (chance.applicantNat !== user.value.nationality) {
             //     return "لا يستوفي الشروط";
             // }
@@ -190,9 +234,9 @@ export default {
 
 
         const validateDate = (chance) => {
-            const currentDate = new Date(); // Get the current date
-            const regStartDate = new Date(chance.chanceRegStartDate); // Convert to Date object
-            const regEndDate = new Date(chance.chanceRegEndDate); // Convert to Date object
+            const currentDate = new Date().toISOString().split('T')[0]; // Get the current date
+            const regStartDate = chance.chanceRegStartDate // Convert to Date object
+            const regEndDate = chance.chanceRegEndDate // Convert to Date object
             if (currentDate >= regStartDate && currentDate <= regEndDate) {
                 return "مفتوح";
             }
@@ -213,9 +257,12 @@ export default {
                 return "closed";
             }
         }
+        const search = () => {
+            console.log(filter.value);
+            store.dispatch("Auth/ChancesGet", { chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case  })
+        }
 
-
-
+        const handlePageClick = (pageNum) => store.dispatch("Admin/ChancesGet", { chance_case: filter.value.chance_case });
         // Return
         return {
             loading_status,
@@ -224,11 +271,15 @@ export default {
             isInWishlist,
             toggleWishlist,
             chances,
+            chancesCount,
             wishlists,
             validateDate,
             getValidateDateClass,
             validateChance,
-            getValidateChanceClass
+            getValidateChanceClass,
+            search,
+            handlePageClick,
+            helperObj
         }
     }
 }

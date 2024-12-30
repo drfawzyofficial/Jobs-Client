@@ -19,7 +19,7 @@ export const Admin_Store = {
         const data = await Fetch("POST", '/job/create', payload);
         if (data.statusCode === 200) {
           commit("jobCreate", data.result);
-          window.Swal.fire({ title: 'إنشاء الفرصة', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'إنشاء الفرصة', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -29,11 +29,11 @@ export const Admin_Store = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -42,7 +42,7 @@ export const Admin_Store = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", '/helper/post', payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'إضافة المساعد', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'إضافة المساعد', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -52,12 +52,12 @@ export const Admin_Store = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
         console.log(err.message);
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' })
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -76,11 +76,11 @@ export const Admin_Store = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -99,11 +99,11 @@ export const Admin_Store = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -113,15 +113,15 @@ export const Admin_Store = {
         const data = await Fetch("DELETE", `/job/remove`, { _id: payload._id });
         if (data.statusCode === 200) {
           commit("jobDelete", data.result);
-          window.Swal.fire({ title: 'حذف الوظيفة', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'حذف الوظيفة', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
-          window.Swal.fire({ title: 'حذف الوظيفة', text: data.message, icon: 'error', confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'حذف الوظيفة', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },
@@ -131,7 +131,7 @@ export const Admin_Store = {
         const data = await Fetch("PUT", '/job/update', payload);
         if (data.statusCode === 200) {
           commit("jobEdit", data.result);
-          window.Swal.fire({ title: 'تعديل الوظيفة', text: data.message, icon: 'success', confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'تعديل الوظيفة', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -141,11 +141,11 @@ export const Admin_Store = {
               errors += `<li>${ele}</li>`
             })
           }
-          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'تفهمت' })
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'تفهمت' });
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
         dispatch("Collection/loading", false, { root: true });
       }
     },

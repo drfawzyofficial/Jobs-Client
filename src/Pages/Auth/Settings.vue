@@ -160,7 +160,7 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step"
                                                 type="button" role="tab" aria-controls="Step"
-                                                aria-selected="false">Step</button>
+                                                aria-selected="false">STEP</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#CEFR"
@@ -212,12 +212,12 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat"
                                                 id="Sat-tab" type="button" role="tab" aria-controls="Sat"
-                                                aria-selected="true">Sat</button>
+                                                aria-selected="true">SAT</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat"
                                                 id="Qudrat-tab" type="button" role="tab" aria-controls="Qudrat"
-                                                aria-selected="false">Qudrat</button>
+                                                aria-selected="false">قدرات</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#GAT" id="GAT-tab"
@@ -227,7 +227,7 @@
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act" id="act-tab"
                                                 type="button" role="tab" aria-controls="act"
-                                                aria-selected="false">act</button>
+                                                aria-selected="false">ACT</button>
                                         </li>
                                         <li class="nav-item" role="presentation">
                                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent"
@@ -315,7 +315,6 @@ export default {
             saudiCity: "الرياض",
             tookEnglishTest: false,
             tookBrainTest: false,
-            nationality: "سعودي",
             EnglishStandard: {
                 IELTSDegree: '',
                 TOFELDegree: '',
