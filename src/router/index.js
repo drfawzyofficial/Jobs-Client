@@ -1,7 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Khatat from "../Pages/Khatat";
 import About from "../Pages/About.vue";
-import Contact from "../Pages/Contact.vue";
 import FAQ from "../Pages/FAQ.vue";
 import Terms from "../Pages/Terms";
 import Privacy from "../Pages/Privacy";
@@ -12,6 +11,7 @@ import Chances from "../Pages/Auth/Chances.vue";
 import Chance from "../Pages/Auth/Chance.vue";
 import Wishlists from "../Pages/Auth/Wishlists.vue";
 import Settings from "../Pages/Auth/Settings.vue";
+import Contact from "../Pages/Auth/Contact.vue";
 import ResetPassword from "../Pages/ResetPassword";
 import ErrorPage from "../Pages/ErrorPage";
 
@@ -19,7 +19,6 @@ import ErrorPage from "../Pages/ErrorPage";
 const routes = [
   { path: "/", name: "Khatat", component: Khatat },
   { path: "/pages/about-us", name: "About", component: About,  meta: { title: 'من نحن', requiresAuth: false } },
-  { path: "/pages/contact", name: "Contact", component: Contact,  meta: { title: 'تواصل معنا', requiresAuth: false } },
   { path: "/pages/faq", name: "FAQ", component: FAQ,  meta: { title: 'الأسئلة الشائعة', requiresAuth: false } },
   { path: "/pages/terms", name: "Terms", component: Terms, meta: { title: 'الشروط والأحكام', requiresAuth: false } },
   { path: "/pages/privacy", name: "Privacy", component: Privacy,  meta: { title: 'سياسة الخصوصية', requiresAuth: false } },
@@ -27,6 +26,7 @@ const routes = [
   { path: "/account/login", name: "Login", component: Login, meta: { title: 'تسجيل الدخول', requiresAuth: false } },
   { path: "/student/dashboard", name: "Dashboard", component: Dashboard, meta: { title: 'لوحة التحكم', requiresAuth: true } },
   { path: "/student/settings", name: "Settings", component: Settings, meta: { title: 'الإعدادات', requiresAuth: true } },
+  { path: "/student/contact", name: "Contact", component: Contact, meta: { title: 'تواصل معنا', requiresAuth: true } },
   { path: "/student/chances", name: "Chances", component: Chances, meta: { title: 'الفرص', requiresAuth: true } },
   { path: "/student/chance/:id", name: "Chance", component: Chance, meta: { title: 'الفرصة', requiresAuth: true } },
   { path: "/student/wishlists", name: "Wishlists", component: Wishlists, meta: { title: 'المفضلات', requiresAuth: true } },
@@ -44,7 +44,7 @@ export const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const Pages = ['/', '/account/login', '/account/signup', '/account/reset-password', '/pages/about-us', '/pages/contact', '/pages/faq', '/pages/terms', '/pages/privacy', '/pages/reset-password'];
+  const Pages = ['/', '/account/login', '/account/signup', '/account/reset-password', '/pages/about-us', '/pages/faq', '/pages/terms', '/pages/privacy', '/pages/reset-password'];
   const pageComponent = Pages.includes(to.path);
   const loggedIn = localStorage.getItem('token');
 

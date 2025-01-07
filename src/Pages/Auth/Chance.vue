@@ -3,6 +3,13 @@
         <div class="chance container-fluid py-5">
             <div class="container">
                 <div class="chance-container">
+                    <div class="wishlist-feature mt-3 d-flex justify-content-center">
+                        <button @click="toggleWishlist()" style="background-color: transparent;">
+                            <span v-if="isInWishlist()" style="color: red;"><i
+                                    class="bi bi-suit-heart-fill fs-4"></i></span>
+                            <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
+                        </button>
+                    </div>
                     <div class="chance-details">
                         <h4 class="fw-bold">{{ chance.chanceName }}</h4>
                         <div class="mt-2">
@@ -41,13 +48,16 @@
                                     <tr>
                                         <td>اختبارات اللغة الإنجليزية</td>
                                         <td>
-                                            <span v-for="([key, value], index) in Object.entries(chance.EnglishStandard)"
+                                            <span
+                                                v-for="([key, value], index) in Object.entries(chance.EnglishStandard)"
                                                 :key="index">
                                                 {{ key }}: {{ value }},
                                             </span>
                                         </td>
                                         <td>
-                                            <span class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateEnglishClass()">{{ validateEnglish() }}</span>
+                                            <span class="info-badge fw-bold mt-2"
+                                                :class="'chance-' + getvalidateEnglishClass()">{{ validateEnglish()
+                                                }}</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -59,7 +69,9 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <span class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateBrainClass()">{{ validateBrain() }}</span>
+                                            <span class="info-badge fw-bold mt-2"
+                                                :class="'chance-' + getvalidateBrainClass()">{{ validateBrain()
+                                                }}</span>
                                         </td>
                                     </tr>
                                     <!-- <tr>
@@ -97,7 +109,7 @@
                         <div class="mt-2">
                             <span>المرحلة الدراسية: </span>
                             <span v-for="(val, index) in chance.applicantEdus" :key="index">
-                                {{ val }}, 
+                                {{ val }},
                             </span>
                         </div>
                         <div class="mt-2">
@@ -105,8 +117,8 @@
                             <span>{{ chance.programStatus }}</span>
                             <span v-if="chance.programStatus == 'حضوري'">
                                 في
-                                <span class="ms-1" v-for="(val, index) in chance.cities" :key="index"
-                                :value="val"> {{ val }} </span>
+                                <span class="ms-1" v-for="(val, index) in chance.cities" :key="index" :value="val"> {{
+                                    val }} </span>
                             </span>
                         </div>
                     </div>
@@ -116,13 +128,42 @@
                             <a href="{{  chance.chanceLink }}" target="_blank" style="color: blue">زيارة الرابط</a>
                         </h4>
                     </div>
-                    <div class="wishlist-feature mt-3 d-flex justify-content-center">
-                        <button @click="toggleWishlist()" style="background-color: transparent;">
-                                <span v-if="isInWishlist()" style="color: red;"><i
-                                        class="bi bi-suit-heart-fill fs-4"></i></span>
-                                <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
-                        </button>
+                </div>
+                <div class="chance-review-post mt-3">
+                    <h4 class="fw-bold">اكتب تقييما</h4>
+                    <div class="mt-2">
+                        <textarea class="form-control" placeholder="اكتب تقييمك هنا" rows="4"
+                            v-model="review.comment"></textarea>
+                        <div class="rating">
+                            <span v-for="star in stars" :key="star"
+                                :class="['star star1', { selected: star <= selectedStars }]" @click="selectStars(star)">
+                                ★
+                            </span>
+                        </div>
+                        <button class="btn btn-primary" @click="sendReview()">نشر <i class="bi bi-send"></i></button>
+                    </div>`
+                </div>
+                <div class="chance-reviews">
+                    <h4 class="fw-bold">التقييمات</h4>
+                    <div class="row">
+                    <div class="col-lg-3 col-md-4 col-6 mt-3" v-if="reviews.length > 0"
+                        v-for="(review, index) in reviews" :key="index">
+                        <div class="review bg-white position-relative p-3 rounded shadow-sm">
+                            <p>{{ review.comment }}</p>
+                            <div class="rating">
+                                <span v-for="star in 5" :key="star"
+                                    :class="['star star2', { gold: star <= review.stars }]">
+                                    ★
+                                </span>
+                            </div>
+                        </div>
                     </div>
+                    <div v-else class="col-12">
+                        <div class="alert alert-info">
+                            <h5>لا يوجد تقييمات</h5>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -147,6 +188,14 @@ export default {
         const user = computed(() => store.state.Auth.user);
         const wishlists = ref([]);
         const route = useRoute();
+        const stars = [1, 2, 3, 4, 5]; // Total number of stars
+        const reviews = computed(() => store.state.Auth.reviews);
+        const selectedStars = ref(0);
+        const review = ref({
+            _chanceID: route.params.id,
+            comment: "",
+            stars: 0
+        });
         store.dispatch("Auth/GetProfile")
         store.dispatch("Auth/chanceGet", { chance_id: route.params.id });
         const chance = computed(() => store.state.Auth.chance);
@@ -184,9 +233,7 @@ export default {
         const checkEnglishStandard = (chance) => {
             // Validate English standards (if applicable)
             if (user.value.tookEnglishTest) {
-                console.log("q");
                 for (let key in chance.EnglishStandard) {
-                    console.log(key);
                     if (!chance.EnglishStandard[key]) continue;
                     if (key == "CEFRDegree") {
                         const userValue = user.value.EnglishStandard[key] || "";
@@ -225,7 +272,7 @@ export default {
                 return "open";
             } else if (status === "يتطلب استعداد") {
                 return "not-started";
-            } 
+            }
         }
 
 
@@ -264,8 +311,20 @@ export default {
                 return "open";
             } else if (status === "يتطلب استعداد") {
                 return "not-started";
-            } 
+            }
         }
+
+        store.dispatch("Auth/ReviewsGet", { _chanceID: route.params.id });
+
+        const selectStars = (star) => {
+            selectedStars.value = star; // Set the selected number of stars
+        };
+
+        const sendReview = () => {
+            review.value.stars = selectedStars.value;
+            store.dispatch("Auth/sendReview", review.value);
+        };
+
 
 
 
@@ -277,6 +336,11 @@ export default {
         return {
             loading_status,
             user,
+            selectStars,
+            selectedStars,
+            stars,
+            review,
+            reviews,
             isInWishlist,
             toggleWishlist,
             chance,
@@ -284,6 +348,7 @@ export default {
             validateEnglish,
             getvalidateEnglishClass,
             validateBrain,
+            sendReview,
             getvalidateBrainClass
         }
     }
@@ -296,7 +361,16 @@ export default {
     background-color: #FFF;
     border: 1px solid #DDD;
     padding: 1rem;
+    position: relative;
 }
+
+.chance .chance-container .wishlist-feature {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+;
 
 .info-badge {
     padding: 6px;
@@ -320,4 +394,29 @@ export default {
 .chance-not-started {
     background-color: #fbb054;
 }
+
+.star {
+    font-size: 2rem;
+    color: gray;
+    transition: color 0.3s;
+}
+.star.star1 {
+    cursor: pointer;
+}
+
+.star.star1:hover {
+    color: gold;
+    /* Highlight stars on hover */
+}
+
+.star.selected {
+    color: gold;
+    /* Change color for selected stars */
+}
+
+.star.gold {
+    color: gold;
+}
+
+
 </style>

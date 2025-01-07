@@ -116,7 +116,7 @@ export default {
         const route = useRoute();
 
         const token = localStorage.getItem("token");
-        const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/pages/about-us" }, { title: "التواصل", link: "/pages/contact" }, { title: "الأسئلة الشائعة", link: "/pages/faq" }]);
+        const navLinks = ref([{ title: "الرئيسية", link: "/" }, { title: "من نحن", link: "/pages/about-us" }, { title: "الأسئلة الشائعة", link: "/pages/faq" }]);
         const isHomePage = computed(() => route.path === '/'); // or route.name === 'home'
 
         // Return

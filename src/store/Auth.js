@@ -15,7 +15,8 @@ export const Auth = {
     chances: [],
     chance: { },
     chancesCount: 0,
-    wishlists: []
+    wishlists: [],
+    reviews: []
   },
   actions: {
     async Signup({ dispatch, commit }, payload) {
@@ -61,6 +62,8 @@ export const Auth = {
         const data = await Fetch("POST", "/student/contact/create", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+        } else if(data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
         }
@@ -159,6 +162,41 @@ export const Auth = {
             })
           }
           window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
+     async ReviewsGet({ dispatch, commit }, payload) {
+          try {
+            dispatch("Collection/loading", true, { root: true });
+            console.log(payload);
+            const data = await Fetch("POST", `/student/reviews/get`, payload);
+            if (data.statusCode === 200) {
+              commit("reviewsGet", data.result);
+            } else if (data.statusCode === 401 || data.statusCode === 500) {
+              dispatch("Auth/Logout", {}, { root: true });
+            } else {
+              window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
+            }
+            dispatch("Collection/loading", false, { root: true });
+          } catch (err) {
+            window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
+            dispatch("Collection/loading", false, { root: true });
+          }
+        },
+    async sendReview({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", "/student/review/send", payload);
+        if (data.statusCode === 200) {
+          window.Swal.fire({ title: 'إرسال التقييم', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+        } else if(data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
@@ -303,6 +341,9 @@ export const Auth = {
     chancesGet(state, data) {
       state.chances = data.chances;
       state.chancesCount = data.chancesCount;
+    },
+    reviewsGet(state, data) {
+      state.reviews = data.reviews;
     },
     chanceGet(state, data) {
       state.chance = data.chance;

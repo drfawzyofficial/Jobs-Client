@@ -71,30 +71,33 @@
                                         <!-- Checkbox to ask if the user took the English test -->
                                         <div class="mb-3 d-flex align-items-center">
                                             <label class="form-check-label">
-                                                هل أنتَ مقيم في السعودية؟
+                                                هل أنتَ سعودي الجنسية؟
                                             </label>
                                             <div class="form-check ms-3">
-                                                <input type="radio" name="nationality" class="form-check-input" id="saudiresidingYes"
-                                                    @change="toggleSaudiResiding(true)" :checked="signupPayload.saudiresiding === true"/>
-                                                <label class="form-check-label" for="saudiresidingYes">
+                                                <input type="radio" name="nationality" class="form-check-input" id="saudinationalityYes"
+                                                    @change="toggleSaudiNationality(true)" :checked="signupPayload.saudinationality === true"/>
+                                                <label class="form-check-label" for="saudinationalityYes">
                                                 نعم
                                                 </label>
                                             </div>
                                             <div class="form-check ms-3">
-                                                <input type="radio" name="nationality" class="form-check-input" id="saudiresidingNo"
-                                                    @change="toggleSaudiResiding(false)" :checked="signupPayload.saudiresiding === false"  />
-                                                <label class="form-check-label" for="saudiresidingNo">
+                                                <input type="radio" name="nationality" class="form-check-input" id="saudinationalityNo"
+                                                    @change="toggleSaudiNationality(false)" :checked="signupPayload.saudinationality === false"  />
+                                                <label class="form-check-label" for="saudinationalityNo">
                                                 لأ
                                                 </label>
                                             </div>
                                         </div>
-                                        <select v-if="signupPayload.saudiresiding === true"
-                                            class="form-select form-select-lg mb-3" v-model="signupPayload.saudiCity">
+                                        <div class="mb-3">
+                                            <select
+                                            class="form-select form-select-lg" v-model="signupPayload.saudiCity">
+                                            <option value="none">محل الإقامة</option>
                                             <option v-for="(nationality, index) in saudiCities" :key="index"
                                                 :value="nationality">
                                                 {{ nationality }}
                                             </option>
                                         </select>
+                                        </div>
                                         <div class="interests mb-3">
                                             <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)</label>
                                             <div class="choose-interest">
@@ -348,8 +351,8 @@ export default {
             applicantGender: 'none',
             applicantEdu: "none",
             DOB: "",
-            saudiresiding: true,
-            saudiCity: "الرياض",
+            saudinationality: true,
+            saudiCity: "none",
             tookEnglishTest: false,
             tookBrainTest: false,
             EnglishStandard: {
@@ -409,7 +412,57 @@ export default {
         //     'يمني', 'زامبي', 'زيمبابوي'
         // ]);
        
-        const saudiCities = ref(["الرياض", "جدة", "مكة", "المدينة المنورة", "الدمام", "الخبر", "الطائف", "بريدة", "الجبيل", "حفر الباطن", "الظهران", "ينبع", "أبها", "خميس مشيط", "القصيم", "القطيف", "نجران", "تبوك", "جازان", "عرعر", "سكاكا", "الخرج", "الباحة", "بيشة", "القنفذة", "الدوادمي", "رجال ألمع", "محايل عسير", "شرورة", "رابغ", "المجمعة", "بدر", "الرس", "عنيزة", "حائل", "وادي الدواسر", "صبيا", "العيص", "ضباء", "تيماء", "بدر الجنوب", "طريف", "الأفلاج", "الحوطة", "مرات", "رنية", "ليلى", "السليل", "تنومة", "بلجرشي", "المندق", "قلوة", "العلا", "ساجر", "البكيرية", "الزلفي", "دومة الجندل", "عفيف", "الحريق", "الدوادمي", "القريات", "الطريف", "تربة", "رأس تنورة", "الساحل الشرقي", "سدير", "ثادق"]);
+        const saudiCities = ref([
+            "الرياض",
+            "مكة المكرمة",
+            "جدة",
+            "المدينة المنورة",
+            "الدمام",
+            "الأحساء",
+            "القطيف",
+            "الخبر",
+            "الجبيل",
+            "الطائف",
+            "الدرعية",
+            "بريدة",
+            "عنيزة",
+            "الرس",
+            "الخرج",
+            "الدوادمي",
+            "المجمعة",
+            "شقراء",
+            "الأفلاج",
+            "حوطة بني تميم",
+            "الحريق",
+            "المزاحمية",
+            "ثادق",
+            "حريملاء",
+            "الدلم",
+            "القنفذة",
+            "رابغ",
+            "تربة",
+            "الخرمة",
+            "ينبع",
+            "العلا",
+            "البكيرية",
+            "البدائع",
+            "الخفجي",
+            "رأس تنورة",
+            "بقيق",
+            "أبها",
+            "خميس مشيط",
+            "تبوك",
+            "حائل",
+            "عرعر",
+            "جازان",
+            "الريث",
+            "ضمد",
+            "نجران",
+            "الباحة",
+            "بلجرشي",
+            "سكاكا",
+            "دومة الجندل"
+        ]);
 
         const IELTSDegress = ref([
             {
@@ -506,11 +559,11 @@ export default {
             signupPayload.value.EnglishStandard.CEFRDegree = degree;
         };
 
-        const toggleSaudiResiding = (value) => {
+        const toggleSaudiNationality = (value) => {
             if (value === true) {
-                signupPayload.value.saudiresiding = true;
+                signupPayload.value.saudinationality = true;
             } else {
-                signupPayload.value.saudiresiding = false;
+                signupPayload.value.saudinationality = false;
             }
         };
 
@@ -565,7 +618,7 @@ export default {
             resetEnglishStandard,
             resetBrainStandard,
             jobCategories,
-            toggleSaudiResiding,
+            toggleSaudiNationality,
             onSignup,
         }
     }
