@@ -16,6 +16,7 @@ export const Auth = {
     chance: { },
     chancesCount: 0,
     wishlists: [],
+    wishlistsCount: 0,
     reviews: []
   },
   actions: {
@@ -176,7 +177,7 @@ export const Auth = {
             const data = await Fetch("POST", `/student/reviews/get`, payload);
             if (data.statusCode === 200) {
               commit("reviewsGet", data.result);
-            } else if (data.statusCode === 401 || data.statusCode === 500) {
+            } else if (data.statusCode === 401 || data.statusCode === 500 || data.statusCode === 404) {
               dispatch("Auth/Logout", {}, { root: true });
             } else {
               window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
@@ -193,7 +194,7 @@ export const Auth = {
         const data = await Fetch("POST", "/student/review/send", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'إرسال التقييم', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if(data.statusCode === 401 || data.statusCode === 50 || data.statusCode === 404) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
@@ -259,7 +260,8 @@ export const Auth = {
     async ChancesGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("GET", `/student/chances/get/?chance_case=${ payload.chance_case }&edu_case=${ payload.edu_case }&interest_case=${ payload.interest_case}`);
+        console.log(payload)
+        const data = await Fetch("GET", `/student/chances/get/?page_no=${ payload.page_no}&chance_case=${ payload.chance_case }&edu_case=${ payload.edu_case }&interest_case=${ payload.interest_case}`);
         if (data.statusCode === 200) {
           commit("chancesGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
@@ -279,7 +281,7 @@ export const Auth = {
         const data = await Fetch("GET", `/student/chance/get?chance_id=${ payload.chance_id }`);
         if (data.statusCode === 200) {
           commit("chanceGet", data.result);
-        } else if (data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500 || data.statusCode === 404) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           var errors = ``;
@@ -350,6 +352,7 @@ export const Auth = {
     },
     wishlistsGet(state, data) {
       state.wishlists = data.wishlists;
+      state.wishlistsCount = data.wishlistsCount;
     },
     setStatistics(state, statistics) {
       state.statistics = statistics;

@@ -443,3 +443,33 @@ html[lang="ar"] .store-animation-anchor:hover:after {
   }
 }
 
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination li a {
+  border-radius: 5px;
+  background: #17252A;
+  color: #fff;
+}
+
+.pagination li a:hover {
+  background: #3AAFA9;
+  color: #fff;
+}
+
+.pagination li.active a.page-link {
+  background: #2B7A7B;
+  border-color: #2B7A7B;
+  border-radius: 5px;
+}
+.page-item .page-link {
+  cursor: pointer;
+}
+.page-item:first-child .page-link {
+  display: none;
+}
+
+.page-item:last-child .page-link {
+  display: none;
+}
