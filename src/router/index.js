@@ -17,7 +17,7 @@ import ErrorPage from "../Pages/ErrorPage";
 
 
 const routes = [
-  { path: "/", name: "Khatat", component: Khatat },
+  { path: "/", name: "Khatat", component: Khatat,  meta: { title: 'الرئيسية', requiresAuth: false }  },
   { path: "/pages/about-us", name: "About", component: About,  meta: { title: 'من نحن', requiresAuth: false } },
   { path: "/pages/faq", name: "FAQ", component: FAQ,  meta: { title: 'الأسئلة الشائعة', requiresAuth: false } },
   { path: "/pages/terms", name: "Terms", component: Terms, meta: { title: 'الشروط والأحكام', requiresAuth: false } },

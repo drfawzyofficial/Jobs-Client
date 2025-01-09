@@ -263,7 +263,7 @@
                       <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
                     </button>
                   </div>
-                  <router-link :to="'/student/chance/' + chance._id">
+                  <router-link :to="'/student/chance/' + chance._id" @click="IncrementChance(chance._id)">
                     <div class="chance-img">
                       <img :src="chance.chanceImage" />
                     </div>
@@ -472,9 +472,8 @@ export default {
               return true;
             }
           }
-
         }
-        return false;
+        return true;
       } else {
         for (let key in chance.EnglishStandard) {
           if (chance.EnglishStandard[key]) return false;
@@ -495,7 +494,7 @@ export default {
           }
 
         }
-        return false;
+        return true;
       } else {
         for (let key in chance.BrainStandard) {
           if (chance.BrainStandard[key]) return false;
@@ -579,6 +578,10 @@ export default {
       store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case })
     }
 
+    const IncrementChance = (_chanceID) => {
+      store.dispatch("Auth/IncrementChance", { _chanceID: _chanceID })
+    }
+
     // const handlePageClick = (pageNum) => store.dispatch("Admin/ChancesGet", { chance_case: filter.value.chance_case });
     const clickCallback = (pageNum) => store.dispatch("Auth/ChancesGet", { page_no: pageNum, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case });
     const onLogout = () => {
@@ -602,7 +605,8 @@ export default {
       navLinks,
       clickCallback,
       onLogout,
-      user
+      user,
+      IncrementChance
     }
   }
 }

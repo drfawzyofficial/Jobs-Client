@@ -1,526 +1,602 @@
 <template>
-    <div>
-      <!-- Page Wrapper -->
-      <div id="wrapper">
-  
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-          <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
-            <router-link class="fw-medium nav-link" :to="item.link">
-                <span class="item-icon" v-html="item.icon"></span>
-                <span class="item-title ms-2">{{ item.title }}</span>
-              </router-link>
-          </li>
-        </ul>
-        <!-- End of Sidebar -->
-  
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-  
-          <!-- Main Content -->
-          <div id="content">
-  
-            <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
-            
-  
-              <!-- Topbar Navbar -->
-              <ul class="navbar-nav">
-  
-                <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                <li class="nav-item dropdown no-arrow d-sm-none">
-                  <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-search fa-fw"></i>
+  <div>
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
+          <router-link class="fw-medium nav-link" :to="item.link">
+            <span class="item-icon" v-html="item.icon"></span>
+            <span class="item-title ms-2">{{ item.title }}</span>
+          </router-link>
+        </li>
+      </ul>
+      <!-- End of Sidebar -->
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar static-top shadow">
+
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav">
+
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown">
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                        aria-label="Search" aria-describedby="basic-addon2">
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+
+              <!-- Nav Item - Alerts -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                <!-- Dropdown - Alerts -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="alertsDropdown">
+                  <h6 class="dropdown-header">
+                    Alerts Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-primary">
+                        <i class="fas fa-file-alt text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 12, 2019</div>
+                      <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                    </div>
                   </a>
-                  <!-- Dropdown - Messages -->
-                  <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                    aria-labelledby="searchDropdown">
-                    <form class="form-inline mr-auto w-100 navbar-search">
-                      <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                          aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                          <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-success">
+                        <i class="fas fa-donate text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 7, 2019</div>
+                      $290.29 has been deposited into your account!
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="mr-3">
+                      <div class="icon-circle bg-warning">
+                        <i class="fas fa-exclamation-triangle text-white"></i>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="small text-gray-500">December 2, 2019</div>
+                      Spending Alert: We've noticed unusually high spending for your account.
+                    </div>
+                  </a>
+                  <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                </div>
+              </li>
+
+              <!-- Nav Item - Messages -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" @click="onLogout()" id="messagesDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="bi bi-box-arrow-right"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="messagesDropdown">
+                  <h6 class="dropdown-header">
+                    Message Center
+                  </h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                      <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div class="font-weight-bold">
+                      <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                        problem I've been having.</div>
+                      <div class="small text-gray-500">Emily Fowler · 58m</div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                      <div class="status-indicator"></div>
+                    </div>
+                    <div>
+                      <div class="text-truncate">I have the photos that you ordered last month, how
+                        would you like them sent to you?</div>
+                      <div class="small text-gray-500">Jae Chun · 1d</div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                      <div class="status-indicator bg-warning"></div>
+                    </div>
+                    <div>
+                      <div class="text-truncate">Last month's report looks great, I am very happy with
+                        the progress so far, keep up the good work!</div>
+                      <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-list-image mr-3">
+                      <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                      <div class="status-indicator bg-success"></div>
+                    </div>
+                    <div>
+                      <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                        told me that people say this to all dogs, even if they aren't good...</div>
+                      <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                    </div>
+                  </a>
+                  <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                </div>
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
+                    }}</span>
+                  <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-user fa-sm fa-fw ml-2 text-gray-400"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-cogs fa-sm fa-fw ml-2 text-gray-400"></i>
+                    Settings
+                  </a>
+                  <a class="dropdown-item" href="#">
+                    <i class="fas fa-list fa-sm fa-fw ml-2 text-gray-400"></i>
+                    Activity Log
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw ml-2 text-gray-400"></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+
+            </ul>
+
+
+            <!-- Sidebar Toggle (Topbar) -->
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+              <i class="bi bi-bar-chart-steps"></i>
+            </button>
+
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="settings container-fluid py-4">
+            <div class="container">
+              <div class="breadcrumb-auth">
+                <h3 class="fw-bold">إعدادات الحساب</h3>
+                <p>صفحة إعدادات الحساب تتيح لك تفعيل الحساب وتأمينه من خلال تغيير كلمة المرور القديمة إلى كلمة مرور
+                  جديدة، بالإضافة إلى إمكانية تعديل أو حذف البيانات الشخصية بكل سهولة. تضمن هذه الصفحة التحكم الكامل
+                  بمعلوماتك الشخصية وتعزيز أمان حسابك.</p>
+              </div>
+              <div class="row mt-4">
+                <div class="col-12">
+                  <div class="p-3 bg-white shadow">
+                    <h5 class="fw-bold">تعديل الملف الشخصي</h5>
+                    <p class="mb-3">يمكنك تعديل الملف الشخصي لإضافة أو تحديث معلوماتك الشخصية، مما يساعد في تحسين تجربتك
+                      وتوفير بيانات دقيقة.</p>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <input class="form-control form-control-lg" type="text" v-model="profilePayload.first_name"
+                          placeholder="الاسم الأول">
+                      </div>
+                      <div class="col-md-6 mt-4 mt-md-0">
+                        <input class="form-control form-control-lg" type="text" v-model="profilePayload.last_name"
+                          placeholder="الاسم الأخير">
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <input class="form-control form-control-lg" type="text" v-model="profilePayload.email"
+                          placeholder="البريد الإلكتروني">
+                      </div>
+                      <div class="col-md-6 mt-4 mt-md-0">
+                        <input class="form-control form-control-lg" type="text" v-model="profilePayload.phone"
+                          placeholder="رقم الهاتف">
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <select class="form-select form-select-lg" v-model="profilePayload.applicantGender">
+                          <option value="none">الجنس</option>
+                          <option value="ذكر">ذكر</option>
+                          <option value="أنثى">أنثى</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6 mt-4 mt-md-0">
+                        <input class="form-control form-control-lg" type="date" placeholder="تاريخ الميلاد"
+                          v-model="profilePayload.DOB">
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <select class="form-select form-select-lg" v-model="profilePayload.applicantEdu">
+                          <option value="none">المرحلة التعليمية</option>
+                          <option v-for="(val, index) in helperObj.applicantEdus" :key="index" :value="val">{{ val }}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-6 mt-4 mt-md-0">
+                        <select class="form-select form-select-lg" v-model="profilePayload.saudiCity">
+                          <option value="none">محل الإقامة</option>
+                          <option v-for="(nationality, index) in saudiCities" :key="index" :value="nationality">
+                            {{ nationality }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mb-3 d-flex align-items-center">
+                      <label class="form-label">
+                        هل أنتَ سعودي الجنسية؟
+                      </label>
+                      <div class="form-check ms-3">
+                        <input type="radio" name="nationality" class="form-check-input" id="saudinationalityYes"
+                          @change="toggleSaudiNationality(true)" :checked="profilePayload.saudinationality === true" />
+                        <label class="form-label" for="saudinationalityYes">
+                          نعم
+                        </label>
+                      </div>
+                      <div class="form-check ms-3">
+                        <input type="radio" name="nationality" class="form-check-input" id="saudinationalityNo"
+                          @change="toggleSaudiNationality(false)"
+                          :checked="profilePayload.saudinationality === false" />
+                        <label class="form-label" for="saudinationalityNo">
+                          لأ
+                        </label>
+                      </div>
+                    </div>
+                    <div class="row mb-4">
+                      <div class="col-md-6">
+                        <div class="interests">
+                          <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)</label>
+                          <div class="choose-interest">
+                            <button type="button" class="btn btn-interest m-2"
+                              v-for="(interest, index) in helperObj.chanceCategories" :key="index"
+                              @click="selectInterest(interest)"
+                              :class="{ 'btn-selected': profilePayload.interests.includes(interest) }">{{
+                                interest }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mt-4 mt-md-0">
+                        <div class="interests">
+                          <label class="form-label">حدد مجالات اهتمامك بالترتيب(اختر 3 على الأقل)</label>
+                          <div class="choose-interest">
+                            <button type="button" class="btn btn-interest m-2"
+                              v-for="(interest, index) in helperObj.chanceSubcategories" :key="index"
+                              @click="selectSubInterest(interest)"
+                              :class="{ 'btn-selected': profilePayload.Subinterests.includes(interest) }">{{
+                                interest }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="english-test mb-4">
+                      <div class="mb-4">
+                        <!-- Checkbox to ask if the user took the English test -->
+                        <div class="form-check mb-4">
+                          <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
+                            v-model="profilePayload.tookEnglishTest" />
+                          <label class="form-label" for="englishTestCheckbox">
+                            هل سبق لك واخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
+                            (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOFEL)؟
+                          </label>
+                        </div>
+                        <ul v-if="profilePayload.tookEnglishTest" class="nav nav-tabs mt-2" id="myTab" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#IELTS" id="IELTS-tab"
+                              type="button" role="tab" aria-controls="home" aria-selected="true">IELTS</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOFEL" id="TOFEL-tab"
+                              type="button" role="tab" aria-controls="TOFEL" aria-selected="false">TOFEL</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOEIC" type="button"
+                              role="tab" aria-controls="TOEIC" aria-selected="false">TOEIC</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#DUOLINGO" type="button"
+                              role="tab" aria-controls="DUOLINGO" aria-selected="false">DUOLINGO</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step" type="button"
+                              role="tab" aria-controls="Step" aria-selected="false">STEP</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#CEFR" type="button"
+                              role="tab" aria-controls="CEFR" aria-selected="false">CEFR</button>
+                          </li>
+                        </ul>
+                        <div v-if="profilePayload.tookEnglishTest" class="tab-content" id="myTabContent">
+                          <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
+                            aria-labelledby="home-tab">
+                            <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in IELTSDegress"
+                              :key="index" @click="selectIELTSDegree(obj.degree)"
+                              :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.IELTSDegree }">{{
+                                obj.degree }}</button>
+                          </div>
+                          <div class="tab-pane fade p-3" id="TOFEL" role="tabpanel">
+                            <input type="range" class="form-range" min="0" max="120"
+                              v-model="profilePayload.EnglishStandard.TOFELDegree">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOFELDegree }}</h6>
+                          </div>
+                          <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
+                            <input type="range" class="form-range" min="0" max="990"
+                              v-model="profilePayload.EnglishStandard.TOEICDegree">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEICDegree }}</h6>
+                          </div>
+                          <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
+                            <input type="range" class="form-range" min="0" max="160"
+                              v-model="profilePayload.EnglishStandard.DUOLINGODegree">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.DUOLINGODegree }}</h6>
+                          </div>
+                          <div class="tab-pane fade p-3" id="Step" role="tabpanel">
+                            <input type="range" class="form-range" min="0" max="100"
+                              v-model="profilePayload.EnglishStandard.stepDegree">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.stepDegree }}</h6>
+                          </div>
+                          <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
+                            <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in CEFRDegrees"
+                              :key="index" @click="selectCEFRDegree(obj.degree)"
+                              :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.CEFRDegree }">{{
+                                obj.degree }}</button>
+                          </div>
+                        </div>
+                        <div v-if="profilePayload.tookEnglishTest">
+                          <button type="button" class="btn btn-primary" @click="resetEnglishStandard()">
+                            <span class="word">إعادة القيم <i class="bi bi-arrow-counterclockwise ms-1"></i></span>
                           </button>
                         </div>
                       </div>
-                    </form>
-                  </div>
-                </li>
-  
-                <!-- Nav Item - Alerts -->
-                <li class="nav-item dropdown no-arrow mx-1">
-                  <!-- Dropdown - Alerts -->
-                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header">
-                      Alerts Center
-                    </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="mr-3">
-                        <div class="icon-circle bg-primary">
-                          <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                    <div class="brain-test mb-4">
+                      <!-- Checkbox to ask if the user took the Brain test -->
+                      <div class="form-check mb-4">
+                        <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
+                          v-model="profilePayload.tookBrainTest" />
+                        <label class="form-label" for="englishTestCheckbox">
+                          هل سبق لك واخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي, مقياس موهبة) (SAAT, GAT,
+                          ACT, SAT)؟
+                        </label>
+                      </div>
+                      <ul v-if="profilePayload.tookBrainTest" class="nav nav-tabs mt-2" id="otherMyTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat" id="Sat-tab"
+                            type="button" role="tab" aria-controls="Sat" aria-selected="true">SAT</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat" id="Qudrat-tab"
+                            type="button" role="tab" aria-controls="Qudrat" aria-selected="false">قدرات</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#GAT" id="GAT-tab" type="button"
+                            role="tab" aria-controls="GAT" aria-selected="false">GAT</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act" id="act-tab" type="button"
+                            role="tab" aria-controls="act" aria-selected="false">ACT</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent" id="Talent-tab"
+                            type="button" role="tab" aria-controls="Talent" aria-selected="false">مقياس موهبة</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#AchievementTest"
+                            id="AchievementTest-tab" type="button" role="tab" aria-controls="AchievementTest"
+                            aria-selected="false">التحصيل المعرفي</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#SAAT" id="SAAT-tab"
+                            type="button" role="tab" aria-controls="SAAT" aria-selected="false">SAAT</button>
+                        </li>
+                      </ul>
+                      <div v-if="profilePayload.tookBrainTest" class="tab-content" id="myOtherTabContent">
+                        <div class="tab-pane fade show active p-3" id="Sat" role="tabpanel">
+                          <input type="range" class="form-range" min="0" max="1600"
+                            v-model="profilePayload.BrainStandard.Sat">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.Sat }}</h6>
+                        </div>
+                        <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
+                          <input type="range" class="form-range" min="0" max="100"
+                            v-model="profilePayload.BrainStandard.Qudrat">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.Qudrat }}</h6>
+                        </div>
+                        <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
+                          <input type="range" class="form-range" min="0" max="100"
+                            v-model="profilePayload.BrainStandard.GAT">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.GAT }}</h6>
+                        </div>
+                        <div class="tab-pane fade p-3" id="act" role="tabpanel">
+                          <input type="range" class="form-range" min="1" max="36"
+                            v-model="profilePayload.BrainStandard.act">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.act }}</h6>
+                        </div>
+                        <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
+                          <input type="range" class="form-range" min="0" max="2000"
+                            v-model="profilePayload.BrainStandard.Talent">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.Talent }}</h6>
+                        </div>
+                        <div class="tab-pane fade p-3" id="AchievementTest" role="tabpanel">
+                          <input type="range" class="form-range" min="0" max="100"
+                            v-model="profilePayload.BrainStandard.AchievementTest">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.AchievementTest }}</h6>
+                        </div>
+                        <div class="tab-pane fade p-3" id="SAAT" role="tabpanel">
+                          <input type="range" class="form-range" min="0" max="100"
+                            v-model="profilePayload.BrainStandard.SAAT">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.SAAT }}</h6>
                         </div>
                       </div>
-                      <div>
-                        <div class="small text-gray-500">December 12, 2019</div>
-                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                      <div v-if="profilePayload.tookBrainTest">
+                        <button type="button" class="btn btn-primary" @click="resetBrainStandard()">
+                          <span class="word">إعادة القيم <i class="bi bi-arrow-counterclockwise ms-1"></i></span>
+                          <!-- <span class="material-symbols-outlined align-middle ms-1">
+                                                    check
+                                                </span> -->
+                        </button>
                       </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="mr-3">
-                        <div class="icon-circle bg-success">
-                          <i class="fas fa-donate text-white"></i>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="small text-gray-500">December 7, 2019</div>
-                        $290.29 has been deposited into your account!
-                      </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="mr-3">
-                        <div class="icon-circle bg-warning">
-                          <i class="fas fa-exclamation-triangle text-white"></i>
-                        </div>
-                      </div>
-                      <div>
-                        <div class="small text-gray-500">December 2, 2019</div>
-                        Spending Alert: We've noticed unusually high spending for your account.
-                      </div>
-                    </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                    </div>
+                    <hr>
+                    <div>
+                      <button type="button" class="btn btn-primary ms-2" @click="editProfile()"
+                        >
+                        <span>الإرسال <i class="bi bi-send"></i></span>
+                      </button>
+                    </div>
                   </div>
-                </li>
-  
-                <!-- Nav Item - Messages -->
-                <li class="nav-item dropdown no-arrow mx-1">
-                  <a class="nav-link dropdown-toggle" @click="onLogout()" id="messagesDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="bi bi-box-arrow-right"></i>
-                  </a>
-                  <!-- Dropdown - Messages -->
-                  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                    aria-labelledby="messagesDropdown">
-                    <h6 class="dropdown-header">
-                      Message Center
-                    </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
-                        <div class="status-indicator bg-success"></div>
-                      </div>
-                      <div class="font-weight-bold">
-                        <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                          problem I've been having.</div>
-                        <div class="small text-gray-500">Emily Fowler · 58m</div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
-                        <div class="status-indicator"></div>
-                      </div>
-                      <div>
-                        <div class="text-truncate">I have the photos that you ordered last month, how
-                          would you like them sent to you?</div>
-                        <div class="small text-gray-500">Jae Chun · 1d</div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
-                        <div class="status-indicator bg-warning"></div>
-                      </div>
-                      <div>
-                        <div class="text-truncate">Last month's report looks great, I am very happy with
-                          the progress so far, keep up the good work!</div>
-                        <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                      <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-                        <div class="status-indicator bg-success"></div>
-                      </div>
-                      <div>
-                        <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                          told me that people say this to all dogs, even if they aren't good...</div>
-                        <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                      </div>
-                    </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                  </div>
-                </li>
-  
-                <div class="topbar-divider d-none d-sm-block"></div>
-  
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
-                  <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name }}</span>
-                    <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
-                  </a>
-                  <!-- Dropdown - User Information -->
-                  <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="#">
-                      <i class="fas fa-user fa-sm fa-fw ml-2 text-gray-400"></i>
-                      Profile
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <i class="fas fa-cogs fa-sm fa-fw ml-2 text-gray-400"></i>
-                      Settings
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      <i class="fas fa-list fa-sm fa-fw ml-2 text-gray-400"></i>
-                      Activity Log
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                      <i class="fas fa-sign-out-alt fa-sm fa-fw ml-2 text-gray-400"></i>
-                      Logout
-                    </a>
-                  </div>
-                </li>
-  
-              </ul>
-  
-              
-              <!-- Sidebar Toggle (Topbar) -->
-              <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                <i class="bi bi-bar-chart-steps"></i>
-              </button>
-  
-            </nav>
-            <!-- End of Topbar -->
-  
-            <!-- Begin Page Content -->
-            <div class="settings container-fluid py-4">
-            <div class="container">
-                <div class="breadcrumb-auth">
-                    <h3 class="fw-bold">إعدادات الحساب</h3>
-                    <p>صفحة إعدادات الحساب تتيح لك تفعيل الحساب وتأمينه من خلال تغيير كلمة المرور القديمة إلى كلمة مرور جديدة، بالإضافة إلى إمكانية تعديل أو حذف البيانات الشخصية بكل سهولة. تضمن هذه الصفحة التحكم الكامل بمعلوماتك الشخصية وتعزيز أمان حسابك.</p>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="p-3 bg-white shadow">
-                                <h5 class="fw-bold">تفعيل الحساب</h5>
-                                <p class="mb-3">برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
-                                    الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الكود مرة
-                                    أخرى</p>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="text" placeholder="برجاء كتابة الكود"
-                                        aria-label="account-activation" v-model="codePayload.code">
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary" @click="submitCode()"
-                                        :disabled="user && user.is_verified">
-                                        <span>تفعيل <i class="bi bi-arrow-clockwise"></i></span>
-                                    </button>
-                                    <button type="button" class="btn btn-primary ms-2" @click="resendCode()"
-                                        :disabled="user && user.is_verified">
-                                        <span>الإرسال <i class="bi bi-send"></i></span>
-                                    </button>
-                                </div>
-                        </div>
+                <div class="col-12 mt-4">
+                  <div class="p-3 bg-white shadow">
+                    <h5 class="fw-bold">تفعيل الحساب</h5>
+                    <p class="mb-4">برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
+                      الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الكود مرة
+                      أخرى</p>
+                    <div class="mb-4">
+                      <input class="form-control form-control-lg" type="text" placeholder="برجاء كتابة الكود"
+                        aria-label="account-activation" v-model="codePayload.code">
                     </div>
-                    <div class="col-12 mt-4">
-                        <div class="p-3 bg-white shadow">
-                                <h5 class="fw-bold">تأمين الحساب</h5>
-                                <p class="mb-3">قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد المستخدمين
-                                </p>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="password"
-                                        placeholder="كلمة السر القديمة" aria-label="account-current_password"
-                                        v-model="passwordPayload.current_password">
-                                </div>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="password"
-                                        placeholder="كلمة السر الجديدة" aria-label="account-new_password"
-                                        v-model="passwordPayload.new_password">
-                                </div>
-                                <div class="mb-3">
-                                    <input class="form-control form-control-lg" type="password"
-                                        placeholder="تأكيد كلمة السر الجديدة" aria-label="account-new_password_confirmation"
-                                        v-model="passwordPayload.new_password_confirmation">
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary" @click="changePassword()">
-                                        <span>تغيير <i class="bi bi-arrow-clockwise"></i></span>
-                                    </button>
-                                </div>
-                        </div>
+                    <div>
+                      <button type="button" class="btn btn-primary" @click="submitCode()"
+                        :disabled="user && user.is_verified">
+                        <span>تفعيل <i class="bi bi-arrow-clockwise"></i></span>
+                      </button>
+                      <button type="button" class="btn btn-primary ms-2" @click="resendCode()"
+                        :disabled="user && user.is_verified">
+                        <span>الإرسال <i class="bi bi-send"></i></span>
+                      </button>
                     </div>
-                    <div class="col-12 mt-4">
-                        <div class="p-3 bg-white shadow">
-                            <h5 class="fw-bold">حذف الحساب</h5>
-                                <p class="mb-3">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر وتمهل قبل
-                                    حذف الحساب</p>
-                                <div>
-                                    <button type="button" class="btn btn-danger" @click="deleteAccount()">
-                                        <span>حذف <i class="bi bi-trash"></i></span>
-                                    </button>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-12 mt-4">
-                        <div class="p-3 bg-white shadow">
-                                <h5 class="mb-3">تغيير بياناتك الشخصية</h5>
-                                <div class="profile-pic-wrapper mb-3">
-                                    <div class="pic-holder">
-                                        <img id="profilePic" class="pic" :src="user.avatar" v-if="user && user.avatar">
-                                        <input class="uploadProfileInput" type="file" name="profile_pic"
-                                            id="newProfilePhoto" accept="image/*" style="opacity: 0;"
-                                            @change="onFileChange" />
-                                        <label for="newProfilePhoto" class="upload-file-block">
-                                            <div class="text-center">
-                                                <div class="mb-2">
-                                                    <i class="fa fa-camera fa-2x"></i>
-                                                </div>
-                                                <div class="text-uppercase">
-                                                    تحديث <br /> الصورة الشخصية
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="first_name" class="form-label">الاسم الأول</label>
-                                        <input class="form-control form-control-lg" type="text"
-                                            v-model="profilePayload.first_name">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="last_name" class="form-label">الاسم الأخير</label>
-                                        <input class="form-control form-control-lg" type="text"
-                                            v-model="profilePayload.last_name">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="email" class="form-label">البريد الإلكتروني</label>
-                                        <input class="form-control form-control-lg" type="text" 
-                                        v-model="profilePayload.email">
-                                    </div>
-                                    <div class="col-md-6 mt-3 mt-md-0">
-                                        <label for="phone" class="form-label">رقم الهاتف</label>
-                                        <input class="form-control form-control-lg" type="text" 
-                                        v-model="profilePayload.phone">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6 mt-3 mt-md-0">
-                                        <label for="dOB" class="form-label">تاريخ الميلاد</label>
-                                        <input class="form-control form-control-lg text-start" type="date"
-                                        v-model="profilePayload.DOB">
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label for="applicantNat" class="form-label">الجنسية</label>
-                                        <select class="form-select form-select-lg" v-model="profilePayload.applicantNat">
-                                            <option v-for="(val, index) in helperObj.applicantNats" :key="index" :value="val">{{ val }}</option>
-                                        </select>   
-                                    </div>
-                                    <div class="col-md-6 mt-3 mt-md-0">
-                                        <label for="applicantEdu" class="form-label">المرحلة الدراسية</label>
-                                    <select class="form-select form-select-lg" v-model="profilePayload.applicantEdu">
-                                        <option v-for="(val, index) in helperObj.applicantEdus" :key="index" :value="val">{{ val }}</option>
-                                    </select>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">تحديد مستوى الإنجليزية</label>
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#IELTS"
-                                                id="IELTS-tab" type="button" role="tab" aria-controls="home"
-                                                aria-selected="true">IELTS</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOFEL"
-                                                id="TOFEL-tab" type="button" role="tab" aria-controls="TOFEL"
-                                                aria-selected="false">TOFEL</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOEIC"
-                                                type="button" role="tab" aria-controls="TOEIC"
-                                                aria-selected="false">TOEIC</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#DUOLINGO"
-                                                type="button" role="tab" aria-controls="DUOLINGO"
-                                                aria-selected="false">DUOLINGO</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step"
-                                                type="button" role="tab" aria-controls="Step"
-                                                aria-selected="false">STEP</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#CEFR"
-                                                type="button" role="tab" aria-controls="CEFR"
-                                                aria-selected="false">CEFR</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
-                                            aria-labelledby="home-tab">
-                                            <button type="button" class="btn btn-degree m-2"
-                                                v-for="(obj, index) in IELTSDegress" :key="index"
-                                                @click="selectIELTSDegree(obj.degree)"
-                                                :class="{ 'btn-store': obj.degree == profilePayload.EnglishStandard.IELTSDegree }">{{
-                                                    obj.degree }}</button>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="TOFEL" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="120"
-                                                v-model="profilePayload.EnglishStandard.TOFELDegree">
-                                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOFELDegree }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="990"
-                                                v-model="profilePayload.EnglishStandard.TOEICDegree">
-                                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEICDegree }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="160"
-                                                v-model="profilePayload.EnglishStandard.DUOLINGODegree">
-                                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.DUOLINGODegree }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="Step" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="100"
-                                                v-model="profilePayload.EnglishStandard.stepDegree">
-                                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.stepDegree }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
-                                            <button type="button" class="btn btn-degree m-2"
-                                                v-for="(obj, index) in CEFRDegrees" :key="index"
-                                                @click="selectCEFRDegree(obj.degree)"
-                                                :class="{ 'btn-store': obj.degree == profilePayload.EnglishStandard.CEFRDegree }">{{
-                                                    obj.degree }}</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">تحديد مستوى القدرات العقلية</label>
-                                    <ul class="nav nav-tabs" id="otherMyTab" role="tablist">
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat"
-                                                id="Sat-tab" type="button" role="tab" aria-controls="Sat"
-                                                aria-selected="true">SAT</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat"
-                                                id="Qudrat-tab" type="button" role="tab" aria-controls="Qudrat"
-                                                aria-selected="false">قدرات</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#GAT" id="GAT-tab"
-                                                type="button" role="tab" aria-controls="GAT"
-                                                aria-selected="false">GAT</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act" id="act-tab"
-                                                type="button" role="tab" aria-controls="act"
-                                                aria-selected="false">ACT</button>
-                                        </li>
-                                        <li class="nav-item" role="presentation">
-                                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent"
-                                                id="Talent-tab" type="button" role="tab" aria-controls="Talent"
-                                                aria-selected="false">Talent</button>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myOtherTabContent">
-                                        <div class="tab-pane fade show active p-3" id="Sat" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="1600"
-                                                v-model="profilePayload.BrainStandard.Sat">
-                                            <h6 class="ms-2">{{ profilePayload.BrainStandard.Sat }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="100"
-                                                v-model="profilePayload.BrainStandard.Qudrat">
-                                            <h6 class="ms-2">{{ profilePayload.BrainStandard.Qudrat }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="100"
-                                                v-model="profilePayload.BrainStandard.GAT">
-                                            <h6 class="ms-2">{{ profilePayload.BrainStandard.GAT }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="act" role="tabpanel">
-                                            <input type="range" class="form-range" min="1" max="36"
-                                                v-model="profilePayload.BrainStandard.act">
-                                            <h6 class="ms-2">{{ profilePayload.BrainStandard.act }}</h6>
-                                        </div>
-                                        <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
-                                            <input type="range" class="form-range" min="0" max="2000"
-                                                v-model="profilePayload.BrainStandard.Talent">
-                                            <h6 class="ms-2">{{ profilePayload.BrainStandard.Talent }}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary" @click="editProfile()">
-                                        <span v-if="!loading_status" class="fs-5 align-middle"><i
-                                                class="ph ph-recycle"></i></span>
-                                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
-                                        <span class="ms-2">تحديث</span>
-                                    </button>
-                                </div>
-                        </div>
-                    </div> -->
+                  </div>
                 </div>
-            </div>
-        </div>
-            <!-- /.container-fluid -->
-  
-          </div>
-          <!-- End of Main Content -->
-  
-          <!-- Footer -->
-          <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-              <div class="copyright text-center my-auto">
-                <span>جميع الحقوق محفوظة &copy; لدى خطط {{  new Date().getFullYear() }}</span>
+                <div class="col-12 mt-4">
+                  <div class="p-3 bg-white shadow">
+                    <h5 class="fw-bold">تأمين الحساب</h5>
+                    <p class="mb-4">قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد
+                      المستخدمين
+                    </p>
+                    <div class="mb-4">
+                      <input class="form-control form-control-lg" type="password" placeholder="كلمة السر القديمة"
+                        aria-label="account-current_password" v-model="passwordPayload.current_password">
+                    </div>
+                    <div class="mb-4">
+                      <input class="form-control form-control-lg" type="password" placeholder="كلمة السر الجديدة"
+                        aria-label="account-new_password" v-model="passwordPayload.new_password">
+                    </div>
+                    <div class="mb-4">
+                      <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر الجديدة"
+                        aria-label="account-new_password_confirmation"
+                        v-model="passwordPayload.new_password_confirmation">
+                    </div>
+                    <div>
+                      <button type="button" class="btn btn-primary" @click="changePassword()">
+                        <span>تغيير <i class="bi bi-arrow-clockwise"></i></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mt-4">
+                  <div class="p-3 bg-white shadow">
+                    <h5 class="fw-bold">حذف الحساب</h5>
+                    <p class="mb-4">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر
+                      وتمهل قبل
+                      حذف الحساب</p>
+                    <div>
+                      <button type="button" class="btn btn-danger" @click="deleteAccount()">
+                        <span>حذف <i class="bi bi-trash"></i></span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </footer>
-          <!-- End of Footer -->
-  
+          </div>
+          <!-- /.container-fluid -->
+
         </div>
-        <!-- End of Content Wrapper -->
-  
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>جميع الحقوق محفوظة &copy; لدى خطط {{ new Date().getFullYear() }}</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+
       </div>
-      <!-- End of Page Wrapper -->
-  
-      <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="bi bi-arrow-up-circle"></i>
-      </a>
-  
-      <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primary" href="login.html">Logout</a>
-            </div>
+      <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="bi bi-arrow-up-circle"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
           </div>
         </div>
       </div>
     </div>
-  </template>
+  </div>
+</template>
 
 
 <script>
@@ -528,23 +604,56 @@
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 export default {
-    name: 'Settings',
-    components: {
-    },
-    setup() {
-        // Calling, Declarations, Data
-        const store = useStore()
-        // const loading_status = computed(() => store.state.Collection.loading_status);
-        const user = computed(() => store.state.Auth.user);
-        const isSticky = ref(false);
-        const show = ref(false);
-        store.dispatch("Auth/GetProfile")
-        const selectItems = ref([{ text: 'مسابقات' }, { text: 'مهارات' }, { text: 'ذكاء' }]);
-        store.dispatch("Collection/GetHelper")
-        const helperObj = computed(() => store.state.Collection.helperObj);
-        const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' },  { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+  name: 'Settings',
+  components: {
+  },
+  setup() {
+    // Calling, Declarations, Data
+    const store = useStore()
+    // const loading_status = computed(() => store.state.Collection.loading_status);
+    const user = computed(() => store.state.Auth.user);
+    const isSticky = ref(false);
+    const show = ref(false);
+    store.dispatch("Auth/GetProfile")
+    const selectItems = ref([{ text: 'مسابقات' }, { text: 'مهارات' }, { text: 'ذكاء' }]);
+    store.dispatch("Collection/GetHelper")
+    const helperObj = computed(() => store.state.Collection.helperObj);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
 
-        
+
+
+    const profilePayload = ref({
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone: "",
+      applicantGender: "",
+      applicantEdu: "",
+      DOB: "",
+      saudiresiding: true,
+      saudiCity: "",
+      tookEnglishTest: false,
+      tookBrainTest: false,
+      EnglishStandard: {
+        IELTSDegree: '',
+        TOFELDegree: '',
+        TOEICDegree: '',
+        DUOLINGODegree: '',
+        stepDegree: '',
+        CEFRDegree: '',
+      },
+      BrainStandard: {
+        Sat: '',
+        Qudrat: '',
+        GAT: '',
+        act: '',
+        Talent: '',
+        AchievementTest: '',
+        SAAT: ''
+      },
+      interests: [],
+      Subinterests: [],
+    });
     onMounted(() => {
       // Toggle the side navigation
       $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
@@ -597,209 +706,315 @@ export default {
         }, 1000, 'easeInOutExpo');
         e.preventDefault();
       });
-
+      profilePayload.value = user.value;
+      console.log(profilePayload.value)
 
     });
 
-        const profilePayload = ref({
-            first_name: "",
-            last_name: "",
-            email: "",
-            phone: "",
-            applicantGender: "",
-            applicantAge: "",
-            applicantEdu: "",
-            DOB: "",
-            saudiresiding: true,
-            saudiCity: "الرياض",
-            tookEnglishTest: false,
-            tookBrainTest: false,
-            EnglishStandard: {
-                IELTSDegree: '',
-                TOFELDegree: '',
-                TOEICDegree: '',
-                DUOLINGODegree: '',
-                stepDegree: '',
-                CEFRDegree: '',
-            },
-            BrainStandard: {
-                Sat: '',
-                Qudrat: '',
-                GAT: '',
-                act: '',
-                Talent: '',
-                AchievementTest: '',
-                SAAT: ''
-            },
-            interests: [],
-            Subinterests: [],
-        });
-        profilePayload.value = user.value;
-        const IELTSDegress = ref([
-            {
-                degree: "0"
-            },
-            {
-                degree: "1"
-            },
-            {
-                degree: "1.5"
-            },
-            {
-                degree: "2"
-            },
-            {
-                degree: "2.5"
-            },
-            {
-                degree: "3"
-            },
-            {
-                degree: "3.5"
-            },
-            {
-                degree: "4"
-            },
-            {
-                degree: "4.5"
-            },
-            {
-                degree: "5"
-            },
-            {
-                degree: "5.5"
-            },
-            {
-                degree: "6"
-            },
-            {
-                degree: "6.5"
-            },
-            {
-                degree: "7"
-            },
-            {
-                degree: "7.5"
-            },
-            {
-                degree: "8"
-            },
-            {
-                degree: "8.5"
-            },
-            {
-                degree: "9"
-            },
+    const saudiCities = ref([
+      "الرياض",
+      "مكة المكرمة",
+      "جدة",
+      "المدينة المنورة",
+      "الدمام",
+      "الأحساء",
+      "القطيف",
+      "الخبر",
+      "الجبيل",
+      "الطائف",
+      "الدرعية",
+      "بريدة",
+      "عنيزة",
+      "الرس",
+      "الخرج",
+      "الدوادمي",
+      "المجمعة",
+      "شقراء",
+      "الأفلاج",
+      "حوطة بني تميم",
+      "الحريق",
+      "المزاحمية",
+      "ثادق",
+      "حريملاء",
+      "الدلم",
+      "القنفذة",
+      "رابغ",
+      "تربة",
+      "الخرمة",
+      "ينبع",
+      "العلا",
+      "البكيرية",
+      "البدائع",
+      "الخفجي",
+      "رأس تنورة",
+      "بقيق",
+      "أبها",
+      "خميس مشيط",
+      "تبوك",
+      "حائل",
+      "عرعر",
+      "جازان",
+      "الريث",
+      "ضمد",
+      "نجران",
+      "الباحة",
+      "بلجرشي",
+      "سكاكا",
+      "دومة الجندل"
+    ]);
 
 
-        ]);
-        const CEFRDegrees = ref([
-            {
-                degree: "A1"
-            },
-            {
-                degree: "A2"
-            },
-            {
-                degree: "B1"
-            },
-            {
-                degree: "B2"
-            },
-            {
-                degree: "C1"
-            },
-            {
-                degree: "C2"
-            },
-        ]);
-        const passwordPayload = ref({
-            current_password: "",
-            new_password: "",
-            new_password_confirmation: ""
-        })
-        const editProfile = () => {
-            store.dispatch("Auth/editProfile", profilePayload.value)
-        }
-        const codePayload = ref({
-            code: "",
-        })
 
-        const Logout = () => {
-            store.dispatch("Auth/Logout")
-        }
-        const submitCode = () => {
-            store.dispatch("Auth/submitCode", codePayload.value)
-        }
-        const resendCode = () => {
-            store.dispatch("Auth/resendCode", {})
-        }
-        const deleteAccount = () => {
-            store.dispatch("Auth/deleteAccount", {})
-        }
-        const changePassword = () => {
-            store.dispatch("Auth/changePassword", passwordPayload.value)
-        }
-        const onFileChange = async (e) => {
-            let formData = new FormData();
-            formData.append("avatar", e.target.files[0]);
-            store.dispatch("Auth/changeAvatar", formData);
-        }
-        const button_show_state = ref(false);
-        const onLogout = () => {
+    const IELTSDegress = ref([
+      {
+        degree: "0"
+      },
+      {
+        degree: "1"
+      },
+      {
+        degree: "1.5"
+      },
+      {
+        degree: "2"
+      },
+      {
+        degree: "2.5"
+      },
+      {
+        degree: "3"
+      },
+      {
+        degree: "3.5"
+      },
+      {
+        degree: "4"
+      },
+      {
+        degree: "4.5"
+      },
+      {
+        degree: "5"
+      },
+      {
+        degree: "5.5"
+      },
+      {
+        degree: "6"
+      },
+      {
+        degree: "6.5"
+      },
+      {
+        degree: "7"
+      },
+      {
+        degree: "7.5"
+      },
+      {
+        degree: "8"
+      },
+      {
+        degree: "8.5"
+      },
+      {
+        degree: "9"
+      },
+
+
+    ]);
+    const CEFRDegrees = ref([
+      {
+        degree: "A1"
+      },
+      {
+        degree: "A2"
+      },
+      {
+        degree: "B1"
+      },
+      {
+        degree: "B2"
+      },
+      {
+        degree: "C1"
+      },
+      {
+        degree: "C2"
+      },
+    ]);
+    const passwordPayload = ref({
+      current_password: "",
+      new_password: "",
+      new_password_confirmation: ""
+    })
+    const editProfile = () => {
+      store.dispatch("Auth/editProfile", profilePayload.value)
+    }
+    const codePayload = ref({
+      code: "",
+    })
+
+    const Logout = () => {
+      store.dispatch("Auth/Logout")
+    }
+    const submitCode = () => {
+      store.dispatch("Auth/submitCode", codePayload.value)
+    }
+    const resendCode = () => {
+      store.dispatch("Auth/resendCode", {})
+    }
+    const deleteAccount = () => {
+      store.dispatch("Auth/deleteAccount", {})
+    }
+    const changePassword = () => {
+      store.dispatch("Auth/changePassword", passwordPayload.value)
+    }
+    const onFileChange = async (e) => {
+      let formData = new FormData();
+      formData.append("avatar", e.target.files[0]);
+      store.dispatch("Auth/changeAvatar", formData);
+    }
+    const button_show_state = ref(false);
+    const onLogout = () => {
       store.dispatch("Auth/Logout", { data: null })
     }
 
-        onMounted(() => {
-            const that = this;
-            window.addEventListener("scroll", () => {
-                let scrollPos = window.scrollY;
-                if (scrollPos >= 100) {
-                    isSticky.value = true;
-                } else {
-                    isSticky.value = false;
-                }
-            });
-        });
+    const toggleSaudiNationality = (value) => {
+      if (value === true) {
+        profilePayload.value.saudinationality = true;
+      } else {
+        profilePayload.value.saudinationality = false;
+      }
+    };
 
-        // Methods
-     
-      
-       
+    onMounted(() => {
+      const that = this;
+      window.addEventListener("scroll", () => {
+        let scrollPos = window.scrollY;
+        if (scrollPos >= 100) {
+          isSticky.value = true;
+        } else {
+          isSticky.value = false;
+        }
+      });
+    });
+
+    // Methods
+    const selectInterest = (interest) => {
+      if (profilePayload.value.interests.includes(interest)) {
+        profilePayload.value.interests = profilePayload.value.interests.filter((item) => item !== interest);
+      } else {
+        profilePayload.value.interests.push(interest);
+      }
+    };
+    const selectSubInterest = (interest) => {
+      if (profilePayload.value.Subinterests.includes(interest)) {
+        profilePayload.value.Subinterests = profilePayload.value.Subinterests.filter((item) => item !== interest);
+      } else {
+        profilePayload.value.Subinterests.push(interest);
+      }
+    };
+
+    const resetEnglishStandard = () => {
+      profilePayload.value.EnglishStandard = {
+        IELTSDegree: '',
+        TOFELDegree: '',
+        TOEICDegree: '',
+        DUOLINGODegree: '',
+        stepDegree: '',
+        CEFRDegree: '',
+      }
+    }
+    const resetBrainStandard = () => {
+      profilePayload.value.BrainStandard = {
+        Sat: '',
+        Qudrat: '',
+        GAT: '',
+        act: '',
+        Talent: '',
+        AchievementTest: '',
+        SAAT: ''
+      }
+    }
+
+
+
 
     const selectIELTSDegree = (degree) => {
-             profilePayload.value.EnglishStandard.IELTSDegree = degree;
-        }
-        const selectCEFRDegree = (degree) => {
-            profilePayload.value.EnglishStandard.CEFRDegree = degree;
-        }
-
-        // Return
-        return {
-            helperObj,
-            isSticky,
-            show,
-            button_show_state,
-            Logout,
-            codePayload,
-            submitCode,
-            resendCode,
-            deleteAccount,
-            passwordPayload,
-            changePassword,
-            profilePayload,
-            editProfile,
-            onFileChange,
-            selectItems,
-            IELTSDegress,
-            CEFRDegrees,
-            selectIELTSDegree,
-            selectCEFRDegree,
-            navLinks,
-      onLogout,
-      user
-
-        }
+      profilePayload.value.EnglishStandard.IELTSDegree = degree;
     }
+    const selectCEFRDegree = (degree) => {
+      profilePayload.value.EnglishStandard.CEFRDegree = degree;
+    }
+
+    // Return
+    return {
+      helperObj,
+      isSticky,
+      show,
+      button_show_state,
+      Logout,
+      codePayload,
+      submitCode,
+      resendCode,
+      deleteAccount,
+      passwordPayload,
+      changePassword,
+      profilePayload,
+      editProfile,
+      onFileChange,
+      selectItems,
+      IELTSDegress,
+      CEFRDegrees,
+      selectIELTSDegree,
+      selectCEFRDegree,
+      navLinks,
+      onLogout,
+      user,
+      saudiCities,
+      toggleSaudiNationality,
+      selectInterest,
+      selectSubInterest,
+      resetEnglishStandard,
+      resetBrainStandard
+    }
+  }
 }
 </script>
+
+<style scoped>
+.btn-degree {
+  height: 40px;
+  width: 40px;
+  background-color: #DEF2F1;
+  border: 1px solid #3aafa9;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-interest {
+  background-color: #DEF2F1;
+  border: 1px solid #3aafa9;
+  transition: all 0.3s ease-in-out;
+}
+
+
+.btn-degree:hover {
+  background-color: #3B7A7B;
+  color: #FFF;
+}
+
+.btn-selected {
+  background-color: #3B7A7B;
+  color: #FFF;
+}
+
+.nav-tabs .nav-link {
+  color: #2B7A7B;
+}
+
+.nav-tabs .nav-link.active {
+  color: #2B7A7B;
+  font-weight: 600;
+}
+</style>

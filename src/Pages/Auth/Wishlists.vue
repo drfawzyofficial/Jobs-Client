@@ -206,6 +206,7 @@
                 إضافة أو إزالة أي عنصر بكل سهولة، وسيتم حفظ اختياراتك تلقائيًا لتكون متاحة لك في أي وقت تزور فيه
                 لوحة التحكم. تأكد من استعراض قائمتك بانتظام لضمان عدم تفويت أي فرصة أو عنصر مهم بالنسبة لك!</p>
             </div>
+            <h5 class="alert alert-info fw-bold mt-3">عدد المفضلات: {{ wishlistsCount  }}</h5>
             <div class="row" v-if="wishlists.length > 0">
               <div class="col-lg-3 col-md-4 col-6 mt-4" 
                 v-for="(wishlist, index) in wishlists" :key="index">
@@ -238,8 +239,8 @@
             <div v-else class="mt-4">
               <h5 class="alert alert-info">لا يوجد مفضلات</h5>
             </div>
-            <div class="mt-4 d-flex justify-content-center" v-if="wishlistsCount > 1">
-              <Paginate :page-count="wishlistsCount" :click-handler="clickCallback" :prev-text="'السابق'"
+            <div class="mt-4 d-flex justify-content-center" v-if="wishlistsPagesCount > 1">
+              <Paginate :page-count="wishlistsPagesCount" :click-handler="clickCallback" :prev-text="'السابق'"
                 :next-text="'التالي'" :container-class="'pagination'" :page-class="'page-item'">
               </Paginate>
             </div>
@@ -370,6 +371,7 @@ export default {
 
     let wishlistStorage = getWishlist();
     store.dispatch("Auth/WishlistsGet", { wishlists: wishlistStorage, page_no: 1 });
+    const wishlistsPagesCount = computed(() => store.state.Auth.wishlistsPagesCount);
     const wishlistsCount = computed(() => store.state.Auth.wishlistsCount);
     store.dispatch("Auth/GetProfile")
 
@@ -393,7 +395,7 @@ export default {
           }
 
         }
-        return false;
+        return true;
       } else {
         for (let key in chance.EnglishStandard) {
           if (chance.EnglishStandard[key]) return false;
@@ -414,7 +416,7 @@ export default {
           }
 
         }
-        return false;
+        return true;
       } else {
         for (let key in chance.BrainStandard) {
           if (chance.BrainStandard[key]) return false;
@@ -512,6 +514,7 @@ export default {
       getValidateChanceClass,
       navLinks,
       onLogout,
+      wishlistsPagesCount,
       wishlistsCount,
       user,
       clickCallback

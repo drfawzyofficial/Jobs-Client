@@ -80,9 +80,8 @@ export default {
         // Calling, Declarations, Data
         const store = useStore()
         const navLinks = ref(["الرئيسية", "المميزات", "الخدمات", "العملية", "الأسئلة الشائعة", "التواصل"]);
-        const statistics = computed(() => store.state.Auth.statistics);
-        console.log(statistics);
-        store.dispatch("Auth/GetStatistics")
+        const statistics = computed(() => store.state.Auth.helperStatistics);
+        store.dispatch("Auth/GetHelperStatistics")
         // return
         return {
             navLinks,

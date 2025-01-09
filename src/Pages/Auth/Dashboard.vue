@@ -210,19 +210,18 @@
             </div>
 
             <div class="row mt-4">
-
-              <!-- Earnings (Monthly) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
+              <h5 class="fw-bold mb-2">إحصائيات عامة</h5>
+              <div class="col-xl-3 col-6">
                 <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          عدد المسئولين</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.admins_count }}</div>
+                          جميع الفرص</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.general.totalChances }}</div>
                       </div>
                       <div class="col-auto">
-                        <i class="bi bi-people fs-5"></i>
+                        <i class="bi bi-briefcase fs-4"></i>
                       </div>
                     </div>
                   </div>
@@ -230,17 +229,17 @@
               </div>
 
               <!-- Earnings (Annual) Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
+              <div class="col-xl-3 col-6">
+                <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          عدد الطلاب</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.students_count }}</div>
+                           فرص حضوري</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.general.locatedChances }}</div>
                       </div>
                       <div class="col-auto">
-                        <i class="bi bi-people fs-4"></i>
+                        <i class="bi bi-briefcase fs-4"></i>
                       </div>
                     </div>
                   </div>
@@ -248,22 +247,22 @@
               </div>
 
               <!-- Tasks Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-info shadow h-100 py-2">
+              <div class="col-xl-3 col-6 mt-4 mt-xl-0">
+                <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">عدد الفرص
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1"> فرص عن بعد
                         </div>
                         <div class="row no-gutters align-items-center">
                           <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.chances_count }}
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.general.remoteChances }}
                             </div>
                           </div>
                         </div>
                       </div>
                       <div class="col-auto">
-                        <i class="bi bi-person-workspace fs-4"></i>
+                        <i class="bi bi-briefcase fs-4"></i>
                       </div>
                     </div>
                   </div>
@@ -271,17 +270,17 @@
               </div>
 
               <!-- Pending Requests Card Example -->
-              <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-warning shadow h-100 py-2">
+              <div class="col-xl-3 col-6 mt-4 mt-xl-0">
+                <div class="card border-left-primary shadow h-100 py-2">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                          عدد المفضلات</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ wishlists_count }}</div>
+                           فرص بشروط خاصة</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.general.specialConditionsChances }}</div>
                       </div>
                       <div class="col-auto">
-                        <i class="bi bi-heart fs-4"></i>
+                       <i class="bi bi-briefcase fs-4"></i>
                       </div>
                     </div>
                   </div>
@@ -289,54 +288,125 @@
               </div>
             </div>
 
-            <div class="row">
-              <div class="col-lg-6">
-                <!-- Basic Card Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">رسالة ترحيبية</h6>
-                  </div>
+            <div class="row mt-3">
+              <h5 class="fw-bold mb-2">إحصائيات مبنية على الوقت</h5>
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-lg-4 col-6">
+                <div class="card border-left-success shadow h-100 py-2">
                   <div class="card-body">
-                    أهلًا بك <strong>{{ user.first_name + " " + user.last_name }}</strong>. نتمنى لك تجربة مستخدم رائعة
-                    مع منصة خطط. جميع المعلومات الشخصية الخاصة بك محفوظة بسريعة تامة لدينا.
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <!-- Basic Card Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="text-primary fw-bold">فكرة موقع خطط</h6>
-                  </div>
-                  <div class="card-body">
-                    منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من تحقيق اهدافك عن طريق
-                    تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <!-- Basic Card Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">إيجاد الفرص</h6>
-                  </div>
-                  <div class="card-body">
-                    إيجاد الفرص هو الخطوة الأولى لتحقيق أحلامك وتطوير ذاتك. في عالمنا اليوم، تتوفر العديد من الفرص
-                    التعليمية والمهنية، لكن العثور على الفرصة المناسبة ستجده في موقعنا
-
+                    <div class="row no-gutters align-items-center">
+                      <div class="col ml-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                         الفرص المفتوحة</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.dateBased.openChances }}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="bi bi-calendar fs-4"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="col-lg-6">
-                <!-- Basic Card Example -->
-                <div class="card shadow mb-4">
-                  <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">الفرصة</h6>
-                  </div>
+              <!-- Earnings (Annual) Card Example -->
+              <div class="col-lg-4 col-6">
+                <div class="card border-left-success shadow h-100 py-2">
                   <div class="card-body">
-                    يتم عرض جميع الفرص بناءًا على المعلومات التي تقدمها إلينا عند التسجيل. وبناءًا على ذك نقوم بعرض
-                    الفرص ولكل فرصة تفاصيل خاصة يمكنك التسجيل فيها
+                    <div class="row no-gutters align-items-center">
+                      <div class="col ml-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                           الفرص لم تبدأ بعد</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{  statistics.dateBased.notStartedChances }}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="bi bi-calendar fs-4"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tasks Card Example -->
+              <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card border-left-success shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col ml-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">الفرص المغلقة
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                          <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.dateBased.closedChances }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="bi bi-calendar fs-4"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-3">
+              <h5 class="fw-bold mb-2">إحصائيات تخصك</h5>
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="col-lg-4 col-6">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col ml-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                          طلاب نفس جنسك</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.special.studentsByGender }}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="bi bi-calendar fs-4"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Earnings (Annual) Card Example -->
+              <div class="col-lg-4 col-6">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col ml-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                           طلاب نفسك مرحتلك التعليمية</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{  statistics.special.studentsByEducationLevel }}</div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="bi bi-calendar fs-4"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Tasks Card Example -->
+              <div class="col-lg-4 mt-4 mt-lg-0">
+                <div class="card border-left-info shadow h-100 py-2">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col ml-2">
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">طلاب نفسك إقامتك
+                        </div>
+                        <div class="row no-gutters align-items-center">
+                          <div class="col-auto">
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.special.studentsByAccommodation }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-auto">
+                        <i class="bi bi-calendar fs-4"></i>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -407,10 +477,7 @@ export default {
     const wishlist = JSON.parse(localStorage.getItem("wishlist"));
     const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
 
-    let wishlists_count;
-    if (!wishlist || wishlist.length === 0)
-      wishlists_count = 0;
-    else wishlists_count = wishlist.length;
+   
     store.dispatch("Auth/GetProfile")
     store.dispatch("Auth/GetStatistics")
     const onLogout = () => {
@@ -421,7 +488,6 @@ export default {
     return {
       loading_status,
       statistics,
-      wishlists_count,
       navLinks,
       onLogout,
       user

@@ -12,11 +12,13 @@ export const Auth = {
   state: {
     user: null,
     statistics: null,
+    helperStatistics: null,
     chances: [],
-    chance: { },
+    chance: {},
     chancesCount: 0,
     wishlists: [],
     wishlistsCount: 0,
+    wishlistsPagesCount: 0,
     reviews: []
   },
   actions: {
@@ -63,7 +65,7 @@ export const Auth = {
         const data = await Fetch("POST", "/student/contact/create", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
@@ -95,7 +97,7 @@ export const Auth = {
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تفعيل الحساب', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
           dispatch("Auth/GetProfile", {}, { root: true });
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
@@ -112,7 +114,7 @@ export const Auth = {
         const data = await Fetch("POST", "/student/code/resend", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'إرسال الرمز', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
@@ -123,18 +125,30 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
+    async IncrementChance({ dispatch, commit }, payload) {
+      try {
+        const data = await Fetch("POST", "/student/chance/increment", payload);
+        if (data.statusCode === 200) {
+          //
+        } else {
+          dispatch("Auth/Logout", {}, { root: true });
+        }
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
+      }
+    },
     async deleteAccount({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("Delete", "/student/delete", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'حذف الحساب', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-         setTimeout(() => {
-          localStorage.removeItem("token");
-          commit("unSetUser");
-          router.push("/")
-         }, 3000);
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+          setTimeout(() => {
+            localStorage.removeItem("token");
+            commit("unSetUser");
+            router.push("/")
+          }, 3000);
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
@@ -151,9 +165,9 @@ export const Auth = {
         const data = await Fetch("POST", "/student/password/change", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تغيير كلمة السر', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-        } else if(data.statusCode === 202) {
+        } else if (data.statusCode === 202) {
           window.Swal.fire({ title: 'خطأ!', text: data.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           var errors = ``;
@@ -170,31 +184,31 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
-     async ReviewsGet({ dispatch, commit }, payload) {
-          try {
-            dispatch("Collection/loading", true, { root: true });
-            console.log(payload);
-            const data = await Fetch("POST", `/student/reviews/get`, payload);
-            if (data.statusCode === 200) {
-              commit("reviewsGet", data.result);
-            } else if (data.statusCode === 401 || data.statusCode === 500 || data.statusCode === 404) {
-              dispatch("Auth/Logout", {}, { root: true });
-            } else {
-              window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
-            }
-            dispatch("Collection/loading", false, { root: true });
-          } catch (err) {
-            window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
-            dispatch("Collection/loading", false, { root: true });
-          }
-        },
+    async ReviewsGet({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        console.log(payload);
+        const data = await Fetch("POST", `/student/reviews/get`, payload);
+        if (data.statusCode === 200) {
+          commit("reviewsGet", data.result);
+        } else if (data.statusCode === 401 || data.statusCode === 500 || data.statusCode === 404) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
     async sendReview({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/review/send", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'إرسال التقييم', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-        } else if(data.statusCode === 401 || data.statusCode === 50 || data.statusCode === 404) {
+        } else if (data.statusCode === 401 || data.statusCode === 50 || data.statusCode === 404) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' });
@@ -210,7 +224,7 @@ export const Auth = {
         const data = await Fetch("POST", "/student/update-avatar", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تغيير الصورة الشخصية', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
-        }  else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' })
@@ -226,7 +240,7 @@ export const Auth = {
         if (data.statusCode === 200) {
           dispatch("Auth/GetProfile", {}, { root: true });
           window.Swal.fire({ title: 'تعديل البيانات الشخصية', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' });
-        } else if(data.statusCode === 401 || data.statusCode === 500) {
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           var errors = ``;
@@ -245,10 +259,24 @@ export const Auth = {
     },
     async GetStatistics({ dispatch, commit }, payload) {
       try {
-        const data = await Fetch("GET", "/admin/statistics/get");
+        const data = await Fetch("GET", "/student/statistics/get");
         if (data.statusCode === 200) {
           commit("setStatistics", data.result);
-        } else if (data.statusCode === 401) {
+        } else if (data.statusCode === 401 || data.statusCode === 404 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' })
+        }
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
+      }
+    },
+    async GetHelperStatistics({ dispatch, commit }, payload) {
+      try {
+        const data = await Fetch("GET", "/helper/statistics/get");
+        if (data.statusCode === 200) {
+          commit("setHelperStatistics", data.result);
+        } else if (data.statusCode === 401 || data.statusCode === 404 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
           window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم' })
@@ -261,7 +289,7 @@ export const Auth = {
       try {
         dispatch("Collection/loading", true, { root: true });
         console.log(payload)
-        const data = await Fetch("GET", `/student/chances/get/?page_no=${ payload.page_no}&chance_case=${ payload.chance_case }&edu_case=${ payload.edu_case }&interest_case=${ payload.interest_case}`);
+        const data = await Fetch("GET", `/student/chances/get/?page_no=${payload.page_no}&chance_case=${payload.chance_case}&edu_case=${payload.edu_case}&interest_case=${payload.interest_case}`);
         if (data.statusCode === 200) {
           commit("chancesGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
@@ -278,7 +306,7 @@ export const Auth = {
     async chanceGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("GET", `/student/chance/get?chance_id=${ payload.chance_id }`);
+        const data = await Fetch("GET", `/student/chance/get?chance_id=${payload.chance_id}`);
         if (data.statusCode === 200) {
           commit("chanceGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500 || data.statusCode === 404) {
@@ -305,8 +333,8 @@ export const Auth = {
 
         if (data.statusCode === 200) {
           commit("wishlistsGet", data.result);
-        } else if(data.statusCode == 400) {
-          commit("wishlistsGet", { wishlists: [ ]});
+        } else if (data.statusCode == 400) {
+          commit("wishlistsGet", { wishlists: [] });
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -336,7 +364,7 @@ export const Auth = {
         window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
         dispatch("Collection/loading", false, { root: true });
       }
-     
+
     },
   },
   mutations: {
@@ -352,10 +380,14 @@ export const Auth = {
     },
     wishlistsGet(state, data) {
       state.wishlists = data.wishlists;
+      state.wishlistsPagesCount = data.wishlistsPagesCount
       state.wishlistsCount = data.wishlistsCount;
     },
     setStatistics(state, statistics) {
       state.statistics = statistics;
+    },
+    setHelperStatistics(state, statistics) {
+      state.helperStatistics = statistics;
     },
     setUser(state, user) {
       state.user = user;

@@ -70,20 +70,20 @@
                                         </div> -->
                                         <!-- Checkbox to ask if the user took the English test -->
                                         <div class="mb-3 d-flex align-items-center">
-                                            <label class="form-check-label">
+                                            <label class="form-label">
                                                 هل أنتَ سعودي الجنسية؟
                                             </label>
                                             <div class="form-check ms-3">
                                                 <input type="radio" name="nationality" class="form-check-input" id="saudinationalityYes"
                                                     @change="toggleSaudiNationality(true)" :checked="signupPayload.saudinationality === true"/>
-                                                <label class="form-check-label" for="saudinationalityYes">
+                                                <label class="form-label" for="saudinationalityYes">
                                                 نعم
                                                 </label>
                                             </div>
                                             <div class="form-check ms-3">
                                                 <input type="radio" name="nationality" class="form-check-input" id="saudinationalityNo"
                                                     @change="toggleSaudiNationality(false)" :checked="signupPayload.saudinationality === false"  />
-                                                <label class="form-check-label" for="saudinationalityNo">
+                                                <label class="form-label" for="saudinationalityNo">
                                                 لأ
                                                 </label>
                                             </div>
@@ -129,7 +129,7 @@
                                             <div class="form-check mb-3">
                                                 <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                                                     v-model="signupPayload.tookEnglishTest" />
-                                                <label class="form-check-label" for="englishTestCheckbox">
+                                                <label class="form-label" for="englishTestCheckbox">
                                                     هل سبق لك واخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
                                                     (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOFEL)
                                                 </label>
@@ -221,7 +221,7 @@
                                         <div class="form-check mb-3">
                                             <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                                                 v-model="signupPayload.tookBrainTest" />
-                                            <label class="form-check-label" for="englishTestCheckbox">
+                                            <label class="form-label" for="englishTestCheckbox">
                                                 هل سبق لك واخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي, مقياس موهبة) (SAAT, GAT, ACT, SAT)؟
                                             </label>
                                         </div>
@@ -542,9 +542,6 @@ export default {
                 degree: "C2"
             },
         ]);
-        const interests = ref(["مسابقات", "برامج", "مهارات"])
-        const selectedInterests = ref([]);
-        const selectedSubInterests = ref([]);
 
         // Methods
         const onSignup = () => {
