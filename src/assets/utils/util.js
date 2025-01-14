@@ -25,10 +25,6 @@ export const FormDataMethod = (data) => {
       arVal = arVal === true ? 1 : 0
     }
     if (Array.isArray(arVal)) {
-      console.log('displaying arKey')
-      console.log(arKey)
-      console.log('displaying arval')
-      console.log(arVal)
 
       if (this.isFile(arVal[0])) {
         for (let z = 0; z < arVal.length; z++) {
@@ -66,7 +62,6 @@ export const FormDataMethod = (data) => {
     if (arVal === null) {
       continue
     }
-    console.log(arVal)
     formData.append(arKey, arVal)
   }
  return formData;

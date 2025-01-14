@@ -228,7 +228,7 @@
                           </option>
                         </select>
                       </div>
-                      <div class="col-lg-3 col-md-6 mt-3 mt-md-0">
+                      <div class="col-lg-3 col-md-6 mt-3 mt-lg-0">
                         <select class="form-select form-select-lg" v-model="filter.interest_case">
                           <option value="none">التصنيف الأساسي</option>
                           <option value="more_relevant">الأكثر ملائمة</option>
@@ -236,7 +236,14 @@
                             :value="category">{{ category }}</option>
                         </select>
                       </div>
-                      <div class="col-lg-3 col-md-6 mt-3 mt-md-0">
+                      <div class="col-lg-3 col-md-6 mt-3 mt-lg-0">
+                        <select class="form-select form-select-lg" v-model="filter.program_status">
+                          <option value="none">حالة البرنامج</option>
+                          <option value="حضوري">حضوري</option>
+                          <option value="عن بعد">عن بعد</option>
+                        </select>
+                      </div>
+                      <div class="col-12 mt-3">
                         <button type="button" class="btn btn-primary" @click="search()">
                           <span>بحث</span>
                         </button>
@@ -354,7 +361,8 @@ export default {
     const filter = ref({
       chance_case: "open",
       edu_case: "none",
-      interest_case: "more_relevant"
+      interest_case: "more_relevant",
+      program_status: "none"
     })
 
     onMounted(() => {
@@ -416,7 +424,7 @@ export default {
 
 
     setTimeout(() => {
-      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case });
+      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status  });
     }, 1000)
     const chancesCount = computed(() => store.state.Auth.chancesCount);
     const chances = computed(() => store.state.Auth.chances);
@@ -457,8 +465,10 @@ export default {
     const checkEnglishStandard = (chance) => {
       // Validate English standards (if applicable)
       if (user.value.tookEnglishTest) {
+        let allNull = true; // Flag to check if all values are null or falsy
         for (let key in chance.EnglishStandard) {
           if (!chance.EnglishStandard[key]) continue;
+          allNull = false; // Found a non-null value, so set the flag to false
           if (key == "CEFRDegree") {
             const userValue = user.value.EnglishStandard[key] || "";
             const chanceValue = chance.EnglishStandard[key] || "";
@@ -473,7 +483,10 @@ export default {
             }
           }
         }
-        return true;
+        if (allNull) {
+          return true;
+        }
+        return false
       } else {
         for (let key in chance.EnglishStandard) {
           if (chance.EnglishStandard[key]) return false;
@@ -485,8 +498,10 @@ export default {
     const checkBrainStandard = (chance) => {
       // Validate English standards (if applicable)
       if (user.value.tookBrainTest) {
+        let allNull = true; // Flag to check if all values are null or falsy
         for (let key in chance.BrainStandard) {
           if (!chance.BrainStandard[key]) continue;
+          allNull = false; // Found a non-null value, so set the flag to false
           const userValue = parseFloat(user.value.BrainStandard[key]) || 0;
           const chanceValue = parseFloat(chance.BrainStandard[key]) || 0;
           if (userValue >= chanceValue) {
@@ -494,7 +509,10 @@ export default {
           }
 
         }
-        return true;
+        if (allNull) {
+          return true;
+        }
+        return false
       } else {
         for (let key in chance.BrainStandard) {
           if (chance.BrainStandard[key]) return false;
@@ -575,7 +593,7 @@ export default {
       }
     }
     const search = () => {
-      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case })
+      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status  })
     }
 
     const IncrementChance = (_chanceID) => {
@@ -583,7 +601,7 @@ export default {
     }
 
     // const handlePageClick = (pageNum) => store.dispatch("Admin/ChancesGet", { chance_case: filter.value.chance_case });
-    const clickCallback = (pageNum) => store.dispatch("Auth/ChancesGet", { page_no: pageNum, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case });
+    const clickCallback = (pageNum) => store.dispatch("Auth/ChancesGet", { page_no: pageNum, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status  });
     const onLogout = () => {
       store.dispatch("Auth/Logout", { data: null })
     }

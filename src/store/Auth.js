@@ -14,6 +14,8 @@ export const Auth = {
     statistics: null,
     helperStatistics: null,
     chances: [],
+    EnglishChancesRelated: [],
+    BrainChancesRelated: [],
     chance: {},
     chancesCount: 0,
     wishlists: [],
@@ -187,7 +189,6 @@ export const Auth = {
     async ReviewsGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        console.log(payload);
         const data = await Fetch("POST", `/student/reviews/get`, payload);
         if (data.statusCode === 200) {
           commit("reviewsGet", data.result);
@@ -288,10 +289,43 @@ export const Auth = {
     async ChancesGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        console.log(payload)
-        const data = await Fetch("GET", `/student/chances/get/?page_no=${payload.page_no}&chance_case=${payload.chance_case}&edu_case=${payload.edu_case}&interest_case=${payload.interest_case}`);
+        const data = await Fetch("GET", `/student/chances/get/?page_no=${payload.page_no}&chance_case=${payload.chance_case}&edu_case=${payload.edu_case}&interest_case=${payload.interest_case}&program_status=${payload.program_status}`);
         if (data.statusCode === 200) {
           commit("chancesGet", data.result);
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
+    async EnglishChancesRelated({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", "/student/chances/english/related/get", payload);
+        if (data.statusCode === 200 || data.statusCode === 404) {
+          commit("EnglishChancesRelated", data.result);
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' });
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
+    async BrainChancesRelated({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", "/student/chances/brain/related/get", payload);
+        if (data.statusCode === 200 || data.statusCode === 404) {
+          commit("BrainChancesRelated", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -371,6 +405,12 @@ export const Auth = {
     chancesGet(state, data) {
       state.chances = data.chances;
       state.chancesCount = data.chancesCount;
+    },
+    EnglishChancesRelated(state, data) {
+      state.EnglishChancesRelated = data.chances;
+    },
+    BrainChancesRelated(state, data) {
+      state.BrainChancesRelated = data.chances;
     },
     reviewsGet(state, data) {
       state.reviews = data.reviews;

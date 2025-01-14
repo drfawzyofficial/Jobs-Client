@@ -202,18 +202,18 @@
           <div class="chance container-fluid py-5">
             <div class="container">
               <div class="chance-container">
-               <div class="top-left">
-                <div class="wishlist-feature mt-3 d-flex justify-content-center">
-                  <button @click="toggleWishlist()" style="background-color: transparent;">
-                    <span v-if="isInWishlist()" style="color: red;"><i class="bi bi-suit-heart-fill fs-4"></i></span>
-                    <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
-                  </button>
+                <div class="top-left">
+                  <div class="wishlist-feature mt-3 d-flex justify-content-center">
+                    <button @click="toggleWishlist()" style="background-color: transparent;">
+                      <span v-if="isInWishlist()" style="color: red;"><i class="bi bi-suit-heart-fill fs-4"></i></span>
+                      <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
+                    </button>
+                  </div>
+                  <div class="no-of-clicks fs-4">
+                    <span>{{ chance.noOfClicks }}</span>
+                    <span class="ms-1"><i class="bi bi-eye"></i></span>
+                  </div>
                 </div>
-                <div class="no-of-clicks fs-4">
-                  <span>{{ chance.noOfClicks }}</span>
-                  <span class="ms-1"><i class="bi bi-eye"></i></span>
-                </div>
-               </div>
                 <div class="chance-details">
                   <h4 class="fw-bold">{{ chance.chanceName }}</h4>
                   <div class="mt-2">
@@ -253,26 +253,42 @@
                           <td>اختبارات اللغة الإنجليزية</td>
                           <td>
                             <span v-for="([key, value], index) in Object.entries(chance.EnglishStandard)" :key="index">
-                              {{ key }}: {{ value }},
+                              {{ value ? `${key}: ${value}` : `${key}: x` }},
                             </span>
                           </td>
                           <td>
-                            <span class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateEnglishClass()">{{
-                              validateEnglish()
-                              }}</span>
+                            <template v-if="validateEnglish() === 'يتطلب استعداد'">
+                              <button class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateEnglishClass()"
+                                @click="openModalBox()">
+                                {{ validateEnglish() }}
+                              </button>
+                            </template>
+                            <template v-else>
+                              <span class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateEnglishClass()">
+                                {{ validateEnglish() }}
+                              </span>
+                            </template>
                           </td>
                         </tr>
                         <tr>
                           <td>اخبتارات القدرات العقلية</td>
                           <td>
                             <span v-for="([key, value], index) in Object.entries(chance.BrainStandard)" :key="index">
-                              {{ key }}: {{ value }},
+                              {{ value ? `${key}: ${value}` : `${key}: x` }},
                             </span>
                           </td>
                           <td>
-                            <span class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateBrainClass()">{{
-                              validateBrain()
-                              }}</span>
+                            <template v-if="validateBrain() === 'يتطلب استعداد'">
+                              <button class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateBrainClass()"
+                                @click="openModalBrainBox()">
+                                {{ validateBrain() }}
+                              </button>
+                            </template>
+                            <template v-else>
+                              <span class="info-badge fw-bold mt-2" :class="'chance-' + getvalidateBrainClass()">
+                                {{ validateBrain() }}
+                              </span>
+                            </template>
                           </td>
                         </tr>
                         <!-- <tr>
@@ -356,7 +372,7 @@
                           ★
                         </span>
                       </div>
-                      <h6 class="fw-bold">{{ review._studentID.first_name + " " + review._studentID.last_name}}</h6>
+                      <h6 class="fw-bold">{{ review._studentID.first_name + " " + review._studentID.last_name }}</h6>
                     </div>
                   </div>
                   <div v-else class="col-12">
@@ -394,6 +410,109 @@
       <i class="bi bi-arrow-up-circle"></i>
     </a>
 
+
+    <!-- Modal Content -->
+    <div class="modal fade" ref="modalContentRef">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title fw-bold">الفرص المتعلقة</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body special">
+            <div class="alert alert-info" v-if="EnglishChancesRelated.length === 0">لا يوجد فرص متعلقة</div>
+            <div class="row chances" v-else>
+              <div class="col-lg-4 col-sm-6 col-12 mt-4" v-for="(chance, index) in EnglishChancesRelated" :key="index">
+                <div class="chance bg-white position-relative d-inline-block w-100">
+                  <div class="position-absolute additional-info d-flex flex-column">
+                    <span class="info-badge fw-bold" :class="'date-' + getValidateDateClass(chance)">{{
+                      validateDate(chance)
+                    }}</span>
+                    <span class="info-badge fw-bold mt-2" :class="'chance-' + getValidateChanceClass(chance)">{{
+                      validateChance(chance) }}</span>
+                  </div>
+                  <div class="position-absolute wishlist-feature">
+                    <button @click="toggleWishlist(chance._id)">
+                      <span v-if="isInWishlist(chance._id)" style="color: red;"><i
+                          class="bi bi-suit-heart-fill fs-4"></i></span>
+                      <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
+                    </button>
+                  </div>
+                  <a :href="'/student/chance/' + chance._id" @click="IncrementChance(chance._id)">
+                    <div class="chance-img">
+                      <img :src="chance.chanceImage" />
+                    </div>
+                    <div class="chance-content p-3">
+                      <h6 class="fw-bold">{{ chance.chanceName }}</h6>
+                      <h6 class="fw-bold">{{ chance.marketingDesc }}</h6>
+                      <h6 class="fw-bold">{{ chance.provider }}</h6>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-danger" @click="closeModal()">
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Content -->
+
+      <!-- Modal Content -->
+      <div class="modal fade" ref="modalContentBrainRef">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title fw-bold">الفرص المتعلقة</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body special">
+            <div class="alert alert-info" v-if="BrainChancesRelated.length === 0">لا يوجد فرص متعلقة</div>
+            <div class="row chances" v-else>
+              <div class="col-lg-4 col-sm-6 col-12 mt-4" v-for="(chance, index) in BrainChancesRelated" :key="index">
+                <div class="chance bg-white position-relative d-inline-block w-100">
+                  <div class="position-absolute additional-info d-flex flex-column">
+                    <span class="info-badge fw-bold" :class="'date-' + getValidateDateClass(chance)">{{
+                      validateDate(chance)
+                    }}</span>
+                    <span class="info-badge fw-bold mt-2" :class="'chance-' + getValidateChanceClass(chance)">{{
+                      validateChance(chance) }}</span>
+                  </div>
+                  <div class="position-absolute wishlist-feature">
+                    <button @click="toggleWishlist(chance._id)">
+                      <span v-if="isInWishlist(chance._id)" style="color: red;"><i
+                          class="bi bi-suit-heart-fill fs-4"></i></span>
+                      <span v-else><i class="bi bi-suit-heart fs-4"></i></span>
+                    </button>
+                  </div>
+                  <a :href="'/student/chance/' + chance._id" @click="IncrementChance(chance._id)">
+                    <div class="chance-img">
+                      <img :src="chance.chanceImage" />
+                    </div>
+                    <div class="chance-content p-3">
+                      <h6 class="fw-bold">{{ chance.chanceName }}</h6>
+                      <h6 class="fw-bold">{{ chance.marketingDesc }}</h6>
+                      <h6 class="fw-bold">{{ chance.provider }}</h6>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-sm btn-danger" @click="closeModal()">
+              <span>إغلاق</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Content -->
+
   </div>
 </template>
 
@@ -402,6 +521,7 @@
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router';
+import { Modal } from 'bootstrap';
 
 export default {
   name: 'Chances',
@@ -474,12 +594,16 @@ export default {
     const route = useRoute();
     const stars = [1, 2, 3, 4, 5]; // Total number of stars
     const reviews = computed(() => store.state.Auth.reviews);
+    const EnglishChancesRelated = computed(() => store.state.Auth.EnglishChancesRelated);
+    const BrainChancesRelated = computed(() => store.state.Auth.BrainChancesRelated);
     const selectedStars = ref(0);
     const review = ref({
       _chanceID: route.params.id,
       comment: "",
       stars: 0
     });
+    const modalContentRef = ref(null);
+    const modalContentBrainRef = ref(null);
     store.dispatch("Auth/GetProfile")
     store.dispatch("Auth/chanceGet", { chance_id: route.params.id });
     const chance = computed(() => store.state.Auth.chance);
@@ -517,8 +641,10 @@ export default {
     const checkEnglishStandard = (chance) => {
       // Validate English standards (if applicable)
       if (user.value.tookEnglishTest) {
+        let allNull = true; // Flag to check if all values are null or falsy
         for (let key in chance.EnglishStandard) {
           if (!chance.EnglishStandard[key]) continue;
+          allNull = false; // Found a non-null value, so set the flag to false
           if (key == "CEFRDegree") {
             const userValue = user.value.EnglishStandard[key] || "";
             const chanceValue = chance.EnglishStandard[key] || "";
@@ -533,7 +659,10 @@ export default {
             }
           }
         }
-        return true;
+        if (allNull) {
+          return true;
+        }
+        return false
       } else {
         for (let key in chance.EnglishStandard) {
           if (chance.EnglishStandard[key]) return false;
@@ -564,8 +693,10 @@ export default {
     const checkBrainStandard = (chance) => {
       // Validate English standards (if applicable)
       if (user.value.tookBrainTest) {
+        let allNull = true; // Flag to check if all values are null or falsy
         for (let key in chance.BrainStandard) {
           if (!chance.BrainStandard[key]) continue;
+          allNull = false; // Found a non-null value, so set the flag to false
           const userValue = parseFloat(user.value.BrainStandard[key]) || 0;
           const chanceValue = parseFloat(chance.BrainStandard[key]) || 0;
           if (userValue >= chanceValue) {
@@ -573,12 +704,41 @@ export default {
           }
 
         }
-        return true;
+        if (allNull) {
+          return true;
+        }
+        return false
       } else {
         for (let key in chance.BrainStandard) {
           if (chance.BrainStandard[key]) return false;
         }
         return true;
+      }
+    }
+
+
+    const validateDate = (chance) => {
+      const currentDate = new Date().toISOString().split('T')[0]; // Get the current date
+      const regStartDate = chance.chanceRegStartDate // Convert to Date object
+      const regEndDate = chance.chanceRegEndDate // Convert to Date object
+      if (currentDate >= regStartDate && currentDate <= regEndDate) {
+        return "مفتوح";
+      }
+      else if (currentDate < regStartDate) {
+        return "لم يبدأ";
+      } else {
+        return "مغلق";
+      }
+    }
+
+    const getValidateDateClass = (chance) => {
+      const status = validateDate(chance);
+      if (status === "مفتوح") {
+        return "open";
+      } else if (status === "لم يبدأ") {
+        return "not-started";
+      } else if (status === "مغلق") {
+        return "closed";
       }
     }
 
@@ -614,11 +774,68 @@ export default {
       store.dispatch("Auth/sendReview", review.value);
     };
 
+    const closeModal = () =>  {
+      Modal.getInstance(modalContentRef.value).hide();
+    }
 
+    const openModalBox = () => {
+      new Modal(modalContentRef.value).show();
+      store.dispatch("Auth/EnglishChancesRelated", { _id: route.params.id});
+    }
 
+    const openModalBrainBox = () => {
+      new Modal(modalContentBrainRef.value).show();
+      store.dispatch("Auth/BrainChancesRelated", { _id: route.params.id});
+    }
 
+    const IncrementChance = (_chanceID) => {
+      store.dispatch("Auth/IncrementChance", { _chanceID: _chanceID })
+    }
 
+    const validateChance = (chance) => {
+      // const userAge = new Date().getFullYear() - new Date(user.value.DOB).getFullYear();
+      // if (parseInt(chance.applicantAge) !== userAge) {
+      //   return "لا يستوفي الشروط"
+      // }
+      if (chance.applicantGender !== user.value.applicantGender) {
+        return "لا يستوفي الشروط"
+      }
 
+      if (!chance.applicantEdus.includes(user.value.applicantEdu)) {
+        return "لا يستوفي الشروط";
+      }
+      if (chance.chancePriority === "saudi") {
+        if (user.value.saudinationality === false) {
+          return "لا يستوفي الشروط";
+        } else {
+          if (chance.programStatus === "حضوري" && !chance.cities.includes(user.value.saudiCity)) {
+            return "لا يستوفي الشروط";
+          }
+        }
+      } else {
+        if (chance.programStatus === "حضوري" && !chance.cities.includes(user.value.saudiCity)) {
+          return "لا يستوفي الشروط";
+        }
+      }
+      let english_standard_boolean = checkEnglishStandard(chance);
+      let brain_standard_boolean = checkBrainStandard(chance);
+
+      if (english_standard_boolean == false || brain_standard_boolean == false)
+        return "يتطلب استعداد"
+
+      return "يستوفي الشروط"
+    }
+
+    const getValidateChanceClass = (chance) => {
+      const status = validateChance(chance);
+      if (status === "يستوفي الشروط") {
+        return "open";
+      } else if (status === "يتطلب استعداد") {
+        return "not-started";
+      } else if (status === "لا يستوفي الشروط") {
+        return "closed";
+      }
+    }
 
 
     // Return
@@ -641,6 +858,18 @@ export default {
       getvalidateBrainClass,
       navLinks,
       onLogout,
+      openModalBox,
+      closeModal,
+      modalContentRef,
+      EnglishChancesRelated,
+      IncrementChance,
+      validateDate,
+      getValidateDateClass,
+      getValidateChanceClass,
+      validateChance,
+      modalContentBrainRef,
+      openModalBrainBox,
+      BrainChancesRelated
     }
   }
 }
@@ -706,5 +935,60 @@ export default {
 
 .star.gold {
   color: gold;
+}
+
+.chances .chance {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #3c9f9a;
+}
+
+.chances .chance:hover {
+  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+
+}
+
+
+.chances .chance .additional-info {
+  left: 15px;
+  top: 15px;
+}
+
+.info-badge {
+  padding: 6px;
+  border-radius: 8px;
+  color: #FFF;
+  font-size: 12px;
+  text-align: center
+}
+
+.chances .chance .wishlist-feature {
+  right: 15px;
+  top: 15px;
+}
+
+.chances .chance .wishlist-feature button {
+  background-color: transparent;
+}
+
+.chances .chance .chance-img img {
+  width: 100%;
+  height: 175px;
+}
+
+.date-open,
+.chance-open {
+  background-color: green;
+}
+
+.date-closed,
+.chance-closed {
+  background-color: #a71616;
+}
+
+.date-not-started,
+.chance-not-started {
+  background-color: #fbb054;
 }
 </style>

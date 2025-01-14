@@ -707,7 +707,6 @@ export default {
         e.preventDefault();
       });
       profilePayload.value = user.value;
-      console.log(profilePayload.value)
 
     });
 

@@ -378,8 +378,10 @@ export default {
     const checkEnglishStandard = (chance) => {
       // Validate English standards (if applicable)
       if (user.value.tookEnglishTest) {
+        let allNull = true; // Flag to check if all values are null or falsy
         for (let key in chance.EnglishStandard) {
           if (!chance.EnglishStandard[key]) continue;
+          allNull = false; // Found a non-null value, so set the flag to false
           if (key == "CEFRDegree") {
             const userValue = user.value.EnglishStandard[key] || "";
             const chanceValue = chance.EnglishStandard[key] || "";
@@ -393,9 +395,11 @@ export default {
               return true;
             }
           }
-
         }
-        return true;
+        if (allNull) {
+          return true;
+        }
+        return false
       } else {
         for (let key in chance.EnglishStandard) {
           if (chance.EnglishStandard[key]) return false;
@@ -407,8 +411,10 @@ export default {
     const checkBrainStandard = (chance) => {
       // Validate English standards (if applicable)
       if (user.value.tookBrainTest) {
+        let allNull = true; // Flag to check if all values are null or falsy
         for (let key in chance.BrainStandard) {
           if (!chance.BrainStandard[key]) continue;
+          allNull = false; // Found a non-null value, so set the flag to false
           const userValue = parseFloat(user.value.BrainStandard[key]) || 0;
           const chanceValue = parseFloat(chance.BrainStandard[key]) || 0;
           if (userValue >= chanceValue) {
@@ -416,7 +422,10 @@ export default {
           }
 
         }
-        return true;
+        if (allNull) {
+          return true;
+        }
+        return false
       } else {
         for (let key in chance.BrainStandard) {
           if (chance.BrainStandard[key]) return false;

@@ -367,7 +367,6 @@ export default {
         });
 
         const createContact = () => {
-            console.log(contactPayload.value)
             store.dispatch("Auth/createContact", contactPayload.value)
         }
 

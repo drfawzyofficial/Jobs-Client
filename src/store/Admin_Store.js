@@ -56,7 +56,6 @@ export const Admin_Store = {
         }
         dispatch("Collection/loading", false, { root: true });
       } catch (err) {
-        console.log(err.message);
         window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })
         dispatch("Collection/loading", false, { root: true });
       }
