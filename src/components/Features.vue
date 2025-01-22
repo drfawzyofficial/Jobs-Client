@@ -11,12 +11,7 @@
             >
               <div class="feature text-center">
                 <div class="feature-icon">
-                  <img
-                    :class="feature.iconClass"
-                    :src="feature.iconSrc"
-                    :alt="feature.alt"
-                    :title="feature.title"
-                  />
+                  <span class="fs-1 text-white" v-html="feature.icon"></span>
                 </div>
                 <p class="mt-3">{{ feature.description }}</p>
               </div>
@@ -37,36 +32,20 @@
       // Feature data
       const features = ref([
         {
-          iconSrc:
-            '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-0.svg?v=103073552329858857761721641982',
-          iconClass: 'feature_icon_consistency-60',
+          icon: '<i class="bi bi-send"></i>',
           description: 'سهولة الوصول إلى الفرص المميزة',
-          alt: 'سهولة الوصول إلى الفرص المميزة',
-          title: 'سهولة الوصول إلى الفرص المميزة',
         },
         {
-          iconSrc:
-            '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-1.svg?v=83754922483425242941721641982',
-          iconClass: 'feature_icon_consistency-60',
+          icon: '<i class="bi bi-funnel"></i>',
           description: 'عرض الفرص حسب اهتماماتك',
-          alt: 'عرض الفرص حسب اهتماماتك',
-          title: 'عرض الفرص حسب اهتماماتك',
         },
         {
-          iconSrc:
-            '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-2.svg?v=180777565639930553701721641982',
-          iconClass: 'feature_icon_consistency-60',
+          icon: '<i class="bi bi-arrow-repeat"></i>',
           description: 'تحديثات مستمرة للفرص الجديدة',
-          alt: 'تحديثات مستمرة للفرص الجديدة',
-          title: 'تحديثات مستمرة للفرص الجديدة',
         },
         {
-          iconSrc:
-            '//projectkibrit.myshopify.com/cdn/shop/t/17/assets/feature-icon-3.svg?v=135821250968789223931721641982',
-          iconClass: 'feature_icon_consistency-60',
+          icon: '<i class="bi bi-link"></i>',
           description: 'إمكانية الوصول المباشر الى رابط التقديم للفرصة',
-          alt: 'إمكانية الوصول المباشر الى رابط التقديم للفرصة',
-          title: 'إمكانية الوصول المباشر الى رابط التقديم للفرصة'
         },
       ]);
   
@@ -86,7 +65,7 @@
   
   .features .features-box {
     padding: 30px;
-    background-color: #000;
+    background-color: #44B797;
   }
   
   .features .features-box h3,

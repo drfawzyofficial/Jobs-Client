@@ -71,10 +71,10 @@ export default {
           itemsToScroll: 2, 
         },
         768: {
-          itemsToShow: 2, 
+          itemsToShow: 3, 
           itemsToScroll: 2,
         },
-        576: {
+        0: {
           itemsToShow: 1, 
           itemsToScroll: 1,
         },

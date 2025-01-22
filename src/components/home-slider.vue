@@ -5,8 +5,8 @@
         <div class="carousel-item" v-for="(item, index) in sliders" :key="index" :class="{ active: index === 0 }">
           <img :src="item.image.src" :alt="item.image.alt" :title="item.image.title" class="store-animation-shadow" />
           <div class="carousel-caption">
-            <h2>{{ item.heading }}</h2>
-            <router-link class="btn btn-primary d-inline-block mt-2" to="/account/login">ابدأ الخدمة</router-link>
+            <h1>{{ item.heading }}</h1>
+            <router-link class="btn btn-primary d-inline-block mt-2 fs-4" to="/account/login">ابدأ الخدمة</router-link>
           </div>
           <div class="overlay"></div>
         </div>

@@ -5,7 +5,7 @@
   z-index: 777;
   padding-top: 16px;
   padding-bottom: 16px;
-  background-color: #000;
+  background-color: #13485F;
 }
 
 .header .header__1,
@@ -143,6 +143,16 @@ html[lang="ar"] .header .header__1 .icons {
 
 @media (max-width: 767.98px) {}
 
-@media (max-width: 575.98px) {}
+@media (max-width: 575.98px) {
+  .header .header__1 .logo a img {
+    height: 50px;
+  }
+}
+
+@media (max-width: 400px) {
+  .header .header__1 .logo a img {
+    height: 40px;
+  }
+}
 
 /* Responsiveness for header */

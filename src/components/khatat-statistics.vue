@@ -21,7 +21,7 @@
                     <div class="counter-box">
                         <i class="fa fa-thumbs-o-up"></i>
                         <span class="counter">{{ statistics.admins_count }}</span>
-                        <p>عدد المسئولين </p>
+                        <p>عدد المسؤولين </p>
                     </div>
                 </div>
             </div>
