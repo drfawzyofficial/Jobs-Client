@@ -84,7 +84,7 @@
                                                 <input type="radio" name="nationality" class="form-check-input" id="saudinationalityNo"
                                                     @change="toggleSaudiNationality(false)" :checked="signupPayload.saudinationality === false"  />
                                                 <label class="form-label" for="saudinationalityNo">
-                                                لأ
+                                                لا
                                                 </label>
                                             </div>
                                         </div>

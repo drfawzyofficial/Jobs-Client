@@ -265,7 +265,7 @@
                     </div>
                     <div class="mb-3 d-flex align-items-center">
                       <label class="form-label">
-                        هل أنتَ سعودي الجنسية؟
+                        هل أنت سعودي الجنسية؟
                       </label>
                       <div class="form-check ms-3">
                         <input type="radio" name="nationality" class="form-check-input" id="saudinationalityYes"
@@ -279,7 +279,7 @@
                           @change="toggleSaudiNationality(false)"
                           :checked="profilePayload.saudinationality === false" />
                         <label class="form-label" for="saudinationalityNo">
-                          لأ
+                          لا
                         </label>
                       </div>
                     </div>

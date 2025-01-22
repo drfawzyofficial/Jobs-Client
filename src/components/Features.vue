@@ -65,7 +65,7 @@
   
   .features .features-box {
     padding: 30px;
-    background-color: #44B797;
+    background-color: #13485F;
   }
   
   .features .features-box h3,

@@ -53,7 +53,7 @@ export default {
         const statisticsObj = ref([
             { title: "عدد المستفيدين", count: 250 },
             { title: "عدد الفرص", count: 245 },
-            { title: "عدد المسئولين", count: 3 }
+            { title: "عدد المسؤولين", count: 3 }
         ]);
         const parnters = ref(["../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg", "../assets/images/banner.jpg"]);
         const loginPayload = ref({

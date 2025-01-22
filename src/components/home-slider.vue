@@ -78,6 +78,10 @@ export default {
 .home-slider  .carousel-control-next, .home-slider .carousel-control-prev, .home-slider .carousel-caption {
   z-index: 2;
 }
+.home-slider .btn-primary {
+  background-color: #44B797 !important;
+  border-color: #44B797 !important
+}
 @media (max-width: 575.98px) {
   .home-slider .carousel-item img {
   height: 350px;
