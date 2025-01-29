@@ -6,7 +6,7 @@
 */
 
 // Load VUE_APP_ENDPOINT variable that's related to WebPack V5
-const API_ENDPOINT = "http://localhost:3000/api/v1"
+const API_ENDPOINT = "https://server-phi-flax-82.vercel.app/api/v1"
 
 // AuthHeader Auth
  const AuthHeader = () => {
@@ -30,6 +30,7 @@ export const Fetch = async (method, route, data = null) => {
     const requestOptions = {
         method: method,
         headers: AuthHeader(),
+        mode: 'cors'
     };
     if(method !== "GET") {
         requestOptions.body = JSON.stringify(data); 
