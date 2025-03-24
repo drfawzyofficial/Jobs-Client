@@ -4,7 +4,8 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        :class="{ open: isOpen }">
         <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
           <router-link class="fw-medium nav-link" :to="item.link">
             <span class="item-icon" v-html="item.icon"></span>
@@ -162,7 +163,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
-                    }}</span>
+                  }}</span>
                   <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
                 </a>
                 <!-- Dropdown - User Information -->
@@ -191,7 +192,7 @@
 
 
             <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" @click="toggleSidebar">
               <i class="bi bi-bar-chart-steps"></i>
             </button>
 
@@ -212,7 +213,7 @@
             <div class="row mt-4">
               <h5 class="fw-bold mb-2">إحصائيات عامة</h5>
               <div class="col-xl-3 col-6">
-                <div class="card border-left-primary shadow h-100 py-2">
+                <router-link class="card border-left-primary shadow h-100 py-2" to="/student/chances">
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
@@ -225,7 +226,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </router-link>
               </div>
 
               <!-- Earnings (Annual) Card Example -->
@@ -235,8 +236,9 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           فرص حضوري</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.general.locatedChances }}</div>
+                          فرص حضورية</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.general.locatedChances }}
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="bi bi-briefcase fs-4"></i>
@@ -256,7 +258,8 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                           <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.general.remoteChances }}
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.general.remoteChances
+                            }}
                             </div>
                           </div>
                         </div>
@@ -276,11 +279,12 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                           فرص بشروط خاصة</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.general.specialConditionsChances }}</div>
+                          فرص بشروط خاصة</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{
+                          statistics.general.specialConditionsChances }}</div>
                       </div>
                       <div class="col-auto">
-                       <i class="bi bi-briefcase fs-4"></i>
+                        <i class="bi bi-briefcase fs-4"></i>
                       </div>
                     </div>
                   </div>
@@ -297,7 +301,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                         الفرص المفتوحة</div>
+                          الفرص المفتوحة</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.dateBased.openChances }}</div>
                       </div>
                       <div class="col-auto">
@@ -315,8 +319,9 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           الفرص لم تبدأ بعد</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{  statistics.dateBased.notStartedChances }}</div>
+                          فرص لم تبدأ بعد</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.dateBased.notStartedChances }}
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="bi bi-calendar fs-4"></i>
@@ -336,7 +341,8 @@
                         </div>
                         <div class="row no-gutters align-items-center">
                           <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.dateBased.closedChances }}
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{
+                              statistics.dateBased.closedChances }}
                             </div>
                           </div>
                         </div>
@@ -360,7 +366,8 @@
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                           طلاب نفس جنسك</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.special.studentsByGender }}</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.special.studentsByGender }}
+                        </div>
                       </div>
                       <div class="col-auto">
                         <i class="bi bi-calendar fs-4"></i>
@@ -377,8 +384,9 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                           طلاب نفسك مرحتلك التعليمية</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{  statistics.special.studentsByEducationLevel }}</div>
+                          طلاب نفس مرحتلك التعليمية</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">{{
+                          statistics.special.studentsByEducationLevel }}</div>
                       </div>
                       <div class="col-auto">
                         <i class="bi bi-calendar fs-4"></i>
@@ -394,11 +402,13 @@
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">طلاب نفسك إقامتك
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                          طلاب نفس مقر إقامتك
                         </div>
                         <div class="row no-gutters align-items-center">
                           <div class="col-auto">
-                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ statistics.special.studentsByAccommodation }}
+                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{
+                              statistics.special.studentsByAccommodation }}
                             </div>
                           </div>
                         </div>
@@ -465,9 +475,23 @@
 <script>
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 export default {
   setup() {
+
+    // onMounted(() => {
+    //   $(document).on('click', '#sidebarToggleTop', () => {
+    //     $('.sidebar').toggle();
+    //   });
+    //   $(document).mouseup(function (e) {
+    //     var $sidebar = $(".sidebar"); // Adjust the selector for your sidebar
+    //     if (!$sidebar.is(e.target) && $sidebar.has(e.target).length === 0) {
+    //       // If the click is outside the sidebar, hide it
+    //       $sidebar.fadeOut(); // Adjust this based on your toggle class
+    //     }
+    //   });
+    // });
+
 
     // Calling, Declarations, Data
     const store = useStore()
@@ -476,13 +500,17 @@ export default {
     const loading_status = computed(() => store.state.Collection.loading_status);
     const wishlist = JSON.parse(localStorage.getItem("wishlist"));
     const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const isOpen = ref(false);
 
-   
     store.dispatch("Auth/GetProfile")
     store.dispatch("Auth/GetStatistics")
     const onLogout = () => {
       store.dispatch("Auth/Logout", { data: null })
     }
+
+    const toggleSidebar = () => {
+      isOpen.value = !isOpen.value;
+    };
 
     // Return
     return {
@@ -490,11 +518,24 @@ export default {
       statistics,
       navLinks,
       onLogout,
-      user
+      user,
+      isOpen,
+      toggleSidebar,
     }
   }
 }
 </script>
 <!-- Script -->
 
-<style scoped></style>
+<style scoped>
+@media (max-width: 768.98px) {
+  .sidebar {
+    display: none;
+    width: 6.5rem;
+  }
+
+  .sidebar.open {
+    display: block;
+  }
+}
+</style>

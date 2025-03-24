@@ -121,8 +121,3 @@ html[lang="ar"] .sidebar {
     transition: all 0.3s ease-in-out;
 }
 
-@media (max-width: 575.98px) {
-    .sidebar {
-      width: 80%;
-    }
-  }

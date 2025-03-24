@@ -4,7 +4,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" :class="{ open: isOpen }">
         <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
           <router-link class="fw-medium nav-link" :to="item.link">
             <span class="item-icon" v-html="item.icon"></span>
@@ -191,7 +191,7 @@
 
 
             <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" @click="toggleSidebar">
               <i class="bi bi-bar-chart-steps"></i>
             </button>
 
@@ -365,59 +365,8 @@ export default {
       program_status: "none"
     })
 
+    const isOpen = ref(false);
     onMounted(() => {
-      // Toggle the side navigation
-      $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
-        $("body").toggleClass("sidebar-toggled");
-        $(".sidebar").toggleClass("toggled");
-        if ($(".sidebar").hasClass("toggled")) {
-          $('.sidebar .collapse').collapse('hide');
-        };
-      });
-
-      // Close any open menu accordions when window is resized below 768px
-      $(window).resize(function () {
-        if ($(window).width() < 768) {
-          $('.sidebar .collapse').collapse('hide');
-        };
-
-        // Toggle the side navigation when window is resized below 480px
-        if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-          $("body").addClass("sidebar-toggled");
-          $(".sidebar").addClass("toggled");
-          $('.sidebar .collapse').collapse('hide');
-        };
-      });
-
-      // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-      $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
-        if ($(window).width() > 768) {
-          var e0 = e.originalEvent,
-            delta = e0.wheelDelta || -e0.detail;
-          this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-          e.preventDefault();
-        }
-      });
-
-      // Scroll to top button appear
-      $(document).on('scroll', function () {
-        var scrollDistance = $(this).scrollTop();
-        if (scrollDistance > 100) {
-          $('.scroll-to-top').fadeIn();
-        } else {
-          $('.scroll-to-top').fadeOut();
-        }
-      });
-
-      // Smooth scrolling using jQuery easing
-      $(document).on('click', 'a.scroll-to-top', function (e) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-          scrollTop: ($($anchor.attr('href')).offset().top)
-        }, 1000, 'easeInOutExpo');
-        e.preventDefault();
-      });
-
       filter.value.edu_case = user.value.applicantEdu;
     });
 
@@ -469,7 +418,7 @@ export default {
         for (let key in chance.EnglishStandard) {
           if (!chance.EnglishStandard[key]) continue;
           allNull = false; // Found a non-null value, so set the flag to false
-          if (key == "CEFRDegree") {
+          if (key == "CEFR") {
             const userValue = user.value.EnglishStandard[key] || "";
             const chanceValue = chance.EnglishStandard[key] || "";
             if (userValue === chanceValue) {
@@ -605,6 +554,10 @@ export default {
     const onLogout = () => {
       store.dispatch("Auth/Logout", { data: null })
     }
+
+    const toggleSidebar = () => {
+      isOpen.value = !isOpen.value;
+    };
     // Return
     return {
       loading_status,
@@ -624,7 +577,9 @@ export default {
       clickCallback,
       onLogout,
       user,
-      IncrementChance
+      IncrementChance,
+      isOpen,
+      toggleSidebar,
     }
   }
 }
@@ -684,5 +639,14 @@ export default {
 .date-not-started,
 .chance-not-started {
   background-color: #fbb054;
+}
+@media (max-width: 768.98px) {
+  .sidebar {
+    display: none;
+    width: 6.5rem;
+  }
+  .sidebar.open {
+    display: block;
+  }
 }
 </style>

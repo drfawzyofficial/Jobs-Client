@@ -8758,7 +8758,7 @@ a:focus {
 }
 
 .sidebar {
-  width: 0;
+  width: 275px;
   min-height: 100vh;
 }
 

@@ -1,12 +1,12 @@
 /*
- * Theme Name: Khatat
+ * Theme Name: Khattit
  * Theme Version: 1.0
  * Theme Direction: RTL
- * Theme Author: Khatat
- * GitHub Theme URL: https://github.com/Khatat
- * Theme Doc URL: https://github.com/Khatat
- * Theme Support https://github.com/Khatat
- * Copyright: All Copyrights are reserved to Khatat
+ * Theme Author: Khattit
+ * GitHub Theme URL: https://github.com/Khattit
+ * Theme Doc URL: https://github.com/Khattit
+ * Theme Support https://github.com/Khattit
+ * Copyright: All Copyrights are reserved to Khattit
 */
 
 /*
@@ -72,8 +72,7 @@ body {
 
 ol,
 ul {
-  list-style-type: none;
-  padding-right: 0;
+  padding-right: 20px;
 }
 
 h1,
@@ -139,6 +138,10 @@ html[lang="ar"] [type=number],
 html[lang="ar"] [type=tel],
 html[lang="ar"] [type=url] {
   direction: rtl;
+}
+
+.vue-form-wizard .wizard-progress-bar {
+  float: right !important;
 }
 
 .form-check-input:checked {
@@ -241,6 +244,7 @@ span.required {
 .vue-form-wizard .wizard-icon-circle .wizard-icon {
   color: #44B797 !important;
   font-weight: bold;
+  font-style: normal;
 }
 
 .vue-form-wizard .wizard-nav-pills>li.active>a .wizard-icon,
@@ -439,11 +443,7 @@ html[lang="ar"] .store-animation-anchor:hover:after {
   margin: 12px 0;
 }
 
-@media (max-width: 575.98px) {
-  p, a {
-    font-size: 16px;
-  }
-}
+
 
 .pagination li {
   margin: 0 5px;
@@ -474,4 +474,47 @@ html[lang="ar"] .store-animation-anchor:hover:after {
 
 .page-item:last-child .page-link {
   display: none;
+}
+
+.vue-form-wizard .wizard-card-footer .wizard-footer-right {
+  float: left;
+}
+
+.vue-form-wizard .wizard-card-footer .wizard-footer-left {
+  float: right;
+}
+
+.vue-form-wizard .wizard-tab-content, .vue-form-wizard .wizard-card-footer {
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.swal2-styled.swal2-confirm {
+  background-color: #44B797;
+  transition: all 0.3s ease-in-out;
+}
+
+.swal2-styled.swal2-confirm:hover {
+  background-color: #134b4c
+}
+
+.table th, .table td {
+  white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+  p, a, .form-label, span {
+    font-size: 16px;
+  }
+  .vue-form-wizard .wizard-btn, .vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn {
+    min-width: 100px;
+  }
+  .vue-form-wizard.md .wizard-icon-circle {
+    width: 40px;
+    height: 40px;
+  }
+  .vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
+    top: 25px;
+  }
+  
 }

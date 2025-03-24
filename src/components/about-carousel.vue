@@ -18,9 +18,7 @@
 
                 <div class="about-content">
                     <h3>منصة خطط</h3>
-                    <p class="mt-3">منصة خطط هي منصة رائده قادرة على ايصالك لافضل الفرص المتاحة حولك لتمكنك من تحقيق
-                        اهدافك عن طريق
-                        تسهيل وصولك الى افضل الفرص والأنشطة المتاحة حولك</p>
+                    <p class="mt-3">منصة خطط هي منصة رائدة تسعى إلى تعريفك بأفضل الفرص المتاحة حولك؛ معبّدةً بذلك الطريق لتحقيق أهدافك الشخصية والأكاديمية.</p>
                 </div>
             </div>
         </div>
@@ -50,17 +48,17 @@ export default {
         ]);
         const slider_images = ref([
             {
-                src: require("@/assets/images/student1.jpg"),
+                src: require("@/assets/images/about_1.png"),
                 alt: 'Placeholder Image 1',
                 title: 'Image 1',
             },
             {
-                src: require("@/assets/images/student2.jpg"),
+                src: require("@/assets/images/about_2.png"),
                 alt: 'Placeholder Image 2',
                 title: 'Image 2',
             },
             {
-                src: require("@/assets/images/student3.jpg"),
+                src: require("@/assets/images/about_3.png"),
                 alt: 'Placeholder Image 3',
                 title: 'Image 3',
             }

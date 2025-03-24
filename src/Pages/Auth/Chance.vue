@@ -4,7 +4,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"   :class="{ open: isOpen }">
         <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
           <router-link class="fw-medium nav-link" :to="item.link">
             <span class="item-icon" v-html="item.icon"></span>
@@ -191,7 +191,7 @@
 
 
             <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" @click="toggleSidebar">
               <i class="bi bi-bar-chart-steps"></i>
             </button>
 
@@ -239,7 +239,7 @@
                 </div>
                 <div class="chance-details mt-3">
                   <h4 class="fw-bold">المتطلبات الأكاديمية</h4>
-                  <div class="table-responsiveness">
+                  <div class="table-responsive">
                     <table class="table table-striped mt-2">
                       <thead>
                         <tr>
@@ -252,8 +252,11 @@
                         <tr>
                           <td>اختبارات اللغة الإنجليزية</td>
                           <td>
-                            <span v-for="([key, value], index) in Object.entries(chance.EnglishStandard)" :key="index">
-                              {{ value ? `${key}: ${value}` : `${key}: x` }},
+                            <span>
+                              {{ Object.entries(chance.EnglishStandard)
+                                .filter(([key, value]) => value) // Remove entries where value is falsy (empty, null, etc.)
+                                .map(([key, value]) => `${key}: ${value}`) // Format key-value pairs
+                                .join(" - ") || "لا يوجد شروط محددة"}} <!-- Join them with " - " and remove the last "-" automatically -->
                             </span>
                           </td>
                           <td>
@@ -273,9 +276,19 @@
                         <tr>
                           <td>اخبتارات القدرات العقلية</td>
                           <td>
-                            <span v-for="([key, value], index) in Object.entries(chance.BrainStandard)" :key="index">
-                              {{ value ? `${key}: ${value}` : `${key}: x` }},
-                            </span>
+                            <span>
+                            {{ Object.entries(chance.BrainStandard)
+                              .filter(([key, value]) => value) // إزالة القيم الفارغة أو null
+                              .map(([key, value]) => {
+                                const keyMap = {
+                                  "Qudrat": "قدرات",
+                                  "AchivementTest": "اختبار التحصيل المعرفي",
+                                  "Talent": "مقياس موهبة"
+                                };
+                                return `${keyMap[key] || key}: ${value}`; // استبدال المفتاح إذا كان موجودًا في القاموس
+                              })
+                              .join(" - ") || "لا يوجد شروط محددة" }} 
+                          </span>
                           </td>
                           <td>
                             <template v-if="validateBrain() === 'يتطلب استعداد'">
@@ -307,7 +320,7 @@
                 </div>
                 <div class="chance-details mt-3">
                   <h4 class="fw-bold">تفاصيل الفرصة</h4>
-                  <p>{{ chance.chanceDesc }}</p>
+                  <p v-html="chance.chanceDesc"></p>
                 </div>
                 <div class="chance-details mt-3">
                   <h4 class="fw-bold">باقي التفاصيل</h4>
@@ -342,7 +355,7 @@
                 <div class="chance-details mt-3">
                   <h4 class="fw-bold">
                     <span>للتسجيل والمزيد من المعلومات: </span>
-                    <a href="{{  chance.chanceLink }}" target="_blank" style="color: blue">زيارة الرابط</a>
+                    <a :href="chance.chanceLink" target="_blank" style="color: blue">زيارة الرابط</a>
                   </h4>
                 </div>
               </div>
@@ -529,62 +542,6 @@ export default {
   },
   setup() {
 
-    onMounted(() => {
-      // Toggle the side navigation
-      $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
-        $("body").toggleClass("sidebar-toggled");
-        $(".sidebar").toggleClass("toggled");
-        if ($(".sidebar").hasClass("toggled")) {
-          $('.sidebar .collapse').collapse('hide');
-        };
-      });
-
-      // Close any open menu accordions when window is resized below 768px
-      $(window).resize(function () {
-        if ($(window).width() < 768) {
-          $('.sidebar .collapse').collapse('hide');
-        };
-
-        // Toggle the side navigation when window is resized below 480px
-        if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-          $("body").addClass("sidebar-toggled");
-          $(".sidebar").addClass("toggled");
-          $('.sidebar .collapse').collapse('hide');
-        };
-      });
-
-      // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-      $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
-        if ($(window).width() > 768) {
-          var e0 = e.originalEvent,
-            delta = e0.wheelDelta || -e0.detail;
-          this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-          e.preventDefault();
-        }
-      });
-
-      // Scroll to top button appear
-      $(document).on('scroll', function () {
-        var scrollDistance = $(this).scrollTop();
-        if (scrollDistance > 100) {
-          $('.scroll-to-top').fadeIn();
-        } else {
-          $('.scroll-to-top').fadeOut();
-        }
-      });
-
-      // Smooth scrolling using jQuery easing
-      $(document).on('click', 'a.scroll-to-top', function (e) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-          scrollTop: ($($anchor.attr('href')).offset().top)
-        }, 1000, 'easeInOutExpo');
-        e.preventDefault();
-      });
-
-
-    });
-
     // Calling, Declarations, Data
     const store = useStore()
     const loading_status = computed(() => store.state.Collection.loading_status);
@@ -616,6 +573,8 @@ export default {
       else return [];
     }
 
+    const isOpen = ref(false);
+
     let wishlistStorage = getWishlist();
     wishlists.value = wishlistStorage;
 
@@ -645,7 +604,7 @@ export default {
         for (let key in chance.EnglishStandard) {
           if (!chance.EnglishStandard[key]) continue;
           allNull = false; // Found a non-null value, so set the flag to false
-          if (key == "CEFRDegree") {
+          if (key == "  ") {
             const userValue = user.value.EnglishStandard[key] || "";
             const chanceValue = chance.EnglishStandard[key] || "";
             if (userValue === chanceValue) {
@@ -837,6 +796,9 @@ export default {
       }
     }
 
+    const toggleSidebar = () => {
+      isOpen.value = !isOpen.value;
+    };
 
     // Return
     return {
@@ -869,7 +831,9 @@ export default {
       validateChance,
       modalContentBrainRef,
       openModalBrainBox,
-      BrainChancesRelated
+      BrainChancesRelated,
+      isOpen,
+      toggleSidebar,
     }
   }
 }
@@ -990,5 +954,19 @@ export default {
 .date-not-started,
 .chance-not-started {
   background-color: #fbb054;
+}
+
+.chance-details ul,
+.chance-details ol{
+  list-style-type: initial;
+}
+@media (max-width: 768.98px) {
+  .sidebar {
+    display: none;
+    width: 6.5rem;
+  }
+  .sidebar.open {
+    display: block;
+  }
 }
 </style>

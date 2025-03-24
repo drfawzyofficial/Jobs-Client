@@ -1,12 +1,12 @@
 
 /*
- * Jobs App v1.0.0
- * This Code is written By Jobs Team
- * All Rights are reserved to Jobs App
+ * Khattit App v1.0.0
+ * This Code is written By Khattit Team
+ * All Rights are reserved to Khattit App
 */
 
 // Load VUE_APP_ENDPOINT variable that's related to WebPack V5
-const API_ENDPOINT = "https://server-phi-flax-82.vercel.app/api/v1"
+const API_ENDPOINT = "http://localhost:3000/api/v1"
 
 // AuthHeader Auth
  const AuthHeader = () => {

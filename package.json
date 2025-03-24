@@ -1,5 +1,5 @@
 {
-  "name": "khatat",
+  "name": "Khattit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   "dependencies": {
     "@meforma/vue-toaster": "^1.3.0",
     "@popperjs/core": "^2.11.6",
+    "@vueup/vue-quill": "^1.2.0",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",

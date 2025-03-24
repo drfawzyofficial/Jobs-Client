@@ -30,6 +30,9 @@ export const Auth = {
         const data = await Fetch("POST", "/student/signup", payload);
         if (data.statusCode === 201) {
           window.Swal.fire({ title: 'إنشاء حساب الطالب', icon: "success", text: data.message, confirmButtonText: 'أتفهم' })
+          setTimeout(() => {
+            router.push("/student/login")
+          }, 3000);
         } else {
           var errors = ``;
           for (const property in data.result.errors) {
@@ -150,6 +153,24 @@ export const Auth = {
             commit("unSetUser");
             router.push("/")
           }, 3000);
+        } else if (data.statusCode === 401 || data.statusCode === 500) {
+          dispatch("Auth/Logout", {}, { root: true });
+        } else {
+          window.Swal.fire({ title: 'خطأ!', icon: "error", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+        }
+        dispatch("Collection/loading", false, { root: true });
+      } catch (err) {
+        window.Swal.fire({ title: 'خطأ!', text: err.message, icon: 'error', confirmButtonText: 'أتفهم الأمر' })
+        dispatch("Collection/loading", false, { root: true });
+      }
+    },
+    async updateNotifications({ dispatch, commit }, payload) {
+      try {
+        dispatch("Collection/loading", true, { root: true });
+        const data = await Fetch("POST", "/student/enablenotifications", payload);
+        console.log(data);
+        if (data.statusCode === 200) {
+          console.log("Switched");
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {

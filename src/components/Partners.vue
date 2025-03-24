@@ -1,7 +1,7 @@
 <template>
   <div class="partners container-fluid py-5 bg-light">
     <div class="container">
-      <h2 class="fw-bold text-center mb-3">شركائنا</h2>
+      <h2 class="fw-bold text-center mb-3">شركاؤنا</h2>
         <Carousel :autoplay="5000" :wrap-around="true" :dir="rtl" :itemsToShow="4" :breakpoints="carouselBreakpoints"
         >
           <Slide v-for="(image, index) in slider_images" :key="index" class="image-item">

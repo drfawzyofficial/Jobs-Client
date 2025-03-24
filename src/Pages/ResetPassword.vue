@@ -6,10 +6,10 @@
         <div class="col-12">
           <div class="account-auth form-box" id="recover">
             <h4 class="text-center fw-bold mb-4">استعادة كلمة المرور</h4>
-            <div class="my-3" v-if="errorMsg">
+            <div class="my-3 text-center" v-if="errorMsg">
               <span class="error fw-medium">{{ errorMsg }}</span>
             </div>
-            <div class="my-3" v-if="successMsg">
+            <div class="my-3 text-center" v-if="successMsg">
               <span class="success fw-medium">{{ successMsg }}</span>
             </div>
             <form-wizard color="#2B7A7B" shape="circle" @on-complete="onComplete" nextButtonText="التالي" backButtonText="السابق" finishButtonText="إرسال">
@@ -71,7 +71,7 @@ export default {
     // Calling, Declarations, Data
     const router = useRouter();
     const store = useStore()
-    const items = ref([{ content: "أهلًأ بكم في موقع خطط", link: "/" }, { content: "يمكنك الإنضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
+    const items = ref([{ content: "أهلًا بكم في منصة خطط", link: "/" }, { content: "يمكنك الإنضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
     const resetPasswordPayload = ref({
       identifier: "",
       code: "",
@@ -152,8 +152,6 @@ export default {
 span.error {
   color: #e74c3c;
   font-size: 18px;
-  display: flex;
-  justify-content: center;
 }
 
 span.success {

@@ -26,7 +26,7 @@ export const Collection = {
                 } else if (data.statusCode === 401 || data.statusCode === 500) {
                     dispatch("Auth/Logout", {}, { root: true });
                 } else {
-                    window.Swal.fire({ title: 'استرجاع بيانات المساعدة', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
+                    window.Swal.fire({ title: 'استرجاع البيانات', text: data.message, icon: 'error', confirmButtonText: 'أتفهم' })
                 }
             } catch (err) {
                 window.Swal.fire({ title: 'خطأ!', text: "خطأ برمجي", icon: 'error', confirmButtonText: 'أتفهم' })

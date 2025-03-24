@@ -4,8 +4,9 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        :class="{ open: isOpen }">
+        <li class=" nav-item" v-for="(item, index) in navLinks" :key="index">
           <router-link class="fw-medium nav-link" :to="item.link">
             <span class="item-icon" v-html="item.icon"></span>
             <span class="item-title ms-2">{{ item.title }}</span>
@@ -162,7 +163,7 @@
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
-                    }}</span>
+                  }}</span>
                   <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
                 </a>
                 <!-- Dropdown - User Information -->
@@ -191,7 +192,7 @@
 
 
             <!-- Sidebar Toggle (Topbar) -->
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" @click="toggleSidebar">
               <i class="bi bi-bar-chart-steps"></i>
             </button>
 
@@ -256,7 +257,7 @@
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
                         <select class="form-select form-select-lg" v-model="profilePayload.saudiCity">
-                          <option value="none">محل الإقامة</option>
+                          <option value="none">مقر الإقامة</option>
                           <option v-for="(nationality, index) in saudiCities" :key="index" :value="nationality">
                             {{ nationality }}
                           </option>
@@ -319,7 +320,7 @@
                             v-model="profilePayload.tookEnglishTest" />
                           <label class="form-label" for="englishTestCheckbox">
                             هل سبق لك واخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
-                            (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOFEL)؟
+                            (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOEFL)؟
                           </label>
                         </div>
                         <ul v-if="profilePayload.tookEnglishTest" class="nav nav-tabs mt-2" id="myTab" role="tablist">
@@ -328,8 +329,8 @@
                               type="button" role="tab" aria-controls="home" aria-selected="true">IELTS</button>
                           </li>
                           <li class="nav-item" role="presentation">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOFEL" id="TOFEL-tab"
-                              type="button" role="tab" aria-controls="TOFEL" aria-selected="false">TOFEL</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOEFL" id="TOEFL-tab"
+                              type="button" role="tab" aria-controls="TOEFL" aria-selected="false">TOEFL</button>
                           </li>
                           <li class="nav-item" role="presentation">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#TOEIC" type="button"
@@ -352,40 +353,40 @@
                           <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
                             aria-labelledby="home-tab">
                             <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in IELTSDegress"
-                              :key="index" @click="selectIELTSDegree(obj.degree)"
-                              :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.IELTSDegree }">{{
+                              :key="index" @click="selectIELTS(obj.degree)"
+                              :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.IELTS }">{{
                                 obj.degree }}</button>
                           </div>
-                          <div class="tab-pane fade p-3" id="TOFEL" role="tabpanel">
+                          <div class="tab-pane fade p-3" id="TOEFL" role="tabpanel">
                             <input type="range" class="form-range" min="0" max="120"
-                              v-model="profilePayload.EnglishStandard.TOFELDegree">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOFELDegree }}</h6>
+                              v-model="profilePayload.EnglishStandard.TOEFLDegree">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEFLDegree }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
                             <input type="range" class="form-range" min="0" max="990"
-                              v-model="profilePayload.EnglishStandard.TOEICDegree">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEICDegree }}</h6>
+                              v-model="profilePayload.EnglishStandard.TOEIC">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEIC }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
                             <input type="range" class="form-range" min="0" max="160"
-                              v-model="profilePayload.EnglishStandard.DUOLINGODegree">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.DUOLINGODegree }}</h6>
+                              v-model="profilePayload.EnglishStandard.DUOLINGO">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.DUOLINGO }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="Step" role="tabpanel">
                             <input type="range" class="form-range" min="0" max="100"
-                              v-model="profilePayload.EnglishStandard.stepDegree">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.stepDegree }}</h6>
+                              v-model="profilePayload.EnglishStandard.STEP">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.STEP }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
-                            <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in CEFRDegrees"
-                              :key="index" @click="selectCEFRDegree(obj.degree)"
-                              :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.CEFRDegree }">{{
+                            <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in CEFRs"
+                              :key="index" @click="selectCEFR(obj.degree)"
+                              :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.CEFR }">{{
                                 obj.degree }}</button>
                           </div>
                         </div>
                         <div v-if="profilePayload.tookEnglishTest">
                           <button type="button" class="btn btn-primary" @click="resetEnglishStandard()">
-                            <span class="word">إعادة القيم <i class="bi bi-arrow-counterclockwise ms-1"></i></span>
+                            <span class="word">إعادة التعيين <i class="bi bi-arrow-counterclockwise ms-1"></i></span>
                           </button>
                         </div>
                       </div>
@@ -414,16 +415,16 @@
                             role="tab" aria-controls="GAT" aria-selected="false">GAT</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#act" id="act-tab" type="button"
-                            role="tab" aria-controls="act" aria-selected="false">ACT</button>
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#ACT" id="ACT-tab" type="button"
+                            role="tab" aria-controls="ACT" aria-selected="false">ACT</button>
                         </li>
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Talent" id="Talent-tab"
                             type="button" role="tab" aria-controls="Talent" aria-selected="false">مقياس موهبة</button>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#AchievementTest"
-                            id="AchievementTest-tab" type="button" role="tab" aria-controls="AchievementTest"
+                          <button class="nav-link" data-bs-toggle="tab" data-bs-target="#AchivementTest"
+                            id="AchivementTest-tab" type="button" role="tab" aria-controls="AchivementTest"
                             aria-selected="false">التحصيل المعرفي</button>
                         </li>
                         <li class="nav-item" role="presentation">
@@ -447,20 +448,20 @@
                             v-model="profilePayload.BrainStandard.GAT">
                           <h6 class="ms-2">{{ profilePayload.BrainStandard.GAT }}</h6>
                         </div>
-                        <div class="tab-pane fade p-3" id="act" role="tabpanel">
+                        <div class="tab-pane fade p-3" id="ACT" role="tabpanel">
                           <input type="range" class="form-range" min="1" max="36"
-                            v-model="profilePayload.BrainStandard.act">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.act }}</h6>
+                            v-model="profilePayload.BrainStandard.ACT">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.ACT }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
                           <input type="range" class="form-range" min="0" max="2000"
                             v-model="profilePayload.BrainStandard.Talent">
                           <h6 class="ms-2">{{ profilePayload.BrainStandard.Talent }}</h6>
                         </div>
-                        <div class="tab-pane fade p-3" id="AchievementTest" role="tabpanel">
+                        <div class="tab-pane fade p-3" id="AchivementTest" role="tabpanel">
                           <input type="range" class="form-range" min="0" max="100"
-                            v-model="profilePayload.BrainStandard.AchievementTest">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.AchievementTest }}</h6>
+                            v-model="profilePayload.BrainStandard.AchivementTest">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.AchivementTest }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="SAAT" role="tabpanel">
                           <input type="range" class="form-range" min="0" max="100"
@@ -470,7 +471,7 @@
                       </div>
                       <div v-if="profilePayload.tookBrainTest">
                         <button type="button" class="btn btn-primary" @click="resetBrainStandard()">
-                          <span class="word">إعادة القيم <i class="bi bi-arrow-counterclockwise ms-1"></i></span>
+                          <span class="word">إعادة التعيين <i class="bi bi-arrow-counterclockwise ms-1"></i></span>
                           <!-- <span class="material-symbols-outlined align-middle ms-1">
                                                     check
                                                 </span> -->
@@ -479,8 +480,7 @@
                     </div>
                     <hr>
                     <div>
-                      <button type="button" class="btn btn-primary ms-2" @click="editProfile()"
-                        >
+                      <button type="button" class="btn btn-primary ms-2" @click="editProfile()">
                         <span>الإرسال <i class="bi bi-send"></i></span>
                       </button>
                     </div>
@@ -489,12 +489,12 @@
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تفعيل الحساب</h5>
-                    <p class="mb-4">برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
+                    <p class="mb-2">برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
                       الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الكود مرة
                       أخرى</p>
-                    <div class="mb-4">
+                    <div class="mb-3">
                       <input class="form-control form-control-lg" type="text" placeholder="برجاء كتابة الكود"
-                        aria-label="account-activation" v-model="codePayload.code">
+                        aria-label="account-ACTivation" v-model="codePayload.code">
                     </div>
                     <div>
                       <button type="button" class="btn btn-primary" @click="submitCode()"
@@ -510,8 +510,21 @@
                 </div>
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
+                    <h5 class="fw-bold">تفعيل الاشعارات</h5>
+                    <p class="mb-2">يمكنك تفعيل الإشعارات للفرص التي تهمك، فقط اضغط على زر الإشعارات لتلقي التحديثات
+                      مباشرة.</p>
+                    <div class="form-check form-switch d-flex align-items-center mb-3">
+                      <input class="form-check-input" type="checkbox" id="enableNotifications"
+                        v-model="profilePayload.enable_notifications" @change="updateNotifications">
+                      <label class="form-check-label ms-2" for="enableNotifications">تفعيل الإشعارات للفرص المهتم
+                        بها</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 mt-4">
+                  <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تأمين الحساب</h5>
-                    <p class="mb-4">قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد
+                    <p class="mb-2">قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد
                       المستخدمين
                     </p>
                     <div class="mb-4">
@@ -522,7 +535,7 @@
                       <input class="form-control form-control-lg" type="password" placeholder="كلمة السر الجديدة"
                         aria-label="account-new_password" v-model="passwordPayload.new_password">
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-3">
                       <input class="form-control form-control-lg" type="password" placeholder="تأكيد كلمة السر الجديدة"
                         aria-label="account-new_password_confirmation"
                         v-model="passwordPayload.new_password_confirmation">
@@ -537,7 +550,7 @@
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">حذف الحساب</h5>
-                    <p class="mb-4">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر
+                    <p class="mb-3">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر
                       وتمهل قبل
                       حذف الحساب</p>
                     <div>
@@ -618,7 +631,7 @@ export default {
     const selectItems = ref([{ text: 'مسابقات' }, { text: 'مهارات' }, { text: 'ذكاء' }]);
     store.dispatch("Collection/GetHelper")
     const helperObj = computed(() => store.state.Collection.helperObj);
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contACT", icon: '<i class="bi bi-gear fs-5"></i>' }]);
 
 
 
@@ -635,79 +648,32 @@ export default {
       tookEnglishTest: false,
       tookBrainTest: false,
       EnglishStandard: {
-        IELTSDegree: '',
-        TOFELDegree: '',
-        TOEICDegree: '',
-        DUOLINGODegree: '',
-        stepDegree: '',
-        CEFRDegree: '',
+        IELTS: '',
+        TOEFLDegree: '',
+        TOEIC: '',
+        DUOLINGO: '',
+        STEP: '',
+        CEFR: '',
       },
       BrainStandard: {
         Sat: '',
         Qudrat: '',
         GAT: '',
-        act: '',
+        ACT: '',
         Talent: '',
-        AchievementTest: '',
+        AchivementTest: '',
         SAAT: ''
       },
       interests: [],
       Subinterests: [],
+      enable_notifications: false
     });
+
+    const isOpen = ref(false);
+
+
     onMounted(() => {
-      // Toggle the side navigation
-      $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
-        $("body").toggleClass("sidebar-toggled");
-        $(".sidebar").toggleClass("toggled");
-        if ($(".sidebar").hasClass("toggled")) {
-          $('.sidebar .collapse').collapse('hide');
-        };
-      });
-
-      // Close any open menu accordions when window is resized below 768px
-      $(window).resize(function () {
-        if ($(window).width() < 768) {
-          $('.sidebar .collapse').collapse('hide');
-        };
-
-        // Toggle the side navigation when window is resized below 480px
-        if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
-          $("body").addClass("sidebar-toggled");
-          $(".sidebar").addClass("toggled");
-          $('.sidebar .collapse').collapse('hide');
-        };
-      });
-
-      // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
-      $('body.fixed-nav .sidebar').on('mousewheel DOMMouseScroll wheel', function (e) {
-        if ($(window).width() > 768) {
-          var e0 = e.originalEvent,
-            delta = e0.wheelDelta || -e0.detail;
-          this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-          e.preventDefault();
-        }
-      });
-
-      // Scroll to top button appear
-      $(document).on('scroll', function () {
-        var scrollDistance = $(this).scrollTop();
-        if (scrollDistance > 100) {
-          $('.scroll-to-top').fadeIn();
-        } else {
-          $('.scroll-to-top').fadeOut();
-        }
-      });
-
-      // Smooth scrolling using jQuery easing
-      $(document).on('click', 'a.scroll-to-top', function (e) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-          scrollTop: ($($anchor.attr('href')).offset().top)
-        }, 1000, 'easeInOutExpo');
-        e.preventDefault();
-      });
       profilePayload.value = user.value;
-
     });
 
     const saudiCities = ref([
@@ -822,7 +788,7 @@ export default {
 
 
     ]);
-    const CEFRDegrees = ref([
+    const CEFRs = ref([
       {
         degree: "A1"
       },
@@ -917,12 +883,12 @@ export default {
 
     const resetEnglishStandard = () => {
       profilePayload.value.EnglishStandard = {
-        IELTSDegree: '',
-        TOFELDegree: '',
-        TOEICDegree: '',
-        DUOLINGODegree: '',
-        stepDegree: '',
-        CEFRDegree: '',
+        IELTS: '',
+        TOEFLDegree: '',
+        TOEIC: '',
+        DUOLINGO: '',
+        STEP: '',
+        CEFR: '',
       }
     }
     const resetBrainStandard = () => {
@@ -930,9 +896,9 @@ export default {
         Sat: '',
         Qudrat: '',
         GAT: '',
-        act: '',
+        ACT: '',
         Talent: '',
-        AchievementTest: '',
+        AchivementTest: '',
         SAAT: ''
       }
     }
@@ -940,13 +906,19 @@ export default {
 
 
 
-    const selectIELTSDegree = (degree) => {
-      profilePayload.value.EnglishStandard.IELTSDegree = degree;
+    const selectIELTS = (degree) => {
+      profilePayload.value.EnglishStandard.IELTS = degree;
     }
-    const selectCEFRDegree = (degree) => {
-      profilePayload.value.EnglishStandard.CEFRDegree = degree;
+    const selectCEFR = (degree) => {
+      profilePayload.value.EnglishStandard.CEFR = degree;
     }
 
+    const updateNotifications = async () => {
+      store.dispatch("Auth/updateNotifications", { enable_notifications: profilePayload.value.enable_notifications });
+    }
+    const toggleSidebar = () => {
+      isOpen.value = !isOpen.value;
+    };
     // Return
     return {
       helperObj,
@@ -965,9 +937,9 @@ export default {
       onFileChange,
       selectItems,
       IELTSDegress,
-      CEFRDegrees,
-      selectIELTSDegree,
-      selectCEFRDegree,
+      CEFRs,
+      selectIELTS,
+      selectCEFR,
       navLinks,
       onLogout,
       user,
@@ -976,7 +948,10 @@ export default {
       selectInterest,
       selectSubInterest,
       resetEnglishStandard,
-      resetBrainStandard
+      resetBrainStandard,
+      updateNotifications,
+      isOpen,
+      toggleSidebar,
     }
   }
 }
@@ -1015,5 +990,21 @@ export default {
 .nav-tabs .nav-link.active {
   color: #2B7A7B;
   font-weight: 600;
+}
+
+.form-switch .form-check-input {
+  width: 3em;
+  height: 1.5em;
+}
+
+@media (max-width: 768.98px) {
+  .sidebar {
+    display: none;
+    width: 6.5rem;
+  }
+
+  .sidebar.open {
+    display: block;
+  }
 }
 </style>

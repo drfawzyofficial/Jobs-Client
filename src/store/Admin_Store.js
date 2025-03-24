@@ -42,7 +42,7 @@ export const Admin_Store = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", '/helper/post', payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'إضافة المساعد', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
+          window.Swal.fire({ title: 'تمت الإضافة بنجاح', text: data.message, icon: 'success', confirmButtonText: 'أتفهم' })
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {

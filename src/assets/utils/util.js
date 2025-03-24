@@ -1,4 +1,4 @@
-// Utils for our Jobs App
+// Utils for our Khattit App
 export const convertBase64 = (file) => {
   return new Promise((resolve, reject) => {
     const fileReader = new FileReader();
@@ -66,5 +66,23 @@ export const FormDataMethod = (data) => {
   }
  return formData;
 }
+export const isRequired = (value) => value !== undefined && value !== null && value !== "";
+
+export const isString = (value) =>  typeof value === "string";
+
+export const isBoolean = (value) => typeof value === "boolean";
+
+export const isMinLength = (value, min) => value.trim().length >= min;
+
+export const matchesRegex = (value, pattern) => pattern.test(value);
+
+export const isInList = (value, list) => list.includes(value);
+
+export const isArray = (value) => Array.isArray(value) && value.length > 0;
+
+export const isMinArrayLength = (value, min) => isArray(value) && value.length >= min;
+
+export const isConfirmed = (value, confirmValue) => value.trim() === confirmValue.trim();
+
 
 

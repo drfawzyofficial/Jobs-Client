@@ -28,11 +28,11 @@
             <div class="row mt-4">
                 <div class="col-md-6">
                     <div class="khatat-statistics-content text-center">
-                        <h3 class="fw-bold">من نحن</h3>
-                        <p class="fw-medium">منصة خطط هي منصة رائده قادرة على ايصالك
+                        <h3 class="fw-bold">من نحن؟</h3>
+                        <p class="fw-medium">منصة خطط هي منصة رائدة قادرة على ايصالك
                             لافضل الفرص المتاحة حولك لتمكنك من تحقيق
                             اهدافك عن طريق تسهيل وصولك الى افضل الفرص
-                            والأنشطة المتاحة حولك</p>
+                            والأنشطة المتاحة حولك.</p>
                     </div>
                 </div>
                 <div class="col-md-6 mt-3 mt-md-0">
