@@ -18,6 +18,9 @@
                                                     <input type="text" class="form-control form-control-lg"
                                                         placeholder="الاسم الأول*" required
                                                         v-model="signupPayload.first_name">
+                                                    <div id="first_name_help" class="form-text">
+                                                        الاسم الأول يبدأ من 3 أحرف
+                                                    </div>
                                                 </div>
                                                 <div v-if="errors.first_name"><span style="color: red">{{
                                                     errors.first_name }}</span></div>
@@ -27,6 +30,9 @@
                                                     <input type="text" class="form-control form-control-lg"
                                                         placeholder="الاسم الأخير*" required
                                                         v-model="signupPayload.last_name">
+                                                    <div id="last_name_help" class="form-text">
+                                                        الاسم الأخير يبدأ من 3 أحرف
+                                                    </div>
                                                 </div>
                                                 <div v-if="errors.last_name"><span style="color: red">{{
                                                     errors.last_name }}</span></div>
@@ -35,18 +41,27 @@
                                         <div class="mb-3">
                                             <input type="email" class="form-control form-control-lg"
                                                 placeholder="البريد الإلكتروني*" required v-model="signupPayload.email">
+                                            <div id="email_help" class="form-text">
+                                                    مثل الصيغة: @gmail.com
+                                            </div>
                                             <div v-if="errors.email"><span style="color: red">{{
                                                 errors.email }}</span></div>
                                         </div>
                                         <div class="mb-3">
                                             <input type="text" class="form-control form-control-lg"
-                                                placeholder="05xxxxxxxx" required v-model="signupPayload.phone">
+                                                placeholder="رقم الهاتف" required v-model="signupPayload.phone">
+                                            <div id="email_help" class="form-text">
+                                                    مثل الصيغة: 05xxxxxxxx
+                                            </div>
                                             <div v-if="errors.phone"><span style="color: red">{{
                                                 errors.phone }}</span></div>
                                         </div>
                                         <div class="mb-3">
                                             <input type="password" class="form-control form-control-lg"
                                                 placeholder="كلمة المرور*" required v-model="signupPayload.password">
+                                            <div id="password_help" class="form-text">
+                                                يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم
+                                            </div>
                                             <div v-if="errors.password"><span style="color: red">{{
                                                 errors.password }}</span></div>
                                         </div>
@@ -132,9 +147,9 @@
                                             </div>
                                         </div>
                                         <div class="interests">
-                                            <label class="form-label">حدد مجالات اهتمامك بالترتيب(اختر 3 على
-                                                الأقل)</label>
-                                                <div v-if="errors.Subinterests"><span style="color: red">{{
+                                            <label class="form-label">حدد مجالات اهتمامك بالترتيب ( اختر 3 على
+                                                الأقل )</label>
+                                            <div v-if="errors.Subinterests"><span style="color: red">{{
                                                 errors.Subinterests }}</span></div>
                                             <div class="choose-interest">
                                                 <button type="button" class="btn btn-interest m-2"
@@ -203,27 +218,24 @@
                                                             obj.degree }}</button>
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="TOEFL" role="tabpanel">
-                                                    <input type="range" class="form-range" min="0" max="120"
-                                                        v-model="signupPayload.EnglishStandard.TOEFLDegree">
-                                                    <h6 class="ms-2">{{ signupPayload.EnglishStandard.TOEFLDegree }}
-                                                    </h6>
+                                                    <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و120"
+                                                    v-model="signupPayload.EnglishStandard.TOEFL">
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
-                                                    <input type="range" class="form-range" min="0" max="990"
-                                                        v-model="signupPayload.EnglishStandard.TOEIC">
-                                                    <h6 class="ms-2">{{ signupPayload.EnglishStandard.TOEIC }}
-                                                    </h6>
+                                                    <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و990"
+                                                    v-model="signupPayload.EnglishStandard.TOEIC">
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
-                                                    <input type="range" class="form-range" min="0" max="160"
-                                                        v-model="signupPayload.EnglishStandard.DUOLINGO">
-                                                    <h6 class="ms-2">{{ signupPayload.EnglishStandard.DUOLINGO }}
-                                                    </h6>
+                                                    <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و160"
+                                                    v-model="signupPayload.EnglishStandard.DUOLINGO">
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="Step" role="tabpanel">
-                                                    <input type="range" class="form-range" min="0" max="100"
-                                                        v-model="signupPayload.EnglishStandard.STEP">
-                                                    <h6 class="ms-2">{{ signupPayload.EnglishStandard.STEP }}</h6>
+                                                    <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و100"
+                                                    v-model="signupPayload.EnglishStandard.DUOLINGO">
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
                                                     <button type="button" class="btn btn-degree m-2"
@@ -349,14 +361,17 @@
                                             <input type="checkbox" class="form-check-input" id="acceptConditions"
                                                 v-model="signupPayload.acceptConditions" />
                                             <label class="form-label" for="acceptConditions">
-                                                أوافق على <router-link class="accept-condition" to="/pages/terms">الشروط والأحكام</router-link> و<router-link class="accept-condition" to="/pages/privacy">سياسة الخصوصية</router-link> لمنصة خطط.*
+                                                أوافق على <router-link class="accept-condition" to="/pages/terms">الشروط
+                                                    والأحكام</router-link> و<router-link class="accept-condition"
+                                                    to="/pages/privacy">سياسة الخصوصية</router-link> لمنصة خطط.*
                                             </label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <input type="checkbox" class="form-check-input" id="enable_notifications"
                                                 v-model="signupPayload.enable_notifications" />
                                             <label class="form-label" for="enable_notifications">
-                                                أوافق على تلقي الإشعارات من منصة خطط عند إضافة فرص جديدة، ويمكنني إلغاؤها في أي وقت لاحقًا.
+                                                أوافق على تلقي الإشعارات من منصة خطط عند إضافة فرص جديدة، ويمكنني
+                                                إلغاؤها في أي وقت لاحقًا.
                                             </label>
                                         </div>
                                     </div>
@@ -409,7 +424,7 @@ export default {
             tookBrainTest: false,
             EnglishStandard: {
                 IELTS: '',
-                TOEFLDegree: '',
+                TOEFL: '',
                 TOEIC: '',
                 DUOLINGO: '',
                 STEP: '',
@@ -647,7 +662,7 @@ export default {
         const resetEnglishStandard = () => {
             signupPayload.value.EnglishStandard = {
                 IELTS: '',
-                TOEFLDegree: '',
+                TOEFL: '',
                 TOEIC: '',
                 DUOLINGO: '',
                 STEP: '',
@@ -667,55 +682,55 @@ export default {
         }
 
         const validateStep = () => {
-            if (!isMinLength(signupPayload.value.first_name, 2)) {
-                errors.value.first_name = "الاسم الأول يجب الأ يقل عن 3 أحرف.";
-            } else {
-                errors.value.first_name = "";
-            }
+            // if (!isMinLength(signupPayload.value.first_name, 2)) {
+            //     errors.value.first_name = "الاسم الأول يجب الأ يقل عن 3 أحرف.";
+            // } else {
+            //     errors.value.first_name = "";
+            // }
 
-            if (!isMinLength(signupPayload.value.last_name, 2)) {
-                errors.value.last_name = "الاسم الأخير يجب الأ يقل عن 3 أحرف.";
-            } else {
-                errors.value.last_name = "";
-            }
+            // if (!isMinLength(signupPayload.value.last_name, 2)) {
+            //     errors.value.last_name = "الاسم الأخير يجب الأ يقل عن 3 أحرف.";
+            // } else {
+            //     errors.value.last_name = "";
+            // }
 
-            if (!matchesRegex(signupPayload.value.email, /^\S+@\S+\.\S+$/)) {
-                errors.value.email = "البريد الإلكتروني غير صالح.";
-            } else {
-                errors.value.email = "";
-            }
+            // if (!matchesRegex(signupPayload.value.email, /^\S+@\S+\.\S+$/)) {
+            //     errors.value.email = "البريد الإلكتروني يجب أن يكون على الصيغة المحددة.";
+            // } else {
+            //     errors.value.email = "";
+            // }
 
-            if (!matchesRegex(signupPayload.value.phone, /^05\d{8}$/)) {
-                errors.value.phone = "رقم الهاتف يجب أن يكون على الصيغة الموضحة";
-            } else {
-                errors.value.phone = "";
-            }
+            // if (!matchesRegex(signupPayload.value.phone, /^05\d{8}$/)) {
+            //     errors.value.phone = "رقم الهاتف يجب أن يكون على الصيغة الموضحة";
+            // } else {
+            //     errors.value.phone = "";
+            // }
 
-            if (!matchesRegex(signupPayload.value.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/)) {
-                errors.value.password = "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم.";
-            } else {
-                errors.value.password = "";
-            }
+            // if (!matchesRegex(signupPayload.value.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/)) {
+            //     errors.value.password = "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم.";
+            // } else {
+            //     errors.value.password = "";
+            // }
 
-            if (!isConfirmed(signupPayload.value.password, signupPayload.value.password_confirmation)) {
-                errors.value.password_confirmation = "كلمة المرور غير متطابقة";
-            } else {
-                errors.value.password_confirmation = "";
-            }
+            // if (!isConfirmed(signupPayload.value.password, signupPayload.value.password_confirmation)) {
+            //     errors.value.password_confirmation = "كلمة المرور غير متطابقة";
+            // } else {
+            //     errors.value.password_confirmation = "";
+            // }
 
-            if(!isMinArrayLength(signupPayload.value.interests, 3)) {
-                errors.value.interests = "يجب اختيار 3 أنواع من الفرص على الأقل.";
-            } else {
-                errors.value.interests = "";
-            }
+            // if (!isMinArrayLength(signupPayload.value.interests, 3)) {
+            //     errors.value.interests = "يجب اختيار 3 أنواع من الفرص على الأقل.";
+            // } else {
+            //     errors.value.interests = "";
+            // }
 
-            if(!isMinArrayLength(signupPayload.value.Subinterests, 3)) {
-                errors.value.Subinterests = "يجب اختيار 3 مجالات اهتمام على الأقل.";
-            } else {
-                errors.value.Subinterests = "";
-            }
+            // if (!isMinArrayLength(signupPayload.value.Subinterests, 3)) {
+            //     errors.value.Subinterests = "يجب اختيار 3 مجالات اهتمام على الأقل.";
+            // } else {
+            //     errors.value.Subinterests = "";
+            // }
 
-            //  Check if all values in `errors.value` are empty
+            // //  Check if all values in `errors.value` are empty
             return Object.values(errors.value).every(error => error === "");
 
         };
@@ -753,7 +768,6 @@ export default {
 
 .btn-degree {
     height: 40px;
-    width: 40px;
     background-color: #DEF2F1;
     border: 1px solid #3aafa9;
     transition: all 0.3s ease-in-out;
@@ -784,9 +798,11 @@ export default {
     color: #2B7A7B;
     font-weight: 600;
 }
+
 .accept-condition {
     color: blue;
 }
+
 .accept-condition:hover {
     text-decoration: underline;
 }

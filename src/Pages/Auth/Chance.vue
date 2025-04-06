@@ -360,7 +360,7 @@
                 </div>
               </div>
               <div class="chance-review-post mt-3">
-                <h4 class="fw-bold">اكتب تقييما</h4>
+                <h4 class="fw-bold">اكتب تقييمًا</h4>
                 <div class="mt-2">
                   <textarea class="form-control" placeholder="اكتب تقييمك هنا" rows="4"
                     v-model="review.comment"></textarea>
@@ -517,7 +517,7 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-sm btn-danger" @click="closeModal()">
+            <button type="button" class="btn btn-sm btn-danger" @click="closeModalNow()">
               <span>إغلاق</span>
             </button>
           </div>
@@ -737,6 +737,10 @@ export default {
       Modal.getInstance(modalContentRef.value).hide();
     }
 
+    const closeModalNow = () =>  {
+      Modal.getInstance(modalContentBrainRef.value).hide();
+    }
+
     const openModalBox = () => {
       new Modal(modalContentRef.value).show();
       store.dispatch("Auth/EnglishChancesRelated", { _id: route.params.id});
@@ -822,6 +826,7 @@ export default {
       onLogout,
       openModalBox,
       closeModal,
+      closeModalNow,
       modalContentRef,
       EnglishChancesRelated,
       IncrementChance,

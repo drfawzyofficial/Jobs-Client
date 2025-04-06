@@ -2,12 +2,12 @@
   <div class="accordionSection container-fluid">
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-lg-6">
           <div class="faq-image">
             <img class="store-animation-shadow" src="@/assets/images/faq.jpg" />
           </div>
         </div>
-        <div class="col-md-6 mt-4 mt-md-0">
+        <div class="col-lg-6 mt-4 mt-lg-0">
           <h3>الأسئلة الشائعة</h3>
           <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
             <div v-for="(item, index) in faqItems" :key="index" class="accordion-item">
@@ -80,6 +80,7 @@ export default {
 
 .accordion .accordion-button span {
   font-size: 20px;
+  font-weight: 500;
 }
 
 .faq-image img,
@@ -87,5 +88,16 @@ export default {
   width: 100%;
   height: 450px;
   border-radius: 8px;
+}
+
+@media (max-width: 575.98px) {
+
+  .faq-image img,
+  .faq-image svg {
+    height: auto;
+  }
+  .accordion .accordion-button span {
+  font-size: 16px;
+}
 }
 </style>

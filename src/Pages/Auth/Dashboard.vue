@@ -301,7 +301,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                          الفرص المفتوحة</div>
+                          فرص مفتوحة التسجيل</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.dateBased.openChances }}</div>
                       </div>
                       <div class="col-auto">
@@ -319,7 +319,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                          فرص لم تبدأ بعد</div>
+                          فرص ستفتح قريبًا</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ statistics.dateBased.notStartedChances }}
                         </div>
                       </div>
@@ -337,7 +337,7 @@
                   <div class="card-body">
                     <div class="row no-gutters align-items-center">
                       <div class="col ml-2">
-                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">الفرص المغلقة
+                        <div class="text-xs font-weight-bold text-info text-uppercase mb-1">فرص مغلقة التسجيل
                         </div>
                         <div class="row no-gutters align-items-center">
                           <div class="col-auto">

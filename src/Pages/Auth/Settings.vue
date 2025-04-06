@@ -359,8 +359,8 @@
                           </div>
                           <div class="tab-pane fade p-3" id="TOEFL" role="tabpanel">
                             <input type="range" class="form-range" min="0" max="120"
-                              v-model="profilePayload.EnglishStandard.TOEFLDegree">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEFLDegree }}</h6>
+                              v-model="profilePayload.EnglishStandard.TOEFL">
+                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEFL }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
                             <input type="range" class="form-range" min="0" max="990"
@@ -494,7 +494,10 @@
                       أخرى.</p>
                     <div class="mb-3">
                       <input class="form-control form-control-lg" type="text" placeholder="أدخل رمز التفعيل هنا"
-                        aria-label="account-ACTivation" v-model="codePayload.code">
+                        aria-label="account-activation" v-model="codePayload.code">
+                        <div id="account_activation_help" class="form-text">
+                          إذا لم تصلك الرسالة، يرجى التحقق من مجلد <strong>'الرسائل غير المرغوب فيها/السبام'</strong> قبل طلب إعادة الإرسال.
+                        </div>
                     </div>
                     <div>
                       <button type="button" class="btn btn-primary" @click="submitCode()"
@@ -649,7 +652,7 @@ export default {
       tookBrainTest: false,
       EnglishStandard: {
         IELTS: '',
-        TOEFLDegree: '',
+        TOEFL: '',
         TOEIC: '',
         DUOLINGO: '',
         STEP: '',
@@ -884,7 +887,7 @@ export default {
     const resetEnglishStandard = () => {
       profilePayload.value.EnglishStandard = {
         IELTS: '',
-        TOEFLDegree: '',
+        TOEFL: '',
         TOEIC: '',
         DUOLINGO: '',
         STEP: '',
@@ -960,7 +963,7 @@ export default {
 <style scoped>
 .btn-degree {
   height: 40px;
-  width: 40px;
+  /* width: 40px; */
   background-color: #DEF2F1;
   border: 1px solid #3aafa9;
   transition: all 0.3s ease-in-out;
