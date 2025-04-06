@@ -144,6 +144,9 @@ html[lang="ar"] .header .header__1 .icons {
 @media (max-width: 767.98px) {}
 
 @media (max-width: 575.98px) {
+  .header .header__1 .items, .header .header__1 .mobile-sidebar, .header .header__1 .icons {
+    width: auto;
+  }
   .header .header__1 .logo a img {
     height: 50px;
   }

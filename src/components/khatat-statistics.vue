@@ -48,7 +48,7 @@
                 </div>
                 <div class="col-12 mt-3">
                     <div class="visit-about text-center">
-                        <a class="btn btn-primary" href="/pages/about-us">زيارة <i class="bi bi-eye"></i></a>
+                        <router-link class="btn btn-primary" to="/pages/about-us">زيارة <i class="bi bi-eye"></i></router-link>
                     </div>
                 </div>
             </div>

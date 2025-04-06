@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="faq-image">
-            <img class="store-animation-shadow" src="@/assets/images/faq.png" />
+            <img class="store-animation-shadow" src="@/assets/images/faq.jpg" />
           </div>
         </div>
         <div class="col-md-6 mt-4 mt-md-0">
