@@ -6,7 +6,7 @@
                     <div class="col-12">
                         <div class="form-box customer_signup" id="customer_signup">
                             <h4 class="text-center fw-bold mb-3">التسجيل</h4>
-                            <p class="info text-center mb-3">في البداية ودنا نعرف اكثر عنك عشان نقدر نخدمك بأفضل طريقة
+                            <p class="info text-center mb-3">في البداية ودنا نعرف أكثر عنك عشان نقدر نخدمك بأفضل طريقة
                                 ممكنة</p>
                             <form-wizard color="#2B7A7B" shape="circle" @on-complete="onSignup" nextButtonText="التالي"
                                 backButtonText="السابق" finishButtonText="إرسال">
@@ -118,8 +118,10 @@
                                             </select>
                                         </div>
                                         <div class="interests mb-3">
-                                            <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على
-                                                الأقل)</label>
+                                            <label class="form-label">ما نوع الفرص التي تبحث عنها؟ ( اختر 3 على
+                                                الأقل )</label>
+                                            <div v-if="errors.interests"><span style="color: red">{{
+                                                errors.interests }}</span></div>
                                             <div class="choose-interest">
                                                 <button type="button" class="btn btn-interest m-2"
                                                     v-for="(interest, index) in helperObj.chanceCategories" :key="index"
@@ -132,6 +134,8 @@
                                         <div class="interests">
                                             <label class="form-label">حدد مجالات اهتمامك بالترتيب(اختر 3 على
                                                 الأقل)</label>
+                                                <div v-if="errors.Subinterests"><span style="color: red">{{
+                                                errors.Subinterests }}</span></div>
                                             <div class="choose-interest">
                                                 <button type="button" class="btn btn-interest m-2"
                                                     v-for="(interest, index) in helperObj.chanceSubcategories"
@@ -151,7 +155,7 @@
                                                 <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                                                     v-model="signupPayload.tookEnglishTest" />
                                                 <label class="form-label" for="englishTestCheckbox">
-                                                    هل سبق لك واخذت أحد اختبارات اللغة الإنجليزية الآتية:
+                                                    هل سبق لك وأخذت أحد اختبارات اللغة الإنجليزية الآتية:
                                                     (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOEFL)؟
                                                 </label>
                                             </div>
@@ -248,7 +252,7 @@
                                             <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                                                 v-model="signupPayload.tookBrainTest" />
                                             <label class="form-label" for="englishTestCheckbox">
-                                                هل سبق لك واخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي,
+                                                هل سبق لك وأخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي,
                                                 مقياس موهبة) (SAAT, GAT, ACT, SAT)؟
                                             </label>
                                         </div>
@@ -256,8 +260,8 @@
                                             role="tablist">
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link active" data-bs-toggle="tab"
-                                                    data-bs-target="#Sat" id="Sat-tab" type="button" role="tab"
-                                                    aria-controls="Sat" aria-selected="true">SAT</button>
+                                                    data-bs-target="#SAT" id="SAT-tab" type="button" role="tab"
+                                                    aria-controls="SAT" aria-selected="true">SAT</button>
                                             </li>
                                             <li class="nav-item" role="presentation">
                                                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat"
@@ -293,10 +297,10 @@
                                         </ul>
                                         <div v-if="signupPayload.tookBrainTest" class="tab-content"
                                             id="myOtherTabContent">
-                                            <div class="tab-pane fade show active p-3" id="Sat" role="tabpanel">
+                                            <div class="tab-pane fade show active p-3" id="SAT" role="tabpanel">
                                                 <input type="range" class="form-range" min="0" max="1600"
-                                                    v-model="signupPayload.BrainStandard.Sat">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.Sat }}</h6>
+                                                    v-model="signupPayload.BrainStandard.SAT">
+                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.SAT }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
                                                 <input type="range" class="form-range" min="0" max="100"
@@ -377,7 +381,7 @@ import { computed, ref } from 'vue'
 //local registration
 import { FormWizard, TabContent } from 'vue3-form-wizard'
 import 'vue3-form-wizard/dist/style.css'
-import { isMinLength, matchesRegex, isConfirmed } from "../assets/utils/util";
+import { isMinLength, matchesRegex, isConfirmed, isMinArrayLength } from "../assets/utils/util";
 export default {
     name: 'Signup',
     components: {
@@ -412,7 +416,7 @@ export default {
                 CEFR: '',
             },
             BrainStandard: {
-                Sat: '',
+                SAT: '',
                 Qudrat: '',
                 GAT: '',
                 ACT: '',
@@ -431,7 +435,9 @@ export default {
             email: "",
             phone: "",
             password: "",
-            password_confirmation: ""
+            password_confirmation: "",
+            interests: "",
+            Subinterests: ""
         });
 
         store.dispatch("Collection/GetHelper")
@@ -650,7 +656,7 @@ export default {
         }
         const resetBrainStandard = () => {
             signupPayload.value.BrainStandard = {
-                Sat: '',
+                SAT: '',
                 Qudrat: '',
                 GAT: '',
                 ACT: '',
@@ -661,41 +667,53 @@ export default {
         }
 
         const validateStep = () => {
-            // if (!isMinLength(signupPayload.value.first_name, 2)) {
-            //     errors.value.first_name = "الاسم الأول يجب الأ يقل عن 3 أحرف.";
-            // } else {
-            //     errors.value.first_name = "";
-            // }
+            if (!isMinLength(signupPayload.value.first_name, 2)) {
+                errors.value.first_name = "الاسم الأول يجب الأ يقل عن 3 أحرف.";
+            } else {
+                errors.value.first_name = "";
+            }
 
-            // if (!isMinLength(signupPayload.value.last_name, 2)) {
-            //     errors.value.last_name = "الاسم الأخير يجب الأ يقل عن 3 أحرف.";
-            // } else {
-            //     errors.value.last_name = "";
-            // }
+            if (!isMinLength(signupPayload.value.last_name, 2)) {
+                errors.value.last_name = "الاسم الأخير يجب الأ يقل عن 3 أحرف.";
+            } else {
+                errors.value.last_name = "";
+            }
 
-            // if (!matchesRegex(signupPayload.value.email, /^\S+@\S+\.\S+$/)) {
-            //     errors.value.email = "البريد الإلكتروني غير صالح.";
-            // } else {
-            //     errors.value.email = "";
-            // }
+            if (!matchesRegex(signupPayload.value.email, /^\S+@\S+\.\S+$/)) {
+                errors.value.email = "البريد الإلكتروني غير صالح.";
+            } else {
+                errors.value.email = "";
+            }
 
-            // if (!matchesRegex(signupPayload.value.phone, /^05\d{8}$/)) {
-            //     errors.value.phone = "رقم الهاتف يجب أن يكون على الصيغة الموضحة";
-            // } else {
-            //     errors.value.phone = "";
-            // }
+            if (!matchesRegex(signupPayload.value.phone, /^05\d{8}$/)) {
+                errors.value.phone = "رقم الهاتف يجب أن يكون على الصيغة الموضحة";
+            } else {
+                errors.value.phone = "";
+            }
 
-            // if (!matchesRegex(signupPayload.value.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/)) {
-            //     errors.value.password = "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم.";
-            // } else {
-            //     errors.value.password = "";
-            // }
+            if (!matchesRegex(signupPayload.value.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/)) {
+                errors.value.password = "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم.";
+            } else {
+                errors.value.password = "";
+            }
 
-            // if (!isConfirmed(signupPayload.value.password, signupPayload.value.password_confirmation)) {
-            //     errors.value.password_confirmation = "كلمة المرور غير متطابقة";
-            // } else {
-            //     errors.value.password_confirmation = "";
-            // }
+            if (!isConfirmed(signupPayload.value.password, signupPayload.value.password_confirmation)) {
+                errors.value.password_confirmation = "كلمة المرور غير متطابقة";
+            } else {
+                errors.value.password_confirmation = "";
+            }
+
+            if(!isMinArrayLength(signupPayload.value.interests, 3)) {
+                errors.value.interests = "يجب اختيار 3 أنواع من الفرص على الأقل.";
+            } else {
+                errors.value.interests = "";
+            }
+
+            if(!isMinArrayLength(signupPayload.value.Subinterests, 3)) {
+                errors.value.Subinterests = "يجب اختيار 3 مجالات اهتمام على الأقل.";
+            } else {
+                errors.value.Subinterests = "";
+            }
 
             //  Check if all values in `errors.value` are empty
             return Object.values(errors.value).every(error => error === "");

@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6 mt-3 mt-lg-0">
                     <div class="footer-links">
-                        <h5 class="fw-bold text-white">روابط هامة</h5>
+                        <h5 class="fw-bold text-white">روابط مهمة</h5>
                         <div class="link" v-for="(item, index) in navLinks" :key="index">
                             <router-link class="fw-medium" :to="item.link">{{ item.title }}</router-link>
                         </div>

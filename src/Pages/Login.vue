@@ -53,7 +53,7 @@ export default {
     // Calling, Declarations, Data
     const store = useStore();
     const loading_status = computed(() => store.state.Collection.loading_status);
-    const items = ref([{ content: "أهلًأ بكم في موقع خطط", link: "/" }, { content: "يمكنك الإنضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
+    const items = ref([{ content: "أهلًأ بكم في موقع خطط", link: "/" }, { content: "يمكنك الانضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
     const loginPayload = ref({
             identifier: "",
             password: "",

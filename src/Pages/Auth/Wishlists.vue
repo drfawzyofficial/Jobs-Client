@@ -202,9 +202,7 @@
           <div class="wishlists container-fluid py-4">
             <div class="breadcrumb-auth">
               <h3 class="fw-bold">جميع المفضلات</h3>
-              <p>مرحبًا بك في صفحة المفضلات! هنا يمكنك إدارة الوظائف أو العناصر التي قمت بإضافتها إلى مفضلاتك. يمكنك
-                إضافة أو إزالة أي عنصر بكل سهولة، وسيتم حفظ اختياراتك تلقائيًا لتكون متاحة لك في أي وقت تزور فيه
-                لوحة التحكم. تأكد من استعراض قائمتك بانتظام لضمان عدم تفويت أي فرصة أو عنصر مهم بالنسبة لك!</p>
+              <p>مرحبًا بك في صفحة المفضلات! يمكنك هنا إدارة الفرص التي قمت بإضافتها إلى مفضلاتك. يمكنك إضافة أو إزالة أي فرصة بكل سهولة، وسيتم حفظ اختياراتك تلقائيًا لتكون متاحة لك في أي وقت تزور فيه لوحة التحكم. تأكد من استعراض قائمتك بانتظام لضمان عدم تفويت أي فرصة مهمة بالنسبة لك!</p>
             </div>
             <h5 class="alert alert-info fw-bold mt-3">عدد المفضلات: {{ wishlistsCount  }}</h5>
             <div class="row" v-if="wishlists.length > 0">
@@ -432,22 +430,22 @@ export default {
       const regStartDate = chance.chanceRegStartDate // Convert to Date object
       const regEndDate = chance.chanceRegEndDate // Convert to Date object
       if (currentDate >= regStartDate && currentDate <= regEndDate) {
-        return "مفتوح";
+        return "مفتوح التسجيل";
       }
       else if (currentDate < regStartDate) {
-        return "لم يبدأ";
+        return "يفتح قريبًا";
       } else {
-        return "مغلق";
+        return "مغلق التسجيل";
       }
     }
 
     const getValidateDateClass = (chance) => {
       const status = validateDate(chance);
-      if (status === "مفتوح") {
+      if (status === "مفتوح التسجيل") {
         return "open";
-      } else if (status === "لم يبدأ") {
+      } else if (status === "يفتح قريبًا") {
         return "not-started";
-      } else if (status === "مغلق") {
+      } else if (status === "مغلق التسجيل") {
         return "closed";
       }
     }

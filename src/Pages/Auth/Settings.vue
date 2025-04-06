@@ -319,7 +319,7 @@
                           <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                             v-model="profilePayload.tookEnglishTest" />
                           <label class="form-label" for="englishTestCheckbox">
-                            هل سبق لك واخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
+                            هل سبق لك وأخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
                             (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOEFL)؟
                           </label>
                         </div>
@@ -397,14 +397,14 @@
                         <input type="checkbox" class="form-check-input" id="englishTestCheckbox"
                           v-model="profilePayload.tookBrainTest" />
                         <label class="form-label" for="englishTestCheckbox">
-                          هل سبق لك واخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي, مقياس موهبة) (SAAT, GAT,
+                          هل سبق لك وأخذت أحد اختبارات القدرات العقلية الآتية: (قدرات, تحصيلي, مقياس موهبة) (SAAT, GAT,
                           ACT, SAT)؟
                         </label>
                       </div>
                       <ul v-if="profilePayload.tookBrainTest" class="nav nav-tabs mt-2" id="otherMyTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#Sat" id="Sat-tab"
-                            type="button" role="tab" aria-controls="Sat" aria-selected="true">SAT</button>
+                          <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#SAT" id="SAT-tab"
+                            type="button" role="tab" aria-controls="SAT" aria-selected="true">SAT</button>
                         </li>
                         <li class="nav-item" role="presentation">
                           <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Qudrat" id="Qudrat-tab"
@@ -433,10 +433,10 @@
                         </li>
                       </ul>
                       <div v-if="profilePayload.tookBrainTest" class="tab-content" id="myOtherTabContent">
-                        <div class="tab-pane fade show active p-3" id="Sat" role="tabpanel">
+                        <div class="tab-pane fade show active p-3" id="SAT" role="tabpanel">
                           <input type="range" class="form-range" min="0" max="1600"
-                            v-model="profilePayload.BrainStandard.Sat">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.Sat }}</h6>
+                            v-model="profilePayload.BrainStandard.SAT">
+                          <h6 class="ms-2">{{ profilePayload.BrainStandard.SAT }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
                           <input type="range" class="form-range" min="0" max="100"
@@ -489,11 +489,11 @@
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تفعيل الحساب</h5>
-                    <p class="mb-2">برجاء قم بإدخال الكود الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
-                      الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الكود مرة
-                      أخرى</p>
+                    <p class="mb-2">برجاء قم بإدخال الرمز الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
+                      الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الرمز مرة
+                      أخرى.</p>
                     <div class="mb-3">
-                      <input class="form-control form-control-lg" type="text" placeholder="برجاء كتابة الكود"
+                      <input class="form-control form-control-lg" type="text" placeholder="أدخل رمز التفعيل هنا"
                         aria-label="account-ACTivation" v-model="codePayload.code">
                     </div>
                     <div>
@@ -525,7 +525,7 @@
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تأمين الحساب</h5>
                     <p class="mb-2">قم بتغيير كلمة السر الخاصة بك إذا كنت تظن أن الحساب قد تم اختراقه من قبل أحد
-                      المستخدمين
+                      المستخدمين.
                     </p>
                     <div class="mb-4">
                       <input class="form-control form-control-lg" type="password" placeholder="كلمة السر القديمة"
@@ -552,7 +552,7 @@
                     <h5 class="fw-bold">حذف الحساب</h5>
                     <p class="mb-3">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر
                       وتمهل قبل
-                      حذف الحساب</p>
+                      حذف الحساب.</p>
                     <div>
                       <button type="button" class="btn btn-danger" @click="deleteAccount()">
                         <span>حذف <i class="bi bi-trash"></i></span>
@@ -656,7 +656,7 @@ export default {
         CEFR: '',
       },
       BrainStandard: {
-        Sat: '',
+        SAT: '',
         Qudrat: '',
         GAT: '',
         ACT: '',
@@ -893,7 +893,7 @@ export default {
     }
     const resetBrainStandard = () => {
       profilePayload.value.BrainStandard = {
-        Sat: '',
+        SAT: '',
         Qudrat: '',
         GAT: '',
         ACT: '',

@@ -202,8 +202,8 @@
           <div class="chances container-fluid py-4">
             <div class="breadcrumb-auth">
               <h3 class="fw-bold">جميع الفرص</h3>
-              <p>هنا تفاصيل جميع الفرص. يتم عرض كل فرصة بالتفاصيل الخاصة بها ويمكنك زيارة الفرصة أو إضافتها في المفضلة
-                للرجوع إليها في وقت لاحق. كما أنه يوجد خدمة فلترة الفرص. استمتع بإيجاد الفرص وتصفحها</p>
+              <p>هنا تفاصيل جميع الفرص. يتم عرض كل فرصة بالتفاصيل الخاصة بها ويمكنك زيارة الفرصة أو إضافتها في المفضلات
+                للرجوع إليها في وقت لاحق. كما أنه يوجد خدمة فلترة الفرص. استمتع بإيجاد الفرص وتصفحها.</p>
             </div>
             <div class="row mt-3">
               <div class="col-12">
@@ -216,9 +216,9 @@
                       <div class="col-lg-3 col-md-6">
                         <select class="form-select form-select-lg" v-model="filter.chance_case">
                           <option value="none">حالة الفرصة</option>
-                          <option value="open">مفتوح</option>
-                          <option value="not_started">لم يبدأ</option>
-                          <option value="closed">مغلق</option>
+                          <option value="open">مفتوح التسجيل</option>
+                          <option value="not_started">يفتح قريبًا</option>
+                          <option value="closed">مغلق التسجيل</option>
                         </select>
                       </div>
                       <div class="col-lg-3 col-md-6 mt-3 mt-md-0">
@@ -522,22 +522,22 @@ export default {
       const regStartDate = chance.chanceRegStartDate // Convert to Date object
       const regEndDate = chance.chanceRegEndDate // Convert to Date object
       if (currentDate >= regStartDate && currentDate <= regEndDate) {
-        return "مفتوح";
+        return "مفتوح التسجيل";
       }
       else if (currentDate < regStartDate) {
-        return "لم يبدأ";
+        return "يفتح قريبًا";
       } else {
-        return "مغلق";
+        return "مغلق التسجيل";
       }
     }
 
     const getValidateDateClass = (chance) => {
       const status = validateDate(chance);
-      if (status === "مفتوح") {
+      if (status === "مفتوح التسجيل") {
         return "open";
-      } else if (status === "لم يبدأ") {
+      } else if (status === "يفتح قريبًا") {
         return "not-started";
-      } else if (status === "مغلق") {
+      } else if (status === "مغلق التسجيل") {
         return "closed";
       }
     }

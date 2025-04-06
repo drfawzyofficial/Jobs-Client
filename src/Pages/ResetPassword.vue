@@ -19,9 +19,9 @@
                     required v-model="resetPasswordPayload.identifier">
                 </div>
               </tab-content>
-              <tab-content title="الكود المرسل" :before-change="validateCode">
+              <tab-content title="الرمز المرسل" :before-change="validateCode">
                 <div>
-                  <input placeholder="الكود المرسل" type="text" class="form-control form-control-lg" required
+                  <input placeholder="الرمز المرسل" type="text" class="form-control form-control-lg" required
                     v-model="resetPasswordPayload.code">
                 </div>
               </tab-content>
@@ -71,7 +71,7 @@ export default {
     // Calling, Declarations, Data
     const router = useRouter();
     const store = useStore()
-    const items = ref([{ content: "أهلًا بكم في منصة خطط", link: "/" }, { content: "يمكنك الإنضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
+    const items = ref([{ content: "أهلًا بكم في منصة خطط", link: "/" }, { content: "يمكنك الانضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
     const resetPasswordPayload = ref({
       identifier: "",
       code: "",

@@ -681,22 +681,22 @@ export default {
       const regStartDate = chance.chanceRegStartDate // Convert to Date object
       const regEndDate = chance.chanceRegEndDate // Convert to Date object
       if (currentDate >= regStartDate && currentDate <= regEndDate) {
-        return "مفتوح";
+        return "مفتوح التسجيل";
       }
       else if (currentDate < regStartDate) {
-        return "لم يبدأ";
+        return "يفتح قريبًا";
       } else {
-        return "مغلق";
+        return "مغلق التسجيل";
       }
     }
 
     const getValidateDateClass = (chance) => {
       const status = validateDate(chance);
-      if (status === "مفتوح") {
+      if (status === "مفتوح التسجيل") {
         return "open";
-      } else if (status === "لم يبدأ") {
+      } else if (status === "يفتح قريبًا") {
         return "not-started";
-      } else if (status === "مغلق") {
+      } else if (status === "مغلق التسجيل") {
         return "closed";
       }
     }

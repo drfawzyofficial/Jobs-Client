@@ -9,7 +9,7 @@
           </div>
           <div class="col-md-6 mt-4 mt-md-0">
             <h3>الأسئلة الشائعة</h3>
-            <div class="accordion accordion-flush mt-3">
+            <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
               <div
                 v-for="(item, index) in faqItems"
                 :key="index"
@@ -19,7 +19,7 @@
                   <button
                     class="accordion-button collapsed"
                     type="button"
-                    :data-bs-toggle="'collapse'"
+                    data-bs-toggle="collapse"
                     :data-bs-target="`#faq-${index}`"
                     aria-expanded="false"
                     :aria-controls="`faq-${index}`"
@@ -31,6 +31,7 @@
                   :id="`faq-${index}`"
                   class="accordion-collapse collapse"
                   :aria-labelledby="`heading-${index}`"
+                  data-bs-parent="#accordionFlushExample"
                 >
                   <div class="accordion-body">
                     <p class="mb-0">{{ item.answer }}</p>

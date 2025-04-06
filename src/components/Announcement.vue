@@ -38,7 +38,7 @@ export default {
     // Calling, Declarations, Data
     const props = defineProps({ title: String });
     const { title } = toRefs(props);
-    const items = ref([{ content: "أهلًا بكم في منصة خطط", link: "/"}, { content: "يمكنك الإنضمام إلينا الآن", link: "/account/signup"}, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms"}]);
+    const items = ref([{ content: "أهلًا بكم في منصة خطط", link: "/"}, { content: "يمكنك الانضمام إلينا الآن", link: "/account/signup"}, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms"}]);
     // Return
     return {
       title,

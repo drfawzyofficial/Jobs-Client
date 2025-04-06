@@ -221,10 +221,8 @@
                             <div class="row mt-4">
                                 <div class="col-12">
                                     <div class="p-3 bg-white shadow">
-                                        <h5 class="fw-bold">استفسار</h5>
-                                        <p>يمكنك الاستفسار في أي وقت من خلال إرسال رسالة، وسيتم تحويلها إلى المسؤولين
-                                            ليتم الرد
-                                            عليك. علمًا بأن الرد سيصل إلى بريدك الإلكتروني في رسالة واحدة فقط.</p>
+                                        <h5 class="fw-bold">أرسل رسالة</h5>
+                                        <p>يمكنك الاستفسار أو إبداء الملاحظات في أي وقت من خلال إرسال رسالة، وسيتم تحويلها إلى المسؤولين للرد عليك، علمًا بأن الرد سيصل إلى بريدك الإلكتروني في رسالة واحدة فقط.</p>
                                         <div class="mt-3">
                                             <textarea id="ContactForm-body" class="form-control form-control-lg"
                                                 rows="3" v-model="contactPayload.message"></textarea>
