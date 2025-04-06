@@ -7,7 +7,7 @@
             <div    
               v-for="(feature, index) in features"
               :key="index"
-              class="col-md-3 col-sm-6 col-12 mt-5"
+              class="col-lg-3 col-md-6 col-12 mt-5"
             >
               <div class="feature text-center">
                 <div class="feature-icon">
@@ -37,7 +37,7 @@
         },
         {
           icon: '<i class="bi bi-funnel"></i>',
-          description: 'عرض الفرص حسب اهتماماتك',
+          description: 'عرض جميع الفرص حسب اهتماماتك',
         },
         {
           icon: '<i class="bi bi-arrow-repeat"></i>',
