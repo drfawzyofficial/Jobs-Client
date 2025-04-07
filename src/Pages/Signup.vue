@@ -310,39 +310,39 @@
                                         <div v-if="signupPayload.tookBrainTest" class="tab-content"
                                             id="myOtherTabContent">
                                             <div class="tab-pane fade show active p-3" id="SAT" role="tabpanel">
-                                                <input type="range" class="form-range" min="0" max="1600"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و1600"
                                                     v-model="signupPayload.BrainStandard.SAT">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.SAT }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
-                                                <input type="range" class="form-range" min="0" max="100"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و100"
                                                     v-model="signupPayload.BrainStandard.Qudrat">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.Qudrat }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
-                                                <input type="range" class="form-range" min="0" max="100"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و100"
                                                     v-model="signupPayload.BrainStandard.GAT">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.GAT }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="ACT" role="tabpanel">
-                                                <input type="range" class="form-range" min="1" max="36"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و36"
                                                     v-model="signupPayload.BrainStandard.ACT">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.ACT }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
-                                                <input type="range" class="form-range" min="0" max="2000"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و2000"
                                                     v-model="signupPayload.BrainStandard.Talent">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.Talent }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="AchivementTest" role="tabpanel">
-                                                <input type="range" class="form-range" min="0" max="100"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و100"
                                                     v-model="signupPayload.BrainStandard.AchivementTest">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.AchivementTest }}</h6>
                                             </div>
                                             <div class="tab-pane fade p-3" id="SAAT" role="tabpanel">
-                                                <input type="range" class="form-range" min="0" max="100"
+                                                <input type="text" class="form-control form-control-lg"
+                                                    placeholder="الدرجة بين 0 و100"
                                                     v-model="signupPayload.BrainStandard.SAAT">
-                                                <h6 class="ms-2">{{ signupPayload.BrainStandard.SAAT }}</h6>
                                             </div>
                                         </div>
                                         <div v-if="signupPayload.tookBrainTest">
