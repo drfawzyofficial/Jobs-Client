@@ -338,17 +338,18 @@
                   </div>
                   <div class="mt-2">
                     <span>المرحلة الدراسية: </span>
-                    <span v-for="(val, index) in chance.applicantEdus" :key="index">
-                      {{ val }},
-                    </span>
+                    ( <span v-for="(val, index) in chance.applicantEdus" :key="index">
+                      {{ val }}<span v-if="index !== chance.applicantEdus.length - 1"> - </span>
+                    </span> )
                   </div>
                   <div class="mt-2">
                     <span>الموقع: </span>
                     <span>{{ chance.programStatus }}</span>
                     <span v-if="chance.programStatus == 'حضوري'">
                       في
-                      <span class="ms-1" v-for="(val, index) in chance.cities" :key="index" :value="val"> {{
-                        val }} </span>
+                      (<span class="ms-1" v-for="(val, index) in chance.cities" :key="index" :value="val"> 
+                        {{ val }}<span v-if="index !== chance.cities.length - 1"> - </span>
+                      </span> )
                     </span>
                   </div>
                 </div>
@@ -371,9 +372,9 @@
                     </span>
                   </div>
                   <button class="btn btn-primary" @click="sendReview()">نشر <i class="bi bi-send"></i></button>
-                </div>`
+                </div>
               </div>
-              <div class="chance-reviews">
+              <div class="chance-reviews mt-4">
                 <h4 class="fw-bold">التقييمات</h4>
                 <div class="row">
                   <div class="col-lg-3 col-md-4 col-6 mt-3" v-if="reviews.length > 0" v-for="(review, index) in reviews"

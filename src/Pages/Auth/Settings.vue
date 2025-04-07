@@ -264,7 +264,7 @@
                         </select>
                       </div>
                     </div>
-                    <div class="mb-3 d-flex align-items-center">
+                    <div class="mb-3 d-block d-sm-flex align-items-center">
                       <label class="form-label">
                         هل أنت سعودي الجنسية؟
                       </label>
@@ -289,7 +289,7 @@
                         <div class="interests">
                           <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)</label>
                           <div class="choose-interest">
-                            <button type="button" class="btn btn-interest m-2"
+                            <button type="button" class="btn btn-interest m-1"
                               v-for="(interest, index) in helperObj.chanceCategories" :key="index"
                               @click="selectInterest(interest)"
                               :class="{ 'btn-selected': profilePayload.interests.includes(interest) }">{{
@@ -302,7 +302,7 @@
                         <div class="interests">
                           <label class="form-label">حدد مجالات اهتمامك بالترتيب(اختر 3 على الأقل)</label>
                           <div class="choose-interest">
-                            <button type="button" class="btn btn-interest m-2"
+                            <button type="button" class="btn btn-interest m-1"
                               v-for="(interest, index) in helperObj.chanceSubcategories" :key="index"
                               @click="selectSubInterest(interest)"
                               :class="{ 'btn-selected': profilePayload.Subinterests.includes(interest) }">{{
@@ -352,34 +352,31 @@
                         <div v-if="profilePayload.tookEnglishTest" class="tab-content" id="myTabContent">
                           <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
                             aria-labelledby="home-tab">
-                            <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in IELTSDegress"
+                            <button type="button" class="btn btn-degree m-1" v-for="(obj, index) in IELTSDegress"
                               :key="index" @click="selectIELTS(obj.degree)"
                               :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.IELTS }">{{
                                 obj.degree }}</button>
                           </div>
                           <div class="tab-pane fade p-3" id="TOEFL" role="tabpanel">
-                            <input type="range" class="form-range" min="0" max="120"
+                            <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و120"
                               v-model="profilePayload.EnglishStandard.TOEFL">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEFL }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
-                            <input type="range" class="form-range" min="0" max="990"
+                            <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و990"
                               v-model="profilePayload.EnglishStandard.TOEIC">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.TOEIC }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
-                            <input type="range" class="form-range" min="0" max="160"
+                            <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و160"
                               v-model="profilePayload.EnglishStandard.DUOLINGO">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.DUOLINGO }}</h6>
+
                           </div>
                           <div class="tab-pane fade p-3" id="Step" role="tabpanel">
-                            <input type="range" class="form-range" min="0" max="100"
+                            <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                               v-model="profilePayload.EnglishStandard.STEP">
-                            <h6 class="ms-2">{{ profilePayload.EnglishStandard.STEP }}</h6>
                           </div>
                           <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
-                            <button type="button" class="btn btn-degree m-2" v-for="(obj, index) in CEFRs"
-                              :key="index" @click="selectCEFR(obj.degree)"
+                            <button type="button" class="btn btn-degree m-1" v-for="(obj, index) in CEFRs" :key="index"
+                              @click="selectCEFR(obj.degree)"
                               :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.CEFR }">{{
                                 obj.degree }}</button>
                           </div>
@@ -434,39 +431,32 @@
                       </ul>
                       <div v-if="profilePayload.tookBrainTest" class="tab-content" id="myOtherTabContent">
                         <div class="tab-pane fade show active p-3" id="SAT" role="tabpanel">
-                          <input type="range" class="form-range" min="0" max="1600"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و1600"
                             v-model="profilePayload.BrainStandard.SAT">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.SAT }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
-                          <input type="range" class="form-range" min="0" max="100"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.Qudrat">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.Qudrat }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
-                          <input type="range" class="form-range" min="0" max="100"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.GAT">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.GAT }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="ACT" role="tabpanel">
-                          <input type="range" class="form-range" min="1" max="36"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و36"
                             v-model="profilePayload.BrainStandard.ACT">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.ACT }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
-                          <input type="range" class="form-range" min="0" max="2000"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و2000"
                             v-model="profilePayload.BrainStandard.Talent">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.Talent }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="AchivementTest" role="tabpanel">
-                          <input type="range" class="form-range" min="0" max="100"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.AchivementTest">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.AchivementTest }}</h6>
                         </div>
                         <div class="tab-pane fade p-3" id="SAAT" role="tabpanel">
-                          <input type="range" class="form-range" min="0" max="100"
+                          <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.SAAT">
-                          <h6 class="ms-2">{{ profilePayload.BrainStandard.SAAT }}</h6>
                         </div>
                       </div>
                       <div v-if="profilePayload.tookBrainTest">
@@ -489,15 +479,16 @@
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تفعيل الحساب</h5>
-                    <p class="mb-2">برجاء قم بإدخال الرمز الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
+                    <p class="mb-2">الرجاء قم بإدخال الرمز الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
                       الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الرمز مرة
                       أخرى.</p>
                     <div class="mb-3">
                       <input class="form-control form-control-lg" type="text" placeholder="أدخل رمز التفعيل هنا"
                         aria-label="account-activation" v-model="codePayload.code">
-                        <div id="account_activation_help" class="form-text">
-                          إذا لم تصلك الرسالة، يرجى التحقق من مجلد <strong>'الرسائل غير المرغوب فيها/السبام'</strong> قبل طلب إعادة الإرسال.
-                        </div>
+                      <div id="account_activation_help" class="form-text">
+                        إذا لم تصلك الرسالة، يرجى التحقق من مجلد <strong>'الرسائل غير المرغوب فيها/السبام'</strong> قبل
+                        طلب إعادة الإرسال.
+                      </div>
                     </div>
                     <div>
                       <button type="button" class="btn btn-primary" @click="submitCode()"

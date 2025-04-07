@@ -42,7 +42,7 @@
                                             <input type="email" class="form-control form-control-lg"
                                                 placeholder="البريد الإلكتروني*" required v-model="signupPayload.email">
                                             <div id="email_help" class="form-text">
-                                                    مثل الصيغة: @gmail.com
+                                                    مثل الصيغة: email@gmail.com
                                             </div>
                                             <div v-if="errors.email"><span style="color: red">{{
                                                 errors.email }}</span></div>
@@ -101,7 +101,7 @@
                                             </select>
                                         </div> -->
                                         <!-- Checkbox to ask if the user took the English test -->
-                                        <div class="mb-3 d-flex align-items-center">
+                                        <div class="mb-3 d-block d-sm-flex align-items-center">
                                             <label class="form-label">
                                                 هل أنت سعودي/ة الجنسية؟
                                             </label>
@@ -138,7 +138,7 @@
                                             <div v-if="errors.interests"><span style="color: red">{{
                                                 errors.interests }}</span></div>
                                             <div class="choose-interest">
-                                                <button type="button" class="btn btn-interest m-2"
+                                                <button type="button" class="btn btn-interest m-1"
                                                     v-for="(interest, index) in helperObj.chanceCategories" :key="index"
                                                     @click="selectInterest(interest)"
                                                     :class="{ 'btn-selected': signupPayload.interests.includes(interest) }">{{
@@ -152,7 +152,7 @@
                                             <div v-if="errors.Subinterests"><span style="color: red">{{
                                                 errors.Subinterests }}</span></div>
                                             <div class="choose-interest">
-                                                <button type="button" class="btn btn-interest m-2"
+                                                <button type="button" class="btn btn-interest m-1"
                                                     v-for="(interest, index) in helperObj.chanceSubcategories"
                                                     :key="index" @click="selectSubInterest(interest)"
                                                     :class="{ 'btn-selected': signupPayload.Subinterests.includes(interest) }">{{
@@ -211,7 +211,7 @@
                                                 id="myTabContent">
                                                 <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
                                                     aria-labelledby="home-tab">
-                                                    <button type="button" class="btn btn-degree m-2"
+                                                    <button type="button" class="btn btn-degree m-1"
                                                         v-for="(obj, index) in IELTSDegress" :key="index"
                                                         @click="selectIELTS(obj.degree)"
                                                         :class="{ 'btn-selected': obj.degree == signupPayload.EnglishStandard.IELTS }">{{
@@ -235,10 +235,10 @@
                                                 <div class="tab-pane fade p-3" id="Step" role="tabpanel">
                                                     <input type="text" class="form-control form-control-lg"
                                                     placeholder="الدرجة بين 0 و100"
-                                                    v-model="signupPayload.EnglishStandard.DUOLINGO">
+                                                    v-model="signupPayload.EnglishStandard.STEP">
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
-                                                    <button type="button" class="btn btn-degree m-2"
+                                                    <button type="button" class="btn btn-degree m-1"
                                                         v-for="(obj, index) in CEFRs" :key="index"
                                                         @click="selectCEFR(obj.degree)"
                                                         :class="{ 'btn-selected': obj.degree == signupPayload.EnglishStandard.CEFR }">{{
@@ -682,53 +682,53 @@ export default {
         }
 
         const validateStep = () => {
-            // if (!isMinLength(signupPayload.value.first_name, 2)) {
-            //     errors.value.first_name = "الاسم الأول يجب الأ يقل عن 3 أحرف.";
-            // } else {
-            //     errors.value.first_name = "";
-            // }
+            if (!isMinLength(signupPayload.value.first_name, 2)) {
+                errors.value.first_name = "الاسم الأول يجب الأ يقل عن 3 أحرف.";
+            } else {
+                errors.value.first_name = "";
+            }
 
-            // if (!isMinLength(signupPayload.value.last_name, 2)) {
-            //     errors.value.last_name = "الاسم الأخير يجب الأ يقل عن 3 أحرف.";
-            // } else {
-            //     errors.value.last_name = "";
-            // }
+            if (!isMinLength(signupPayload.value.last_name, 2)) {
+                errors.value.last_name = "الاسم الأخير يجب الأ يقل عن 3 أحرف.";
+            } else {
+                errors.value.last_name = "";
+            }
 
-            // if (!matchesRegex(signupPayload.value.email, /^\S+@\S+\.\S+$/)) {
-            //     errors.value.email = "البريد الإلكتروني يجب أن يكون على الصيغة المحددة.";
-            // } else {
-            //     errors.value.email = "";
-            // }
+            if (!matchesRegex(signupPayload.value.email, /^\S+@\S+\.\S+$/)) {
+                errors.value.email = "البريد الإلكتروني يجب أن يكون على الصيغة المحددة.";
+            } else {
+                errors.value.email = "";
+            }
 
-            // if (!matchesRegex(signupPayload.value.phone, /^05\d{8}$/)) {
-            //     errors.value.phone = "رقم الهاتف يجب أن يكون على الصيغة الموضحة";
-            // } else {
-            //     errors.value.phone = "";
-            // }
+            if (!matchesRegex(signupPayload.value.phone, /^05\d{8}$/)) {
+                errors.value.phone = "رقم الهاتف يجب أن يكون على الصيغة الموضحة";
+            } else {
+                errors.value.phone = "";
+            }
 
-            // if (!matchesRegex(signupPayload.value.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/)) {
-            //     errors.value.password = "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم.";
-            // } else {
-            //     errors.value.password = "";
-            // }
+            if (!matchesRegex(signupPayload.value.password, /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/)) {
+                errors.value.password = "يجب أن تتكون كلمة المرور من 6 أحرف على الأقل وتحتوي على حرف كبير وحرف صغير ورقم.";
+            } else {
+                errors.value.password = "";
+            }
 
-            // if (!isConfirmed(signupPayload.value.password, signupPayload.value.password_confirmation)) {
-            //     errors.value.password_confirmation = "كلمة المرور غير متطابقة";
-            // } else {
-            //     errors.value.password_confirmation = "";
-            // }
+            if (!isConfirmed(signupPayload.value.password, signupPayload.value.password_confirmation)) {
+                errors.value.password_confirmation = "كلمة المرور غير متطابقة";
+            } else {
+                errors.value.password_confirmation = "";
+            }
 
-            // if (!isMinArrayLength(signupPayload.value.interests, 3)) {
-            //     errors.value.interests = "يجب اختيار 3 أنواع من الفرص على الأقل.";
-            // } else {
-            //     errors.value.interests = "";
-            // }
+            if (!isMinArrayLength(signupPayload.value.interests, 3)) {
+                errors.value.interests = "يجب اختيار 3 أنواع من الفرص على الأقل.";
+            } else {
+                errors.value.interests = "";
+            }
 
-            // if (!isMinArrayLength(signupPayload.value.Subinterests, 3)) {
-            //     errors.value.Subinterests = "يجب اختيار 3 مجالات اهتمام على الأقل.";
-            // } else {
-            //     errors.value.Subinterests = "";
-            // }
+            if (!isMinArrayLength(signupPayload.value.Subinterests, 3)) {
+                errors.value.Subinterests = "يجب اختيار 3 مجالات اهتمام على الأقل.";
+            } else {
+                errors.value.Subinterests = "";
+            }
 
             // //  Check if all values in `errors.value` are empty
             return Object.values(errors.value).every(error => error === "");

@@ -151,8 +151,8 @@ export const Auth = {
           setTimeout(() => {
             localStorage.removeItem("token");
             commit("unSetUser");
-            router.push("/")
-          }, 3000);
+            router.push("/account/login")
+          }, 1000);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
