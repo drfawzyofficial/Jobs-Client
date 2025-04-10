@@ -224,7 +224,7 @@
                                         <p>يمكنك الاستفسار أو إبداء الملاحظات في أي وقت من خلال إرسال رسالة، وسيتم تحويلها إلى المسؤولين للرد عليك، علمًا بأن الرد سيصل إلى بريدك الإلكتروني في رسالة واحدة فقط.</p>
                                         <div class="mt-3">
                                             <textarea id="ContactForm-body" class="form-control form-control-lg"
-                                                rows="3" v-model="contactPayload.message"></textarea>
+                                                rows="3" v-model="contactPayload.message" placeholder="اكتب رسالتك..."></textarea>
                                         </div>
                                         <div class="mt-3">
                                             <button type="submit" class="btn btn-primary" @click="createContact()">
@@ -302,7 +302,7 @@ export default {
         const contactPayload = ref({
             message: "",
         });
-        const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+        const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);
         const isOpen = ref(false);
 
         // Methods
@@ -314,9 +314,20 @@ export default {
         const onLogout = () => {
             store.dispatch("Auth/Logout", { data: null })
         }
-        const toggleSidebar = () => {
+    const toggleSidebar = (e) => {
+      e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
 
         // Return
         return {

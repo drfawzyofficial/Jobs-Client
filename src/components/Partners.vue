@@ -70,13 +70,13 @@ export default {
           itemsToShow: 3, 
           itemsToScroll: 2, 
         },
-        768: {
+        400: {
           itemsToShow: 3, 
           itemsToScroll: 2,
         },
         0: {
-          itemsToShow: 1, 
-          itemsToScroll: 1,
+          itemsToShow: 2, 
+          itemsToScroll: 2,
         },
       });
     // return
@@ -92,8 +92,23 @@ export default {
 
 <style scoped>
 .partners .carousel__item img {
-    height: 200px;
+    height: 175px;
     border-radius: 6px;
+}
+@media (max-width: 991.9px) {
+    .partners .carousel__item img {
+        height: 150px;
+    }
+}
+@media (max-width: 767.9px) {
+    .partners .carousel__item img {
+        height: 125px;
+    }
+}
+@media (max-width: 576.9px) {
+    .partners .carousel__item img {
+        height: 100px;
+    }
 }
 
 </style>

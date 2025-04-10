@@ -128,4 +128,14 @@ export default {
     background: #EEEEEE;
     color: #fff
 }
+
+
+@media (max-width: 575.98px) {
+    .counter-box {
+        padding: 20px 10px 15px;
+    }
+    .counter {
+        font-size: 25px;
+    }
+}
 </style>

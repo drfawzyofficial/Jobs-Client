@@ -77,7 +77,7 @@ ul {
   list-style: none;
 }
 
-h1,
+h1, 
 h2,
 h3,
 h4,
@@ -153,6 +153,10 @@ html[lang="ar"] [type=url] {
 
 .form-check-input:focus {
   box-shadow: 0 0 0 0.2rem #95e3e0;
+}
+
+.form-control[type="date"] {
+  text-align: right;
 }
 
 .form-control:focus,
@@ -291,6 +295,12 @@ span.required {
 
 .store-animation-anchor {
   position: relative;
+}
+
+.accordion-button::after {
+  height: 0.8rem;
+  width: 0.8rem;
+  background-size: 0.8rem;
 }
 
 .store-animation-anchor:after {
@@ -505,8 +515,17 @@ html[lang="ar"] .store-animation-anchor:hover:after {
 }
 
 @media (max-width: 575.98px) {
-  p, a, .form-label, span {
+  .form-label, .form-check-label, p, span, a {
     font-size: 16px;
+  }
+  .vue-form-wizard .wizard-nav-pills>li>a {
+    font-size: 14px;
+  }
+  .vue-form-wizard .wizard-nav-pills li {
+    flex: 0 0 50%; /* Each li takes half the width */
+    max-width: 50%;
+    text-align: center;
+    margin-bottom: 10px;
   }
   .vue-form-wizard .wizard-btn, .vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn {
     min-width: 100px;
@@ -518,5 +537,22 @@ html[lang="ar"] .store-animation-anchor:hover:after {
   .vue-form-wizard.md .wizard-navigation .wizard-progress-with-circle {
     top: 25px;
   }
-  
+  .btn-primary {
+    font-size: 16px;
+  }
+  .carousel-control-next-icon, .carousel-control-prev-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+    .form-control, .form-select {
+      font-size: 1rem;  /* Optional: smaller text */
+      padding: .375rem .75rem .375rem 2.25rem;
+      height: auto; /* Let padding control height */
+    }
+
+    .vue-form-wizard .wizard-btn, .vue-form-wizard .navbar .navbar-nav>li>a.wizard-btn {
+      padding: 6px 0;
+      font-size: 16px;
+    }
+
 }

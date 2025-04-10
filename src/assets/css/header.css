@@ -100,7 +100,7 @@ html[lang="ar"] .header .header__1 .icons {
   color: #FFF;
 }
 
-.header .logo .andalib-logo {
+.header .logo .khattit-logo {
   font-size: 26px;
 }
 
@@ -149,6 +149,9 @@ html[lang="ar"] .header .header__1 .icons {
   }
   .header .header__1 .logo a img {
     height: 50px;
+  }
+  .sidebar-mobilemenu .sidebar-mobilemenu-items .item .menu-link {
+    font-size: 14px;
   }
 }
 

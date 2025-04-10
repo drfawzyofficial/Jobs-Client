@@ -138,7 +138,7 @@
                                             <div v-if="errors.interests"><span style="color: red">{{
                                                 errors.interests }}</span></div>
                                             <div class="choose-interest">
-                                                <button type="button" class="btn btn-interest m-1"
+                                                <button type="button" class="btn-interest m-1"
                                                     v-for="(interest, index) in helperObj.chanceCategories" :key="index"
                                                     @click="selectInterest(interest)"
                                                     :class="{ 'btn-selected': signupPayload.interests.includes(interest) }">{{
@@ -147,12 +147,12 @@
                                             </div>
                                         </div>
                                         <div class="interests">
-                                            <label class="form-label">حدد مجالات اهتمامك بالترتيب ( اختر 3 على
+                                            <label class="form-label">حدد مجالات اهتمامك بالترتيب؟ ( اختر 3 على
                                                 الأقل )</label>
                                             <div v-if="errors.Subinterests"><span style="color: red">{{
                                                 errors.Subinterests }}</span></div>
                                             <div class="choose-interest">
-                                                <button type="button" class="btn btn-interest m-1"
+                                                <button type="button" class="btn-interest m-1"
                                                     v-for="(interest, index) in helperObj.chanceSubcategories"
                                                     :key="index" @click="selectSubInterest(interest)"
                                                     :class="{ 'btn-selected': signupPayload.Subinterests.includes(interest) }">{{

@@ -7,13 +7,21 @@
     border-bottom: 1px solid #6490A599;
 }
 
-.footer .andalib-logo span {
+.footer .khattit-logo img {
+    height: 80px;
+}
+
+.footer .khattit-logo span {
     color: #1F2D1F;
     font-size: 35px;
 }
 
 .footer .info p {
     font-weight: 500;
+}
+
+.footer .info .social-icon a {
+    font-size: 25px;
 }
 
 .footer .footer-links .link,
@@ -24,7 +32,6 @@
 
 .footer .footer-links .link a {
     color: #FFF;
-    font-size: 18px;
 }
 
 .footer .contact .contact-part span {
@@ -48,6 +55,9 @@
     .copyright-social .country-form-select {
         margin-top: 0.5rem !important;
         margin-bottom: 0.5rem !important;
+    }
+    .footer .khattit-logo img {
+        height: 65px;
     }
 }
 

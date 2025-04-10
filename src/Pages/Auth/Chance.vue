@@ -217,23 +217,23 @@
                 <div class="chance-details">
                   <h4 class="fw-bold">{{ chance.chanceName }}</h4>
                   <div class="mt-2">
-                    <span>التصنيف الرئيسي: </span>
+                    <span class="fw-bold">التصنيف الرئيسي: </span>
                     <span>{{ chance.chanceCategory }}</span>
                   </div>
                   <div class="mt-2">
-                    <span>التصنيف الفرعي: </span>
+                    <span class="fw-bold">التصنيف الفرعي: </span>
                     <span>{{ chance.chanceSubcategory }}</span>
                   </div>
                   <div class="mt-2">
-                    <span>الجهة المقدمة: </span>
+                    <span class="fw-bold">الجهة المقدمة: </span>
                     <span>{{ chance.provider }}</span>
                   </div>
                   <div class="mt-2">
-                    <span>تاريخ التسجيل: </span>
+                    <span class="fw-bold">تاريخ التسجيل: </span>
                     <span>{{ chance.chanceRegStartDate }} - {{ chance.chanceRegEndDate }}</span>
                   </div>
                   <div class="mt-2">
-                    <span>تاريخ إقامة الفرصة: </span>
+                    <span class="fw-bold">تاريخ إقامة الفرصة: </span>
                     <span>{{ chance.chanceStartDate }} - {{ chance.chanceEndDate }}</span>
                   </div>
                 </div>
@@ -325,7 +325,7 @@
                 <div class="chance-details mt-3">
                   <h4 class="fw-bold">باقي التفاصيل</h4>
                   <div class="mt-2">
-                    <span>السعر: </span>
+                    <span class="fw-bold">السعر: </span>
                     <span>{{ chance.chancePrice + " " + "ريال" }}</span>
                   </div>
                   <!-- <div class="mt-2">
@@ -333,17 +333,17 @@
                         <span>{{ chance.nationality }}</span>
                     </div> -->
                   <div class="mt-2">
-                    <span>الجنس: </span>
+                    <span class="fw-bold">الجنس: </span>
                     <span>{{ chance.applicantGender }}</span>
                   </div>
                   <div class="mt-2">
-                    <span>المرحلة الدراسية: </span>
+                    <span class="fw-bold">المرحلة الدراسية: </span>
                     ( <span v-for="(val, index) in chance.applicantEdus" :key="index">
                       {{ val }}<span v-if="index !== chance.applicantEdus.length - 1"> - </span>
                     </span> )
                   </div>
                   <div class="mt-2">
-                    <span>الموقع: </span>
+                    <span class="fw-bold">الموقع: </span>
                     <span>{{ chance.programStatus }}</span>
                     <span v-if="chance.programStatus == 'حضوري'">
                       في
@@ -391,7 +391,7 @@
                   </div>
                   <div v-else class="col-12">
                     <div class="alert alert-info">
-                      <h5>لا يوجد تقييمات</h5>
+                      <h6>لا يوجد تقييمات</h6>
                     </div>
                   </div>
                 </div>
@@ -547,7 +547,7 @@ export default {
     const store = useStore()
     const loading_status = computed(() => store.state.Collection.loading_status);
     const user = computed(() => store.state.Auth.user);
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);
     const wishlists = ref([]);
     const route = useRoute();
     const stars = [1, 2, 3, 4, 5]; // Total number of stars
@@ -801,9 +801,30 @@ export default {
       }
     }
 
-    const toggleSidebar = () => {
+    const toggleSidebar = (e) => {
+      e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
 
     // Return
     return {

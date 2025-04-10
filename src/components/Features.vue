@@ -2,18 +2,18 @@
     <div class="features container-fluid">
       <div class="container">
         <div class="features-box">
-          <h3 class="h3 text-center">مميزاتنا</h3>
+          <h1 class="text-center fw-bold text-white">مميزاتنا</h1>
           <div class="row">
             <div    
               v-for="(feature, index) in features"
               :key="index"
-              class="col-lg-3 col-md-6 col-12 mt-5"
+              class="col-lg-3 col-sm-6 col-12 mt-3"
             >
               <div class="feature text-center">
                 <div class="feature-icon">
                   <span class="fs-1 text-white" v-html="feature.icon"></span>
                 </div>
-                <p class="mt-3">{{ feature.description }}</p>
+                <p class="mt-1">{{ feature.description }}</p>
               </div>
             </div>
           </div>

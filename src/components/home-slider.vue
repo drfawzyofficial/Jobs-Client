@@ -5,8 +5,8 @@
         <div class="carousel-item" v-for="(item, index) in sliders" :key="index" :class="{ active: index === 0 }">
           <img :src="item.image.src" :alt="item.image.alt" :title="item.image.title" class="store-animation-shadow" />
           <div class="carousel-caption">
-            <h1>{{ item.heading }}</h1>
-            <router-link class="btn btn-primary d-inline-block mt-2 fs-4" to="/account/login">ابدأ الخدمة</router-link>
+            <h2 class="heading-slider">{{ item.heading }}</h2>
+            <router-link class="btn btn-primary d-inline-block mt-2" to="/account/login">ابدأ الخدمة</router-link>
           </div>
           <div class="overlay"></div>
         </div>
@@ -82,9 +82,16 @@ export default {
   background-color: #44B797 !important;
   border-color: #44B797 !important
 }
+.home-slider .btn-primary:hover {
+  background-color: #1c725a !important;
+  border-color: #1c725a !important
+}
 @media (max-width: 575.98px) {
   .home-slider .carousel-item img {
   height: 350px;
+}
+.heading-slider {
+  font-size: 20px;
 }
 }
 </style>

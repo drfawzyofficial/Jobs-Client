@@ -204,9 +204,9 @@
               <h3 class="fw-bold">جميع المفضلات</h3>
               <p>مرحبًا بك في صفحة المفضلات! يمكنك هنا إدارة الفرص التي قمت بإضافتها إلى مفضلاتك. يمكنك إضافة أو إزالة أي فرصة بكل سهولة، وسيتم حفظ اختياراتك تلقائيًا لتكون متاحة لك في أي وقت تزور فيه لوحة التحكم. تأكد من استعراض قائمتك بانتظام لضمان عدم تفويت أي فرصة مهمة بالنسبة لك!</p>
             </div>
-            <h5 class="alert alert-info fw-bold mt-3">عدد المفضلات: {{ wishlistsCount  }}</h5>
+            <h6 class="alert alert-info fw-bold mt-3">عدد المفضلات: {{ wishlistsCount  }}</h6>
             <div class="row" v-if="wishlists.length > 0">
-              <div class="col-lg-3 col-md-4 col-6 mt-4" 
+              <div class="col-xl-3 col-lg-4 col-6 mt-4" 
                 v-for="(wishlist, index) in wishlists" :key="index">
                 <div class="wishlist position-relative bg-white position-relative d-inline-block w-100">
                   <div class="position-absolute additional-info d-flex flex-column">
@@ -227,15 +227,15 @@
                   </div>
                   <div class="wishlist-content p-3">
                     <h6 class="fw-bold">{{ wishlist.chanceName }}</h6>
-                    <h6 class="fw-bold"> الوصف التسويقي: {{ wishlist.marketingDesc }}</h6>
-                    <h6 class="fw-bold">مقدم الفرصة: {{ wishlist.provider }}</h6>
+                    <p>{{ wishlist.marketingDesc }}</p>
+                    <span class="fw-bold">{{ wishlist.provider }}</span>
                   </div>
                 </router-link>
                 </div>
               </div>
             </div>
             <div v-else class="mt-4">
-              <h5 class="alert alert-info">لا يوجد مفضلات</h5>
+              <h6 class="alert alert-info fw-bold">لا يوجد مفضلات</h6>
             </div>
             <div class="mt-4 d-flex justify-content-center" v-if="wishlistsPagesCount > 1">
               <Paginate :page-count="wishlistsPagesCount" :click-handler="clickCallback" :prev-text="'السابق'"
@@ -291,7 +291,7 @@ export default {
     const loading_status = computed(() => store.state.Collection.loading_status);
     const user = computed(() => store.state.Auth.user);
     const wishlists = computed(() => store.state.Auth.wishlists);
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);
     const isOpen = ref(false);
 
     // get wishlist from local storage
@@ -455,9 +455,20 @@ export default {
 
     const clickCallback = (pageNum) => store.dispatch(store.dispatch("Auth/WishlistsGet", { wishlists: wishlistStorage, page_no: pageNum }));
 
-    const toggleSidebar = () => {
+    const toggleSidebar = (e) => {
+      e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
     // Return
     return {
       loading_status,
@@ -509,7 +520,7 @@ export default {
 }
 
 .wishlists .wishlist .wishlist-feature {
-  right: 15px;
+  right: 8px;
   top: 15px;
 }
 
@@ -551,6 +562,31 @@ export default {
   }
   .sidebar.open {
     display: block;
+  }
+}
+@media (max-width: 575.98px) {
+  .wishlists .wishlist .wishlist-img img {
+    height: 150px;
+  }
+  .wishlists .wishlist .wishlist-content {
+    padding: 0.3rem;
+  }
+  .wishlists .wishlist .wishlist-content h5 {
+    font-size: 1.1rem;
+  }
+  .wishlists .wishlist .wishlist-content p {
+    font-size: 14px;
+  }
+  .wishlists .wishlist .wishlist-content span {
+    font-size: 0.8rem;
+  }
+  .wishlists .wishlist .wishlist-feature {
+    right: 0;
+  }
+}
+@media (max-width: 400px) {
+  .wishlists .wishlist .wishlist-img img {
+    height: 125px;
   }
 }
 </style>

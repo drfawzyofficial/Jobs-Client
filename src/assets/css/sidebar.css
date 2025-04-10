@@ -126,3 +126,10 @@ html[lang="ar"] .sidebar {
     transition: all 0.3s ease-in-out;
 }
 
+
+@media (max-width: 575.98px) {
+    .sidebar-mobilemenu .sidebar-mobilemenu-items .item .menu-link,
+    .sidebar .remove-sidebar {
+        font-size: 18px;
+    }
+}

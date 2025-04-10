@@ -4,7 +4,8 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" :class="{ open: isOpen }">
+      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+        :class="{ open: isOpen }">
         <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
           <router-link class="fw-medium nav-link" :to="item.link">
             <span class="item-icon" v-html="item.icon"></span>
@@ -159,10 +160,10 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
+                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
-                    }}</span>
+                  }}</span>
                   <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
                 </router-link>
                 <!-- Dropdown - User Information -->
@@ -254,7 +255,7 @@
               </div>
             </div>
             <div class="row" v-if="chances.length > 0">
-              <div class="col-lg-3 col-md-4 col-6 mt-4" v-for="(chance, index) in chances" :key="index">
+              <div class="col-xl-3 col-lg-4 col-6 mt-4" v-for="(chance, index) in chances" :key="index">
                 <div class="chance bg-white position-relative d-inline-block w-100">
                   <div class="position-absolute additional-info d-flex flex-column">
                     <span class="info-badge fw-bold" :class="'date-' + getValidateDateClass(chance)">{{
@@ -274,10 +275,10 @@
                     <div class="chance-img">
                       <img :src="chance.chanceImage" />
                     </div>
-                    <div class="chance-content p-3">
-                      <h6 class="fw-bold">{{ chance.chanceName }}</h6>
-                      <h6 class="fw-bold">{{ chance.marketingDesc }}</h6>
-                      <h6 class="fw-bold">{{ chance.provider }}</h6>
+                    <div class="chance-content">
+                      <h5 class="fw-bold">{{ chance.chanceName }}</h5>
+                      <p>{{ chance.marketingDesc }}</p>
+                      <span class="fw-bold">{{ chance.provider }}</span>
                     </div>
                   </router-link>
                 </div>
@@ -373,12 +374,12 @@ export default {
 
 
     setTimeout(() => {
-      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status  });
+      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status });
     }, 1000)
     const chancesCount = computed(() => store.state.Auth.chancesCount);
     const chances = computed(() => store.state.Auth.chances);
     const helperObj = computed(() => store.state.Collection.helperObj);
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);
 
     store.dispatch("Collection/GetHelper")
     // get wishlist from local storage
@@ -542,7 +543,7 @@ export default {
       }
     }
     const search = () => {
-      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status  })
+      store.dispatch("Auth/ChancesGet", { page_no: 1, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status })
     }
 
     const IncrementChance = (_chanceID) => {
@@ -550,14 +551,25 @@ export default {
     }
 
     // const handlePageClick = (pageNum) => store.dispatch("Admin/ChancesGet", { chance_case: filter.value.chance_case });
-    const clickCallback = (pageNum) => store.dispatch("Auth/ChancesGet", { page_no: pageNum, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status  });
+    const clickCallback = (pageNum) => store.dispatch("Auth/ChancesGet", { page_no: pageNum, chance_case: filter.value.chance_case, edu_case: filter.value.edu_case, interest_case: filter.value.interest_case, program_status: filter.value.program_status });
     const onLogout = () => {
       store.dispatch("Auth/Logout", { data: null })
     }
 
-    const toggleSidebar = () => {
+    const toggleSidebar = (e) => {
+      e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
     // Return
     return {
       loading_status,
@@ -593,6 +605,10 @@ export default {
   border: 1px solid #3c9f9a;
 }
 
+.chances .chance .chance-content {
+  padding: 0.7rem;
+}
+
 .chances .chance:hover {
   box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
 
@@ -608,12 +624,12 @@ export default {
   padding: 6px;
   border-radius: 8px;
   color: #FFF;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center
 }
 
 .chances .chance .wishlist-feature {
-  right: 15px;
+  right: 8px;
   top: 15px;
 }
 
@@ -640,13 +656,47 @@ export default {
 .chance-not-started {
   background-color: #fbb054;
 }
+
 @media (max-width: 768.98px) {
   .sidebar {
     display: none;
     width: 6.5rem;
   }
+
   .sidebar.open {
     display: block;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .chances .chance .chance-img img {
+    height: 150px;
+  }
+
+  .chances .chance .chance-content {
+    padding: 0.3rem;
+  }
+
+  .chances .chance .chance-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .chances .chance .chance-content p {
+    font-size: 14px;
+  }
+
+  .chances .chance .chance-content span {
+    font-size: 0.8rem;
+  }
+
+  .chances .chance .wishlist-feature {
+    right: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .chances .chance .chance-img img {
+    height: 125px;
   }
 }
 </style>

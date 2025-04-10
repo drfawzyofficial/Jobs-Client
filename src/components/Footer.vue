@@ -4,16 +4,16 @@
             <div class="row pb-4">
                 <div class="col-lg-6">
                     <div class="info">
-                        <div class="andalib-logo">
+                        <div class="khattit-logo">
                             <router-link to="/">
-                                <img src="@/assets/images/logo_white.png" height="80" />
+                                <img class="footer-logo" src="@/assets/images/logo_white.png" height="80" />
                             </router-link>
                         </div>
                         <p class="mt-3 text-white">منصة خطط هي منصة رائدة تسعى إلى تعريفك بأفضل الفرص المتاحة حولك؛
                             معبّدةً بذلك الطريق لتحقيق أهدافك الشخصية والأكاديمية. </p>
                         <div class="d-flex mt-2" style="gap: 20px">
                             <div class="social-icon" v-for="(social, index) in socialIcons" :key="index">
-                                <a :href="social.link" class="text-white fs-2" target="_blank">
+                                <a :href="social.link" class="text-white" target="_blank">
                                     <span v-html="social.icon"></span>
                                     <span class="visually-hidden">{{ social.title }}</span>
                                 </a>

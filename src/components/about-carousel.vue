@@ -17,8 +17,8 @@
                 </div>
 
                 <div class="about-content">
-                    <h3>منصة خطط</h3>
-                    <p class="mt-3">منصة خطط هي منصة رائدة قادرة على إيصالك لأفضل الفرص المتاحة حولك لتمكينك من تحقيق أهدافك عن طريق تسهيل وصولك إلى أفضل الفرص والأنشطة المتاحة حولك.</p>
+                    <h1 class="fw-bold">منصة خطط</h1>
+                    <p class="mt-1">منصة خطط هي منصة رائدة قادرة على إيصالك لأفضل الفرص المتاحة حولك لتمكينك من تحقيق أهدافك عن طريق تسهيل وصولك إلى أفضل الفرص والأنشطة المتاحة حولك.</p>
                 </div>
             </div>
         </div>
@@ -98,9 +98,6 @@ export default {
     padding-right: 30px;
 }
 
-.about-carousel .about-content p {
-    font-size: 20px;
-}
 
 .about-carousel .carousel__item img {
     height: 450px;
@@ -111,19 +108,16 @@ export default {
 
 .about-carousel .about-content p {
     color: #000;
-    font-size: 20px;
 }
 
 @media (max-width: 991.98px) {
-
-    .about-carousel .images-block img {
-        height: 400px;
+    .about-carousel .carousel__item img{
+        height: 350px;
     }
 }
 
 @media (max-width: 767.98px) {
-
-    .about-carousel .images-block img {
+    .about-carousel .carousel__item img{
         height: 300px;
     }
 
@@ -140,7 +134,15 @@ export default {
     .about-carousel .about-content {
         margin-top: 1rem;
         text-align: center;
-        padding: 0 30px;
+        padding-right: 0;
+
     }
 }
+
+@media (max-width: 575.98px) {
+    .about-carousel .carousel__item img {
+        height: 200px;
+    }
+}
+
 </style>

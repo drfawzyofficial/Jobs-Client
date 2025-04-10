@@ -289,7 +289,7 @@
                         <div class="interests">
                           <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)</label>
                           <div class="choose-interest">
-                            <button type="button" class="btn btn-interest m-1"
+                            <button type="button" class="btn-interest m-1"
                               v-for="(interest, index) in helperObj.chanceCategories" :key="index"
                               @click="selectInterest(interest)"
                               :class="{ 'btn-selected': profilePayload.interests.includes(interest) }">{{
@@ -300,9 +300,9 @@
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
                         <div class="interests">
-                          <label class="form-label">حدد مجالات اهتمامك بالترتيب(اختر 3 على الأقل)</label>
+                          <label class="form-label">حدد مجالات اهتمامك بالترتيب؟ (اختر 3 على الأقل)</label>
                           <div class="choose-interest">
-                            <button type="button" class="btn btn-interest m-1"
+                            <button type="button" class="btn-interest m-1"
                               v-for="(interest, index) in helperObj.chanceSubcategories" :key="index"
                               @click="selectSubInterest(interest)"
                               :class="{ 'btn-selected': profilePayload.Subinterests.includes(interest) }">{{
@@ -349,32 +349,32 @@
                               role="tab" aria-controls="CEFR" aria-selected="false">CEFR</button>
                           </li>
                         </ul>
-                        <div v-if="profilePayload.tookEnglishTest" class="tab-content" id="myTabContent">
-                          <div class="tab-pane fade show active p-3" id="IELTS" role="tabpanel"
+                        <div v-if="profilePayload.tookEnglishTest" class="tab-content py-3" id="myTabContent">
+                          <div class="tab-pane fade show active" id="IELTS" role="tabpanel"
                             aria-labelledby="home-tab">
                             <button type="button" class="btn btn-degree m-1" v-for="(obj, index) in IELTSDegress"
                               :key="index" @click="selectIELTS(obj.degree)"
                               :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.IELTS }">{{
                                 obj.degree }}</button>
                           </div>
-                          <div class="tab-pane fade p-3" id="TOEFL" role="tabpanel">
+                          <div class="tab-pane fade" id="TOEFL" role="tabpanel">
                             <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و120"
                               v-model="profilePayload.EnglishStandard.TOEFL">
                           </div>
-                          <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
+                          <div class="tab-pane fade" id="TOEIC" role="tabpanel">
                             <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و990"
                               v-model="profilePayload.EnglishStandard.TOEIC">
                           </div>
-                          <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
+                          <div class="tab-pane fade" id="DUOLINGO" role="tabpanel">
                             <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و160"
                               v-model="profilePayload.EnglishStandard.DUOLINGO">
 
                           </div>
-                          <div class="tab-pane fade p-3" id="Step" role="tabpanel">
+                          <div class="tab-pane fade" id="Step" role="tabpanel">
                             <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                               v-model="profilePayload.EnglishStandard.STEP">
                           </div>
-                          <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
+                          <div class="tab-pane fade" id="CEFR" role="tabpanel">
                             <button type="button" class="btn btn-degree m-1" v-for="(obj, index) in CEFRs" :key="index"
                               @click="selectCEFR(obj.degree)"
                               :class="{ 'btn-selected': obj.degree == profilePayload.EnglishStandard.CEFR }">{{
@@ -429,32 +429,32 @@
                             type="button" role="tab" aria-controls="SAAT" aria-selected="false">SAAT</button>
                         </li>
                       </ul>
-                      <div v-if="profilePayload.tookBrainTest" class="tab-content" id="myOtherTabContent">
-                        <div class="tab-pane fade show active p-3" id="SAT" role="tabpanel">
+                      <div v-if="profilePayload.tookBrainTest" class="tab-content py-3" id="myOtherTabContent">
+                        <div class="tab-pane fade show active" id="SAT" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و1600"
                             v-model="profilePayload.BrainStandard.SAT">
                         </div>
-                        <div class="tab-pane fade p-3" id="Qudrat" role="tabpanel">
+                        <div class="tab-pane fade" id="Qudrat" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.Qudrat">
                         </div>
-                        <div class="tab-pane fade p-3" id="GAT" role="tabpanel">
+                        <div class="tab-pane fade" id="GAT" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.GAT">
                         </div>
-                        <div class="tab-pane fade p-3" id="ACT" role="tabpanel">
+                        <div class="tab-pane fade" id="ACT" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و36"
                             v-model="profilePayload.BrainStandard.ACT">
                         </div>
-                        <div class="tab-pane fade p-3" id="Talent" role="tabpanel">
+                        <div class="tab-pane fade" id="Talent" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و2000"
                             v-model="profilePayload.BrainStandard.Talent">
                         </div>
-                        <div class="tab-pane fade p-3" id="AchivementTest" role="tabpanel">
+                        <div class="tab-pane fade" id="AchivementTest" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.AchivementTest">
                         </div>
-                        <div class="tab-pane fade p-3" id="SAAT" role="tabpanel">
+                        <div class="tab-pane fade" id="SAAT" role="tabpanel">
                           <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و100"
                             v-model="profilePayload.BrainStandard.SAAT">
                         </div>
@@ -625,7 +625,7 @@ export default {
     const selectItems = ref([{ text: 'مسابقات' }, { text: 'مهارات' }, { text: 'ذكاء' }]);
     store.dispatch("Collection/GetHelper")
     const helperObj = computed(() => store.state.Collection.helperObj);
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contACT", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contACT", icon: '<i class="bi bi-send fs-5"></i>' }]);
 
 
 
@@ -910,9 +910,20 @@ export default {
     const updateNotifications = async () => {
       store.dispatch("Auth/updateNotifications", { enable_notifications: profilePayload.value.enable_notifications });
     }
-    const toggleSidebar = () => {
+    const toggleSidebar = (e) => {
+      e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
     // Return
     return {
       helperObj,
@@ -1001,4 +1012,10 @@ export default {
     display: block;
   }
 }
+@media (max-width: 575.98px) {
+  .nav-tabs .nav-link {
+    padding: 0.2rem 0.5rem;
+  }
+}
+
 </style>

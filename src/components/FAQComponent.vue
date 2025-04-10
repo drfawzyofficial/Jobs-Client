@@ -7,8 +7,8 @@
             <img class="store-animation-shadow" src="@/assets/images/faq.jpg" />
           </div>
         </div>
-        <div class="col-lg-6 mt-4 mt-lg-0">
-          <h3>الأسئلة الشائعة</h3>
+        <div class="col-lg-6 mt-2 mt-lg-0">
+          <h3 class="fw-bold">الأسئلة الشائعة</h3>
           <div class="accordion accordion-flush mt-3" id="accordionFlushExample">
             <div v-for="(item, index) in faqItems" :key="index" class="accordion-item">
               <h2 class="accordion-header">
@@ -74,14 +74,11 @@ export default {
   padding-bottom: 52px;
 }
 
-.accordion .accordion-button {
-  color: #444;
+.accordion .accordion-button span {
+  font-size: 18px;
+  font-weight: bold;
 }
 
-.accordion .accordion-button span {
-  font-size: 20px;
-  font-weight: 500;
-}
 
 .faq-image img,
 .faq-image svg {
@@ -96,8 +93,20 @@ export default {
   .faq-image svg {
     height: auto;
   }
+
   .accordion .accordion-button span {
-  font-size: 16px;
+    font-size: 16px;
+  }
+
+.accordion .accordion-body p {
+  font-size: 14px;
 }
+
+.accordion-button::after {
+  height: 0.8rem;
+  width: 0.8rem;
+  background-size: 0.8rem;
+}
+
 }
 </style>

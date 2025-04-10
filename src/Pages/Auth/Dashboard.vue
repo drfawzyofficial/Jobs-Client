@@ -4,7 +4,7 @@
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
+      <ul ref="sidebar" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
         :class="{ open: isOpen }">
         <li class="nav-item" v-for="(item, index) in navLinks" :key="index">
           <router-link class="fw-medium nav-link" :to="item.link">
@@ -205,7 +205,7 @@
             <!-- Page Heading -->
             <div class="breadcrumb-auth">
               <h3 class="fw-bold">إحصائيات سريعة</h3>
-              <p>في لوحة تحكم الطالب، يمكنك الوصول إلى جميع الإحصائيات الخاصة بك بسهولة. ستجد إحصائيات سريعة تعكس أداءك
+              <p class="statistics-para">في لوحة تحكم الطالب، يمكنك الوصول إلى جميع الإحصائيات الخاصة بك بسهولة. ستجد إحصائيات سريعة تعكس أداءك
                 الأكاديمي، إلى جانب البيانات الشخصية والمعلومات المتعلقة بالإنجازات والمقررات الدراسية. تمنحك هذه اللوحة
                 نظرة شاملة على تقدمك وتساعدك في متابعة أهدافك الدراسية.</p>
             </div>
@@ -479,18 +479,8 @@ import { computed, onMounted, onUnmounted, ref } from 'vue'
 export default {
   setup() {
 
-    // onMounted(() => {
-    //   $(document).on('click', '#sidebarToggleTop', () => {
-    //     $('.sidebar').toggle();
-    //   });
-    //   $(document).mouseup(function (e) {
-    //     var $sidebar = $(".sidebar"); // Adjust the selector for your sidebar
-    //     if (!$sidebar.is(e.target) && $sidebar.has(e.target).length === 0) {
-    //       // If the click is outside the sidebar, hide it
-    //       $sidebar.fadeOut(); // Adjust this based on your toggle class
-    //     }
-    //   });
-    // });
+ 
+
 
 
     // Calling, Declarations, Data
@@ -499,7 +489,7 @@ export default {
     const statistics = computed(() => store.state.Auth.statistics);
     const loading_status = computed(() => store.state.Collection.loading_status);
     const wishlist = JSON.parse(localStorage.getItem("wishlist"));
-    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-gear fs-5"></i>' }]);
+    const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);
     const isOpen = ref(false);
 
     store.dispatch("Auth/GetProfile")
@@ -508,9 +498,20 @@ export default {
       store.dispatch("Auth/Logout", { data: null })
     }
 
-    const toggleSidebar = () => {
+    const toggleSidebar = (e) => {
+      e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
+
+    onMounted(() => {
+      document.addEventListener('click', (event) => {
+        const sidebar = $(".sidebar");
+        if (sidebar && !sidebar.is(event.target)) {
+          isOpen.value = false;
+        }
+      });
+    });
+
 
     // Return
     return {
@@ -536,6 +537,12 @@ export default {
 
   .sidebar.open {
     display: block;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .card-body {
+    padding: 0.5rem;
   }
 }
 </style>
