@@ -9,8 +9,8 @@ window.Swal = swal;
 export const Admin_Store = {
   namespaced: true,
   state: {
-    jobs: [],
-    jobsCount: 0
+    chances: [],
+    chancesCount: 0
   },
   actions: {
     async jobCreate({ dispatch, commit }, payload) {
@@ -60,12 +60,12 @@ export const Admin_Store = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
-    async jobsGet({ dispatch, commit }, payload) {
+    async chancesGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("GET", `/job/getjobs/?page_no=${payload.page_no}`);
+        const data = await Fetch("GET", `/job/getchances/?page_no=${payload.page_no}`);
         if (data.statusCode === 200) {
-          commit("jobsGet", data.result);
+          commit("chancesGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -83,12 +83,12 @@ export const Admin_Store = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
-    async jobsSearch({ dispatch, commit }, payload) {
+    async chancesSearch({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("POST", `/job/searchjobs`, payload);
+        const data = await Fetch("POST", `/job/searchchances`, payload);
         if (data.statusCode === 200) {
-          commit("jobsGet", data.result);
+          commit("chancesGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -151,23 +151,23 @@ export const Admin_Store = {
   },
   mutations: {
     jobCreate(state, data) {
-      state.jobs.push(data)
+      state.chances.push(data)
     },
-    jobsGet(state, data) {
-      state.jobs = data.jobs;
-      state.jobsCount = data.jobsCount;
+    chancesGet(state, data) {
+      state.chances = data.chances;
+      state.chancesCount = data.chancesCount;
     },
     jobDelete(state, data) {
-      const newJobs = state.jobs.filter((item) => item._id !== data._id);
-      state.jobs = newJobs;
+      const newJobs = state.chances.filter((item) => item._id !== data._id);
+      state.chances = newJobs;
     },
     jobUpdate(state, data) {
-      const ObjIndex = state.jobs.findIndex((item) => item._id == data._id);
-      state.jobs[ObjIndex] = data;
+      const ObjIndex = state.chances.findIndex((item) => item._id == data._id);
+      state.chances[ObjIndex] = data;
     },
-    jobsSearch(state, data) {
-      state.jobs = data.jobs;
-      state.jobsCount = data.jobsCount;
+    chancesSearch(state, data) {
+      state.chances = data.chances;
+      state.chancesCount = data.chancesCount;
     },
   }
 }
