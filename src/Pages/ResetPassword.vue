@@ -38,11 +38,10 @@
                 </div>
               </tab-content>
               <div class="loader" v-if="loadingWizard"></div>
-
             </form-wizard>
-            <div class="return_to_login text-center mt-3">
+            <div class="return_to_login text-center">
                 <router-link class="store-animation-anchor fw-medium" to="/account/login">العودة لتسجيل الدخول</router-link>
-              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -53,7 +52,7 @@
 
 <script>
 // Import Methods, Packages, Files
-import { onMounted, ref, toRefs } from 'vue'
+import { onMounted, ref, toRefs, computed } from 'vue'
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 //local registration
@@ -70,7 +69,7 @@ export default {
 
     // Calling, Declarations, Data
     const router = useRouter();
-    const store = useStore()
+    const store = useStore();
     const items = ref([{ content: "أهلًا بكم في منصة خطط", link: "/" }, { content: "يمكنك الانضمام إلينا الآن", link: "/account/signup" }, { content: "الشروط والأحكام الخاصة بنا", link: "/pages/terms" }]);
     const resetPasswordPayload = ref({
       identifier: "",
@@ -109,7 +108,7 @@ export default {
         successMsg.value = "تم إستعادة كلمة السر بنجاح";
         setTimeout(() => {
           router.push({ name: "Login" });
-        }, 3000);
+        }, 1500);
       } else if (data.statusCode == 401 || data.statusCode == 500) {
         window.location.reload();
       } else {
@@ -126,7 +125,7 @@ export default {
       resetPasswordPayload,
       validateIDentifier,
       validateCode,
-      onComplete
+      onComplete,
     }
   }
 

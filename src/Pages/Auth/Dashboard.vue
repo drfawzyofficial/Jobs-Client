@@ -160,7 +160,7 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
+                <router-link v-if="user" class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                     }}</span>
@@ -200,7 +200,7 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="dashboard container-fluid py-4">
+          <div v-if="statistics" class="dashboard container-fluid py-4">
 
             <!-- Page Heading -->
             <div class="breadcrumb-auth">
@@ -423,8 +423,12 @@
             </div>
 
           </div>
+          <div v-else class="loading text-center py-5">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+             </div>
+          </div>
           <!-- /.container-fluid -->
-
         </div>
         <!-- End of Main Content -->
 

@@ -210,13 +210,13 @@
               </div>
               <div class="row mt-4">
                 <div class="col-12">
-                  <div class="p-3 bg-white shadow">
+                  <div v-if="profilePayload" class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تعديل الملف الشخصي</h5>
                     <p class="mb-3">يمكنك تعديل الملف الشخصي لإضافة أو تحديث معلوماتك الشخصية، مما يساعد في تحسين تجربتك
                       وتوفير بيانات دقيقة.</p>
                     <div class="row mb-4">
                       <div class="col-md-6">
-                        <input class="form-control form-control-lg" type="text" v-model="profilePayload.first_name"
+                        <input class="form-control form-control-lg" type="text" v-model="profilePayload.first_name" 
                           placeholder="الاسم الأول">
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
@@ -470,8 +470,10 @@
                     </div>
                     <hr>
                     <div>
-                      <button type="button" class="btn btn-primary ms-2" @click="editProfile()">
-                        <span>الإرسال <i class="bi bi-send"></i></span>
+                      <button type="button" class="btn btn-primary ms-2" @click="editProfile()" :disabled="loading_status">
+                        <span class="text">الإرسال</span>
+                        <span v-if="!loading_status" class="ms-1"><i class="bi bi-send"></i></span>
+                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                       </button>
                     </div>
                   </div>
@@ -492,12 +494,16 @@
                     </div>
                     <div>
                       <button type="button" class="btn btn-primary" @click="submitCode()"
-                        :disabled="user && user.is_verified">
-                        <span>تفعيل <i class="bi bi-arrow-clockwise"></i></span>
+                      :disabled="(user && user.is_verified) || loading_status">
+                        <span class="text">تفعيل</span>
+                        <span v-if="!loading_status" class="ms-1"><i class="bi bi-arrow-clockwise"></i></span>
+                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                       </button>
                       <button type="button" class="btn btn-primary ms-2" @click="resendCode()"
-                        :disabled="user && user.is_verified">
-                        <span>الإرسال <i class="bi bi-send"></i></span>
+                      :disabled="(user && user.is_verified) || loading_status">
+                        <span class="text">الإرسال</span>
+                        <span v-if="!loading_status" class="ms-1"><i class="bi bi-send"></i></span>
+                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                       </button>
                     </div>
                   </div>
@@ -535,8 +541,10 @@
                         v-model="passwordPayload.new_password_confirmation">
                     </div>
                     <div>
-                      <button type="button" class="btn btn-primary" @click="changePassword()">
-                        <span>تغيير <i class="bi bi-arrow-clockwise"></i></span>
+                      <button type="button" class="btn btn-primary" @click="changePassword()" :disabled="loading_status">
+                        <span class="text">تغيير</span>
+                        <span v-if="!loading_status" class="ms-1"><i class="bi bi-arrow-clockwise"></i></span>
+                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                       </button>
                     </div>
                   </div>
@@ -548,8 +556,10 @@
                       وتمهل قبل
                       حذف الحساب.</p>
                     <div>
-                      <button type="button" class="btn btn-danger" @click="deleteAccount()">
-                        <span>حذف <i class="bi bi-trash"></i></span>
+                      <button type="button" class="btn btn-danger" @click="deleteAccount()" :disabled="loading_status">
+                        <span class="text">حذف</span>
+                        <span v-if="!loading_status" class="ms-1"><i class="bi bi-trash"></i></span>
+                        <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                       </button>
                     </div>
                   </div>
@@ -617,11 +627,11 @@ export default {
   setup() {
     // Calling, Declarations, Data
     const store = useStore()
-    // const loading_status = computed(() => store.state.Collection.loading_status);
+    const loading_status = computed(() => store.state.Collection.loading_status);
     const user = computed(() => store.state.Auth.user);
     const isSticky = ref(false);
     const show = ref(false);
-    store.dispatch("Auth/GetProfile")
+    store.dispatch("Auth/GetProfile");
     const selectItems = ref([{ text: 'مسابقات' }, { text: 'مهارات' }, { text: 'ذكاء' }]);
     store.dispatch("Collection/GetHelper")
     const helperObj = computed(() => store.state.Collection.helperObj);
@@ -664,11 +674,6 @@ export default {
     });
 
     const isOpen = ref(false);
-
-
-    onMounted(() => {
-      profilePayload.value = user.value;
-    });
 
     const saudiCities = ref([
       "الرياض",
@@ -847,17 +852,17 @@ export default {
       }
     };
 
-    onMounted(() => {
-      const that = this;
-      window.addEventListener("scroll", () => {
-        let scrollPos = window.scrollY;
-        if (scrollPos >= 100) {
-          isSticky.value = true;
-        } else {
-          isSticky.value = false;
-        }
-      });
-    });
+    // onMounted(() => {
+    //   const that = this;
+    //   window.addEventListener("scroll", () => {
+    //     let scrollPos = window.scrollY;
+    //     if (scrollPos >= 100) {
+    //       isSticky.value = true;
+    //     } else {
+    //       isSticky.value = false;
+    //     }
+    //   });
+    // });
 
     // Methods
     const selectInterest = (interest) => {
@@ -922,7 +927,9 @@ export default {
           isOpen.value = false;
         }
       });
+      profilePayload.value = user.value;
     });
+
 
     // Return
     return {
@@ -957,6 +964,7 @@ export default {
       updateNotifications,
       isOpen,
       toggleSidebar,
+      loading_status
     }
   }
 }

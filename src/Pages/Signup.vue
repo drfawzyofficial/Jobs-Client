@@ -377,7 +377,12 @@
                                     </div>
                                 </tab-content>
                             </form-wizard>
-                            <div class="create_new_account text-center mt-3">
+                            <div v-if="loading_status" class="loading text-center">
+                                <div class="spinner-border" role="status">
+                                     <span class="sr-only">Loading...</span>
+                                </div>
+                            </div>
+                            <div class="create_new_account text-center">
                                 <router-link class="store-animation-anchor fw-medium" to="/account/login">لديك
                                     حساب؟</router-link>
                             </div>

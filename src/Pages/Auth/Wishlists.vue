@@ -159,7 +159,7 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
+                <router-link v-if="user" class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                     }}</span>

@@ -169,7 +169,7 @@
 
                             <!-- Nav Item - User Information -->
                             <li class="nav-item dropdown no-arrow">
-                                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
+                                <router-link v-if="user" class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                                     }}</span>
@@ -227,9 +227,10 @@
                                                 rows="3" v-model="contactPayload.message" placeholder="اكتب رسالتك..."></textarea>
                                         </div>
                                         <div class="mt-3">
-                                            <button type="submit" class="btn btn-primary" @click="createContact()">
+                                            <button type="submit" class="btn btn-primary" @click="createContact()" :disabled="loading_status">
                                                 <span class="btn-text">إرسال</span>
-                                                <i class="bi bi-send"></i>
+                                                <span v-if="!loading_status" class="ms-1"><i class="bi bi-send"></i></span>
+                                                <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                                             </button>
                                         </div>
                                     </div>
@@ -296,7 +297,7 @@ export default {
     setup() {
         // Calling, Declarations, Data
         const store = useStore()
-        // const loading_status = computed(() => store.state.Collection.loading_status);
+        const loading_status = computed(() => store.state.Collection.loading_status);
         const user = computed(() => store.state.Auth.user);
         store.dispatch("Auth/GetProfile")
         const contactPayload = ref({
@@ -338,6 +339,7 @@ export default {
             onLogout,
             isOpen,
             toggleSidebar,
+            loading_status
         }
     }
 }

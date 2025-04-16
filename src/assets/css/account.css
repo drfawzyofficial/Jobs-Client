@@ -22,14 +22,7 @@
     margin: 0 auto;
   }
 
-  
-  .account-auth .form-control, .account-auth .form-select-lg {
-    background-color: #FFFFFF;
-    color: #000;
-    border: 1px solid #000;
-    font-size: 20px;
-    border-radius: 4px;
-  }
+
   
   .account-auth .customer_login .save-forgot-password {
     display: flex;

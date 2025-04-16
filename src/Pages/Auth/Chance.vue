@@ -159,7 +159,7 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
+                <router-link v-if="user" class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                     }}</span>
@@ -199,7 +199,7 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div class="chance container-fluid py-5">
+          <div v-if="true" class="chance container-fluid py-5">
             <div class="container">
               <div class="chance-container">
                 <div class="top-left">
@@ -215,7 +215,7 @@
                   </div>
                 </div>
                 <div class="chance-details">
-                  <h4 class="fw-bold">{{ chance.chanceName }}</h4>
+                  <h3 class="fw-bold">{{ chance.chanceName }}</h3>
                   <div class="mt-2">
                     <span class="fw-bold">التصنيف الرئيسي: </span>
                     <span>{{ chance.chanceCategory }}</span>
@@ -354,10 +354,10 @@
                   </div>
                 </div>
                 <div class="chance-details mt-3">
-                  <h4 class="fw-bold">
+                  <h5 class="fw-bold">
                     <span>للتسجيل والمزيد من المعلومات: </span>
                     <a :href="chance.chanceLink" target="_blank" style="color: blue">زيارة الرابط</a>
-                  </h4>
+                  </h5>
                 </div>
               </div>
               <div class="chance-review-post mt-3">
@@ -371,13 +371,17 @@
                       ★
                     </span>
                   </div>
-                  <button class="btn btn-primary" @click="sendReview()">نشر <i class="bi bi-send"></i></button>
+                  <button class="btn btn-primary" @click="sendReview()" :disabled="loading_status">
+                    <span class="word">نشر</span>
+                    <span v-if="!loading_status" class="ms-1"><i class="bi bi-send"></i></span>
+                    <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
+                  </button>
                 </div>
               </div>
               <div class="chance-reviews mt-4">
                 <h4 class="fw-bold">التقييمات</h4>
                 <div class="row">
-                  <div class="col-lg-3 col-md-4 col-6 mt-3" v-if="reviews.length > 0" v-for="(review, index) in reviews"
+                  <div class="col-lg-3 col-md-4 col-sm-6 mt-3" v-if="reviews.length > 0" v-for="(review, index) in reviews"
                     :key="index">
                     <div class="review bg-white position-relative p-3 rounded shadow-sm">
                       <p>{{ review.comment }}</p>
@@ -394,9 +398,19 @@
                       <h6>لا يوجد تقييمات</h6>
                     </div>
                   </div>
+                <div class="mt-4 d-flex justify-content-center" v-if="reviewsCount > 1">
+                    <Paginate :page-count="reviewsCount" :click-handler="clickCallback" :prev-text="'السابق'"
+                      :next-text="'التالي'" :container-class="'pagination'" :page-class="'page-item'">
+                    </Paginate>
+                </div>
                 </div>
               </div>
             </div>
+          </div>
+          <div v-else class="loading text-center py-5">
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+             </div>
           </div>
           <!-- /.container-fluid -->
 
@@ -534,12 +548,14 @@
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
 import { computed, onMounted, ref } from 'vue'
+import Paginate from 'vuejs-paginate-next';
 import { useRoute } from 'vue-router';
 import { Modal } from 'bootstrap';
 
 export default {
   name: 'Chances',
   components: {
+    Paginate
   },
   setup() {
 
@@ -552,6 +568,7 @@ export default {
     const route = useRoute();
     const stars = [1, 2, 3, 4, 5]; // Total number of stars
     const reviews = computed(() => store.state.Auth.reviews);
+    const reviewsCount = computed(() => store.state.Auth.reviewsCount);
     const EnglishChancesRelated = computed(() => store.state.Auth.EnglishChancesRelated);
     const BrainChancesRelated = computed(() => store.state.Auth.BrainChancesRelated);
     const selectedStars = ref(0);
@@ -719,7 +736,7 @@ export default {
       }
     }
 
-    store.dispatch("Auth/ReviewsGet", { _chanceID: route.params.id });
+    store.dispatch("Auth/ReviewsGet", { _chanceID: route.params.id, page_no: 1 });
 
     const selectStars = (star) => {
       selectedStars.value = star; // Set the selected number of stars
@@ -801,20 +818,13 @@ export default {
       }
     }
 
+    const clickCallback = (pageNum) => store.dispatch("Auth/ReviewsGet", { _chanceID: route.params.id, page_no: pageNum });
+
+
     const toggleSidebar = (e) => {
       e.stopPropagation();
       isOpen.value = !isOpen.value;
     };
-
-    onMounted(() => {
-      document.addEventListener('click', (event) => {
-        const sidebar = $(".sidebar");
-        if (sidebar && !sidebar.is(event.target)) {
-          isOpen.value = false;
-        }
-      });
-    });
-
 
     onMounted(() => {
       document.addEventListener('click', (event) => {
@@ -835,6 +845,7 @@ export default {
       stars,
       review,
       reviews,
+      reviewsCount,
       isInWishlist,
       toggleWishlist,
       chance,
@@ -861,6 +872,7 @@ export default {
       BrainChancesRelated,
       isOpen,
       toggleSidebar,
+      clickCallback
     }
   }
 }
@@ -950,12 +962,12 @@ export default {
   padding: 6px;
   border-radius: 8px;
   color: #FFF;
-  font-size: 12px;
+  font-size: 10px;
   text-align: center
 }
 
 .chances .chance .wishlist-feature {
-  right: 15px;
+  right: 8px;
   top: 15px;
 }
 
@@ -994,6 +1006,37 @@ export default {
   }
   .sidebar.open {
     display: block;
+  }
+}
+@media (max-width: 575.98px) {
+  .chances .chance .chance-img img {
+    height: 175px;
+  }
+
+  .chances .chance .chance-content {
+    padding: 0.3rem;
+  }
+
+  .chances .chance .chance-content h5 {
+    font-size: 1.1rem;
+  }
+
+  .chances .chance .chance-content p {
+    font-size: 14px;
+  }
+
+  .chances .chance .chance-content span {
+    font-size: 0.8rem;
+  }
+
+  .chances .chance .wishlist-feature {
+    right: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .star {
+    font-size: 1.5rem;
   }
 }
 </style>

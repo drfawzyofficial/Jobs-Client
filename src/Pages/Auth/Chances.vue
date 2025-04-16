@@ -160,8 +160,8 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <router-link class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown" role="button"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <router-link v-if="user" class="nav-link dropdown-toggle" to="/student/settings" id="userDropdown"
+                  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                   }}</span>
                   <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
@@ -245,8 +245,10 @@
                         </select>
                       </div>
                       <div class="col-12 mt-3">
-                        <button type="button" class="btn btn-primary" @click="search()">
-                          <span>بحث</span>
+                        <button type="button" class="btn btn-primary" @click="search()" :disabled="loading_status">
+                          <span class="text">بحث</span>
+                          <span v-if="!loading_status" class="ms-1"><i class="bi bi-search"></i></span>
+                          <span v-else class="spinner-border spinner-border-sm ms-1" role="status"></span>
                         </button>
                       </div>
                     </div>
@@ -255,7 +257,7 @@
               </div>
             </div>
             <div class="row" v-if="chances.length > 0">
-              <div class="col-xl-3 col-lg-4 col-6 mt-4" v-for="(chance, index) in chances" :key="index">
+              <div class="col-xl-3 col-lg-4 col-sm-6 col-12 mt-4" v-for="(chance, index) in chances" :key="index">
                 <div class="chance bg-white position-relative d-inline-block w-100">
                   <div class="position-absolute additional-info d-flex flex-column">
                     <span class="info-badge fw-bold" :class="'date-' + getValidateDateClass(chance)">{{
@@ -368,7 +370,9 @@ export default {
 
     const isOpen = ref(false);
     onMounted(() => {
-      filter.value.edu_case = user.value.applicantEdu;
+      if (user.value) {
+        filter.value.edu_case = user.value.applicantEdu;
+      }
     });
 
 
@@ -670,7 +674,7 @@ export default {
 
 @media (max-width: 575.98px) {
   .chances .chance .chance-img img {
-    height: 150px;
+    height: 175px;
   }
 
   .chances .chance .chance-content {
@@ -691,12 +695,6 @@ export default {
 
   .chances .chance .wishlist-feature {
     right: 0;
-  }
-}
-
-@media (max-width: 400px) {
-  .chances .chance .chance-img img {
-    height: 125px;
   }
 }
 </style>

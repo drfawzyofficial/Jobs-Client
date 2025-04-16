@@ -21,7 +21,8 @@ export const Auth = {
     wishlists: [],
     wishlistsCount: 0,
     wishlistsPagesCount: 0,
-    reviews: []
+    reviews: [],
+    reviewsCount: 0
   },
   actions: {
     async Signup({ dispatch, commit }, payload) {
@@ -32,7 +33,7 @@ export const Auth = {
           window.Swal.fire({ title: 'إنشاء حساب الطالب', icon: "success", text: data.message, confirmButtonText: 'أتفهم' })
           setTimeout(() => {
             router.push("/student/login")
-          }, 3000);
+          }, 1500);
         } else {
           var errors = ``;
           for (const property in data.result.errors) {
@@ -152,7 +153,7 @@ export const Auth = {
             localStorage.removeItem("token");
             commit("unSetUser");
             router.push("/account/login")
-          }, 1000);
+          }, 1500);
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -207,10 +208,10 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
-    async ReviewsGet({ dispatch, commit }, payload) {
+    async ReviewsGet({ dispatch, commit }, payload) { 
       try {
         dispatch("Collection/loading", true, { root: true });
-        const data = await Fetch("POST", `/student/reviews/get`, payload);
+        const data = await Fetch("POST", `/student/reviews/get?page_no=${payload.page_no}`, payload);
         if (data.statusCode === 200) {
           commit("reviewsGet", data.result);
         } else if (data.statusCode === 401 || data.statusCode === 500 || data.statusCode === 404) {
@@ -435,6 +436,7 @@ export const Auth = {
     },
     reviewsGet(state, data) {
       state.reviews = data.reviews;
+      state.reviewsCount = data.reviewsCount;
     },
     chanceGet(state, data) {
       state.chance = data.chance;
