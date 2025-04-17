@@ -71,6 +71,14 @@ export const Auth = {
         const data = await Fetch("POST", "/student/contact/create", payload);
         if (data.statusCode === 200) {
           window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+        } else if (data.statusCode == 400) {
+          var errors = ``;
+          for (const property in data.result.errors) {
+            data.result.errors[property].forEach((ele) => {
+              errors += `<li>${ele}</li>`
+            })
+          }
+          window.Swal.fire({ title: 'خطأ!', icon: "error", html: `<ul>${errors}</ul>`, confirmButtonText: 'أتفهم' })
         } else if (data.statusCode === 401 || data.statusCode === 500) {
           dispatch("Auth/Logout", {}, { root: true });
         } else {
@@ -208,7 +216,7 @@ export const Auth = {
         dispatch("Collection/loading", false, { root: true });
       }
     },
-    async ReviewsGet({ dispatch, commit }, payload) { 
+    async ReviewsGet({ dispatch, commit }, payload) {
       try {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", `/student/reviews/get?page_no=${payload.page_no}`, payload);

@@ -173,7 +173,7 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                                     }}</span>
-                                <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
+                                <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar" loading="lazy">
                                 </router-link>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -223,8 +223,18 @@
                                         <h5 class="fw-bold">أرسل رسالة</h5>
                                         <p>يمكنك الاستفسار أو إبداء الملاحظات في أي وقت من خلال إرسال رسالة، وسيتم تحويلها إلى المسؤولين للرد عليك، علمًا بأن الرد سيصل إلى بريدك الإلكتروني في رسالة واحدة فقط.</p>
                                         <div class="mt-3">
+                                            <input id="ContactForm-email" type="email" class="form-control form-control-lg"
+                                                v-model="contactPayload.subject" placeholder="الموضوع">
+                                                <div id="subject_help" class="form-text">
+                                                       الموضوع يبدأ من 3 أحرف
+                                                </div>
+                                        </div>
+                                        <div class="mt-3">
                                             <textarea id="ContactForm-body" class="form-control form-control-lg"
                                                 rows="3" v-model="contactPayload.message" placeholder="اكتب رسالتك..."></textarea>
+                                            <div id="message_help" class="form-text">
+                                                    الرسالة تبدأ من 15 أحرف
+                                            </div>
                                         </div>
                                         <div class="mt-3">
                                             <button type="submit" class="btn btn-primary" @click="createContact()" :disabled="loading_status">
@@ -301,6 +311,7 @@ export default {
         const user = computed(() => store.state.Auth.user);
         store.dispatch("Auth/GetProfile")
         const contactPayload = ref({
+            subject: "",
             message: "",
         });
         const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);

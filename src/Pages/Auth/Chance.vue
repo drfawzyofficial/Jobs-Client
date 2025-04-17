@@ -468,7 +468,7 @@
                   </div>
                   <a :href="'/student/chance/' + chance._id" @click="IncrementChance(chance._id)">
                     <div class="chance-img">
-                      <img :src="chance.chanceImage" />
+                      <img :src="chance.chanceImage" loading="lazy"/>
                     </div>
                     <div class="chance-content p-3">
                       <h6 class="fw-bold">{{ chance.chanceName }}</h6>
@@ -519,7 +519,7 @@
                   </div>
                   <a :href="'/student/chance/' + chance._id" @click="IncrementChance(chance._id)">
                     <div class="chance-img">
-                      <img :src="chance.chanceImage" />
+                      <img :src="chance.chanceImage" loading="lazy"/>
                     </div>
                     <div class="chance-content p-3">
                       <h6 class="fw-bold">{{ chance.chanceName }}</h6>

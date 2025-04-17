@@ -6,7 +6,7 @@
                     <div class="info">
                         <div class="khattit-logo">
                             <router-link to="/">
-                                <img class="footer-logo" src="@/assets/images/logo_white.png" height="80" />
+                                <img class="footer-logo" src="@/assets/images/logo_white.png" height="80" loading="lazy"/>
                             </router-link>
                         </div>
                         <p class="mt-3 text-white">منصة خطط هي منصة رائدة تسعى إلى تعريفك بأفضل الفرص المتاحة حولك؛

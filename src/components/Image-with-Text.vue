@@ -3,7 +3,7 @@
     <div class="container">
       <div class="image-with-text-container">
         <div class="image">
-            <img class="store-animation-flash" :src="src" />
+            <img class="store-animation-flash" :src="src" loading="lazy"/>
         </div>
         <div class="content" v-html="content"></div>
       </div>

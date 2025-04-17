@@ -3748,6 +3748,8 @@ a.badge-dark:focus, a.badge-dark.focus {
   color: #1c606a;
   background-color: #d7f1f5;
   border-color: #c7ebf1;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
 }
 
 .alert-info hr {

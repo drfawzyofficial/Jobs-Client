@@ -3,7 +3,7 @@
     <div class="carousel-inner">
       <div class="carousel-inner">
         <div class="carousel-item" v-for="(item, index) in sliders" :key="index" :class="{ active: index === 0 }">
-          <img :src="item.image.src" :alt="item.image.alt" :title="item.image.title" class="store-animation-shadow" />
+          <img :src="item.image.src" :alt="item.image.alt" :title="item.image.title" class="store-animation-shadow" loading="lazy"/>
           <div class="carousel-caption">
             <h2 class="heading-slider">{{ item.heading }}</h2>
             <router-link class="btn btn-primary d-inline-block mt-2" to="/account/login">ابدأ الخدمة</router-link>

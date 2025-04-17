@@ -515,7 +515,7 @@
                       مباشرة.</p>
                     <div class="form-check form-switch d-flex align-items-center mb-3">
                       <input class="form-check-input" type="checkbox" id="enableNotifications"
-                        v-model="profilePayload.enable_notifications" @change="updateNotifications">
+                        v-model="profilePayload.enable_notifications" @change="updateNotifications"  v-if="profilePayload">
                       <label class="form-check-label ms-2" for="enableNotifications">تفعيل الإشعارات للفرص المهتم
                         بها</label>
                     </div>

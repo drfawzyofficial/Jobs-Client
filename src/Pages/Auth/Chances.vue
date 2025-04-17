@@ -275,7 +275,7 @@
                   </div>
                   <router-link :to="'/student/chance/' + chance._id" @click="IncrementChance(chance._id)">
                     <div class="chance-img">
-                      <img :src="chance.chanceImage" />
+                      <img :src="chance.chanceImage" loading="lazy"/>
                     </div>
                     <div class="chance-content">
                       <h5 class="fw-bold">{{ chance.chanceName }}</h5>
@@ -287,7 +287,7 @@
               </div>
             </div>
             <div v-else class="mt-4">
-              <h5 class="alert alert-info">لا يوجد فرص</h5>
+              <p class="alert alert-info">لا يوجد فرص</p>
             </div>
             <div class="mt-4 d-flex justify-content-center" v-if="chancesCount > 1">
               <Paginate :page-count="chancesCount" :click-handler="clickCallback" :prev-text="'السابق'"

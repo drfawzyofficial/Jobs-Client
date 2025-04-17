@@ -87,7 +87,7 @@
                       <img
                         src="../assets/img/team-2.jpg"
                         class="avatar avatar-sm me-3"
-                        alt="user image"
+                        alt="user image" 
                       />
                     </div>
                     <div class="d-flex flex-column justify-content-center">

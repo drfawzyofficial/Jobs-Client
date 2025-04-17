@@ -36,7 +36,7 @@
                         </ul>
                         <div class="logo">
                             <router-link to="/">
-                                <img src="@/assets/images/logo_white.png" height="80"/>
+                                <img src="@/assets/images/logo_white.png"  height="80" loading="lazy"/>
                             </router-link>
                         </div>
                         <div class="icons">

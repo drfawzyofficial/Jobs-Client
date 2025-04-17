@@ -7,7 +7,7 @@
           <Slide v-for="(image, index) in slider_images" :key="index" class="image-item">
               <div class="carousel__item m-2">
                   <img :src="image.src" :alt="image.alt" :title="image.title"
-                      class="store-animation-shadow" />
+                      class="store-animation-shadow" loading="lazy"/>
               </div>
           </Slide>
           <template #addons>

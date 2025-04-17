@@ -163,7 +163,7 @@
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                     }}</span>
-                  <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar">
+                  <img class="img-profile rounded-circle" :src="user.avatar" v-if="user && user.avatar" loading="lazy">
                 </router-link>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -204,9 +204,9 @@
               <h3 class="fw-bold">جميع المفضلات</h3>
               <p>مرحبًا بك في صفحة المفضلات! يمكنك هنا إدارة الفرص التي قمت بإضافتها إلى مفضلاتك. يمكنك إضافة أو إزالة أي فرصة بكل سهولة، وسيتم حفظ اختياراتك تلقائيًا لتكون متاحة لك في أي وقت تزور فيه لوحة التحكم. تأكد من استعراض قائمتك بانتظام لضمان عدم تفويت أي فرصة مهمة بالنسبة لك!</p>
             </div>
-            <h6 class="alert alert-info fw-bold mt-3">عدد المفضلات: {{ wishlistsCount  }}</h6>
+            <p class="alert alert-info mt-3">عدد المفضلات: {{ wishlistsCount  }}</p>
             <div class="row" v-if="wishlists.length > 0">
-              <div class="col-xl-3 col-lg-4 col-6 mt-4" 
+              <div class="col-xl-3 col-lg-4 col-sm-6 mt-4" 
                 v-for="(wishlist, index) in wishlists" :key="index">
                 <div class="wishlist position-relative bg-white position-relative d-inline-block w-100">
                   <div class="position-absolute additional-info d-flex flex-column">
@@ -223,7 +223,7 @@
                   </div>
                 <router-link :to="'/student/chance/' + wishlist._id">
                   <div class="wishlist-img">
-                    <img :src="wishlist.chanceImage" />
+                    <img loading="lazy" :src="wishlist.chanceImage" />
                   </div>
                   <div class="wishlist-content p-3">
                     <h6 class="fw-bold">{{ wishlist.chanceName }}</h6>
@@ -235,7 +235,7 @@
               </div>
             </div>
             <div v-else class="mt-4">
-              <h6 class="alert alert-info fw-bold">لا يوجد مفضلات</h6>
+              <p class="alert alert-info">لا يوجد مفضلات</p>
             </div>
             <div class="mt-4 d-flex justify-content-center" v-if="wishlistsPagesCount > 1">
               <Paginate :page-count="wishlistsPagesCount" :click-handler="clickCallback" :prev-text="'السابق'"
