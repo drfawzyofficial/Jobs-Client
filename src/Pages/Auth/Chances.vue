@@ -215,7 +215,7 @@
                       <div class="col-lg-3 col-md-6">
                         <label>حالة الفرصة: </label>
                         <select class="form-select form-select-lg" v-model="filter.chance_case">
-                          <option value="none">حالة الفرصة</option>
+                          <option value="none">الكل</option>
                           <option value="open">مفتوح التسجيل</option>
                           <option value="not_started">يفتح قريبًا</option>
                           <option value="closed">مغلق التسجيل</option>
@@ -224,7 +224,7 @@
                       <div class="col-lg-3 col-md-6 mt-3 mt-md-0">
                           <label>المرحلة التعليمية:</label>
                         <select class="form-select form-select-lg" v-model="filter.edu_case">
-                          <option value="none">المرحلة التعليمية</option>
+                          <option value="none">الكل</option>
                           <option v-for="(edu, index) in helperObj.applicantEdus" :key="index" :value="edu">{{ edu }}
                           </option>
                         </select>
@@ -232,7 +232,7 @@
                       <div class="col-lg-3 col-md-6 mt-3 mt-lg-0">
                         <label>التصنيف:</label>
                         <select class="form-select form-select-lg" v-model="filter.interest_case">
-                          <option value="none">التصنيف الأساسي</option>
+                          <option value="none">الكل</option>
                           <option value="more_relevant">الأكثر ملاءمة</option>
                           <option v-for="(category, index) in helperObj.chanceCategories" :key="index"
                             :value="category">{{ category }}</option>
@@ -241,7 +241,7 @@
                       <div class="col-lg-3 col-md-6 mt-3 mt-lg-0">
                           <label>حالة البرنامج:</label>
                         <select class="form-select form-select-lg" v-model="filter.program_status">
-                          <option value="none">حالة البرنامج</option>
+                          <option value="none">حضوري/عن بعد</option>
                           <option value="حضوري">حضوري</option>
                           <option value="عن بعد">عن بعد</option>
                         </select>

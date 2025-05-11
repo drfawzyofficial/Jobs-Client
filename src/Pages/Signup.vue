@@ -838,11 +838,6 @@ export default {
             } else {
                 errorsTwo.value.STEP = '';
             }
-            if (signupPayload.value.EnglishStandard.CEFR && !CEFRs.includes(signupPayload.value.EnglishStandard.CEFR)) {
-                errorsTwo.value.CEFR = 'يجب أن يكون درجة الـ CEFR صحيحًا';
-            } else {
-                errorsTwo.value.CEFR = '';
-            }
 
             // Check if all values in `errorsTwo.value` are empty
             return Object.values(errorsTwo.value).every(error => error === "");
