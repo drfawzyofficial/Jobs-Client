@@ -160,7 +160,7 @@
 
               <!-- Nav Item - User Information -->
               <li class="nav-item dropdown no-arrow">
-                <router-link class="nav-link dropdown-toggle" to="/student/dashboard" id="userDropdown" role="button" data-toggle="dropdown"
+                <router-link v-if="user" class="nav-link dropdown-toggle" to="/student/dashboard" id="userDropdown" role="button" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
                   <span class="ml-2 d-none d-lg-inline text-gray-600 small">{{ user.first_name + " " + user.last_name
                     }}</span>
@@ -204,60 +204,57 @@
             <div class="container">
               <div class="breadcrumb-auth">
                 <h3 class="fw-bold">إعدادات الحساب</h3>
-                <p>صفحة إعدادات الحساب تتيح لك تفعيل الحساب وتأمينه من خلال تغيير كلمة المرور القديمة إلى كلمة مرور
-                  جديدة، بالإضافة إلى إمكانية تعديل أو حذف البيانات الشخصية بكل سهولة. تضمن هذه الصفحة التحكم الكامل
-                  بمعلوماتك الشخصية وتعزيز أمان حسابك.</p>
+                <p>يمكنك هنا إدارة الحساب وتأمينه وتعديل أو حذف بياناتك الشخصية بكل سهولة.</p>
               </div>
               <div class="row mt-4">
                 <div class="col-12">
-                  <div v-if="profilePayload" class="p-3 bg-white shadow">
+                  <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تعديل الملف الشخصي</h5>
-                    <p class="mb-3">يمكنك تعديل الملف الشخصي لإضافة أو تحديث معلوماتك الشخصية، مما يساعد في تحسين تجربتك
-                      وتوفير بيانات دقيقة.</p>
+                    <p class="mb-3">يمكنك إضافة أو تحديث معلوماتك الشخصية لتحسين تجربتك وتوفير بيانات أدق.</p>
                     <div class="row mb-4">
                       <div class="col-md-6">
                         <input class="form-control form-control-lg" type="text" v-model="profilePayload.first_name" 
-                          placeholder="الاسم الأول">
+                          placeholder="الاسم الأول*">
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
                         <input class="form-control form-control-lg" type="text" v-model="profilePayload.last_name"
-                          placeholder="الاسم الأخير">
+                          placeholder="الاسم الأخير*">
                       </div>
                     </div>
                     <div class="row mb-4">
                       <div class="col-md-6">
                         <input class="form-control form-control-lg" type="text" v-model="profilePayload.email"
-                          placeholder="البريد الإلكتروني">
+                          placeholder="البريد الإلكتروني*">
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
                         <input class="form-control form-control-lg" type="text" v-model="profilePayload.phone"
-                          placeholder="رقم الهاتف">
+                          placeholder="رقم الهاتف*">
                       </div>
                     </div>
                     <div class="row mb-4">
                       <div class="col-md-6">
                         <select class="form-select form-select-lg" v-model="profilePayload.applicantGender">
-                          <option value="none">الجنس</option>
+                          <option value="none">الجنس*</option>
                           <option value="ذكر">ذكر</option>
                           <option value="أنثى">أنثى</option>
                         </select>
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
-                        <input class="form-control form-control-lg" type="date" placeholder="تاريخ الميلاد"
+                        <input class="form-control form-control-lg" type="date" placeholder="تاريخ الميلاد*"
                           v-model="profilePayload.DOB">
                       </div>
                     </div>
                     <div class="row mb-4">
                       <div class="col-md-6">
                         <select class="form-select form-select-lg" v-model="profilePayload.applicantEdu">
-                          <option value="none">المرحلة التعليمية</option>
+                          <option value="none">المرحلة التعليمية*</option>
                           <option v-for="(val, index) in helperObj.applicantEdus" :key="index" :value="val">{{ val }}
                           </option>
                         </select>
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
                         <select class="form-select form-select-lg" v-model="profilePayload.saudiCity">
-                          <option value="none">مقر الإقامة</option>
+                          <option value="none">مقر الإقامة*</option>
                           <option v-for="(nationality, index) in saudiCities" :key="index" :value="nationality">
                             {{ nationality }}
                           </option>
@@ -266,7 +263,7 @@
                     </div>
                     <div class="mb-3 d-block d-sm-flex align-items-center">
                       <label class="form-label">
-                        هل أنت سعودي الجنسية؟
+                      هل أنت سعودي/ة الجنسية؟*
                       </label>
                       <div class="form-check ms-3">
                         <input type="radio" name="nationality" class="form-check-input" id="saudinationalityYes"
@@ -287,7 +284,7 @@
                     <div class="row mb-4">
                       <div class="col-md-6">
                         <div class="interests">
-                          <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)</label>
+                          <label class="form-label">ما نوع الفرص التي تبحث عنها؟(اختر 3 على الأقل)*</label>
                           <div class="choose-interest">
                             <button type="button" class="btn-interest m-1"
                               v-for="(interest, index) in helperObj.chanceCategories" :key="index"
@@ -300,7 +297,7 @@
                       </div>
                       <div class="col-md-6 mt-4 mt-md-0">
                         <div class="interests">
-                          <label class="form-label">حدد مجالات اهتمامك بالترتيب؟ (اختر 3 على الأقل)</label>
+                          <label class="form-label">حدد مجالات اهتمامك بالترتيب؟ (اختر 3 على الأقل)*</label>
                           <div class="choose-interest">
                             <button type="button" class="btn-interest m-1"
                               v-for="(interest, index) in helperObj.chanceSubcategories" :key="index"
@@ -320,7 +317,7 @@
                             v-model="profilePayload.tookEnglishTest" />
                           <label class="form-label" for="englishTestCheckbox">
                             هل سبق لك وأخذت أحد اختبارات مقياس اللغة الإنجليزية الآتية:
-                            (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOEFL)؟
+                            (STEP, Duolingo, IELTS, CEFR, TOEIC, TOEFL)؟
                           </label>
                         </div>
                         <ul v-if="profilePayload.tookEnglishTest" class="nav nav-tabs mt-2" id="myTab" role="tablist">
@@ -337,8 +334,8 @@
                               role="tab" aria-controls="TOEIC" aria-selected="false">TOEIC</button>
                           </li>
                           <li class="nav-item" role="presentation">
-                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#DUOLINGO" type="button"
-                              role="tab" aria-controls="DUOLINGO" aria-selected="false">DUOLINGO</button>
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Duolingo" type="button"
+                              role="tab" aria-controls="Duolingo" aria-selected="false">Duolingo</button>
                           </li>
                           <li class="nav-item" role="presentation">
                             <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step" type="button"
@@ -365,9 +362,9 @@
                             <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و990"
                               v-model="profilePayload.EnglishStandard.TOEIC">
                           </div>
-                          <div class="tab-pane fade" id="DUOLINGO" role="tabpanel">
+                          <div class="tab-pane fade" id="Duolingo" role="tabpanel">
                             <input type="text" class="form-control form-control-lg" placeholder="الدرجة بين 0 و160"
-                              v-model="profilePayload.EnglishStandard.DUOLINGO">
+                              v-model="profilePayload.EnglishStandard.Duolingo">
 
                           </div>
                           <div class="tab-pane fade" id="Step" role="tabpanel">
@@ -481,9 +478,7 @@
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">تفعيل الحساب</h5>
-                    <p class="mb-2">الرجاء قم بإدخال الرمز الذي تم إرساله إلى البريد الإلكتروني الخاص بك لكي تقوم بتفعيل
-                      الحساب وإن لم تجده في بريدك الإلكتروني أو صلاحيته قد انتهت يمكنك إعادة إرسال الرمز مرة
-                      أخرى.</p>
+                    <p class="mb-2">أدخل الرمز من بريدك الإلكتروني لتفعيل الحساب. إن لم تجده أو انتهت صلاحيته، يمكنك إعادة إرساله.</p>
                     <div class="mb-3">
                       <input class="form-control form-control-lg" type="text" placeholder="أدخل رمز التفعيل هنا"
                         aria-label="account-activation" v-model="codePayload.code">
@@ -510,12 +505,12 @@
                 </div>
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
-                    <h5 class="fw-bold">تفعيل الاشعارات</h5>
+                    <h5 class="fw-bold">تفعيل الإشعارات</h5>
                     <p class="mb-2">يمكنك تفعيل الإشعارات للفرص التي تهمك، فقط اضغط على زر الإشعارات لتلقي التحديثات
                       مباشرة.</p>
                     <div class="form-check form-switch d-flex align-items-center mb-3">
                       <input class="form-check-input" type="checkbox" id="enableNotifications"
-                        v-model="profilePayload.enable_notifications" @change="updateNotifications"  v-if="profilePayload">
+                        v-model="profilePayload.enable_notifications" @change="updateNotifications">
                       <label class="form-check-label ms-2" for="enableNotifications">تفعيل الإشعارات للفرص المهتم
                         بها</label>
                     </div>
@@ -552,7 +547,7 @@
                 <div class="col-12 mt-4">
                   <div class="p-3 bg-white shadow">
                     <h5 class="fw-bold">حذف الحساب</h5>
-                    <p class="mb-3">حذف الحساب يؤدي حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر
+                    <p class="mb-3">حذف الحساب يؤدي إلى حذف حسابك نهائيًا من المنصة ولن تتمكن من استعادته مرة أخرى. فكر
                       وتمهل قبل
                       حذف الحساب.</p>
                     <div>
@@ -619,12 +614,12 @@
 <script>
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 export default {
   name: 'Settings',
   components: {
   },
-  setup() {
+ setup() {
     // Calling, Declarations, Data
     const store = useStore()
     const loading_status = computed(() => store.state.Collection.loading_status);
@@ -636,8 +631,6 @@ export default {
     store.dispatch("Collection/GetHelper")
     const helperObj = computed(() => store.state.Collection.helperObj);
     const navLinks = ref([{ title: "لوحة التحكم", link: "/student/dashboard", icon: '<i class="bi bi-house fs-5"></i>' }, { title: "الفرص", link: "/student/chances", icon: '<i class="bi bi-person-workspace fs-5"></i>' }, { title: "المفضلات", link: "/student/wishlists", icon: '<i class="bi bi-suit-heart-fill fs-5"></i>' }, { title: "الإعدادات", link: "/student/settings", icon: '<i class="bi bi-gear fs-5"></i>' }, { title: "تواصل معنا", link: "/student/contact", icon: '<i class="bi bi-send fs-5"></i>' }]);
-
-
 
     const profilePayload = ref({
       first_name: "",
@@ -655,7 +648,7 @@ export default {
         IELTS: '',
         TOEFL: '',
         TOEIC: '',
-        DUOLINGO: '',
+        Duolingo: '',
         STEP: '',
         CEFR: '',
       },
@@ -852,17 +845,6 @@ export default {
       }
     };
 
-    // onMounted(() => {
-    //   const that = this;
-    //   window.addEventListener("scroll", () => {
-    //     let scrollPos = window.scrollY;
-    //     if (scrollPos >= 100) {
-    //       isSticky.value = true;
-    //     } else {
-    //       isSticky.value = false;
-    //     }
-    //   });
-    // });
 
     // Methods
     const selectInterest = (interest) => {
@@ -885,7 +867,7 @@ export default {
         IELTS: '',
         TOEFL: '',
         TOEIC: '',
-        DUOLINGO: '',
+        Duolingo: '',
         STEP: '',
         CEFR: '',
       }
@@ -920,6 +902,15 @@ export default {
       isOpen.value = !isOpen.value;
     };
 
+
+    // Watch user and sync it to profilePayload when ready
+    watch(user, (newUser) => {
+      if (newUser) {
+        profilePayload.value = { ...newUser }; // clone to decouple
+      }
+    }, { immediate: true });
+
+
     onMounted(() => {
       document.addEventListener('click', (event) => {
         const sidebar = $(".sidebar");
@@ -927,8 +918,8 @@ export default {
           isOpen.value = false;
         }
       });
-      profilePayload.value = user.value;
     });
+    
 
 
     // Return

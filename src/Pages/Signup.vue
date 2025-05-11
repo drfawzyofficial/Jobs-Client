@@ -49,7 +49,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <input type="text" class="form-control form-control-lg"
-                                                placeholder="رقم الهاتف" required v-model="signupPayload.phone">
+                                                placeholder="رقم الهاتف*" required v-model="signupPayload.phone">
                                             <div id="email_help" class="form-text">
                                                     مثل الصيغة: 05xxxxxxxx
                                             </div>
@@ -75,23 +75,29 @@
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg"
                                                 v-model="signupPayload.applicantGender">
-                                                <option value="none">الجنس</option>
+                                                <option value="none">الجنس*</option>
                                                 <option value="ذكر">ذكر</option>
                                                 <option value="أنثى">أنثى</option>
                                             </select>
+                                             <div v-if="errors.applicantGender"><span style="color: red">{{
+                                                errors.applicantGender }}</span></div>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="DOB" class="form-label">تاريخ الميلاد</label>
+                                            <label for="DOB" class="form-label">تاريخ الميلاد*</label>
                                             <input class="form-control form-control-lg" type="date"
                                                 v-model="signupPayload.DOB">
+                                                 <div v-if="errors.DOB"><span style="color: red">{{
+                                                errors.DOB }}</span></div>
                                         </div>
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg"
                                                 v-model="signupPayload.applicantEdu">
-                                                <option value="none">المرحلة التعليمية</option>
+                                                <option value="none">المرحلة التعليمية*</option>
                                                 <option v-for="(val, index) in helperObj.applicantEdus" :key="index"
                                                     :value="val">{{ val }}</option>
                                             </select>
+                                               <div v-if="errors.applicantEdu"><span style="color: red">{{
+                                                errors.applicantEdu }}</span></div>
                                         </div>
                                         <!-- <div class="mb-3">
                                             <label class="form-label">الجنسية</label>
@@ -103,7 +109,7 @@
                                         <!-- Checkbox to ask if the user took the English test -->
                                         <div class="mb-3 d-block d-sm-flex align-items-center">
                                             <label class="form-label">
-                                                هل أنت سعودي/ة الجنسية؟
+                                                هل أنت سعودي/ة الجنسية؟*
                                             </label>
                                             <div class="form-check ms-3">
                                                 <input type="radio" name="nationality" class="form-check-input"
@@ -125,16 +131,18 @@
                                         <div class="mb-3">
                                             <select class="form-select form-select-lg"
                                                 v-model="signupPayload.saudiCity">
-                                                <option value="none">مقر الإقامة</option>
+                                                <option value="none">مقر الإقامة*</option>
                                                 <option v-for="(nationality, index) in saudiCities" :key="index"
                                                     :value="nationality">
                                                     {{ nationality }}
                                                 </option>
                                             </select>
+                                               <div v-if="errors.saudiCity"><span style="color: red">{{
+                                                errors.saudiCity }}</span></div>
                                         </div>
                                         <div class="interests mb-3">
                                             <label class="form-label">ما نوع الفرص التي تبحث عنها؟ ( اختر 3 على
-                                                الأقل )</label>
+                                                الأقل )*</label>
                                             <div v-if="errors.interests"><span style="color: red">{{
                                                 errors.interests }}</span></div>
                                             <div class="choose-interest">
@@ -148,7 +156,7 @@
                                         </div>
                                         <div class="interests">
                                             <label class="form-label">حدد مجالات اهتمامك بالترتيب؟ ( اختر 3 على
-                                                الأقل )</label>
+                                                الأقل )*</label>
                                             <div v-if="errors.Subinterests"><span style="color: red">{{
                                                 errors.Subinterests }}</span></div>
                                             <div class="choose-interest">
@@ -162,7 +170,7 @@
                                         </div>
                                     </div>
                                 </tab-content>
-                                <tab-content title="مستوى اللغة الإنجليزية">
+                                <tab-content title="مستوى اللغة الإنجليزية" :beforeChange="validateStepTwo">
                                     <div class="english-test">
                                         <div class="mb-3">
                                             <!-- Checkbox to ask if the user took the English test -->
@@ -171,7 +179,7 @@
                                                     v-model="signupPayload.tookEnglishTest" />
                                                 <label class="form-label" for="englishTestCheckbox">
                                                     هل سبق لك وأخذت أحد اختبارات اللغة الإنجليزية الآتية:
-                                                    (STEP, DOULINGO, IELTS, CEFR, TOEIC, TOEFL)؟
+                                                    (STEP, Duolingo, IELTS, CEFR, TOEIC, TOEFL)؟
                                                 </label>
                                             </div>
                                             <ul v-if="signupPayload.tookEnglishTest" class="nav nav-tabs mt-2"
@@ -193,8 +201,8 @@
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link" data-bs-toggle="tab"
-                                                        data-bs-target="#DUOLINGO" type="button" role="tab"
-                                                        aria-controls="DUOLINGO" aria-selected="false">DUOLINGO</button>
+                                                        data-bs-target="#Duolingo" type="button" role="tab"
+                                                        aria-controls="Duolingo" aria-selected="false">Duolingo</button>
                                                 </li>
                                                 <li class="nav-item" role="presentation">
                                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#Step"
@@ -221,21 +229,23 @@
                                                     <input type="text" class="form-control form-control-lg"
                                                     placeholder="الدرجة بين 0 و120"
                                                     v-model="signupPayload.EnglishStandard.TOEFL">
+                                                    
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="TOEIC" role="tabpanel">
                                                     <input type="text" class="form-control form-control-lg"
                                                     placeholder="الدرجة بين 0 و990"
                                                     v-model="signupPayload.EnglishStandard.TOEIC">
                                                 </div>
-                                                <div class="tab-pane fade p-3" id="DUOLINGO" role="tabpanel">
+                                                <div class="tab-pane fade p-3" id="Duolingo" role="tabpanel">
                                                     <input type="text" class="form-control form-control-lg"
                                                     placeholder="الدرجة بين 0 و160"
-                                                    v-model="signupPayload.EnglishStandard.DUOLINGO">
+                                                    v-model="signupPayload.EnglishStandard.Duolingo">
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="Step" role="tabpanel">
                                                     <input type="text" class="form-control form-control-lg"
                                                     placeholder="الدرجة بين 0 و100"
                                                     v-model="signupPayload.EnglishStandard.STEP">
+                                                      
                                                 </div>
                                                 <div class="tab-pane fade p-3" id="CEFR" role="tabpanel">
                                                     <button type="button" class="btn btn-degree m-1"
@@ -254,10 +264,22 @@
                                                 </span> -->
                                                 </button>
                                             </div>
+                                             <div v-if="errorsTwo.TOEFL">
+                                                <span style="color: red">{{ errorsTwo.TOEFL }}</span>
+                                            </div>
+                                            <div v-if="errorsTwo.TOEIC">
+                                                <span style="color: red">{{ errorsTwo.TOEIC }}</span>
+                                            </div>
+                                            <div v-if="errorsTwo.Duolingo">
+                                                <span style="color: red">{{ errorsTwo.Duolingo }}</span>
+                                            </div>
+                                            <div v-if="errorsTwo.STEP">
+                                                <span style="color: red">{{ errorsTwo.STEP }}</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </tab-content>
-                                <tab-content title="اختبارات مقاييس القدرات العقلية">
+                                <tab-content title="اختبارات مقاييس القدرات العقلية" :beforeChange="validateStepThree">
                                     <div class="brain-test">
                                         <!-- Checkbox to ask if the user took the Brain test -->
                                         <div class="form-check mb-3">
@@ -353,6 +375,27 @@
                                                 </span> -->
                                             </button>
                                         </div>
+                                        <div v-if="errorsThree.SAT">
+                                            <span style="color: red">{{ errorsThree.SAT }}</span>
+                                        </div>
+                                        <div v-if="errorsThree.Qudrat">
+                                            <span style="color: red">{{ errorsThree.Qudrat }}</span>
+                                        </div>
+                                        <div v-if="errorsThree.GAT">
+                                            <span style="color: red">{{ errorsThree.GAT }}</span>
+                                        </div>
+                                        <div v-if="errorsThree.ACT">
+                                            <span style="color: red">{{ errorsThree.ACT }}</span>
+                                        </div>
+                                        <div v-if="errorsThree.Talent">
+                                            <span style="color: red">{{ errorsThree.Talent }}</span>
+                                        </div>
+                                        <div v-if="errorsThree.AchivementTest">
+                                            <span style="color: red">{{ errorsThree.AchivementTest }}</span>
+                                        </div>
+                                          <div v-if="errorsThree.SAAT">
+                                            <span style="color: red">{{ errorsThree.SAAT }}</span>
+                                        </div>
                                     </div>
                                 </tab-content>
                                 <tab-content title="الموافقة">
@@ -361,9 +404,9 @@
                                             <input type="checkbox" class="form-check-input" id="acceptConditions"
                                                 v-model="signupPayload.acceptConditions" />
                                             <label class="form-label" for="acceptConditions">
-                                                أوافق على <router-link class="accept-condition" to="/pages/terms">الشروط
-                                                    والأحكام</router-link> و<router-link class="accept-condition"
-                                                    to="/pages/privacy">سياسة الخصوصية</router-link> لمنصة خطط.*
+                                                أوافق على <a class="accept-condition" href="/pages/terms" target="_blank">الشروط
+                                                    والأحكام</a> و<a class="accept-condition"
+                                                    href="/pages/privacy" target="_blank">سياسة الخصوصية</a> لمنصة خطط.*
                                             </label>
                                         </div>
                                         <div class="form-check mb-3">
@@ -401,7 +444,7 @@ import { computed, ref } from 'vue'
 //local registration
 import { FormWizard, TabContent } from 'vue3-form-wizard'
 import 'vue3-form-wizard/dist/style.css'
-import { isMinLength, matchesRegex, isConfirmed, isMinArrayLength } from "../assets/utils/util";
+import { isMinLength, matchesRegex, isConfirmed, isMinArrayLength, isInList, isRequired, inRange } from "../assets/utils/util";
 export default {
     name: 'Signup',
     components: {
@@ -431,7 +474,7 @@ export default {
                 IELTS: '',
                 TOEFL: '',
                 TOEIC: '',
-                DUOLINGO: '',
+                Duolingo: '',
                 STEP: '',
                 CEFR: '',
             },
@@ -459,6 +502,10 @@ export default {
             interests: "",
             Subinterests: ""
         });
+
+        const errorsTwo = ref({ });
+
+        const errorsThree = ref({ });
 
         store.dispatch("Collection/GetHelper")
         // Get the helperObj as a computed property from the store
@@ -669,10 +716,11 @@ export default {
                 IELTS: '',
                 TOEFL: '',
                 TOEIC: '',
-                DUOLINGO: '',
+                Duolingo: '',
                 STEP: '',
                 CEFR: '',
             }
+            errorsTwo.value = { };
         }
         const resetBrainStandard = () => {
             signupPayload.value.BrainStandard = {
@@ -684,6 +732,7 @@ export default {
                 AchivementTest: '',
                 SAAT: ''
             }
+            errorsThree.value = { }
         }
 
         const validateStep = () => {
@@ -723,6 +772,33 @@ export default {
                 errors.value.password_confirmation = "";
             }
 
+            if (!isRequired(signupPayload.value.applicantGender) || !isInList(signupPayload.value.applicantGender, ["ذكر", "أنثى"])) {
+                errors.value.applicantGender = "الجنس يجب أن يكون من النوع ذكر أو أنثى.";
+            } else {
+                errors.value.applicantGender = "";
+            }
+
+            if (!isRequired(signupPayload.value.DOB) || !matchesRegex(signupPayload.value.DOB, /^\d{4}-\d{2}-\d{2}$/)) {
+                errors.value.DOB = "تاريخ الميلاد غير صالح.";
+            } else {
+                errors.value.DOB = "";
+            }
+
+
+             if (!helperObj.value.applicantEdus.includes(signupPayload.value.applicantEdu))
+                errors.value.applicantEdu = "يجب أن يكون المرحلة التعليمية صحيحة.";
+            else {
+                  errors.value.applicantEdu = "";
+            }
+
+            const saudiCities = ["الرياض", "مكة المكرمة", "جدة", "المدينة المنورة", "الدمام", "الأحساء", "القطيف", "الخبر", "الجبيل", "الطائف", "الدرعية", "بريدة", "عنيزة", "الرس", "الخرج", "الدوادمي", "المجمعة", "شقراء", "الأفلاج", "حوطة بني تميم", "الحريق", "المزاحمية", "ثادق", "حريملاء", "الدلم", "القنفذة", "رابغ", "تربة", "الخرمة", "ينبع", "العلا", "البكيرية", "البدائع", "الخفجي", "رأس تنورة", "بقيق", "أبها", "خميس مشيط", "تبوك", "حائل", "عرعر", "جازان", "الريث", "ضمد", "نجران", "الباحة", "بلجرشي", "سكاكا", "دومة الجندل"];
+
+            if (!saudiCities.includes(signupPayload.value.saudiCity))
+             errors.value.saudiCity = "يجب أن تكون المدينة صحيحة."
+            else {
+                 errors.value.saudiCity = "";
+            }
+
             if (!isMinArrayLength(signupPayload.value.interests, 3)) {
                 errors.value.interests = "يجب اختيار 3 أنواع من الفرص على الأقل.";
             } else {
@@ -737,6 +813,82 @@ export default {
 
             // //  Check if all values in `errors.value` are empty
             return Object.values(errors.value).every(error => error === "");
+
+        };
+
+          const validateStepTwo = () => {
+            // Validate English standards
+            if (signupPayload.value.EnglishStandard.TOEFL && !inRange(signupPayload.value.EnglishStandard.TOEFL, 0, 120)) {
+                errorsTwo.value.TOEFL = 'يجب أن تكون درجة الـ TOEFL بين 0 و120';
+            } else {
+                errorsTwo.value.TOEFL = '';
+            }
+            if (signupPayload.value.EnglishStandard.TOEIC && !inRange(signupPayload.value.EnglishStandard.TOEIC, 0, 990)) {
+                errorsTwo.value.TOEIC = 'يجب أن تكون درجة الـ TOEIC بين 0 و990';
+            } else {
+                errorsTwo.value.TOEIC = '';
+            }
+            if (signupPayload.value.EnglishStandard.Duolingo && !inRange(signupPayload.value.EnglishStandard.Duolingo, 0, 160)) {
+                errorsTwo.value.Duolingo = 'يجب أن تكون درجة الـ Duolingo بين 0 و160';
+            } else {
+                errorsTwo.value.Duolingo = '';
+            }
+            if (signupPayload.value.EnglishStandard.STEP && !inRange(signupPayload.value.EnglishStandard.STEP, 0, 100)) {
+                errorsTwo.value.STEP = 'يجب أن تكون درجة الـ STEP بين 0 و100';
+            } else {
+                errorsTwo.value.STEP = '';
+            }
+            if (signupPayload.value.EnglishStandard.CEFR && !CEFRs.includes(signupPayload.value.EnglishStandard.CEFR)) {
+                errorsTwo.value.CEFR = 'يجب أن يكون درجة الـ CEFR صحيحًا';
+            } else {
+                errorsTwo.value.CEFR = '';
+            }
+
+            // Check if all values in `errorsTwo.value` are empty
+            return Object.values(errorsTwo.value).every(error => error === "");
+
+        };
+
+         const validateStepThree = () => {
+            // Validate Brain standards
+              if (signupPayload.value.BrainStandard.SAT && !inRange(signupPayload.value.BrainStandard.SAT, 0, 1600)) {
+                    errorsThree.value.SAT = 'يجب أن تكون درجة الـ SAT بين 0 و1600';
+                } else {
+                    errorsThree.value.SAT = '';
+                }
+                if (signupPayload.value.BrainStandard.Qudrat && !inRange(signupPayload.value.BrainStandard.Qudrat, 0, 100)) {
+                   errorsThree.value.Qudrat  = 'يجب أن تكون درجة القدرات بين 0 و100'
+                } else {
+                    errorsThree.value.Qudrat = '';
+                }
+                if (signupPayload.value.BrainStandard.GAT && !inRange(signupPayload.value.BrainStandard.GAT, 0, 100)) {
+                    errorsThree.value.GAT = 'يجب أن تكون درجة الـ GAT بين 0 و100';
+                } else {
+                    errorsThree.value.GAT = '';
+                }
+                if (signupPayload.value.BrainStandard.ACT && !inRange(signupPayload.value.BrainStandard.ACT, 0, 36)) {
+                     errorsThree.value.ACT = 'يجب أن تكون درجة الـ ACT بين 0 و36';
+                } else {
+                    errorsThree.value.ACT = '';
+                }
+                if (signupPayload.value.BrainStandard.Talent && !inRange(signupPayload.value.BrainStandard.Talent, 0, 2000)) {
+                     errorsThree.value.Talent = 'يجب أن تكون درجة مقياس موهبة بين 0 و2000';
+                } else {
+                     errorsThree.value.Talent = '';
+                }
+                if (signupPayload.value.BrainStandard.AchivementTest && !inRange(signupPayload.value.BrainStandard.AchivementTest, 0, 100)) {
+                    errorsThree.value.AchivementTest = 'يجب أن تكون درجة الاختبار التحصيلي بين 0 و100';
+                } else {
+                      errorsThree.value.AchivementTest = '';
+                }
+                if (signupPayload.value.BrainStandard.SAAT && !inRange(signupPayload.value.BrainStandard.SAAT, 0, 100)) {
+                    errorsThree.value.SAAT = 'يجب أن تكون درجة الـ SAAT بين 0 و100';
+                } else {
+                    errorsThree.value.SAAT = '';
+                }
+
+            // Check if all values in `errorsThree.value` are empty
+            return Object.values(errorsThree.value).every(error => error === "");
 
         };
 
@@ -758,7 +910,11 @@ export default {
             toggleSaudiNationality,
             onSignup,
             errors,
-            validateStep
+            errorsTwo,
+            errorsThree,
+            validateStep,
+            validateStepTwo,
+            validateStepThree
         }
     }
 }

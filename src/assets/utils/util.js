@@ -66,6 +66,8 @@ export const FormDataMethod = (data) => {
   }
  return formData;
 }
+export const inRange = (x, min, max) => (x >= min && x <= max);
+
 export const isRequired = (value) => value !== undefined && value !== null && value !== "";
 
 export const isString = (value) =>  typeof value === "string";

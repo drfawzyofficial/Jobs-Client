@@ -203,18 +203,17 @@
           <div class="chances container-fluid py-4">
             <div class="breadcrumb-auth">
               <h3 class="fw-bold">جميع الفرص</h3>
-              <p>هنا تفاصيل جميع الفرص. يتم عرض كل فرصة بالتفاصيل الخاصة بها ويمكنك زيارة الفرصة أو إضافتها في المفضلات
-                للرجوع إليها في وقت لاحق. كما أنه يوجد خدمة فلترة الفرص. استمتع بإيجاد الفرص وتصفحها.</p>
+              <p>هنا تجد تفاصيل جميع الفرص. يمكنك إضافة الفرص إلى المفضلات للرجوع إليها في وقت لاحق.</p>
             </div>
             <div class="row mt-3">
               <div class="col-12">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="fw-bold">بحث كامل</h4>
-                    <p class="mt-2">يهدف البحث الكامل إلى تصفية كافة الفرص بشكل شامل. يمكنك إدخال بعض أو جميع المدخلات
-                      أدناه، ثم الضغط على زر البحث لتصفية الفرص المتاحة.</p>
+                    <h4 class="fw-bold">تصفية الفرص</h4>
+                    <p class="mt-2">يمكنك هنا اختيار بعض أو جميع المرشحات أدناه، ثم الضغط على زر البحث لعرض الفرص المتوافقة مع اختياراتك.</p>
                     <div class="row my-3">
                       <div class="col-lg-3 col-md-6">
+                        <label>حالة الفرصة: </label>
                         <select class="form-select form-select-lg" v-model="filter.chance_case">
                           <option value="none">حالة الفرصة</option>
                           <option value="open">مفتوح التسجيل</option>
@@ -223,6 +222,7 @@
                         </select>
                       </div>
                       <div class="col-lg-3 col-md-6 mt-3 mt-md-0">
+                          <label>المرحلة التعليمية:</label>
                         <select class="form-select form-select-lg" v-model="filter.edu_case">
                           <option value="none">المرحلة التعليمية</option>
                           <option v-for="(edu, index) in helperObj.applicantEdus" :key="index" :value="edu">{{ edu }}
@@ -230,14 +230,16 @@
                         </select>
                       </div>
                       <div class="col-lg-3 col-md-6 mt-3 mt-lg-0">
+                        <label>التصنيف:</label>
                         <select class="form-select form-select-lg" v-model="filter.interest_case">
                           <option value="none">التصنيف الأساسي</option>
-                          <option value="more_relevant">الأكثر ملائمة</option>
+                          <option value="more_relevant">الأكثر ملاءمة</option>
                           <option v-for="(category, index) in helperObj.chanceCategories" :key="index"
                             :value="category">{{ category }}</option>
                         </select>
                       </div>
                       <div class="col-lg-3 col-md-6 mt-3 mt-lg-0">
+                          <label>حالة البرنامج:</label>
                         <select class="form-select form-select-lg" v-model="filter.program_status">
                           <option value="none">حالة البرنامج</option>
                           <option value="حضوري">حضوري</option>
@@ -346,7 +348,7 @@
 <script>
 // Import Methods, Packages, Files
 import { useStore } from 'vuex'
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import Paginate from 'vuejs-paginate-next';
 export default {
   name: 'Chances',
@@ -368,12 +370,17 @@ export default {
       program_status: "none"
     })
 
+
+
     const isOpen = ref(false);
-    onMounted(() => {
-      if (user.value) {
+
+     // Watch user and sync its applicantEdu value to the value of edu_case in filter.
+     watch(user, (newUser) => {
+      if (newUser) {
         filter.value.edu_case = user.value.applicantEdu;
       }
-    });
+    }, { immediate: true });
+
 
 
 

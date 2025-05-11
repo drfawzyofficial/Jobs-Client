@@ -199,7 +199,7 @@
           <!-- End of Topbar -->
 
           <!-- Begin Page Content -->
-          <div v-if="true" class="chance container-fluid py-5">
+          <div v-if="chance" class="chance container-fluid py-5">
             <div class="container">
               <div class="chance-container">
                 <div class="top-left">
@@ -365,11 +365,12 @@
                 <div class="mt-2">
                   <textarea class="form-control" placeholder="اكتب تقييمك هنا" rows="4"
                     v-model="review.comment"></textarea>
-                  <div class="rating">
-                    <span v-for="star in stars" :key="star" :class="['star star1', { selected: star <= selectedStars }]"
+                  <div class="rating my-3">
+                    <!-- <span v-for="star in stars" :key="star" :class="['star star1', { selected: star <= selectedStars }]"
                       @click="selectStars(star)">
                       ★
-                    </span>
+                    </span> -->
+                    <star-rating active-color="#FFD700" :star-size="32" :show-rating="false" @update:rating ="setRating"></star-rating>
                   </div>
                   <button class="btn btn-primary" @click="sendReview()" :disabled="loading_status">
                     <span class="word">نشر</span>
@@ -551,11 +552,13 @@ import { computed, onMounted, ref } from 'vue'
 import Paginate from 'vuejs-paginate-next';
 import { useRoute } from 'vue-router';
 import { Modal } from 'bootstrap';
+import StarRating from 'vue-star-rating'
 
 export default {
   name: 'Chances',
   components: {
-    Paginate
+    Paginate,
+     StarRating
   },
   setup() {
 
@@ -592,6 +595,8 @@ export default {
     }
 
     const isOpen = ref(false);
+
+    const rating = ref(5);
 
     let wishlistStorage = getWishlist();
     wishlists.value = wishlistStorage;
@@ -747,7 +752,7 @@ export default {
     }
 
     const sendReview = () => {
-      review.value.stars = selectedStars.value;
+      review.value.stars = rating.value;
       store.dispatch("Auth/sendReview", review.value);
     };
 
@@ -818,6 +823,10 @@ export default {
       }
     }
 
+     const setRating = (rating_val) => {
+      rating.value = rating_val;
+    }
+
     const clickCallback = (pageNum) => store.dispatch("Auth/ReviewsGet", { _chanceID: route.params.id, page_no: pageNum });
 
 
@@ -872,7 +881,8 @@ export default {
       BrainChancesRelated,
       isOpen,
       toggleSidebar,
-      clickCallback
+      clickCallback,
+      setRating
     }
   }
 }

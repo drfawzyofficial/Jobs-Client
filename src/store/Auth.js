@@ -70,7 +70,8 @@ export const Auth = {
         dispatch("Collection/loading", true, { root: true });
         const data = await Fetch("POST", "/student/contact/create", payload);
         if (data.statusCode === 200) {
-          window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' })
+          window.Swal.fire({ title: 'تم إنشاء نموذج التواصل', icon: "success", text: data.message, confirmButtonText: 'أتفهم الأمر' });
+          
         } else if (data.statusCode == 400) {
           var errors = ``;
           for (const property in data.result.errors) {

@@ -9,8 +9,7 @@
                                 <img class="footer-logo" src="@/assets/images/logo_white.png" height="80" loading="lazy"/>
                             </router-link>
                         </div>
-                        <p class="mt-3 text-white">منصة خطط هي منصة رائدة تسعى إلى تعريفك بأفضل الفرص المتاحة حولك؛
-                            معبّدةً بذلك الطريق لتحقيق أهدافك الشخصية والأكاديمية. </p>
+                        <p class="mt-3 text-white">منصة خطط هي منصة رائدة تسعى إلى تعريفك بأفضل الفرص المتاحة حولك لتمهد بذلك طريقك لتحقيق أهدافك الشخصية والأكاديمية.</p>
                         <div class="d-flex mt-2" style="gap: 20px">
                             <div class="social-icon" v-for="(social, index) in socialIcons" :key="index">
                                 <a :href="social.link" class="text-white" target="_blank">
